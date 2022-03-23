@@ -24,7 +24,7 @@
 <meta property="og:locale">
 <meta property="og:image" content="http://sunxinbin.cn/null">
 <meta property="article:published_time" content="2022-03-13T14:00:00.000Z">
-<meta property="article:modified_time" content="2022-03-22T11:11:17.948Z">
+<meta property="article:modified_time" content="2022-03-23T07:38:50.974Z">
 <meta property="article:author" content="孙新斌">
 <meta property="article:tag" content="深度学习">
 <meta name="twitter:card" content="summary">
@@ -148,7 +148,7 @@
                         <i class="fa fa-edit"></i> 
                         
                         
-                            ~4.96K
+                            ~5.41K
                         
                         字
                     </li>
@@ -157,25 +157,52 @@
             </header>
             <div class="kratos-post-content">
                 <div id="expire-alert" class="alert alert-warning hidden" role="alert">
-                    本文最后编辑于 <time datetime="1647947477948"></time> 前，其中的内容可能需要更新。
+                    本文最后编辑于 <time datetime="1648021130974"></time> 前，其中的内容可能需要更新。
                 </div>
                 
                 <hr />
                 <p>（基于深度学习的3维人脸特征点自动检测）</p>
 <span id="more"></span>
 
-<h2 id="将3维模型转化为2维图像的方法"><a href="#将3维模型转化为2维图像的方法" class="headerlink" title="将3维模型转化为2维图像的方法"></a>将3维模型转化为2维图像的方法</h2><h3 id="Deep-landmark-identification-network-DLIN"><a href="#Deep-landmark-identification-network-DLIN" class="headerlink" title="Deep landmark identification network, DLIN"></a>Deep landmark identification network, DLIN</h3><p>摘要：提出一个多线性算法自动建立密集的点对点对应的任意数量的3D人脸，提出深度识别网络对合成图像进行训练。</p>
-<p>设计了一个深度特征点识别网络(deep landmark identification network,DLIN),首先生成 3D 数 据深度图像,然后计算点云中每个顶点的笛卡儿表 面法线( nx,ny,nz ) 并将其转换为球坐标( nθ,nφ , nr),其中 θ 是方位角, φ 是仰角,将深度图、方位图和仰角图作为 3 个通道代替 RGB 通道作为 DLIN 的 输入。 DLIN 架构改进 FCN 以更好地适合3D 深度数 据而不是 RGB 数据,网络结构如图 7所示。 </p>
-<p>摘自： </p>
-<p>Xu Y L, Zhao J L, Lyu Z H, Zhang Z M, Li J H and Pan Z K. 2021. Automatic facial feature points location based on deep learning: a review. Journal of Image and Graphics,26(11):2630-2644(徐亚丽,赵俊莉,吕智涵,张志梅,李劲华,潘振宽. 2021. 深度学习人脸特征点自动定 位综述. 中国图象图形学报,26(11):2630-2644)[DOI:10. 11834 / jig. 200278] </p>
+<h2 id="将3维模型转化为2维图像的方法"><a href="#将3维模型转化为2维图像的方法" class="headerlink" title="将3维模型转化为2维图像的方法"></a>将3维模型转化为2维图像的方法</h2><h3 id="Deep-landmark-identification-network-DLIN"><a href="#Deep-landmark-identification-network-DLIN" class="headerlink" title="Deep landmark identification network, DLIN"></a>Deep landmark identification network, DLIN</h3><p>结论：</p>
+<p>·提出一个多线性算法自动建立密集的点对点对应的任意数量的3D人脸，提出深度特征点识别网络对合成图像进行训练。</p>
+<p>·使用DLIN检测显著特征点，使用它们通过水平集曲线生产测地线距离图将3D人脸分割为Voronoi区域；利用这些区域中的·关键点以非刚性的方式对人脸中的相似区域进行对齐，通过神经网络搜索建立密集对应关系。</p>
+<p>·提出一种基于区域的三维可变型模型（R3DM），以有效地将密集的通信传播到大型数据集。</p>
+<p>·不依赖于现有的3D人脸模型。</p>
+<p>·论文原意将其应用于对诸如睡眠呼吸暂停症和自闭症谱系障碍等疾病进行表型分析。</p>
 <p><img src="pic1.png" alt="Block diagram of the proposed dense 3D face correspondence algorithm. The red box contains steps that are performed offline. Note that both online (green boxes) and offline processes are fully automatic and the online process is very efficient given the complexity of the dense correspondence task. The timings are without using a GPU."></p>
 <p><img src="pic2.png" alt="The process of generating training data for the DLIN. Left shows the process of preparing the input image while preparation of ground truth landmarks is shown on the right. The process is repeated for all input images to the DLIN."></p>
-<p><img src="pic3.png" alt="(a) Sample images used to train the DLIN. Notice the variations in different modalities of the training data.(b) Network architecture of DLIN."></p>
 <p><img src="pic6.png" alt="Sample images from the FRGCv2 (first four) andBosphorus databases (last four) along with the landmarks used in this paper. We detect the 11 red coloured landmarks with DLIN and the three blue onesby fitting the R3DM."></p>
-<p>为了训练深度地标识别网络(DLIN)，作者使用商业软件(FaceGenTM)，通过改变面部形状和面部表情，综合生成真实的3D人脸。因为人脸是由模型生成的，所以地标的真实位置就已经知道了。训练数据覆盖了由于年龄、种族和表情而导致的面部形状变化的巨大空间。我们还在训练数据中诱导姿态变化，以适应测试图像中的姿态变化。</p>
+<p><strong>1.生成合成训练数据</strong></p>
+<p>为了训练深度地标识别网络(DLIN)，作者使用商业软件(FaceGenTM)，通过改变面部形状和面部表情，综合生成真实的3D人脸。因为人脸是由模型生成的，所以特征点的真实位置就已经知道了。训练数据覆盖了由于年龄、种族和表情而导致的面部形状变化的巨大空间。还在训练数据中诱导姿态变化，以适应测试图像中的姿态变化。</p>
+<p><img src="pic3.png" alt="(a) Sample images used to train the DLIN. Notice the variations in different modalities of the training data.(b) Network architecture of DLIN."></p>
+<p><strong>2.训练深度特征点识别网络</strong></p>
+<p>卷积层数为5层，上采样层改为4x层</p>
+<p>实验表明，减少8个卷积层可以使学习时间减少约3倍，特征点检测时间减少4倍。</p>
+<p><strong>3.使用DLIN进行特征点检测</strong></p>
+<p><img src="pic7.png" alt="Results of landmark detection using the proposed DLIN on sample scans from the FRGCv2 (left
+four columns) and the Bosphorus (right four columns) datasets."></p>
+<p><img src="pic8.png" alt="Results of landmark detection using the proposed DLIN on sample scans from the FRGCv2 (left
+four columns) and the Bosphorus (right four columns) datasets."></p>
+<p><strong>基于区域的密集对应</strong></p>
+<p>原因：医学应用中，特征点检测和对应的准确性至关重要，密集的对应必须非常精确.</p>
+<p>输入：一组用Fj表示的N个3D人脸及其对应的基准特征点Lj</p>
+<p><img src="pic9.png" alt="水平集方程"></p>
+<p><img src="pic10.png" alt="the Eikonal equation"></p>
+<p>通过计算最短曲面距离（又称为geodesic distance）利用Fsat Marching算法求解的LHS，找到了geodesic distance距离映射，然后将3D人脸划分为五个特征点相关的区域</p>
+<p><strong>——关于可形变模型拟合</strong></p>
+<p>R3DM：通过可变形模型拟合将密集对应传播到大量的查询面，比建立基于区域的对应更快</p>
+<p>作为验证密集通信算法质量的一种方法。</p>
+<p><img src="pic11.png" alt="R3DM"></p>
+<p>US为主成分(PCs),V列为对应的荷载</p>
+<p>人脸通过DLIN特征点识别，分为五个面部区域，R3DM和查询人脸的鼻尖剧中，实现初始人脸对齐。通过上式给出的各区域统计模型进行变形，合成查询人脸区域内三位点随即子集，进行两步优化（矢量化查询和刚性变换）。最后将所有区域参数串联起来，作为表征人脸的特征。</p>
+<p><strong>具体实验</strong></p>
+<p>合成数据集训练DLIN，实验在真实的3D人脸数据集进行。</p>
+<hr>
 <p>使用数据集：基准的FRGCv2和Bosphorus数据集</p>
 <p>DLIN与FCN的比较：为了评估DLIN在FCN上的改进，作者遵循相同训练协议。更具体地说，DLIN是从零开始学习的，而FCN是在相同的训练数据上进行微调的。在4,007张FRGCv2扫描图上测试了这两种网络，并比较了地标定位误差和每幅图像的检测时间。从结果可以看出，DLIN的地标检测速度比FCN快4倍，而对所有地标的精度都等于或略优于FCN。</p>
 <p>作者在不同数据集上进行测试并给出比较结果。例如，在博斯普鲁斯数据集上使用类似的策略，对未见过的面孔进行无偏地标检测。DLIN探测到的11个地标的精度在2.95mm和1.83mm之间，从而将精度提高了30%。结果表明，该方法具有较高的精度和对大姿态和表情变化的鲁棒性。</p>
+<p>构建了两个模型R3DM1和R3DM2。</p>
 <div class="xControl">
     <div class="xHeading"><div class="xIcon"><i class="fa fa-plus"></i></div><span>Conclusions</span></div>
     <div class="xContent"><div class="inner">
@@ -185,6 +212,7 @@
     </div></div>
     </div>
 
+<p>思路：首先对三维人脸建立稠密准确的密集对应联系，据此组合不同身份和不同表情的人脸进行数据集的身份和表情扩增；也采用了HPR算法对旋转人脸的自遮挡进行了模拟，据此进行了数据集的姿态扩增。通过以上方法构建了一个百万级的三维人脸数据集，然后利用GridFit算法插值得到深度，俯角和仰角的三通道图像，从头训练了一个神经网络，在目前所有的公开三维人脸数据集中获得了非常好的成绩。</p>
 <h2 id="基于3维形变模型的方法"><a href="#基于3维形变模型的方法" class="headerlink" title="基于3维形变模型的方法"></a>基于3维形变模型的方法</h2><h3 id="3D-morphable-models-3DMM"><a href="#3D-morphable-models-3DMM" class="headerlink" title="3D morphable models,3DMM"></a>3D morphable models,3DMM</h3><p>算法主要流程<br>从上面的叙述中，我们可以直观的想象，主要有两个步骤，第一个是从人脸数据库中所有脸构建出一个平均的脸部模型，第二个完成形变模型与照片的匹配。这两个步骤中，都暗含了人脸与人脸之间的每一个点都拥有对应关系，且必须找到这种对应关系，完成点与点之间的配准，是最主要的难题。</p>
 <p>因此在进行建模的过程中，需要完成以下两个关键的问题：</p>
 <p>模型与照片的配准<br>如何避免生成怪异不可能的模型<br>文章主要组织为以下几部分对思路进行介绍：</p>
@@ -204,6 +232,7 @@
 <p>这篇论文主要是将二维的人脸特征标记问题转为了二维图像与三维模型的拟合问题。主要是通过级联的卷积神经网络，将二维人脸图像与三维变形模型进行拟合；使用3D变形模型构建得到的三维人脸并映射到二维人脸图像上的结果。</p>
 <p>重点还是在于大姿势人脸的一个三维重建，主要学习的也是三维映射所需要的各种参数。从而使得正面的三维人脸在映射过程中随着各个参数的变化而转变人脸呈现的角度。</p>
 <h3 id="Deep-face-feature-DFF"><a href="#Deep-face-feature-DFF" class="headerlink" title="Deep face feature,DFF"></a>Deep face feature,DFF</h3><p>本文基于深度学习的图像特征提取方法</p>
+<p>提出了一个由三个卷积网络组成的从粗到细的学习框架，经过训练可将</p>
 <p>深度人脸特征(DFF)是使用不同视图渲染的人脸图像之间的对应关系进行训练的。</p>
 <p>使用经过训练的DFF模型，可以为人脸图像的每个像素提取特征向量，从而区分不同的人脸区域，并被证明比通用的特征描述符更有效的人脸相关任务，如匹配和对齐。</p>
 <p>使用CNN提高回归精度，对于人脸图像的每个像素，使用该模型提取一个高维特征，该特征可以在无约束条件下准确地表示不同人脸图像上的相同解剖面部点</p>
@@ -296,7 +325,7 @@
                         <a class="tag-none-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a>
                     </div>
                     <div class="pull-date">
-                    <span>最后编辑：2022-03-22</span>
+                    <span>最后编辑：2022-03-23</span>
                     </div>
                 </div>
             </footer>
@@ -361,12 +390,6 @@
         
           
           
-            <a class="list-group-item" href="/2022/03/22/test-1/"><i class="fa  fa-book"></i> test</a>
-            
-          
-        
-          
-          
             <a class="list-group-item" href="/2022/03/22/matlab-learning/"><i class="fa  fa-book"></i> 数模竞赛基础</a>
             
           
@@ -390,7 +413,11 @@
           
         
           
+          
+            <a class="list-group-item" href="/2022/02/25/Automatic-facial-feature-points-location/"><i class="fa  fa-book"></i> 关于深度学习人脸特征点自动定位的学习</a>
             
+          
+        
           
             
           
