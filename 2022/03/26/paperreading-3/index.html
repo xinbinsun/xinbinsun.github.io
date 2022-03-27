@@ -4,7 +4,7 @@
   <!-- 元数据 -->
   <meta charset="utf-8">
   <link rel="icon" href="">
-  <title>何以为家？ | 孙新斌的博客</title>
+  <title>FaceGen使用与FCN,DLIN代码 | 孙新斌的博客</title>
   <meta name="author" content="孙新斌" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -13,20 +13,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <meta name="format-detection" content="telphone=no, email=no" />
   
-    <meta name="keywords" content="情感" />
+    <meta name="keywords" content="深度学习" />
   
-  <meta name="description" content="什么是家？对我而言，家的组成部分是人，人是构成家的主体，爱是家永恒的主体。有我，我爱和爱我的女孩，我们的至亲，这便是一个家。">
+  <meta name="description" content="FaceGen的使用FaceGen是由 Singular Inversions 生产 的 3D 人脸生成3D 建模 中介软件。 FaceGen 还可以从面部的正面和侧面图像生成 3D 模型，或者通过分析单张照片。 免费版本：FaceGen Artist、FaceGen 3D Print 和 FaceGen Modeller 的免费演示版可从公司网站下载。这些允许用户以程序专有的“.fg”格式创建、">
 <meta property="og:type" content="article">
-<meta property="og:title" content="何以为家？">
-<meta property="og:url" content="http://sunxinbin.cn/2021/06/17/family/index.html">
+<meta property="og:title" content="FaceGen使用与FCN,DLIN代码">
+<meta property="og:url" content="http://sunxinbin.cn/2022/03/26/paperreading-3/index.html">
 <meta property="og:site_name" content="孙新斌的博客">
-<meta property="og:description" content="什么是家？对我而言，家的组成部分是人，人是构成家的主体，爱是家永恒的主体。有我，我爱和爱我的女孩，我们的至亲，这便是一个家。">
+<meta property="og:description" content="FaceGen的使用FaceGen是由 Singular Inversions 生产 的 3D 人脸生成3D 建模 中介软件。 FaceGen 还可以从面部的正面和侧面图像生成 3D 模型，或者通过分析单张照片。 免费版本：FaceGen Artist、FaceGen 3D Print 和 FaceGen Modeller 的免费演示版可从公司网站下载。这些允许用户以程序专有的“.fg”格式创建、">
 <meta property="og:locale">
 <meta property="og:image" content="http://sunxinbin.cn/null">
-<meta property="article:published_time" content="2021-06-17T02:41:46.000Z">
-<meta property="article:modified_time" content="2022-01-08T13:14:44.527Z">
+<meta property="article:published_time" content="2022-03-26T14:00:00.000Z">
+<meta property="article:modified_time" content="2022-03-27T13:47:05.540Z">
 <meta property="article:author" content="孙新斌">
-<meta property="article:tag" content="情感">
+<meta property="article:tag" content="深度学习">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://sunxinbin.cn/null">
 <meta name="twitter:site" content="@null">
@@ -139,16 +139,16 @@
     <article>
         <div class="kratos-hentry kratos-post-inner clearfix">
             <header class="kratos-entry-header">
-                <h1 class="kratos-entry-title text-center">何以为家？</h1>
+                <h1 class="kratos-entry-title text-center">FaceGen使用与FCN,DLIN代码</h1>
                 
                 <ul class="kratos-post-meta text-center">
-                    <li><i class="fa fa-calendar"></i> 2021-06-17</li>
+                    <li><i class="fa fa-calendar"></i> 2022-03-26</li>
                     <li><i class="fa fa-user"></i> 作者 孙新斌</li>
                     <li>
                         <i class="fa fa-edit"></i> 
                         
                         
-                            622
+                            ~2.83K
                         
                         字
                     </li>
@@ -157,22 +157,64 @@
             </header>
             <div class="kratos-post-content">
                 <div id="expire-alert" class="alert alert-warning hidden" role="alert">
-                    本文最后编辑于 <time datetime="1641647684527"></time> 前，其中的内容可能需要更新。
+                    本文最后编辑于 <time datetime="1648388825540"></time> 前，其中的内容可能需要更新。
                 </div>
                 
                 <hr />
-                <h2 id="什么是家？"><a href="#什么是家？" class="headerlink" title="什么是家？"></a>什么是家？</h2><p>对我而言，家的组成部分是人，人是构成家的主体，爱是家永恒的主体。有我，我爱和爱我的女孩，我们的至亲，这便是一个家。 <span id="more"></span> 这样的组成，无论我们在什么地方，农村也好，城市也罢；中国也好，美国也罢；我们都是一个家。<br>家对我而言，不是一栋多大的房子，有多少家产与家业，而是简简单单的人和其中联络的情感。或许居无定所，也或许衣食无忧，家是那个你劳累疲惫的时候，能充分给你依靠的地方，有你充分信任的人，永远会信任和爱你的人。同样，家也是一个我愿意为之付出，为之努力，愿意为它付出一切哪怕是生命的地方。这里有我爱的人和爱我的人。</p>
-<p><img src="family.jpg" alt="family"></p>
-<blockquote><p>此心安处是吾家（乡）。<br>———苏轼《定风波·南海归赠王定国侍人寓娘》</p>
-</blockquote>
+                <h2 id="FaceGen的使用"><a href="#FaceGen的使用" class="headerlink" title="FaceGen的使用"></a>FaceGen的使用</h2><p><strong>FaceGen</strong>是由 Singular Inversions 生产 的 3D 人脸生成<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/3D_modeling">3D 建模</a> <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Middleware">中介软件</a>。</p>
+<p>FaceGen 还可以从面部的正面和侧面图像生成 3D 模型，或者通过分析单张照片。</p>
+<p><strong>免费版本</strong>：FaceGen Artist、FaceGen 3D Print 和 FaceGen Modeller 的免费演示版可从公司网站下载。这些允许用户以程序专有的“.fg”格式创建、编辑、加载和保存文件。免费版具有与付费版相同的功能，<strong>只是在生成的模型的额头上放置了一个徽标，并且只提供了一些额外的功能，如发型和胡须。</strong></p>
+<h3 id="——Create"><a href="#——Create" class="headerlink" title="——Create"></a>——Create</h3><p><strong>——Photo：</strong>使用闪光灯在室内拍摄护照风格的照片(利用面部的正面和侧面图像生成 3D 模型)</p>
+<p><strong>——New：</strong>可修改种族，性别以及进行随机设定生成模型</p>
+<p><strong>——Scan：</strong>通过3D扫描（或其他网格）获取面部形状</p>
+<h3 id="——Modify（修饰）"><a href="#——Modify（修饰）" class="headerlink" title="——Modify（修饰）"></a>——Modify（修饰）</h3><p><strong>——Demographics</strong>：对年龄，性别，人种，肤色，等进行综合调整</p>
+<p><strong>——Interactive：</strong>手动调整脸部模型</p>
+<h3 id="——Undo（撤销与重做）"><a href="#——Undo（撤销与重做）" class="headerlink" title="——Undo（撤销与重做）"></a>——Undo（撤销与重做）</h3><h3 id="——View（微调）"><a href="#——View（微调）" class="headerlink" title="——View（微调）"></a>——View（微调）</h3><h3 id="——File"><a href="#——File" class="headerlink" title="——File"></a>——File</h3><p><strong>——Face：</strong>加载或保存FaceGen面文件（.FG）<br>*与其他FaceGen产品兼容<br>*拖放：将FG文件放置到视口中（左侧）</p>
+<p><strong>——Export：</strong></p>
+<p><strong>参数组</strong></p>
+<p>您的形状变形将放置在参数选项卡的头部区域内，并将默认为显示的组路径。您可以将其更改为您喜欢的任何内容，只要您记住正斜杠“/”创建一个子组并且您的组路径不应以斜杠结尾。</p>
+<p><strong>参数名称</strong></p>
+<p>不要在文件名中使用任何不允许的字符。</p>
+<p><strong>Daz Studio 内容库</strong></p>
+<p>Daz Studio 可以从您的任何内容目录中读取您的新变形。</p>
+<p>如果由于某种原因您想使用不同的目录，首先将其添加为 Daz Studio 中的内容目录（编辑→首选项→内容→内容目录管理器→ Daz Studio 格式→添加），然后重新启动 FaceGen Artist，它会出现在名单上。</p>
+<h2 id="关于R3DM-DLIN-FCN"><a href="#关于R3DM-DLIN-FCN" class="headerlink" title="关于R3DM,DLIN,FCN"></a>关于R3DM,DLIN,FCN</h2><p>R3DM与DLIN经检索查询：</p>
+<p>Syed Zulqarnain Gilani（论文作者/通信作者）主页：代码（X）</p>
+<p>paperwithcode.com网站：代码（X）</p>
+<p>codeocean.com网站：代码（X）</p>
+<p>google 关键词检索：代码（X）</p>
+<p>FCN经检索查询：</p>
+<p>论文中引用路径：J. Long, E. Shelhamer, T. Darrell, Fully convolutional networks for semantic segmentation, in: Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, 2015, pp. 3431–3440.</p>
+<p>此论文本身没有给出代码，但有其他类似代码给出：<a target="_blank" rel="noopener" href="https://github.com/andyzeng/apc-vision-toolbox">https://github.com/andyzeng/apc-vision-toolbox</a></p>
+<h2 id="本周进展"><a href="#本周进展" class="headerlink" title="本周进展"></a>本周进展</h2><p><strong>“Look Ma, no landmarks!” – Unsupervised, Model-based Dense Face Alignment</strong></p>
+<p><a target="_blank" rel="noopener" href="https://paperswithcode.com/conference/eccv-2020-8">ECCV 2020 </a> · <a target="_blank" rel="noopener" href="https://paperswithcode.com/author/tatsuro-koizumi">Tatsuro Koizumi</a>, <a target="_blank" rel="noopener" href="https://paperswithcode.com/author/william-a-p-smith-1">William A. P. Smith</a> </p>
+<p>代码：<a target="_blank" rel="noopener" href="https://github.com/kzmttr/UMDFA">https://github.com/kzmttr/UMDFA</a></p>
+<p><strong>Weakly-Supervised Multi-Face 3D Reconstruction</strong></p>
+<p>6 Jan 2021 · <a target="_blank" rel="noopener" href="https://paperswithcode.com/author/jialiang-zhang">Jialiang Zhang</a>, <a target="_blank" rel="noopener" href="https://paperswithcode.com/author/lixiang-lin">Lixiang Lin</a>, <a target="_blank" rel="noopener" href="https://paperswithcode.com/author/jianke-zhu">Jianke Zhu</a>, <a target="_blank" rel="noopener" href="https://paperswithcode.com/author/steven-c-h-hoi">Steven C. H. Hoi</a></p>
+<p>代码：<a target="_blank" rel="noopener" href="https://github.com/kalyo-zjl/WM3DR">https://github.com/kalyo-zjl/WM3DR</a></p>
+<h5 id="Joint-3D-Face-Reconstruction-and-Dense-Face-Alignment-from-A-Single-Image-with-2D-Assisted-Self-Supervised-Learning"><a href="#Joint-3D-Face-Reconstruction-and-Dense-Face-Alignment-from-A-Single-Image-with-2D-Assisted-Self-Supervised-Learning" class="headerlink" title="Joint 3D Face Reconstruction and Dense Face Alignment from A Single Image with 2D-Assisted Self-Supervised Learning"></a>Joint 3D Face Reconstruction and Dense Face Alignment from A Single Image with 2D-Assisted Self-Supervised Learning</h5><p>Jiashi Feng, Zheng Ma, Linxiao He, Yang Zhao, Mei Xie, Yao Luo, Zihang Jiang, Jian Zhao, Xiaoguang Tu - 2019</p>
+<p>代码：<a target="_blank" rel="noopener" href="https://github.com/XgTu/2DASL">https://github.com/XgTu/2DASL</a></p>
+<p><strong>Synergy between 3DMM and 3D Landmarks for Accurate 3D Facial Geometry</strong></p>
+<p>19 Oct 2021 · <a target="_blank" rel="noopener" href="https://paperswithcode.com/author/cho-ying-wu-1">Cho-Ying Wu</a>, <a target="_blank" rel="noopener" href="https://paperswithcode.com/author/qiangeng-xu">Qiangeng Xu</a>, <a target="_blank" rel="noopener" href="https://paperswithcode.com/author/ulrich-neumann">Ulrich Neumann</a> </p>
+<p>代码：<a target="_blank" rel="noopener" href="https://github.com/choyingw/SynergyNet">https://github.com/choyingw/SynergyNet</a></p>
+<p><strong>img2pose: Face Alignment and Detection via 6DoF, Face Pose Estimation</strong></p>
+<p><a target="_blank" rel="noopener" href="https://paperswithcode.com/conference/cvpr-2021-1">CVPR 2021 </a> · <a target="_blank" rel="noopener" href="https://paperswithcode.com/author/vitor-albiero-1">Vítor Albiero</a>, <a target="_blank" rel="noopener" href="https://paperswithcode.com/author/xingyu-chen">Xingyu Chen</a>, <a target="_blank" rel="noopener" href="https://paperswithcode.com/author/xi-yin">Xi Yin</a>, <a target="_blank" rel="noopener" href="https://paperswithcode.com/author/guan-pang">Guan Pang</a>, <a target="_blank" rel="noopener" href="https://paperswithcode.com/author/tal-hassner">Tal Hassner</a></p>
+<p>代码：<a target="_blank" rel="noopener" href="https://github.com/vitoralbiero/img2pose">https://github.com/vitoralbiero/img2pose</a></p>
+<p><strong>Towards Fast, Accurate and Stable 3D Dense Face Alignment</strong></p>
+<p><a target="_blank" rel="noopener" href="https://paperswithcode.com/conference/eccv-2020-8">ECCV 2020 </a> · <a target="_blank" rel="noopener" href="https://paperswithcode.com/author/jianzhu-guo">Jianzhu Guo</a>, <a target="_blank" rel="noopener" href="https://paperswithcode.com/author/xiangyu-zhu">Xiangyu Zhu</a>, <a target="_blank" rel="noopener" href="https://paperswithcode.com/author/yang-yang">Yang Yang</a>, <a target="_blank" rel="noopener" href="https://paperswithcode.com/author/fan-yang">Fan Yang</a>, <a target="_blank" rel="noopener" href="https://paperswithcode.com/author/zhen-lei">Zhen Lei</a>, <a target="_blank" rel="noopener" href="https://paperswithcode.com/author/stan-z-li-1">Stan Z. Li</a> </p>
+<p>代码：<a target="_blank" rel="noopener" href="https://github.com/cleardusk/3DDFA_V2">https://github.com/cleardusk/3DDFA_V2</a></p>
+<p><strong>LUVLi Face Alignment: Estimating Landmarks’ Location, Uncertainty, and Visibility Likelihood</strong></p>
+<p><a target="_blank" rel="noopener" href="https://paperswithcode.com/conference/cvpr-2020-6">CVPR 2020 </a> · <a target="_blank" rel="noopener" href="https://paperswithcode.com/author/abhinav-kumar">Abhinav Kumar</a>, <a target="_blank" rel="noopener" href="https://paperswithcode.com/author/tim-k-marks">Tim K. Marks</a>, <a target="_blank" rel="noopener" href="https://paperswithcode.com/author/wenxuan-mou">Wenxuan Mou</a>, <a target="_blank" rel="noopener" href="https://paperswithcode.com/author/ye-wang">Ye Wang</a>, <a target="_blank" rel="noopener" href="https://paperswithcode.com/author/michael-jones">Michael Jones</a>, <a target="_blank" rel="noopener" href="https://paperswithcode.com/author/anoop-cherian">Anoop Cherian</a>, <a target="_blank" rel="noopener" href="https://paperswithcode.com/author/toshiaki-koike-akino">Toshiaki Koike-Akino</a>, <a target="_blank" rel="noopener" href="https://paperswithcode.com/author/xiaoming-liu">Xiaoming Liu</a>, <a target="_blank" rel="noopener" href="https://paperswithcode.com/author/chen-feng">Chen Feng</a></p>
+<p>代码：<a target="_blank" rel="noopener" href="https://github.com/abhi1kumar/LUVLi">https://github.com/abhi1kumar/LUVLi</a></p>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p>论文代码查询方式：</p>
+<p>1.作者网站</p>
+<p>2.Google广搜</p>
+<p>3.<a target="_blank" rel="noopener" href="https://paperswithcode.com/">https://paperswithcode.com/</a></p>
+<p>4.<a target="_blank" rel="noopener" href="https://codeocean.com/">https://codeocean.com/</a></p>
+<p>5.<a target="_blank" rel="noopener" href="https://researchcode.com/">https://researchcode.com/</a></p>
+<p>6.插件<strong>Find Code for Research Papers</strong>（可应用于Chrome和Firefox）</p>
+<p>7.<a target="_blank" rel="noopener" href="https://www.catalyzex.com/">https://www.catalyzex.com/</a></p>
 
-<h1 id="有时我也会想，人存在的意义是什么，茫茫人海，广阔世间，我们究竟在追求些什么？"><a href="#有时我也会想，人存在的意义是什么，茫茫人海，广阔世间，我们究竟在追求些什么？" class="headerlink" title="有时我也会想，人存在的意义是什么，茫茫人海，广阔世间，我们究竟在追求些什么？"></a>有时我也会想，人存在的意义是什么，茫茫人海，广阔世间，我们究竟在追求些什么？</h1><p>或许，家便是一个可以让我活下去的存在，一个让我愿为之奋斗的存在吧。</p>
-<blockquote><p>家是渴了有水喝，饿了有饭吃，冷了有衣穿。<br>家是桌上摆着我喜欢的菜，对面坐着我爱的人。<br>家是不管如何也会满心欢喜的期待着要回去的地方。<br>家是柴米油盐酱醋茶，家也是琴棋书画诗酒花。</p>
-</blockquote>
-
-<h2 id="家是一个能让你摘下面具的地方。"><a href="#家是一个能让你摘下面具的地方。" class="headerlink" title="家是一个能让你摘下面具的地方。"></a>家是一个能让你摘下面具的地方。</h2><p>在学校，在社会，我们承担着众多的角色，或为一个学生，一个职员，一个钢琴家，一个工程师~~在外人看来，我们平易近人，乖巧和善，慷慨大方；而在家里，我就是我，我和我爱的人互相了解，互相信任，不需要虚伪的面具，家包容了你我的缺点，也包含了甜蜜的爱。</p>
-<blockquote><p>那里寄托了你对生活的希望，和努力的勇气，这就叫做家。</p>
-</blockquote>
             </div>
             
             <footer class="kratos-entry-footer clearfix">
@@ -221,7 +263,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "http://sunxinbin.cn/2021/06/17/family/",
+                text: "http://sunxinbin.cn/2022/03/26/paperreading-3/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -233,9 +275,11 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "http://sunxinbin.cn/2021/06/17/family/";
-            const title         = "「何以为家？」";
-            const excerpt       = `什么是家？对我而言，家的组成部分是人，人是构成家的主体，爱是家永恒的主体。有我，我爱和爱我的女孩，我们的至亲，这便是一个家。`;
+            const hostUrl       = "http://sunxinbin.cn/2022/03/26/paperreading-3/";
+            const title         = "「FaceGen使用与FCN,DLIN代码」";
+            const excerpt       = `FaceGen的使用FaceGen是由 Singular Inversions 生产 的 3D 人脸生成3D 建模 中介软件。
+FaceGen 还可以从面部的正面和侧面图像生成 3D 模型，或者通过分析单张照片。
+免费版本：FaceG...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -254,10 +298,10 @@
                 <div class="footer-tag clearfix">
                     <div class="pull-left">
                     <i class="fa fa-tags"></i>
-                        <a class="tag-none-link" href="/tags/%E6%83%85%E6%84%9F/" rel="tag">情感</a>
+                        <a class="tag-none-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a>
                     </div>
                     <div class="pull-date">
-                    <span>最后编辑：2022-01-08</span>
+                    <span>最后编辑：2022-03-27</span>
                     </div>
                 </div>
             </footer>
@@ -266,13 +310,9 @@
             <nav class="navigation post-navigation clearfix" role="navigation">
                 
                 <div class="nav-previous clearfix">
-                    <a title=" 孙少平与孙少安 ——《平凡的世界》" href="/2021/06/15/615/">&lt; 上一篇</a>
+                    <a title=" 数模竞赛基础" href="/2022/03/22/matlab-learning/">&lt; 上一篇</a>
                 </div>
                 
-                
-                <div class="nav-next clearfix">
-                    <a title=" 遍身罗绮者，不是养蚕人" href="/2021/07/04/0704/">下一篇 &gt;</a>
-                </div>
                 
             </nav>
         
