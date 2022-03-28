@@ -43,20 +43,38 @@
     <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" type="text/css" media="all">
   
   
-  <link rel="stylesheet" id="fontawe-css" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
-  <link rel="stylesheet" id="nprogress-css" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="fontawe-css" href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="nprogress-css" href="https://unpkg.com/nprogress@0.2.0/nprogress.css" type="text/css" media="all">
   
   
+    <link rel="stylesheet" href="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.css">
   
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+    <link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
   
   
     <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
   
   <!-- 不得不预先加载的一些JS文件 -->
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"></script>
   
-    <script src="https://cdn.jsdelivr.net/npm/qrcode_js@1.0.0/qrcode.min.js"></script>
+    <script src="https://unpkg.com/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
   
 <meta name="generator" content="Hexo 5.4.0"></head>
 
@@ -80,22 +98,22 @@
                                     
                                 
                                     
-                                        <li><a href="/friends/"><i class="fa fa-paw"></i>搜索引擎</a></li>
+                                        <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
                                     
                                 
                                     
                                         <li>
-                                            <a><i class="fa fa-link"></i>关于我</a>
+                                            <a><i class="fa fa-link"></i>链接</a>
                                             <ul class="sub-menu">
                                                 
                                                     
                                                 
                                                     
-                                                        <li><a href="https://sunxinbin.cn">作者博客</a></li>
+                                                        <li><a target="_blank" rel="noopener" href="https://candinya.com">作者博客</a></li>
                                                     
                                                 
                                                     
-                                                        <li><a target="_blank" rel="noopener" href="https://github.com/xinbinsun">项目链接</a></li>
+                                                        <li><a target="_blank" rel="noopener" href="https://github.com/Candinya/Kratos-Rebirth">项目链接</a></li>
                                                     
                                                 
                                             </ul>
@@ -135,33 +153,40 @@
                 <div id="main" class="row">
                     
 
-        <section class="col-md-8">
-    <article>
-        <div class="kratos-hentry kratos-post-inner clearfix">
-            <header class="kratos-entry-header">
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article>
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
                 <h1 class="kratos-entry-title text-center">关于深度学习人脸特征点自动定位的学习</h1>
-                
-                <ul class="kratos-post-meta text-center">
-                    <li><i class="fa fa-calendar"></i> 2022-02-25</li>
-                    <li><i class="fa fa-user"></i> 作者 孙新斌</li>
-                    <li>
-                        <i class="fa fa-edit"></i> 
-                        
-                        
-                            ~4.20K
-                        
-                        字
-                    </li>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><i class="fa fa-calendar"></i> 2022-02-25</li>
+                <li><i class="fa fa-user"></i> 作者 孙新斌</li>
+                <li>
+                    <i class="fa fa-edit"></i> 
                     
-                </ul>
-            </header>
-            <div class="kratos-post-content">
-                <div id="expire-alert" class="alert alert-warning hidden" role="alert">
-                    本文最后编辑于 <time datetime="1646145717333"></time> 前，其中的内容可能需要更新。
-                </div>
+                    
+                        ~4.20K
+                    
+                    字
+                </li>
                 
-                <hr />
-                <p>关于深度学习人脸特征点自动定位的学习</p>
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                本文最后编辑于 <time datetime="1646145717333"></time> 前，其中的内容可能需要更新。
+            </div>
+            
+            <hr />
+            <p>关于深度学习人脸特征点自动定位的学习</p>
 <span id="more"></span>
 <h1 id="生成式对抗网络原理"><a href="#生成式对抗网络原理" class="headerlink" title="生成式对抗网络原理"></a>生成式对抗网络原理</h1><p>深度学习模型分为：一，判别式模型(GoogLeNet,ResNet,Faster RCNN,YOLO等等)；二，生成式模型<br>研究意义：<br>➢ 是对我们处理高维数据和复杂概率分布的能力很好的检测<br>➢当面临缺乏数据或缺失数据时，我们可以通过生成模型来补足。比如，用在半监督学习中。<br>➢可以输出多模态（multimodal）结果<br><img src="pic1.png" alt="生成式模型发展历程"><br>➢最大似然估计法<br>以真实样本进行最大似然估计，参数更新直接来自于<br>样本数据，导致学习到的生成模型受到限制。<br>➢近似法<br>由于目标函数难解一般只能在学习过程中逼近目标函<br>数的下界，并不是对目标函数的逼近。<br>➢马尔科夫链方法<br>计算复杂度高<br><strong>生成式对抗网络Generative Adversarial Networks (GANs)</strong><br><img src="pic2.png" alt="GAN原理"><br>生成网络G的输入是一个来自常见概率分布的随机噪声矢量，输出是计算机生成的图片；判别网络D的输入是图片x，x可能是真实图片也可能是生成图片，判别网络D的输出是一个标量，用来代表x是真实图片的概率。<br>GAN的核心思想来源于博弈论的纳什均衡，它设定参与游戏双方分别为一个生成器和一个判别器，生成器的目的是尽量去学习真实的数据分布，而判别器的目的是尽量正确判别输入数据是来自真实数据还是来自生成器；为了取得游戏胜利，两个参与者需要不断优化，各自提高自己的生成能力和判别能力，这个学习的优化过程就是寻找二者之间的一个纳什均衡。<br><img src="pic3.png" alt="GAN训练"><br><img src="pic4.png" alt="GAN训练"><br><img src="pic4.png" alt="GAN实现"></p>
 <p><strong>关于深度特征点识别网络(deep land- mark identification network,DLIN)</strong></p>
@@ -183,15 +208,19 @@
     </div></div>
     </div>
 
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5>本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
             </div>
+        
+        <footer class="kratos-entry-footer clearfix">
             
-            <footer class="kratos-entry-footer clearfix">
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
                 
-                    <div class="post-like-donate text-center clearfix" id="post-like-donate">
-                    
-                    
-                        <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
-                        <div class="share-wrap" style="display: none;">
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
     <div class="share-group">
         <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
             <div class="icon-wrap">
@@ -258,37 +287,42 @@
         };
     </script>
 </div>
-                    
-                    </div>
                 
-                <div class="footer-tag clearfix">
-                    <div class="pull-left">
-                    <i class="fa fa-tags"></i>
-                        <a class="tag-none-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a>
-                    </div>
-                    <div class="pull-date">
-                    <span>最后编辑：2022-03-01</span>
-                    </div>
                 </div>
-            </footer>
-        </div>
-        
-            <nav class="navigation post-navigation clearfix" role="navigation">
-                
-                <div class="nav-previous clearfix">
-                    <a title=" 蓝桥杯" href="/2022/02/05/lanqiaobei-1/">&lt; 上一篇</a>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a>
                 </div>
-                
-                
-                <div class="nav-next clearfix">
-                    <a title=" 基于深度学习的2维人脸特征点自动检测" href="/2022/03/07/paperreading-1/">下一篇 &gt;</a>
+                <div class="pull-date">
+                <span>最后编辑：2022-03-01</span>
                 </div>
-                
-            </nav>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" 蓝桥杯" href="/2022/02/05/lanqiaobei-1/">&lt; 上一篇</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" 基于深度学习的2维人脸特征点自动检测" href="/2022/03/07/paperreading-1/">下一篇 &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+</article>
+
         
+
+            </section>
+
         
-    </article>
-</section>
 
                 
             
@@ -306,6 +340,32 @@
     </div>
     <div class="textwidget">
         <p class="text-center">青岛大学 || 计算机科学技术学院 || 计算机科学与技术</p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                28
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                0
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                7
+            </span>
+        </a>
     </div>
 </aside>
             
@@ -418,7 +478,42 @@
     </div>
 </div>
 <footer>
-    <div id="footer"  >
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://t.me/CandyUnion"><i class="fa fa-telegram"></i></a></li>
+                        
+                        
+                        
+                        <li><a target="_blank" rel="me" href="https://nya.one/@Candinya"><i class="fa fa fa-share-alt-square"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Candinya"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2022 孙新斌的博客 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by 孙新斌.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
         <div class="kr-tool text-center">
             <div class="tool">
                 
@@ -439,56 +534,43 @@
                 <span class="fa fa-chevron-up"></span>
             </div>
         </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3 footer-list text-center">
-                    <ul class="kratos-social-icons">
-                        
-                        <li><a href="mailto:2332431354@qq.com"><i class="fa fa-envelope"></i></a></li>
-                        
-                        
-                        
-                        
-                        
-                        <li><a target="_blank" rel="nofollow" href="https://github.com/xinbinsun"><i class="fa fa-github"></i></a></li>
-                        
-                    </ul>
-                    <ul class="kratos-copyright">
-                        <div>
-                            <li>&copy; 2022 孙新斌的博客 版权所有.</li>
-                            <li>本站已运行<span id="span_dt">Loading...</span></li>
-                        </div>
-                        <div>
-                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
-                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by 孙新斌.</li>
-                        </div>
-                        <div>
-                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
-                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
-                        </div>
-                        <div>
-                            <li><a href="https://beian.miit.gov.cn" rel="external nofollow" target="_blank">鲁ICP备23010101号</a></li>
-                            <li><a href="http://www.beian.gov.cn" rel="external nofollow" target="_blank"><img src="/images/psr.webp" width="12" height="12">鲁公网安备371402000348</a></li>
-                        </div>
-                    </ul>
-                </div>
-            </div>
-        </div>
     </div>
 </footer>
 </div>
 </div>
 
-        <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
-<script>const notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));</script>
+        <script defer src="https://unpkg.com/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
 
-<script async src="/js/candy.min.js"></script>
+
+    <script async src="/js/candy.min.js"></script>
 
 
-    <script defer src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
-<script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+    <script defer src="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="https://unpkg.com/meting@2/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="3204190542"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="https://unpkg.com/clipboard@2.0.6/dist/clipboard.min.js"></script>
 <script defer src="/js/kratosr.min.js"></script>
 <script defer src="/js/pjax.min.js"></script>
 

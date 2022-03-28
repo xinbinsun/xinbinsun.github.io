@@ -43,20 +43,38 @@
     <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" type="text/css" media="all">
   
   
-  <link rel="stylesheet" id="fontawe-css" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
-  <link rel="stylesheet" id="nprogress-css" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="fontawe-css" href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="nprogress-css" href="https://unpkg.com/nprogress@0.2.0/nprogress.css" type="text/css" media="all">
   
   
+    <link rel="stylesheet" href="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.css">
   
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+    <link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
   
   
     <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
   
   <!-- 不得不预先加载的一些JS文件 -->
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"></script>
   
-    <script src="https://cdn.jsdelivr.net/npm/qrcode_js@1.0.0/qrcode.min.js"></script>
+    <script src="https://unpkg.com/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
   
 <meta name="generator" content="Hexo 5.4.0"></head>
 
@@ -80,22 +98,22 @@
                                     
                                 
                                     
-                                        <li><a href="/friends/"><i class="fa fa-paw"></i>搜索引擎</a></li>
+                                        <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
                                     
                                 
                                     
                                         <li>
-                                            <a><i class="fa fa-link"></i>关于我</a>
+                                            <a><i class="fa fa-link"></i>链接</a>
                                             <ul class="sub-menu">
                                                 
                                                     
                                                 
                                                     
-                                                        <li><a href="https://sunxinbin.cn">作者博客</a></li>
+                                                        <li><a target="_blank" rel="noopener" href="https://candinya.com">作者博客</a></li>
                                                     
                                                 
                                                     
-                                                        <li><a target="_blank" rel="noopener" href="https://github.com/xinbinsun">项目链接</a></li>
+                                                        <li><a target="_blank" rel="noopener" href="https://github.com/Candinya/Kratos-Rebirth">项目链接</a></li>
                                                     
                                                 
                                             </ul>
@@ -135,33 +153,40 @@
                 <div id="main" class="row">
                     
 
-        <section class="col-md-8">
-    <article>
-        <div class="kratos-hentry kratos-post-inner clearfix">
-            <header class="kratos-entry-header">
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article>
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
                 <h1 class="kratos-entry-title text-center">遍身罗绮者，不是养蚕人</h1>
-                
-                <ul class="kratos-post-meta text-center">
-                    <li><i class="fa fa-calendar"></i> 2021-07-04</li>
-                    <li><i class="fa fa-user"></i> 作者 孙新斌</li>
-                    <li>
-                        <i class="fa fa-edit"></i> 
-                        
-                        
-                            ~1.81K
-                        
-                        字
-                    </li>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><i class="fa fa-calendar"></i> 2021-07-04</li>
+                <li><i class="fa fa-user"></i> 作者 孙新斌</li>
+                <li>
+                    <i class="fa fa-edit"></i> 
                     
-                </ul>
-            </header>
-            <div class="kratos-post-content">
-                <div id="expire-alert" class="alert alert-warning hidden" role="alert">
-                    本文最后编辑于 <time datetime="1641647695312"></time> 前，其中的内容可能需要更新。
-                </div>
+                    
+                        ~1.81K
+                    
+                    字
+                </li>
                 
-                <hr />
-                <blockquote><p>昨日入城市,归来泪满巾。遍身罗绮者，不是养蚕人。<br>——张俞（北宋）</p>
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                本文最后编辑于 <time datetime="1641647695312"></time> 前，其中的内容可能需要更新。
+            </div>
+            
+            <hr />
+            <blockquote><p>昨日入城市,归来泪满巾。遍身罗绮者，不是养蚕人。<br>——张俞（北宋）</p>
 </blockquote>
 <span id="more"></span>
 <p>诗句著于北宋时期，后两句最为出名，大概是说身上穿着丝绸的人，不会是养蚕的人。<br>丝绸制成的衣物在当时是非常昂贵的，一般只有达官显贵才可以穿得起，而养蚕的人则是从事底层劳动的贫苦百姓。百姓养一辈子的蚕，但终究不会有一件丝制的衣服可以着在自己的身上，而富人则可能从未见过蚕的样子，却遍身罗绮。如果把养蚕视作一般的劳动过程的话，那么我们可以这样理解：一部分人终身劳作了一辈子，但是劳动的成果自己却未享受；而另外一部分人没有动过一次锄头，却享有了前者所劳得的一切。这里暗含着后者对前者的剥削，以及作者对食利者的鄙视和对劳动者的同情。</p>
@@ -172,15 +197,19 @@
 <p>慨他人以慷是容易的，事实上大部分人都很难体面地生活。王小波曾经在一篇杂文里戏谑地写过：痛苦是艺术的源泉，但不必是艺术家的痛苦。柴可夫斯基自己不是小伊万；唱黄土高坡的都打扮的珠光宝气；演秋菊的卸了妆一点也不悲惨。。。种种事实都说明，别人的痛苦才是你艺术的源泉，而你去受苦，只会成为别人艺术的源泉。剪几个镜头，配上激昂的音乐与“基建狂魔”的标题，这样的自豪感是廉价的，这样的赞美也没有什么意义。真正有意义的，是从事基建的工人能自豪地说出这是我们造的桥，这是我们修的路。是让农民说出，这是我们种的粮。是让建设国家的人感觉到自己是国家的主人，而不是靠出卖劳动力，养家糊口的底层人。</p>
 <h1 id="关于《商君书》简述"><a href="#关于《商君书》简述" class="headerlink" title="关于《商君书》简述"></a>关于《商君书》简述</h1><p>《商君书》也称《商子》，现存26篇   ，是战国时期法家学派的代表作之一，是中国家喻户晓的人物商鞅及其后学的著作汇编。<br>《商君书》着重论述商鞅一派在当时秦国施行的变法理论和具体措施。<br>《商君书》论述了“强国弱民”。例如：《商君书》中有“民弱国强，国强民弱。故有道之国务在弱民。朴则强，淫则弱。弱则轨，淫则越志。弱则有用，越志则强。故曰：以强去强者，弱；以弱去强者，强。”能够战胜强敌、称霸天下的国家，必须控制本国的人民，使之成为“弱民”，而不是“淫民”。商鞅认为国家的强势和人民的强势是对立的。只有使人民顺从法律、朴实忠厚，人民才不易结成强大的力量来对抗国家和君主，这样国家才会容易治理，君主的地位才会牢固。但是，不要把“弱民”理解成“愚民”。《商君书》中认为人性本恶，必须承认人之恶性，治理国家要以恶治善才能使国家强大。《商君书》中主张重刑轻赏，他认为加重刑罚，减少奖赏，是君主爱护民众，民众就会拼命争夺奖赏；增加奖赏，减轻刑罚，是君主不爱护民众，民众就不会为奖赏而拼死奋斗。</p>
 
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5>本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
             </div>
+        
+        <footer class="kratos-entry-footer clearfix">
             
-            <footer class="kratos-entry-footer clearfix">
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
                 
-                    <div class="post-like-donate text-center clearfix" id="post-like-donate">
-                    
-                    
-                        <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
-                        <div class="share-wrap" style="display: none;">
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
     <div class="share-group">
         <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
             <div class="icon-wrap">
@@ -247,37 +276,42 @@
         };
     </script>
 </div>
-                    
-                    </div>
                 
-                <div class="footer-tag clearfix">
-                    <div class="pull-left">
-                    <i class="fa fa-tags"></i>
-                        <a class="tag-none-link" href="/tags/%E6%96%87%E5%AD%A6/" rel="tag">文学</a>
-                    </div>
-                    <div class="pull-date">
-                    <span>最后编辑：2022-01-08</span>
-                    </div>
                 </div>
-            </footer>
-        </div>
-        
-            <nav class="navigation post-navigation clearfix" role="navigation">
-                
-                <div class="nav-previous clearfix">
-                    <a title=" 何以为家？" href="/2021/06/17/family/">&lt; 上一篇</a>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/%E6%96%87%E5%AD%A6/" rel="tag">文学</a>
                 </div>
-                
-                
-                <div class="nav-next clearfix">
-                    <a title=" 致emo的Stellarium" href="/2021/12/05/211204/">下一篇 &gt;</a>
+                <div class="pull-date">
+                <span>最后编辑：2022-01-08</span>
                 </div>
-                
-            </nav>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" 何以为家？" href="/2021/06/17/family/">&lt; 上一篇</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" 致emo的Stellarium" href="/2021/12/05/211204/">下一篇 &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+</article>
+
         
+
+            </section>
+
         
-    </article>
-</section>
 
                 
             
@@ -295,6 +329,32 @@
     </div>
     <div class="textwidget">
         <p class="text-center">青岛大学 || 计算机科学技术学院 || 计算机科学与技术</p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                28
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                0
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                7
+            </span>
+        </a>
     </div>
 </aside>
             
@@ -407,7 +467,42 @@
     </div>
 </div>
 <footer>
-    <div id="footer"  >
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://t.me/CandyUnion"><i class="fa fa-telegram"></i></a></li>
+                        
+                        
+                        
+                        <li><a target="_blank" rel="me" href="https://nya.one/@Candinya"><i class="fa fa fa-share-alt-square"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Candinya"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2022 孙新斌的博客 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by 孙新斌.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
         <div class="kr-tool text-center">
             <div class="tool">
                 
@@ -428,56 +523,43 @@
                 <span class="fa fa-chevron-up"></span>
             </div>
         </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3 footer-list text-center">
-                    <ul class="kratos-social-icons">
-                        
-                        <li><a href="mailto:2332431354@qq.com"><i class="fa fa-envelope"></i></a></li>
-                        
-                        
-                        
-                        
-                        
-                        <li><a target="_blank" rel="nofollow" href="https://github.com/xinbinsun"><i class="fa fa-github"></i></a></li>
-                        
-                    </ul>
-                    <ul class="kratos-copyright">
-                        <div>
-                            <li>&copy; 2022 孙新斌的博客 版权所有.</li>
-                            <li>本站已运行<span id="span_dt">Loading...</span></li>
-                        </div>
-                        <div>
-                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
-                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by 孙新斌.</li>
-                        </div>
-                        <div>
-                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
-                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
-                        </div>
-                        <div>
-                            <li><a href="https://beian.miit.gov.cn" rel="external nofollow" target="_blank">鲁ICP备23010101号</a></li>
-                            <li><a href="http://www.beian.gov.cn" rel="external nofollow" target="_blank"><img src="/images/psr.webp" width="12" height="12">鲁公网安备371402000348</a></li>
-                        </div>
-                    </ul>
-                </div>
-            </div>
-        </div>
     </div>
 </footer>
 </div>
 </div>
 
-        <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
-<script>const notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));</script>
+        <script defer src="https://unpkg.com/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
 
-<script async src="/js/candy.min.js"></script>
+
+    <script async src="/js/candy.min.js"></script>
 
 
-    <script defer src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
-<script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+    <script defer src="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="https://unpkg.com/meting@2/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="3204190542"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="https://unpkg.com/clipboard@2.0.6/dist/clipboard.min.js"></script>
 <script defer src="/js/kratosr.min.js"></script>
 <script defer src="/js/pjax.min.js"></script>
 
