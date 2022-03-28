@@ -3,7 +3,7 @@
     <head>
   <!-- 元数据 -->
   <meta charset="utf-8">
-  <link rel="icon" href="">
+  <link rel="icon" href="/images/avatar.webp">
   <title>电影评论情感分析：RNN循环网络原理及自然语言处理NLP应用 | 孙新斌的博客</title>
   <meta name="author" content="孙新斌" />
   <meta http-equiv="Cache-Control" content="no-transform" />
@@ -22,13 +22,13 @@
 <meta property="og:site_name" content="孙新斌的博客">
 <meta property="og:description" content="电影评论情感分析：RNN循环网络原理及自然语言处理NLP应用">
 <meta property="og:locale">
-<meta property="og:image" content="http://sunxinbin.cn/null">
+<meta property="og:image" content="http://sunxinbin.cn/images/avatar.webp">
 <meta property="article:published_time" content="2022-01-20T12:00:00.000Z">
-<meta property="article:modified_time" content="2022-02-14T02:27:55.843Z">
+<meta property="article:modified_time" content="2022-03-28T12:47:14.740Z">
 <meta property="article:author" content="孙新斌">
 <meta property="article:tag" content="深度学习">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://sunxinbin.cn/null">
+<meta name="twitter:image" content="http://sunxinbin.cn/images/avatar.webp">
 <meta name="twitter:site" content="@null">
   
   <!-- 站点验证相关 -->
@@ -38,25 +38,27 @@
     
   
   <!-- 样式表文件 -->
-  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="kratos-css" href="https://cdn.jsdelivr.net/npm/kratos-rebirth@1.7.1/source/css/kratosr.min.css" type="text/css" media="all">
   
-    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" type="text/css" media="all">
-  
-  
-  <link rel="stylesheet" id="fontawe-css" href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
-  <link rel="stylesheet" id="nprogress-css" href="https://unpkg.com/nprogress@0.2.0/nprogress.css" type="text/css" media="all">
+    <link rel="stylesheet" id="highlight-css" href="https://cdn.jsdelivr.net/npm/kratos-rebirth@1.7.1/source/css/highlight/night-eighties.min.css" type="text/css" media="all">
   
   
+  <link rel="stylesheet" id="fontawe-css" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="nprogress-css" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css" type="text/css" media="all">
   
-    <link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
   
   
-    <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+    <link rel="stylesheet" id="darkmode-css" href="https://cdn.jsdelivr.net/npm/kratos-rebirth@1.7.1/source/css/kr-dark.min.css" type="text/css" media="all">
   
   <!-- 不得不预先加载的一些JS文件 -->
-  <script src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
   
-    <script src="https://unpkg.com/qrcode_js@1.0.0/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode_js@1.0.0/qrcode.min.js"></script>
   
   
   <style>
@@ -180,7 +182,7 @@
         </header>
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
-                本文最后编辑于 <time datetime="1644805675843"></time> 前，其中的内容可能需要更新。
+                本文最后编辑于 <time datetime="1648471634740"></time> 前，其中的内容可能需要更新。
             </div>
             
                 <div class="kratos-post-inner-toc">
@@ -211,7 +213,6 @@
 </ol>
 <p><strong>基于LSTM结构的模型构建</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#建立模型</span></span><br><span class="line">model = keras.models.Sequential()</span><br><span class="line">model.add (keras.layers.Embedding(output_dim=<span class="number">32</span>,</span><br><span class="line">                                  input_dim=<span class="number">4000</span>,</span><br><span class="line">                                  input_length=<span class="number">400</span>))</span><br><span class="line">model.add(keras.layers.Bidirectional(keras.layers.LSTM(units=<span class="number">8</span>)))</span><br><span class="line">model.add(keras.layers.Dense(units=<span class="number">32</span>,activation=<span class="string">&#x27;relu&#x27;</span>))</span><br><span class="line">model.add(keras.layers.Dropout(<span class="number">0.3</span>))</span><br><span class="line">model.add(keras.layers.Dense(units=<span class="number">2</span>,activation=<span class="string">&#x27;softmax&#x27;</span>))</span><br><span class="line">model.summary()</span><br><span class="line"><span class="comment">#模型设置与训练</span></span><br><span class="line">model.<span class="built_in">compile</span>(optimizer=<span class="string">&#x27;adam&#x27;</span>,</span><br><span class="line">             loss=<span class="string">&#x27;categorical_crossentropy&#x27;</span>,</span><br><span class="line">             metrics=[<span class="string">&#x27;accuracy&#x27;</span>])</span><br><span class="line">history = model.fit(x_train, y_train,</span><br><span class="line">                   validation_split=<span class="number">0.2</span>,</span><br><span class="line">                   epochs=<span class="number">6</span>,</span><br><span class="line">                   batch_size=<span class="number">128</span>,</span><br><span class="line">                   verbose=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-
 
 
         </div>
@@ -302,7 +303,7 @@
                     <a class="tag-none-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a>
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-02-14</span>
+                <span>最后编辑：2022-03-28</span>
                 </div>
             </div>
         </footer>
@@ -361,7 +362,7 @@
                 分类
             </span>
             <span class="count">
-                0
+                3
             </span>
         </a>
         <a class="meta-item" href="/tags/">
@@ -390,6 +391,11 @@
 </aside>
                 
                 
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%87%E5%AD%A6/">文学</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">1</span></li></ul>
+  </aside>
+
 
             
                 
@@ -496,7 +502,7 @@
     </div>
 </div>
 <footer>
-    <div id="footer"  >
+    <div id="footer"  class="ap-lrc"  >
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3 footer-list text-center">
@@ -557,8 +563,8 @@
 </div>
 </div>
 
-        <script defer src="https://unpkg.com/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
-<script defer src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
 <script>
     if (!window.kr) {
         window.kr = {};
@@ -568,19 +574,32 @@
 </script>
 
 
-    <script async src="/js/candy.min.js"></script>
+    <script async src="https://cdn.jsdelivr.net/npm/kratos-rebirth@1.7.1/source/js/candy.min.js"></script>
 
 
 
+    <script defer src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+    <meting-js
+        server="tencent"
+        type="playlist"
+        id="2357765928"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
 
-    <script defer src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-
-<script defer src="https://unpkg.com/clipboard@2.0.6/dist/clipboard.min.js"></script>
-<script defer src="/js/kratosr.min.js"></script>
-<script defer src="/js/pjax.min.js"></script>
 
 
-    <script defer src="/js/kr-dark.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/kratos-rebirth@1.7.1/source/js/kratosr.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/kratos-rebirth@1.7.1/source/js/pjax.min.js"></script>
+
+
+    <script defer src="https://cdn.jsdelivr.net/npm/kratos-rebirth@1.7.1/source/js/kr-dark.min.js"></script>
 
 
 

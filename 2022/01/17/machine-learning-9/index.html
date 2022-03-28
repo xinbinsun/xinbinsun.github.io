@@ -3,7 +3,7 @@
     <head>
   <!-- 元数据 -->
   <meta charset="utf-8">
-  <link rel="icon" href="">
+  <link rel="icon" href="/images/avatar.webp">
   <title>Deep Dream:理解深度神经网络结构及应用 | 孙新斌的博客</title>
   <meta name="author" content="孙新斌" />
   <meta http-equiv="Cache-Control" content="no-transform" />
@@ -22,13 +22,13 @@
 <meta property="og:site_name" content="孙新斌的博客">
 <meta property="og:description" content="Deep Dream 项目简介">
 <meta property="og:locale">
-<meta property="og:image" content="http://sunxinbin.cn/null">
+<meta property="og:image" content="http://sunxinbin.cn/images/avatar.webp">
 <meta property="article:published_time" content="2022-01-17T12:00:00.000Z">
-<meta property="article:modified_time" content="2022-01-17T14:23:48.073Z">
+<meta property="article:modified_time" content="2022-03-28T12:47:43.827Z">
 <meta property="article:author" content="孙新斌">
 <meta property="article:tag" content="深度学习">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://sunxinbin.cn/null">
+<meta name="twitter:image" content="http://sunxinbin.cn/images/avatar.webp">
 <meta name="twitter:site" content="@null">
   
   <!-- 站点验证相关 -->
@@ -38,25 +38,27 @@
     
   
   <!-- 样式表文件 -->
-  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="kratos-css" href="https://cdn.jsdelivr.net/npm/kratos-rebirth@1.7.1/source/css/kratosr.min.css" type="text/css" media="all">
   
-    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" type="text/css" media="all">
-  
-  
-  <link rel="stylesheet" id="fontawe-css" href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
-  <link rel="stylesheet" id="nprogress-css" href="https://unpkg.com/nprogress@0.2.0/nprogress.css" type="text/css" media="all">
+    <link rel="stylesheet" id="highlight-css" href="https://cdn.jsdelivr.net/npm/kratos-rebirth@1.7.1/source/css/highlight/night-eighties.min.css" type="text/css" media="all">
   
   
+  <link rel="stylesheet" id="fontawe-css" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="nprogress-css" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css" type="text/css" media="all">
   
-    <link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
   
   
-    <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+    <link rel="stylesheet" id="darkmode-css" href="https://cdn.jsdelivr.net/npm/kratos-rebirth@1.7.1/source/css/kr-dark.min.css" type="text/css" media="all">
   
   <!-- 不得不预先加载的一些JS文件 -->
-  <script src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
   
-    <script src="https://unpkg.com/qrcode_js@1.0.0/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode_js@1.0.0/qrcode.min.js"></script>
   
   
   <style>
@@ -180,7 +182,7 @@
         </header>
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
-                本文最后编辑于 <time datetime="1642429428073"></time> 前，其中的内容可能需要更新。
+                本文最后编辑于 <time datetime="1648471663827"></time> 前，其中的内容可能需要更新。
             </div>
             
                 <div class="kratos-post-inner-toc">
@@ -210,7 +212,6 @@
 <p><strong>生成原始Deep Dream图像</strong><br>通过最大化某一通道的平均值能够得到有意义的图像<br>从浅层到高层越来越抽象<br>从单通道到多通道到所有通道</p>
 <p><strong>如何提高生成图像的质量</strong><br><img src="pic10.png" alt="提高图像质量"><br>在图像算法中，有高频成分和低频成分的概念。简单的说，高频成分就是图像中灰度、颜色、明度变化比较大的地方，比如图像的边缘和细节部分。低频成分就是图像中变化不大的地方，比如大块色块、整体风格。因此，对于生成的Deep Dream图像，它的高频成分太多，颜色、明度变化都比较剧烈。 而理想是图像的低频成分更多，这样生成的图像才能够更加柔和。<br>在图像分解时，是从金字塔底层开始的，比如从level0 （原图）开始，分解出 level1 高频成分，把当时的低频成分留作level2 ，然后再把level2 分解成高频成分和更低频成分的level3 ，逐步分解，来得到更加低频的信息。<br>在图像生成时，是从金字塔顶层开始的。首先生成低频的图像，把低频成分（level4）放大成跟level3一样的尺寸后，加到level3，得到比较高频的成分，然后再把合成之后的level3’放大，加到level2，逐层相加，得到最后的最大尺寸图像，即合成图像。</p>
 <h2 id="完整程序"><a href="#完整程序" class="headerlink" title="完整程序"></a>完整程序</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> print_function</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> io <span class="keyword">import</span> BytesIO</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> partial</span><br><span class="line"><span class="keyword">import</span> PIL.Image</span><br><span class="line"><span class="keyword">import</span> scipy.misc</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">graph = tf.Graph()</span><br><span class="line">model_fn = <span class="string">&#x27;tensorflow_inception_graph.pb&#x27;</span></span><br><span class="line">sess = tf.InteractiveSession(graph=graph)</span><br><span class="line"><span class="keyword">with</span> tf.gfile.FastGFile(model_fn, <span class="string">&#x27;rb&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    graph_def = tf.GraphDef()</span><br><span class="line">    graph_def.ParseFromString(f.read())</span><br><span class="line">t_input = tf.placeholder(np.float32, name=<span class="string">&#x27;input&#x27;</span>)  </span><br><span class="line">imagenet_mean = <span class="number">117.0</span></span><br><span class="line">t_preprocessed = tf.expand_dims(t_input - imagenet_mean, <span class="number">0</span>)</span><br><span class="line">tf.import_graph_def(graph_def, &#123;<span class="string">&#x27;input&#x27;</span>: t_preprocessed&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 保存图像</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">savearray</span>(<span class="params">img_array, img_name</span>):</span></span><br><span class="line">    scipy.misc.toimage(img_array).save(img_name)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;img saved: %s&#x27;</span> % img_name)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 将图像放大ratio倍</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">resize_ratio</span>(<span class="params">img, ratio</span>):</span></span><br><span class="line">    <span class="built_in">min</span> = img.<span class="built_in">min</span>()</span><br><span class="line">    <span class="built_in">max</span> = img.<span class="built_in">max</span>()</span><br><span class="line">    img = (img - <span class="built_in">min</span>) / (<span class="built_in">max</span> - <span class="built_in">min</span>) * <span class="number">255</span></span><br><span class="line">    img = np.float32(scipy.misc.imresize(img, ratio))</span><br><span class="line">    img = img / <span class="number">255</span> * (<span class="built_in">max</span> - <span class="built_in">min</span>) + <span class="built_in">min</span></span><br><span class="line">    <span class="keyword">return</span> img</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 调整图像尺寸</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">resize</span>(<span class="params">img, hw</span>):</span></span><br><span class="line">    <span class="built_in">min</span> = img.<span class="built_in">min</span>()</span><br><span class="line">    <span class="built_in">max</span> = img.<span class="built_in">max</span>()</span><br><span class="line">    img = (img - <span class="built_in">min</span>) / (<span class="built_in">max</span> - <span class="built_in">min</span>) * <span class="number">255</span></span><br><span class="line">    img = np.float32(scipy.misc.imresize(img, hw))</span><br><span class="line">    img = img / <span class="number">255</span> * (<span class="built_in">max</span> - <span class="built_in">min</span>) + <span class="built_in">min</span></span><br><span class="line">    <span class="keyword">return</span> img</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 原始图像尺寸可能很大，从而导致内存耗尽问题 </span></span><br><span class="line"><span class="comment"># 每次只对 tile_size * tile_size 大小的图像计算梯度，避免内存问题</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">calc_grad_tiled</span>(<span class="params">img, t_grad, tile_size=<span class="number">512</span></span>):</span></span><br><span class="line">    sz = tile_size</span><br><span class="line">    h, w = img.shape[:<span class="number">2</span>]</span><br><span class="line">    sx, sy = np.random.randint(sz, size=<span class="number">2</span>)</span><br><span class="line">    img_shift = np.roll(np.roll(img, sx, <span class="number">1</span>), sy, <span class="number">0</span>)  <span class="comment"># 先在行上做整体移动，再在列上做整体移动</span></span><br><span class="line">    grad = np.zeros_like(img)</span><br><span class="line">    <span class="keyword">for</span> y <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">max</span>(h - sz // <span class="number">2</span>, sz), sz):</span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">max</span>(w - sz // <span class="number">2</span>, sz), sz):</span><br><span class="line">            sub = img_shift[y:y + sz, x:x + sz]</span><br><span class="line">            g = sess.run(t_grad, &#123;t_input: sub&#125;)</span><br><span class="line">            grad[y:y + sz, x:x + sz] = g</span><br><span class="line">    <span class="keyword">return</span> np.roll(np.roll(grad, -sx, <span class="number">1</span>), -sy, <span class="number">0</span>)</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">render_deepdream</span>(<span class="params">t_obj, img0,</span></span></span><br><span class="line"><span class="params"><span class="function">                     iter_n=<span class="number">10</span>, step=<span class="number">1.5</span>, octave_n=<span class="number">4</span>, octave_scale=<span class="number">1.4</span></span>):</span></span><br><span class="line">    t_score = tf.reduce_mean(t_obj)</span><br><span class="line">    t_grad = tf.gradients(t_score, t_input)[<span class="number">0</span>]</span><br><span class="line">    img = img0.copy()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 将图像进行金字塔分解</span></span><br><span class="line">    <span class="comment"># 从而分为高频、低频部分</span></span><br><span class="line">    octaves = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(octave_n - <span class="number">1</span>):</span><br><span class="line">        hw = img.shape[:<span class="number">2</span>]</span><br><span class="line">        lo = resize(img, np.int32(np.float32(hw) / octave_scale))</span><br><span class="line">        hi = img - resize(lo, hw)</span><br><span class="line">        img = lo</span><br><span class="line">        octaves.append(hi)</span><br><span class="line"> </span><br><span class="line">    <span class="comment"># 首先生成低频的图像，再依次放大并加上高频</span></span><br><span class="line">    <span class="keyword">for</span> octave <span class="keyword">in</span> <span class="built_in">range</span>(octave_n):</span><br><span class="line">        <span class="keyword">if</span> octave &gt; <span class="number">0</span>:</span><br><span class="line">            hi = octaves[-octave]</span><br><span class="line">            img = resize(img, hi.shape[:<span class="number">2</span>]) + hi</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(iter_n):</span><br><span class="line">            g = calc_grad_tiled(img, t_grad)</span><br><span class="line">            img += g * (step / (np.<span class="built_in">abs</span>(g).mean() + <span class="number">1e-7</span>))</span><br><span class="line">           </span><br><span class="line">    img = img.clip(<span class="number">0</span>, <span class="number">255</span>)</span><br><span class="line">    savearray(img, <span class="string">&#x27;mountain_deepdream.jpg&#x27;</span>)</span><br><span class="line">    im = PIL.Image.<span class="built_in">open</span>(<span class="string">&#x27;mountain_deepdream.jpg&#x27;</span>).show()</span><br><span class="line"></span><br><span class="line">    name = <span class="string">&#x27;mixed4c&#x27;</span></span><br><span class="line">layer_output = graph.get_tensor_by_name(<span class="string">&quot;import/%s:0&quot;</span> % name)</span><br><span class="line"> </span><br><span class="line">img0 = PIL.Image.<span class="built_in">open</span>(<span class="string">&#x27;cat.png&#x27;</span>) <span class="comment"># 自己找一张图片</span></span><br><span class="line">img0 = np.float32(img0)</span><br><span class="line">render_deepdream(tf.square(layer_output), img0)   </span><br></pre></td></tr></table></figure>
-
 
 
         </div>
@@ -301,7 +302,7 @@
                     <a class="tag-none-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a>
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-01-17</span>
+                <span>最后编辑：2022-03-28</span>
                 </div>
             </div>
         </footer>
@@ -360,7 +361,7 @@
                 分类
             </span>
             <span class="count">
-                0
+                3
             </span>
         </a>
         <a class="meta-item" href="/tags/">
@@ -389,6 +390,11 @@
 </aside>
                 
                 
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%87%E5%AD%A6/">文学</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">1</span></li></ul>
+  </aside>
+
 
             
                 
@@ -495,7 +501,7 @@
     </div>
 </div>
 <footer>
-    <div id="footer"  >
+    <div id="footer"  class="ap-lrc"  >
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3 footer-list text-center">
@@ -556,8 +562,8 @@
 </div>
 </div>
 
-        <script defer src="https://unpkg.com/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
-<script defer src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
 <script>
     if (!window.kr) {
         window.kr = {};
@@ -567,19 +573,32 @@
 </script>
 
 
-    <script async src="/js/candy.min.js"></script>
+    <script async src="https://cdn.jsdelivr.net/npm/kratos-rebirth@1.7.1/source/js/candy.min.js"></script>
 
 
 
+    <script defer src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+    <meting-js
+        server="tencent"
+        type="playlist"
+        id="2357765928"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
 
-    <script defer src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-
-<script defer src="https://unpkg.com/clipboard@2.0.6/dist/clipboard.min.js"></script>
-<script defer src="/js/kratosr.min.js"></script>
-<script defer src="/js/pjax.min.js"></script>
 
 
-    <script defer src="/js/kr-dark.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/kratos-rebirth@1.7.1/source/js/kratosr.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/kratos-rebirth@1.7.1/source/js/pjax.min.js"></script>
+
+
+    <script defer src="https://cdn.jsdelivr.net/npm/kratos-rebirth@1.7.1/source/js/kr-dark.min.js"></script>
 
 
 
