@@ -76,7 +76,7 @@
     
   </style>
   
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
     <body class="custom-background">
@@ -195,12 +195,10 @@
 <p>有监督学习（supervised learning),事先准备好输入与正确输出相配套的训练数据，让计算机进行学习，以便当他被输入某个数据时能够得到正确的输出<br>无监督学习（unsupervised learning)，仅提供输入用数据，需要计算机自己找出数据内在结构，目的是让计算机从数据中抽取其中所包含的模式及规则<br>半监督学习 (semi_supersived learning)，训练数据一部分有标记，另一部分没有标记，而没有标记的数量常常极大于有标记数据的数量，基本规律：数据的分布必然不是完全随机的，通过结合有标记数据的局部特征，以及大量没标记数据的整体分布，可以得到比较好的分类结果<br>强化学习 (reinforcement learning),解决计算机从感知到决策控制的问题，强化学习是目标导向的，从白纸一张的状态开始，经由许多个步骤来实现某一维度上的目标最大化。最简单的理解是在训练过程中，不断去尝试，错误就惩罚，正确就奖励，由此训练得到的模型在各个状态环境中都最好。<br>对强化学习来说，它虽然没有标记，但有一个延迟奖励与训练相关，通过学习过程中的激励函数获得某种从状态到行动的映射。强化学习强调如何基于环境而行动，以取得最大化的预期利益。</p>
 <p>无监督机器学习的典型应用模式：<br>聚类 常见算法： k-means 关联规则抽取</p>
 <p>有监督机器学习的典型应用模式：<br>预测 针对连续数据 常见算法： 线性回归 Gradient Boosting AdaBoost 神经网络<br>预测 针对离散数据 常见算法： 逻辑回归 决策树 随机森林 朴素贝叶斯 神经网络</p>
-<h1 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h1><p>包括输入层，隐含层，输出层<br>常见激活函数：<br>S型(Sigmoid)将加权和转换为介于0和1之间的值<br><img src="pic1.png" alt="Sigmoid"><br>修正线性单元激活函数(简称为ReLU)易于计算<br><img src="pic2.png" alt="ReLU"></p>
-<h2 id="深度神经网路与深度学习框架"><a href="#深度神经网路与深度学习框架" class="headerlink" title="深度神经网路与深度学习框架"></a>深度神经网路与深度学习框架</h2><h2 id="卷积神经网络"><a href="#卷积神经网络" class="headerlink" title="卷积神经网络"></a>卷积神经网络</h2><p>卷积神经网络（Convolutional Neural Network, CNN）是深度学习中最重要的概念之一<br>20世纪60年代，Hubel和Wiesel在研究猫脑皮层中用于局部敏感和方向选择的神经元时发现，其独特的网络结构可以有效降低神经网络的复杂性<br>1998年，Yann LeCun提出了LeNet神经网络，标志着第一个采用卷积思想的神经网络面世<br><img src="pic3.png" alt="CNN"><br><img src="pic4.png" alt="CNN"></p>
+<h1 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h1><p>包括输入层，隐含层，输出层<br>常见激活函数：<br>S型(Sigmoid)将加权和转换为介于0和1之间的值<br><img src="/2022/01/08/machine-learning-1/pic1.png" alt="Sigmoid"><br>修正线性单元激活函数(简称为ReLU)易于计算<br><img src="/2022/01/08/machine-learning-1/pic2.png" alt="ReLU"></p>
+<h2 id="深度神经网路与深度学习框架"><a href="#深度神经网路与深度学习框架" class="headerlink" title="深度神经网路与深度学习框架"></a>深度神经网路与深度学习框架</h2><h2 id="卷积神经网络"><a href="#卷积神经网络" class="headerlink" title="卷积神经网络"></a>卷积神经网络</h2><p>卷积神经网络（Convolutional Neural Network, CNN）是深度学习中最重要的概念之一<br>20世纪60年代，Hubel和Wiesel在研究猫脑皮层中用于局部敏感和方向选择的神经元时发现，其独特的网络结构可以有效降低神经网络的复杂性<br>1998年，Yann LeCun提出了LeNet神经网络，标志着第一个采用卷积思想的神经网络面世<br><img src="/2022/01/08/machine-learning-1/pic3.png" alt="CNN"><br><img src="/2022/01/08/machine-learning-1/pic4.png" alt="CNN"></p>
 <h2 id="Anaconda和Tensorflow开发环境搭建"><a href="#Anaconda和Tensorflow开发环境搭建" class="headerlink" title="Anaconda和Tensorflow开发环境搭建"></a>Anaconda和Tensorflow开发环境搭建</h2><p>鉴于课程提供的安装版本我的电脑并不支持，于是我自行从官网进行下载并进行了环境配置，其中遇到很多问题，面对众多的error报错，确实磨练了我的耐心，和解决问题的能力，安装过程就不再赘述了，总之大约花了我三四个小时吧</p>
-<p>下面是我安装完成后的程序测试：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">%matplotlib inline</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line">np.random.seed(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">x_data = np.linspace(-<span class="number">1</span>,<span class="number">1</span>,<span class="number">100</span>)</span><br><span class="line">y_data = <span class="number">2</span>*x_data + <span class="number">1.0</span> + np.random.randn(*x_data.shape) * <span class="number">0.4</span></span><br><span class="line"></span><br><span class="line">plt.scatter(x_data,y_data)</span><br><span class="line">plt.plot(x_data,<span class="number">2</span> * x_data + <span class="number">1.0</span>,color = <span class="string">&#x27;red&#x27;</span>,linewidth=<span class="number">3</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>而我得到的运算结果如下：<br><img src="pic5.png" alt="RESULT"></p>
+<p>下面是我安装完成后的程序测试：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">%matplotlib inline</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line">np.random.seed(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">x_data = np.linspace(-<span class="number">1</span>,<span class="number">1</span>,<span class="number">100</span>)</span><br><span class="line">y_data = <span class="number">2</span>*x_data + <span class="number">1.0</span> + np.random.randn(*x_data.shape) * <span class="number">0.4</span></span><br><span class="line"></span><br><span class="line">plt.scatter(x_data,y_data)</span><br><span class="line">plt.plot(x_data,<span class="number">2</span> * x_data + <span class="number">1.0</span>,color = <span class="string">&#x27;red&#x27;</span>,linewidth=<span class="number">3</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>而我得到的运算结果如下：<br><img src="/2022/01/08/machine-learning-1/pic5.png" alt="RESULT"></p>
 
         </div>
         
@@ -341,7 +339,7 @@
                 文章
             </span>
             <span class="count">
-                34
+                35
             </span>
         </a>
         <a class="meta-item" href="/categories/">
@@ -349,7 +347,7 @@
                 分类
             </span>
             <span class="count">
-                6
+                7
             </span>
         </a>
         <a class="meta-item" href="/tags/">
@@ -357,7 +355,7 @@
                 标签
             </span>
             <span class="count">
-                9
+                10
             </span>
         </a>
     </div>
@@ -368,7 +366,7 @@
                 
   <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
     <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%93%B2%E5%AD%A6/">哲学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%87%E5%AD%A6/">文学</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%93%B2%E5%AD%A6/">哲学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%87%E5%AD%A6/">文学</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%85%E9%9D%A2%E9%85%8D%E5%87%86%E7%AE%97%E6%B3%95/">颅面配准算法</a><span class="category-list-count">5</span></li></ul>
   </aside>
 
 
@@ -377,7 +375,7 @@
   <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
     <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
       <div class="tag-clouds">
-        <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/%E6%83%85%E6%84%9F/" style="font-size: 0.73em;">情感</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" style="font-size: 0.67em;">数学建模</a> <a href="/tags/%E6%96%87%E5%AD%A6/" style="font-size: 0.73em;">文学</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 0.6em;">机器学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 0.8em;">深度学习</a> <a href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" style="font-size: 0.6em;">蓝桥杯</a> <a href="/tags/%E8%BD%B6%E9%97%BB/" style="font-size: 0.6em;">轶闻</a>
+        <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/%E6%83%85%E6%84%9F/" style="font-size: 0.7em;">情感</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" style="font-size: 0.65em;">数学建模</a> <a href="/tags/%E6%96%87%E5%AD%A6/" style="font-size: 0.7em;">文学</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 0.65em;">机器学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 0.8em;">深度学习</a> <a href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" style="font-size: 0.6em;">蓝桥杯</a> <a href="/tags/%E8%BD%B6%E9%97%BB/" style="font-size: 0.6em;">轶闻</a> <a href="/tags/%E9%A2%85%E9%9D%A2%E9%85%8D%E5%87%86%E7%AE%97%E6%B3%95/" style="font-size: 0.75em;">颅面配准算法</a>
       </div>
   </aside>
 
@@ -388,6 +386,12 @@
   <div class="tab-content">
       <ul class="list-group">
         
+        
+          
+          
+            <a class="list-group-item" href="/2022/06/17/pumpkin-book-2/"><i class="fa  fa-book"></i> 吃瓜教程2</a>
+            
+          
         
           
           
@@ -414,11 +418,7 @@
           
         
           
-          
-            <a class="list-group-item" href="/2022/04/18/mathorcup-1/"><i class="fa  fa-book"></i> mathorcup四天比赛之旅</a>
             
-          
-        
           
             
           

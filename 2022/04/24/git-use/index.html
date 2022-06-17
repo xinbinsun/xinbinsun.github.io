@@ -76,7 +76,7 @@
     
   </style>
   
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
     <body class="custom-background">
@@ -173,7 +173,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~10.88K
+                        ~10.87K
                     
                     字
                 </li>
@@ -192,7 +192,7 @@
             <hr />
             <h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><p>Git是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理。<span id="more"></span>也是Linus Torvalds为了帮助管理Linux内核开发而开发的一个开放源码的版本控制软件。</p>
 <p>软件平台：Windows,Mac OS,Linux/Unix</p>
-<p><img src="git.png" alt="git"></p>
+<p><img src="/2022/04/24/git-use/git.png" alt="git"></p>
 <h2 id="Git常用命令及方法大全"><a href="#Git常用命令及方法大全" class="headerlink" title="Git常用命令及方法大全"></a>Git常用命令及方法大全</h2><div class="xControl active">
     <div class="xHeading"><div class="xIcon"><i class="fa fa-plus"></i></div><span>Git专用名词</span></div>
     <div class="xContent pre-open"><div class="inner">
@@ -205,12 +205,10 @@
  
     </div></div>
     </div>
-
 <p><strong>本地分支关联远程</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch --set-upstream-to=origin/分支名 分支名</span><br></pre></td></tr></table></figure>
-
 <h3 id="关于gitee（码云）的远程仓库链接（https）"><a href="#关于gitee（码云）的远程仓库链接（https）" class="headerlink" title="关于gitee（码云）的远程仓库链接（https）"></a>关于gitee（码云）的远程仓库链接（https）</h3><ol>
-<li><code> 首先输入命令，链接自己的远程https库</code></li>
+<li><code>首先输入命令，链接自己的远程https库</code></li>
 <li><code>$ git remote add origin https://gitee.com/xinbinsun/windows_git.git</code></li>
 <li><code>使用拉取命令拉取库中数据</code></li>
 <li><code>$ git pull --rebase origin master</code></li>
@@ -441,10 +439,10 @@
 </blockquote>
 <p>对Develop分支进行合并</p>
 <blockquote>
-<p>　　git merge –no-ff develop</p>
+<p>　　git merge —no-ff develop</p>
 </blockquote>
-<p>这里稍微解释一下，上一条命令的–no-ff参数是什么意思。默认情况下，Git执行”快进式合并”（fast-farward merge），会直接将Master分支指向Develop分支。</p>
-<p>使用–no-ff参数后，会执行正常合并，在Master分支上生成一个新节点。为了保证版本演进的清晰，我们希望采用这种做法。关于合并的更多解释，请参考Benjamin Sandofsky的<a target="_blank" rel="noopener" href="http://sandofsky.com/blog/git-workflow.html">《Understanding the Git Workflow》</a>。</p>
+<p>这里稍微解释一下，上一条命令的—no-ff参数是什么意思。默认情况下，Git执行”快进式合并”（fast-farward merge），会直接将Master分支指向Develop分支。</p>
+<p>使用—no-ff参数后，会执行正常合并，在Master分支上生成一个新节点。为了保证版本演进的清晰，我们希望采用这种做法。关于合并的更多解释，请参考Benjamin Sandofsky的<a target="_blank" rel="noopener" href="http://sandofsky.com/blog/git-workflow.html">《Understanding the Git Workflow》</a>。</p>
 <p><strong>三，临时性分支</strong></p>
 <p>前面讲到版本库的两条主要分支：Master和Develop。前者用于正式发布，后者用于日常开发。其实，常设分支只需要这两条就够了，不需要其他了。</p>
 <p>但是，除了常设分支以外，还有一些临时性分支，用于应对一些特定目的的版本开发。临时性分支主要有三种：</p>
@@ -468,7 +466,7 @@
 <blockquote>
 <p>　　git checkout develop</p>
 </blockquote>
-<p>　　git merge –no-ff feature-x</p>
+<p>　　git merge —no-ff feature-x</p>
 <p>删除feature分支：</p>
 <blockquote>
 <p>　　git branch -d feature-x</p>
@@ -484,13 +482,13 @@
 <blockquote>
 <p>　　git checkout master</p>
 </blockquote>
-<p>　　git merge –no-ff release-1.2</p>
+<p>　　git merge —no-ff release-1.2</p>
 <h1 id="对合并生成的新节点，做一个标签"><a href="#对合并生成的新节点，做一个标签" class="headerlink" title="对合并生成的新节点，做一个标签"></a>对合并生成的新节点，做一个标签</h1><p>　　git tag -a 1.2</p>
 <p>再合并到develop分支：</p>
 <blockquote>
 <p>　　git checkout develop</p>
 </blockquote>
-<p>　　git merge –no-ff release-1.2</p>
+<p>　　git merge —no-ff release-1.2</p>
 <p>最后，删除预发布分支：</p>
 <blockquote>
 <p>　　git branch -d release-1.2</p>
@@ -506,13 +504,13 @@
 <blockquote>
 <p>　　git checkout master</p>
 </blockquote>
-<p>　　git merge –no-ff fixbug-0.1</p>
+<p>　　git merge —no-ff fixbug-0.1</p>
 <p>　　git tag -a 0.1.1</p>
 <p>再合并到develop分支：</p>
 <blockquote>
 <p>　　git checkout develop</p>
 </blockquote>
-<p>　　git merge –no-ff fixbug-0.1</p>
+<p>　　git merge —no-ff fixbug-0.1</p>
 <p>最后，删除”修补bug分支”：</p>
 <blockquote>
 <p>　　git branch -d fixbug-0.1</p>
@@ -527,25 +525,18 @@
 </li>
 <li><p><code>$ git status</code></p>
 </li>
-<li><p><code># On branch master</code></p>
-</li>
-<li><p><code># Changes not staged for commit:</code></p>
-</li>
-<li><p><code># (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</code></p>
-</li>
-<li><p><code># (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</code></p>
-</li>
-<li><p><code># modified: readme.txt</code></p>
-</li>
-<li><p><code>no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</code></p>
-</li>
+<li><code># On branch master</code></li>
+<li><code># Changes not staged for commit:</code></li>
+<li><code># (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</code></li>
+<li><code># (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</code></li>
+<li><code># modified: readme.txt</code></li>
+<li><code>no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</code></li>
 </ol>
-<p>这时Git会告诉你，git checkout – file可以丢弃工作区的修改：</p>
+<p>这时Git会告诉你，git checkout — file可以丢弃工作区的修改：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -- readme.txt</span><br></pre></td></tr></table></figure>
-
 <p><strong>Note</strong>:</p>
-<p>\1. git checkout – file命令中的–很重要，没有–，就变成了“切换到另一个分支”的命令，我们在后面的分支管理中会再次遇到git checkout命令。</p>
-<p>\2. 命令git checkout – readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：</p>
+<p>\1. git checkout — file命令中的—很重要，没有—，就变成了“切换到另一个分支”的命令，我们在后面的分支管理中会再次遇到git checkout命令。</p>
+<p>\2. 命令git checkout — readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：</p>
 <p>一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。总之，就是让这个文件回到最近一次git commit或git add时的状态。</p>
 <p>\3. 工作区、暂存区的概念不清楚的可见于<a target="_blank" rel="noopener" href="http://blog.csdn.net/pipisorry/article/details/44588351">Git版本控制教程 - Git本地仓库</a></p>
 <p><strong>如果在工作区中修改了文件还git add到暂存区（但是在commit之前）</strong></p>
@@ -595,14 +586,12 @@
 <ol>
 <li><p>git log命令显示从最近到最远的提交日志，我们可以看到3次提交，最近的一次是append GPL，上一次是add distributed，最早的一次是wrote a readme file。</p>
 </li>
-<li><p>如果嫌输出信息太多，看得眼花缭乱的，可以试试加上–pretty=oneline参数：</p>
+<li><p>如果嫌输出信息太多，看得眼花缭乱的，可以试试加上—pretty=oneline参数：</p>
 </li>
 <li><p><code>$ git log --pretty=oneline</code></p>
 </li>
-<li><p><code>3628164fb26d48395383f8f31179f24e0882e1e0 append GPL</code></p>
-</li>
-<li><p><code>ea34578d5496d7dd233c827ed32a8cd576c5ee85 add distributed</code></p>
-</li>
+<li><code>3628164fb26d48395383f8f31179f24e0882e1e0 append GPL</code></li>
+<li><code>ea34578d5496d7dd233c827ed32a8cd576c5ee85 add distributed</code></li>
 <li><p><code>cb926e7ea50ad11b8f9e909c05226233bf755030 wrote a readme file</code></p>
 </li>
 <li><p>你看到的一大串类似3628164…882e1e0的是commit id（版本号），和SVN不一样，Git的commit id不是1，2，3……递增的数字，而是一个SHA1计算出来的一个非常大的数字，用十六进制表示，而且你看到的commit id和我的肯定不一样，以你自己的为准。为什么commit id需要用这么一大串数字表示呢？因为Git是分布式的版本控制系统，后面我们还要研究多人在同一个版本库里工作，如果大家都用1，2，3……作为版本号，那肯定就冲突了。</p>
@@ -632,7 +621,7 @@
 </ol>
 <p>最新的那个版本append GPL已经看不到了！</p>
 <p><strong>恢复文件后，要是我们又想回到修改后的文件呢？（命令行窗口还没有被关掉）</strong></p>
-<p>{这个是git reset –hard后，又反悔了，想回到修改后的状态}</p>
+<p>{这个是git reset —hard后，又反悔了，想回到修改后的状态}</p>
 <p>只要上面的命令行窗口还没有被关掉，你就可以顺着往上找啊找啊，找到那个append GPL的commit id是3628164…，于是就可以指定回到未来的某个版本：</p>
 <ol>
 <li><code>$ git reset --hard 3628164</code></li>
@@ -641,8 +630,8 @@
 <p>版本号没必要写全，前几位就可以了，Git会自动去找。</p>
 <p>Git的版本回退速度非常快，因为Git在内部有个指向当前版本的HEAD指针，当你回退版本的时候，Git仅仅是把HEAD从指向append GPL改为指向add distributed，然后顺便把工作区的文件更新了。所以你让HEAD指向哪个版本号，你就把当前版本定位在哪。</p>
 <p><strong>恢复文件后，要是我们又想回到修改后的文件呢？（命令行窗口早就关掉了）</strong></p>
-<p>{这个是git reset –hard后，又反悔了，想回到修改后的状态}</p>
-<p>想恢复到新版本怎么办？找不到新版本的commit id怎么办？当你用$ git reset –hard HEAD^回退到add distributed版本时，再想恢复到append GPL，就必须找到append GPL的commit id。</p>
+<p>{这个是git reset —hard后，又反悔了，想回到修改后的状态}</p>
+<p>想恢复到新版本怎么办？找不到新版本的commit id怎么办？当你用$ git reset —hard HEAD^回退到add distributed版本时，再想恢复到append GPL，就必须找到append GPL的commit id。</p>
 <p>Git提供了一个命令git reflog用来记录你的每一次命令：[<a target="_blank" rel="noopener" href="http://blog.csdn.net/pipisorry/article/details/50669350">Git高级教程</a>:git log与git reflog]</p>
 <ol>
 <li><code>$ git reflog</code></li>
@@ -792,7 +781,7 @@
                 文章
             </span>
             <span class="count">
-                34
+                35
             </span>
         </a>
         <a class="meta-item" href="/categories/">
@@ -800,7 +789,7 @@
                 分类
             </span>
             <span class="count">
-                6
+                7
             </span>
         </a>
         <a class="meta-item" href="/tags/">
@@ -808,7 +797,7 @@
                 标签
             </span>
             <span class="count">
-                9
+                10
             </span>
         </a>
     </div>
@@ -831,7 +820,7 @@
                 
   <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
     <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%93%B2%E5%AD%A6/">哲学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%87%E5%AD%A6/">文学</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%93%B2%E5%AD%A6/">哲学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%87%E5%AD%A6/">文学</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%85%E9%9D%A2%E9%85%8D%E5%87%86%E7%AE%97%E6%B3%95/">颅面配准算法</a><span class="category-list-count">5</span></li></ul>
   </aside>
 
 
@@ -840,7 +829,7 @@
   <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
     <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
       <div class="tag-clouds">
-        <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/%E6%83%85%E6%84%9F/" style="font-size: 0.73em;">情感</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" style="font-size: 0.67em;">数学建模</a> <a href="/tags/%E6%96%87%E5%AD%A6/" style="font-size: 0.73em;">文学</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 0.6em;">机器学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 0.8em;">深度学习</a> <a href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" style="font-size: 0.6em;">蓝桥杯</a> <a href="/tags/%E8%BD%B6%E9%97%BB/" style="font-size: 0.6em;">轶闻</a>
+        <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/%E6%83%85%E6%84%9F/" style="font-size: 0.7em;">情感</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" style="font-size: 0.65em;">数学建模</a> <a href="/tags/%E6%96%87%E5%AD%A6/" style="font-size: 0.7em;">文学</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 0.65em;">机器学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 0.8em;">深度学习</a> <a href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" style="font-size: 0.6em;">蓝桥杯</a> <a href="/tags/%E8%BD%B6%E9%97%BB/" style="font-size: 0.6em;">轶闻</a> <a href="/tags/%E9%A2%85%E9%9D%A2%E9%85%8D%E5%87%86%E7%AE%97%E6%B3%95/" style="font-size: 0.75em;">颅面配准算法</a>
       </div>
   </aside>
 
@@ -851,6 +840,12 @@
   <div class="tab-content">
       <ul class="list-group">
         
+        
+          
+          
+            <a class="list-group-item" href="/2022/06/17/pumpkin-book-2/"><i class="fa  fa-book"></i> 吃瓜教程2</a>
+            
+          
         
           
           
@@ -877,11 +872,7 @@
           
         
           
-          
-            <a class="list-group-item" href="/2022/04/18/mathorcup-1/"><i class="fa  fa-book"></i> mathorcup四天比赛之旅</a>
             
-          
-        
           
             
           

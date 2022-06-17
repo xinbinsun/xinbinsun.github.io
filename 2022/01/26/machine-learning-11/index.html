@@ -76,7 +76,7 @@
     
   </style>
   
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
     <body class="custom-background">
@@ -192,9 +192,9 @@
             <hr />
             <h2 id="猫狗大战案例介绍"><a href="#猫狗大战案例介绍" class="headerlink" title="猫狗大战案例介绍"></a>猫狗大战案例介绍</h2><span id="more"></span>
 <p>1.迁移学习<br>2.Dataset数据集和TFRecord数据集的制作与应用</p>
-<p>Cats vs. Dogs（猫狗大战）是Kaggle上的一个竞赛，利用给定的数据集，用算法实现猫和狗的识别<br><img src="pic1.png" alt="Cats vs. Dogs"><br><a target="_blank" rel="noopener" href="https://www.kaggle.com/c/dogs-vs-cats">https://www.kaggle.com/c/dogs-vs-cats</a></p>
+<p>Cats vs. Dogs（猫狗大战）是Kaggle上的一个竞赛，利用给定的数据集，用算法实现猫和狗的识别<br><img src="/2022/01/26/machine-learning-11/pic1.png" alt="Cats vs. Dogs"><br><a target="_blank" rel="noopener" href="https://www.kaggle.com/c/dogs-vs-cats">https://www.kaggle.com/c/dogs-vs-cats</a></p>
 <h2 id="tf-data-Dataset数据集"><a href="#tf-data-Dataset数据集" class="headerlink" title="tf.data.Dataset数据集"></a>tf.data.Dataset数据集</h2><p><strong>制作Dataset数据集</strong><br>面对一堆格式不一的原始数据文件，数据预处理的过程往往十分繁琐，甚至比模型的设计还要耗费精力。<br>• 处理各种赃数据<br>• 设计 Batch 的生成方式<br>TensorFlow 提供了tf.data这一模块，包括了一套灵活的数据集构建API，能够帮助快速、高效地构建数据输入的流水线，尤其适用于大数据量场景。<br>tf.data.Dataset类是tf.data的核心，提供了对数据集的高层封装<br>tf.data.Dataset由一系列的可迭代访问的元素（element）组成，每个元素包含一个或多个张量<br>用 tf.data.Dataset.from_tensor_slices()是建立 tf.data.Dataset 的基本方法，适用于数据量较小（能够整个装进内存）的情况<br><strong>Dataset数据集对象的预处理</strong><br>tf.data.Dataset 类提供了多种数据集预处理方法，常用的包括：<br>• Dataset.map(f) 对数据集中的每个元素应用函数f<br>• Dataset.shuffle(buffer_size) 将数据集打散，实现乱序<br>• Dataset.batch(batch_size) 将数据集分成批次<br>• Dataset.prefetch() 预取出数据集中的size个元素<br>• Dataset.take () 截取数据集中的前size个元素<br><strong>猫狗大战：Dataset数据集构建</strong><br>确定样本图像的标签值：<br>·文件名包含分类标签信息<br>·不同类别的文件放不同的目录<br><strong>数据读取</strong><br>·定义数据读取函数<br>·定义解码图片和调整图片大小的函数——读取图片文件并解码，调整图片的大小并标准化<br><strong>建立猫狗大战Dataset数据集</strong><br>·读取图像数据并处理<br>·乱序——Dataset.shuffle(buffer_size) ：将数据集打乱（设定一个固定大小的缓冲区（Buffer），取出前 buffer_size 个元素放入，并从缓冲区中随机采样，采样后的数据用后续数据替换）<br>·分批——Dataset.batch(batch_size)：将数据集分成批次，即对每 batch_size 个元素，在第 0 维合并成为一个元素<br><strong>定义准备Dataset数据集的函数</strong><br><strong>读取训练数据并处理</strong><br><strong>Dataset数据集的使用</strong><br>把Dataset数据集转换为迭代器<br><strong>显示一批样本的图像和标签</strong></p>
-<h2 id="基于VGG16的迁移学习模型构建与应用"><a href="#基于VGG16的迁移学习模型构建与应用" class="headerlink" title="基于VGG16的迁移学习模型构建与应用"></a>基于VGG16的迁移学习模型构建与应用</h2><p><strong>迁移学习</strong><br>利用已经训练好的模型作为新模型训练的初始化的学习方式。<br>• 所需样本数量更少；<br>• 模型达到收敛所需耗时更短<br>• 比如：网络在Cifar-10数据集上迭代训练5000次收敛，将一个在Cifar-100上训练好的模型迁移至Cifar-10上，只需1000次就能收敛。<br>• 当新数据集比较小且和原数据集相似时<br>• 当算力有限时<br><img src="pic2.png" alt="迁移学习"><br><img src="pic3.png" alt="VGG结构"><br><strong>微调（finetuining）</strong><br>(1) trainable参数变动<br>在进行Finetuning对模型重新训练时，对于部分不需要训练的层可以通过设置trainable=False来确保其在训练过程中不会被修改权值；<br>(2) 加上特定的全连接层<br>预训练的VGG是在ImageNet数据集上进行训练的，对1000个类别进行判定，若希望利用已训练模型用于其他分类任务，需要修改最后的全连接层。<br><strong>编译模型</strong><br><strong>读取训练数据</strong><br><strong>模型训练</strong><br>·定义超参数<br>·进行训练<br><strong>模型存储</strong><br>·需要安排pyyaml包，pip install pyyaml<br>·将模型结构和模型权重参数分开存储</p>
+<h2 id="基于VGG16的迁移学习模型构建与应用"><a href="#基于VGG16的迁移学习模型构建与应用" class="headerlink" title="基于VGG16的迁移学习模型构建与应用"></a>基于VGG16的迁移学习模型构建与应用</h2><p><strong>迁移学习</strong><br>利用已经训练好的模型作为新模型训练的初始化的学习方式。<br>• 所需样本数量更少；<br>• 模型达到收敛所需耗时更短<br>• 比如：网络在Cifar-10数据集上迭代训练5000次收敛，将一个在Cifar-100上训练好的模型迁移至Cifar-10上，只需1000次就能收敛。<br>• 当新数据集比较小且和原数据集相似时<br>• 当算力有限时<br><img src="/2022/01/26/machine-learning-11/pic2.png" alt="迁移学习"><br><img src="/2022/01/26/machine-learning-11/pic3.png" alt="VGG结构"><br><strong>微调（finetuining）</strong><br>(1) trainable参数变动<br>在进行Finetuning对模型重新训练时，对于部分不需要训练的层可以通过设置trainable=False来确保其在训练过程中不会被修改权值；<br>(2) 加上特定的全连接层<br>预训练的VGG是在ImageNet数据集上进行训练的，对1000个类别进行判定，若希望利用已训练模型用于其他分类任务，需要修改最后的全连接层。<br><strong>编译模型</strong><br><strong>读取训练数据</strong><br><strong>模型训练</strong><br>·定义超参数<br>·进行训练<br><strong>模型存储</strong><br>·需要安排pyyaml包，pip install pyyaml<br>·将模型结构和模型权重参数分开存储</p>
 <h3 id="应用模型"><a href="#应用模型" class="headerlink" title="应用模型"></a>应用模型</h3><p><strong>模型装载</strong><br>·恢复模型的结构<br>·导入模型的权重参数<br><strong>定义读取测试集图片的函数</strong><br><strong>定义预测函数</strong><br><strong>执行预测</strong></p>
 <h2 id="TFRecord文件与应用"><a href="#TFRecord文件与应用" class="headerlink" title="TFRecord文件与应用"></a>TFRecord文件与应用</h2><p><strong>TFRecord</strong><br>TFRecord 是 TensorFlow 中的数据集中存储格式。<br>将数据集整理成 TFRecord 格式后，TensorFlow 就可以高效地读取和处理这些数据集，从而更高效地进行大规模的模型训练。<br>TFRecord 可以理解为一系列序列化的 tf.train.Example 元素所组成的列表文件，而每一个 tf.train.Example 又由若干个 tf.train.Feature 的字典组成。<br><strong>TFRecord格式数据文件处理过程</strong><br>将形式各样的数据集整理为 TFRecord 格式，可以对数据集中的每个元素进行以下步骤：<br>1）读取该数据元素到内存；<br>2）将该元素转换为 tf.train.Example 对象（每一个 tf.train.Example 由若干个 tf.train.Feature 的字典组成，因此需要先建立 Feature 的字典）；<br>3）将该 tf.train.Example 对象序列化为字符串，并通过一个预先定义的 tf.io.TFRecordWriter 写入 TFRecord 文件。<br>读取 TFRecord 数据可按照以下步骤：<br>1）通过 tf.data.TFRecordDataset 读入原始的 TFRecord 文件（此时文件中的 tf.train.Example 对象尚未被反序列化），获得一个 tf.data.Dataset 数据集对象；<br>2）通过 Dataset.map 方法，对该数据集对象中的每一个序列化的 tf.train.Example 字符串执行 tf.io.parse_single_example 函数，从而实现反序列化。<br><strong>读取数据集的图片文件名列表及标签</strong><br><strong>定义生成TFRecord格式数据文件函数</strong><br><strong>TFRecord格式</strong><br>tf.train.Feature 支持三种数据格式：<br>· tf.train.BytesList ：字符串或原始 Byte 文件（如图片），通过 bytes_list 参数传入一个由字符串数组初始化的 tf.train.BytesList 对象；<br>· tf.train.FloatList ：浮点数，通过 float_list 参数传入一个由浮点数数组初始化的 tf.train.FloatList 对象；<br>· tf.train.Int64List ：整数，通过 int64_list 参数传入一个由整数数组初始化的 tf.train.Int64List 对象。<br>如果只希望保存一个元素而非数组，传入一个只有一个元素的数组即可。<br><strong>生成TFRecord格式数据文件</strong><br><strong>定义TFRecord数据文件解码函数</strong><br><strong>定义读取TFRecord文件，解码并生成Dataset数据集的函数</strong><br><strong>读取TFRecord文件，解码并生成Dataset数据集</strong></p>
 
@@ -337,7 +337,7 @@
                 文章
             </span>
             <span class="count">
-                34
+                35
             </span>
         </a>
         <a class="meta-item" href="/categories/">
@@ -345,7 +345,7 @@
                 分类
             </span>
             <span class="count">
-                6
+                7
             </span>
         </a>
         <a class="meta-item" href="/tags/">
@@ -353,7 +353,7 @@
                 标签
             </span>
             <span class="count">
-                9
+                10
             </span>
         </a>
     </div>
@@ -376,7 +376,7 @@
                 
   <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
     <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%93%B2%E5%AD%A6/">哲学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%87%E5%AD%A6/">文学</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%93%B2%E5%AD%A6/">哲学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%87%E5%AD%A6/">文学</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%85%E9%9D%A2%E9%85%8D%E5%87%86%E7%AE%97%E6%B3%95/">颅面配准算法</a><span class="category-list-count">5</span></li></ul>
   </aside>
 
 
@@ -385,7 +385,7 @@
   <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
     <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
       <div class="tag-clouds">
-        <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/%E6%83%85%E6%84%9F/" style="font-size: 0.73em;">情感</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" style="font-size: 0.67em;">数学建模</a> <a href="/tags/%E6%96%87%E5%AD%A6/" style="font-size: 0.73em;">文学</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 0.6em;">机器学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 0.8em;">深度学习</a> <a href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" style="font-size: 0.6em;">蓝桥杯</a> <a href="/tags/%E8%BD%B6%E9%97%BB/" style="font-size: 0.6em;">轶闻</a>
+        <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/%E6%83%85%E6%84%9F/" style="font-size: 0.7em;">情感</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" style="font-size: 0.65em;">数学建模</a> <a href="/tags/%E6%96%87%E5%AD%A6/" style="font-size: 0.7em;">文学</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 0.65em;">机器学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 0.8em;">深度学习</a> <a href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" style="font-size: 0.6em;">蓝桥杯</a> <a href="/tags/%E8%BD%B6%E9%97%BB/" style="font-size: 0.6em;">轶闻</a> <a href="/tags/%E9%A2%85%E9%9D%A2%E9%85%8D%E5%87%86%E7%AE%97%E6%B3%95/" style="font-size: 0.75em;">颅面配准算法</a>
       </div>
   </aside>
 
@@ -396,6 +396,12 @@
   <div class="tab-content">
       <ul class="list-group">
         
+        
+          
+          
+            <a class="list-group-item" href="/2022/06/17/pumpkin-book-2/"><i class="fa  fa-book"></i> 吃瓜教程2</a>
+            
+          
         
           
           
@@ -422,11 +428,7 @@
           
         
           
-          
-            <a class="list-group-item" href="/2022/04/18/mathorcup-1/"><i class="fa  fa-book"></i> mathorcup四天比赛之旅</a>
             
-          
-        
           
             
           

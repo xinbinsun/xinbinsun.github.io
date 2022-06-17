@@ -76,7 +76,7 @@
     
   </style>
   
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
     <body class="custom-background">
@@ -173,7 +173,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~4.13K
+                        ~4.11K
                     
                     字
                 </li>
@@ -192,58 +192,31 @@
             <hr />
             <h1 id="TensorFlow的基础概念"><a href="#TensorFlow的基础概念" class="headerlink" title="TensorFlow的基础概念"></a>TensorFlow的基础概念<span id="more"></span></h1><p>A machine learning platform for everyone to solve real problems.</p>
 <p>开放源码软件库，用于进行高性能数值计算</p>
-<p>Tensorflow的Hello World</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line">hello = tf.constant(<span class="string">&quot;Hello,World!&quot;</span>)</span><br><span class="line"></span><br><span class="line">sess = tf.Session()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(sess.run(hello))</span><br></pre></td></tr></table></figure>
-<p>Tensor 张量 数据结构：多维数组<br>Flow 流 计算模型： 张量之间通过计算而转换的过程</p>
+<p>Tensorflow的Hello World<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line">hello = tf.constant(<span class="string">&quot;Hello,World!&quot;</span>)</span><br><span class="line"></span><br><span class="line">sess = tf.Session()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(sess.run(hello))</span><br></pre></td></tr></table></figure><br>Tensor 张量 数据结构：多维数组<br>Flow 流 计算模型： 张量之间通过计算而转换的过程</p>
 <p>通过计算图的形式表述计算的编程系统，计算为节点，边描述计算之间的关系</p>
 <p>计算图是一个有向图，由以下内容构成：<br>• 一组节点，每个节点都代表一个操作，是一种运算<br>• 一组有向边，每条边代表节点之间的关系（数据传递和控制依赖）</p>
 <p>TensorFlow有两种边：<br>• 常规边（实线）：代表数据依赖关系。一个节点的运算输出成为另一个节点的输入，两个节点之间有tensor流动（ 值传递）<br>• 特殊边（虚线）：不携带值，表示两个节点之间的 控制相关性。<br>比如， happens- - before 关系，源节点必须在目的节点执行前完成执行</p>
-<p>计算图的实例</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">node1 = tf.constant(<span class="number">3.0</span>,tf.float32,name=<span class="string">&#x27;node1&#x27;</span>)</span><br><span class="line">node2 = tf.constant(<span class="number">4.0</span>,tf.float32,name=<span class="string">&#x27;node2&#x27;</span>)</span><br><span class="line">node3 = tf.add(node1,node2)</span><br><span class="line"><span class="built_in">print</span>(node3)</span><br></pre></td></tr></table></figure>
-<p>输出一个张量结构：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Tensor(<span class="string">&quot;Add:0&quot;</span>, shape=(), dtype=float32)</span><br></pre></td></tr></table></figure>
-
-<p>建立对话显示运行结果：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sess = tf.Session()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;运行结果：&quot;</span>,sess.run(node1))</span><br><span class="line"></span><br><span class="line">sess.close()</span><br></pre></td></tr></table></figure>
-
+<p>计算图的实例<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">node1 = tf.constant(<span class="number">3.0</span>,tf.float32,name=<span class="string">&#x27;node1&#x27;</span>)</span><br><span class="line">node2 = tf.constant(<span class="number">4.0</span>,tf.float32,name=<span class="string">&#x27;node2&#x27;</span>)</span><br><span class="line">node3 = tf.add(node1,node2)</span><br><span class="line"><span class="built_in">print</span>(node3)</span><br></pre></td></tr></table></figure><br>输出一个张量结构：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Tensor(<span class="string">&quot;Add:0&quot;</span>, shape=(), dtype=float32)</span><br></pre></td></tr></table></figure></p>
+<p>建立对话显示运行结果：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sess = tf.Session()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;运行结果：&quot;</span>,sess.run(node1))</span><br><span class="line"></span><br><span class="line">sess.close()</span><br></pre></td></tr></table></figure></p>
 <h2 id="张量的概念"><a href="#张量的概念" class="headerlink" title="张量的概念"></a>张量的概念</h2><p>在TensorFlow中，所有的数据都通过张量的形式来表示<br>• 从功能的角度，张量可以简单理解为多维数组<br>零阶张量表示标量（scalar），也就是 一个数；<br>一阶张量为向量（vector），也就是 一维数组；<br>n n 阶张量可以理解为一个 n 维数组；<br>• 张量并没有真正保存数字，它保存的是计算过程</p>
 <h2 id="张量的属性"><a href="#张量的属性" class="headerlink" title="张量的属性"></a>张量的属性</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Tensor(<span class="string">&quot;Add:0&quot;</span>, shape=(), dtype=float32)</span><br></pre></td></tr></table></figure>
 <p>名字（ name ）<br>“node:src_output”：node 节点名称，src_output 来自节点的第几个输出<br>形状（ shape ）<br>张量的维度信息， shape=() ，表示是标量<br>类型（ type ）<br>每一个张量会有一个唯一的类型<br>TensorFlow会对参与运算的所有张量进行类型的检查，发现类型不匹配时会报错</p>
-<h2 id="张量的形状"><a href="#张量的形状" class="headerlink" title="张量的形状"></a>张量的形状</h2><p>三个术语描述张量的维度： 阶（rank）、 形状（shape） 、 维数（dimension number）<br><img src="pic1.png" alt="shape"></p>
+<h2 id="张量的形状"><a href="#张量的形状" class="headerlink" title="张量的形状"></a>张量的形状</h2><p>三个术语描述张量的维度： 阶（rank）、 形状（shape） 、 维数（dimension number）<br><img src="/2022/01/09/machine-learning-2/pic1.png" alt="shape"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tens1 = tf.constant([[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>],[<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>]],</span><br><span class="line">                     [[<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>],[<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>]],</span><br><span class="line">                     [[<span class="number">7</span>,<span class="number">0</span>,<span class="number">1</span>],[<span class="number">9</span>,<span class="number">1</span>,<span class="number">9</span>]],</span><br><span class="line">                     [[<span class="number">11</span>,<span class="number">12</span>,<span class="number">7</span>],[<span class="number">1</span>,<span class="number">3</span>,<span class="number">14</span>]]],name = <span class="string">&#x27;tens1&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(tens1)</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">scalar = tf.constant(<span class="number">100</span>)</span><br><span class="line">vector = tf.constant([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>])</span><br><span class="line">matrix = tf.constant([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]])</span><br><span class="line">cube_matrix = tf.constant([[[<span class="number">1</span>],[<span class="number">2</span>],[<span class="number">3</span>]],[[<span class="number">4</span>],[<span class="number">5</span>],[<span class="number">6</span>]],[[<span class="number">7</span>],[<span class="number">8</span>],[<span class="number">9</span>]]])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(scalar.get_shape())</span><br><span class="line"><span class="built_in">print</span>(vector.get_shape())</span><br><span class="line"><span class="built_in">print</span>(matrix.get_shape())</span><br><span class="line"><span class="built_in">print</span>(cube_matrix.get_shape())</span><br></pre></td></tr></table></figure>
-<p><img src="pic2.png" alt="rank"></p>
+<p><img src="/2022/01/09/machine-learning-2/pic2.png" alt="rank"></p>
 <p>（数组下标从0开始）</p>
 <h2 id="张量的类型"><a href="#张量的类型" class="headerlink" title="张量的类型"></a>张量的类型</h2><p>TensorFlow支持14种不同的类型<br>实数 tf.float32, tf.float64<br>整数 tf.int8, tf.int16, tf.int32, tf.int64, tf.uint8<br>布尔 tf.bool<br>复数 tf.complex64, tf.complex128<br>张量的类型<br>默认类型：<br>不带小数点的数会被默认为int32<br>带小数点的会被默认为float32</p>
-<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><p>计算图中的 节点就是 操作（Operation）<br>• 一次加法是一个操作<br>• 一次乘法也是一个操作<br>• 构建一些变量的初始值也是一个操作<br>• 每个运算操作都有 属性，它在构建图的时候需要确定下来<br>• 操作可以和计算 设备绑定，指定操作在某个设备上执行<br>• 操作之间存在顺序关系，这些操作之间的 依赖就是“ 边”<br>• 如果操作A的输入是操作B执行的结果，那么这个操作A就依赖于操作B</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">tf.reset_default_graph()</span><br><span class="line"></span><br><span class="line">a = tf.Variable(<span class="number">1</span>,name = <span class="string">&quot;a&quot;</span>)</span><br><span class="line">b = tf.add(a,<span class="number">1</span>,name = <span class="string">&quot;b&quot;</span>)</span><br><span class="line">c = tf.multiply(b,<span class="number">4</span>,name = <span class="string">&quot;c&quot;</span>)</span><br><span class="line">d = tf.subtract(c,b,name = <span class="string">&quot;d&quot;</span>)</span><br><span class="line"></span><br><span class="line">logdir = <span class="string">&#x27;E:\log&#x27;</span></span><br><span class="line"></span><br><span class="line">writer = tf.summary.FileWriter(logdir,tf.get_default_graph())</span><br><span class="line">writer.close()</span><br></pre></td></tr></table></figure>
-<h1 id="TensorFlow的基本运算"><a href="#TensorFlow的基本运算" class="headerlink" title="TensorFlow的基本运算"></a>TensorFlow的基本运算</h1><h2 id="会话"><a href="#会话" class="headerlink" title="会话"></a>会话</h2><p>会话1</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">tens1 = tf.constant([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">sess = tf.Session()</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="built_in">print</span>(sess.run(tens1))</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Exception!&#x27;</span>)</span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    sess.close()</span><br></pre></td></tr></table></figure>
-<p>会话2</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    <span class="built_in">print</span>(sess.run(tens1))</span><br></pre></td></tr></table></figure>
-<p>在交互式环境下，Python脚本或者Jupyter编辑器下，通过设置默认会话来获取张量的取值更加方便<br>tf.InteractiveSession 使用这个函数会自动将生成的会话注册为默认会话</p>
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><p>计算图中的 节点就是 操作（Operation）<br>• 一次加法是一个操作<br>• 一次乘法也是一个操作<br>• 构建一些变量的初始值也是一个操作<br>• 每个运算操作都有 属性，它在构建图的时候需要确定下来<br>• 操作可以和计算 设备绑定，指定操作在某个设备上执行<br>• 操作之间存在顺序关系，这些操作之间的 依赖就是“ 边”<br>• 如果操作A的输入是操作B执行的结果，那么这个操作A就依赖于操作B<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">tf.reset_default_graph()</span><br><span class="line"></span><br><span class="line">a = tf.Variable(<span class="number">1</span>,name = <span class="string">&quot;a&quot;</span>)</span><br><span class="line">b = tf.add(a,<span class="number">1</span>,name = <span class="string">&quot;b&quot;</span>)</span><br><span class="line">c = tf.multiply(b,<span class="number">4</span>,name = <span class="string">&quot;c&quot;</span>)</span><br><span class="line">d = tf.subtract(c,b,name = <span class="string">&quot;d&quot;</span>)</span><br><span class="line"></span><br><span class="line">logdir = <span class="string">&#x27;E:\log&#x27;</span></span><br><span class="line"></span><br><span class="line">writer = tf.summary.FileWriter(logdir,tf.get_default_graph())</span><br><span class="line">writer.close()</span><br></pre></td></tr></table></figure></p>
+<h1 id="TensorFlow的基本运算"><a href="#TensorFlow的基本运算" class="headerlink" title="TensorFlow的基本运算"></a>TensorFlow的基本运算</h1><h2 id="会话"><a href="#会话" class="headerlink" title="会话"></a>会话</h2><p>会话1<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">tens1 = tf.constant([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">sess = tf.Session()</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="built_in">print</span>(sess.run(tens1))</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Exception!&#x27;</span>)</span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    sess.close()</span><br></pre></td></tr></table></figure><br>会话2<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    <span class="built_in">print</span>(sess.run(tens1))</span><br></pre></td></tr></table></figure><br>在交互式环境下，Python脚本或者Jupyter编辑器下，通过设置默认会话来获取张量的取值更加方便<br>tf.InteractiveSession 使用这个函数会自动将生成的会话注册为默认会话</p>
 <h2 id="常量和变量"><a href="#常量和变量" class="headerlink" title="常量和变量"></a>常量和变量</h2><p>常量</p>
-<p>在运行过程中值不会改变的单元，在TensorFlow中无须进行初始化操作<br>创建语句：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">constant_ name = tf.constant(value)</span><br></pre></td></tr></table></figure>
-<p>变量</p>
-<p>在运行过程中值会改变的单元，在TensorFlow中须进行初始化操作<br>创建语句：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name_variable = tf.Variable(value, name)</span><br></pre></td></tr></table></figure>
-<p>个别变量初始化：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">init_op = name_variable.initializer()</span><br></pre></td></tr></table></figure>
-<p>所有变量初始化：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">init_op = tf.global_variables_initializer()</span><br></pre></td></tr></table></figure>
-<h2 id="变量的赋值"><a href="#变量的赋值" class="headerlink" title="变量的赋值"></a>变量的赋值</h2><p>变量更新语句：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update_op = tf.assign(variable_to_be_updated, new_value)</span><br></pre></td></tr></table></figure>
-
+<p>在运行过程中值不会改变的单元，在TensorFlow中无须进行初始化操作<br>创建语句：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">constant_ name = tf.constant(value)</span><br></pre></td></tr></table></figure><br>变量</p>
+<p>在运行过程中值会改变的单元，在TensorFlow中须进行初始化操作<br>创建语句：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name_variable = tf.Variable(value, name)</span><br></pre></td></tr></table></figure><br>个别变量初始化：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">init_op = name_variable.initializer()</span><br></pre></td></tr></table></figure><br>所有变量初始化：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">init_op = tf.global_variables_initializer()</span><br></pre></td></tr></table></figure></p>
+<h2 id="变量的赋值"><a href="#变量的赋值" class="headerlink" title="变量的赋值"></a>变量的赋值</h2><p>变量更新语句：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update_op = tf.assign(variable_to_be_updated, new_value)</span><br></pre></td></tr></table></figure></p>
 <h2 id="占位符"><a href="#占位符" class="headerlink" title="占位符"></a>占位符</h2><p>TensorFlow中的 Variable 变量类型，在定义时需要初始化，但有些变量定义时并不知道其数值，只有当真正开始运行程序时，才由外部输入，比如训练数据，这时候需要用到占位符<br>tf.placeholder 占位符，是TensorFlow中特有的一种数据结构，类似动态变量，函数的参数、或者C语言或者Python语言中格式化输出时的“%”占位符</p>
-<p>TensorFlow占位符Placeholder，先定义一种数据，其参数为数据的Type和Shape<br>占位符Placeholder的函数接口如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.placeholder(dtype, shape=<span class="literal">None</span>, name=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+<p>TensorFlow占位符Placeholder，先定义一种数据，其参数为数据的Type和Shape<br>占位符Placeholder的函数接口如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.placeholder(dtype, shape=<span class="literal">None</span>, name=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure></p>
 <h2 id="Feed提交数据和Fetch提取数据"><a href="#Feed提交数据和Fetch提取数据" class="headerlink" title="Feed提交数据和Fetch提取数据"></a>Feed提交数据和Fetch提取数据</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">a = tf.placeholder(tf.float32,name=<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line">b = tf.placeholder(tf.float32,name=<span class="string">&#x27;b&#x27;</span>)</span><br><span class="line">c = tf.multiply(a,b,name = <span class="string">&quot;c&quot;</span>)</span><br><span class="line">d = tf.subtract(a,b,name = <span class="string">&quot;d&quot;</span>)</span><br><span class="line"></span><br><span class="line">init = tf.global_variables_initializer()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    sess.run(init)</span><br><span class="line">    </span><br><span class="line">    result = sess.run([c,d],feed_dict=&#123;a:[<span class="number">8.0</span>,<span class="number">2.0</span>,<span class="number">3.5</span>],b:[<span class="number">1.5</span>,<span class="number">2.0</span>,<span class="number">4.0</span>]&#125;)</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">print</span>(result)</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">print</span>(result[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
-
-<h2 id="TensorBoard可视化初步"><a href="#TensorBoard可视化初步" class="headerlink" title="TensorBoard可视化初步"></a>TensorBoard可视化初步</h2><p>• TensorBoard是TensorFlow的可视化工具<br>• 通过TensorFlow程序运行过程中输出的日志文件可视化TensorFlow程序<br>的运行状态<br>• TensorBoard和TensorFlow程序跑在不同的进程中<br>TensorBoard不需要额外安装，在TensorFlow安装时已自动完成<br>在 Anaconda Prompt中先进入日志存放的目录（ 非常重要！！！）<br>再运行TensorBoard，并将日志的地址指向程序日志输出的地址<br>命令：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tensorboard --logdir=/path/log</span><br></pre></td></tr></table></figure>
-<p><img src="pic3.png" alt="API"><br><img src="pic4.png" alt="TEST"></p>
+<h2 id="TensorBoard可视化初步"><a href="#TensorBoard可视化初步" class="headerlink" title="TensorBoard可视化初步"></a>TensorBoard可视化初步</h2><p>• TensorBoard是TensorFlow的可视化工具<br>• 通过TensorFlow程序运行过程中输出的日志文件可视化TensorFlow程序<br>的运行状态<br>• TensorBoard和TensorFlow程序跑在不同的进程中<br>TensorBoard不需要额外安装，在TensorFlow安装时已自动完成<br>在 Anaconda Prompt中先进入日志存放的目录（ 非常重要！！！）<br>再运行TensorBoard，并将日志的地址指向程序日志输出的地址<br>命令：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tensorboard --logdir=/path/log</span><br></pre></td></tr></table></figure><br><img src="/2022/01/09/machine-learning-2/pic3.png" alt="API"><br><img src="/2022/01/09/machine-learning-2/pic4.png" alt="TEST"></p>
 
         </div>
         
@@ -384,7 +357,7 @@
                 文章
             </span>
             <span class="count">
-                34
+                35
             </span>
         </a>
         <a class="meta-item" href="/categories/">
@@ -392,7 +365,7 @@
                 分类
             </span>
             <span class="count">
-                6
+                7
             </span>
         </a>
         <a class="meta-item" href="/tags/">
@@ -400,7 +373,7 @@
                 标签
             </span>
             <span class="count">
-                9
+                10
             </span>
         </a>
     </div>
@@ -423,7 +396,7 @@
                 
   <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
     <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%93%B2%E5%AD%A6/">哲学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%87%E5%AD%A6/">文学</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%93%B2%E5%AD%A6/">哲学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%87%E5%AD%A6/">文学</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%85%E9%9D%A2%E9%85%8D%E5%87%86%E7%AE%97%E6%B3%95/">颅面配准算法</a><span class="category-list-count">5</span></li></ul>
   </aside>
 
 
@@ -432,7 +405,7 @@
   <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
     <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
       <div class="tag-clouds">
-        <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/%E6%83%85%E6%84%9F/" style="font-size: 0.73em;">情感</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" style="font-size: 0.67em;">数学建模</a> <a href="/tags/%E6%96%87%E5%AD%A6/" style="font-size: 0.73em;">文学</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 0.6em;">机器学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 0.8em;">深度学习</a> <a href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" style="font-size: 0.6em;">蓝桥杯</a> <a href="/tags/%E8%BD%B6%E9%97%BB/" style="font-size: 0.6em;">轶闻</a>
+        <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/%E6%83%85%E6%84%9F/" style="font-size: 0.7em;">情感</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" style="font-size: 0.65em;">数学建模</a> <a href="/tags/%E6%96%87%E5%AD%A6/" style="font-size: 0.7em;">文学</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 0.65em;">机器学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 0.8em;">深度学习</a> <a href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" style="font-size: 0.6em;">蓝桥杯</a> <a href="/tags/%E8%BD%B6%E9%97%BB/" style="font-size: 0.6em;">轶闻</a> <a href="/tags/%E9%A2%85%E9%9D%A2%E9%85%8D%E5%87%86%E7%AE%97%E6%B3%95/" style="font-size: 0.75em;">颅面配准算法</a>
       </div>
   </aside>
 
@@ -443,6 +416,12 @@
   <div class="tab-content">
       <ul class="list-group">
         
+        
+          
+          
+            <a class="list-group-item" href="/2022/06/17/pumpkin-book-2/"><i class="fa  fa-book"></i> 吃瓜教程2</a>
+            
+          
         
           
           
@@ -469,11 +448,7 @@
           
         
           
-          
-            <a class="list-group-item" href="/2022/04/18/mathorcup-1/"><i class="fa  fa-book"></i> mathorcup四天比赛之旅</a>
             
-          
-        
           
             
           

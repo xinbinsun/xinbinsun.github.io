@@ -76,7 +76,7 @@
     
   </style>
   
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
     <body class="custom-background">
@@ -186,9 +186,8 @@
             </div>
             
             <hr />
-            <p>关于深度学习人脸特征点自动定位的学习</p>
-<span id="more"></span>
-<h1 id="生成式对抗网络原理"><a href="#生成式对抗网络原理" class="headerlink" title="生成式对抗网络原理"></a>生成式对抗网络原理</h1><p>深度学习模型分为：一，判别式模型(GoogLeNet,ResNet,Faster RCNN,YOLO等等)；二，生成式模型<br>研究意义：<br>➢ 是对我们处理高维数据和复杂概率分布的能力很好的检测<br>➢当面临缺乏数据或缺失数据时，我们可以通过生成模型来补足。比如，用在半监督学习中。<br>➢可以输出多模态（multimodal）结果<br><img src="pic1.png" alt="生成式模型发展历程"><br>➢最大似然估计法<br>以真实样本进行最大似然估计，参数更新直接来自于<br>样本数据，导致学习到的生成模型受到限制。<br>➢近似法<br>由于目标函数难解一般只能在学习过程中逼近目标函<br>数的下界，并不是对目标函数的逼近。<br>➢马尔科夫链方法<br>计算复杂度高<br><strong>生成式对抗网络Generative Adversarial Networks (GANs)</strong><br><img src="pic2.png" alt="GAN原理"><br>生成网络G的输入是一个来自常见概率分布的随机噪声矢量，输出是计算机生成的图片；判别网络D的输入是图片x，x可能是真实图片也可能是生成图片，判别网络D的输出是一个标量，用来代表x是真实图片的概率。<br>GAN的核心思想来源于博弈论的纳什均衡，它设定参与游戏双方分别为一个生成器和一个判别器，生成器的目的是尽量去学习真实的数据分布，而判别器的目的是尽量正确判别输入数据是来自真实数据还是来自生成器；为了取得游戏胜利，两个参与者需要不断优化，各自提高自己的生成能力和判别能力，这个学习的优化过程就是寻找二者之间的一个纳什均衡。<br><img src="pic3.png" alt="GAN训练"><br><img src="pic4.png" alt="GAN训练"><br><img src="pic4.png" alt="GAN实现"></p>
+            <p>关于深度学习人脸特征点自动定位的学习<br><span id="more"></span></p>
+<h1 id="生成式对抗网络原理"><a href="#生成式对抗网络原理" class="headerlink" title="生成式对抗网络原理"></a>生成式对抗网络原理</h1><p>深度学习模型分为：一，判别式模型(GoogLeNet,ResNet,Faster RCNN,YOLO等等)；二，生成式模型<br>研究意义：<br>➢ 是对我们处理高维数据和复杂概率分布的能力很好的检测<br>➢当面临缺乏数据或缺失数据时，我们可以通过生成模型来补足。比如，用在半监督学习中。<br>➢可以输出多模态（multimodal）结果<br><img src="/2022/02/25/Automatic-facial-feature-points-location/pic1.png" alt="生成式模型发展历程"><br>➢最大似然估计法<br>以真实样本进行最大似然估计，参数更新直接来自于<br>样本数据，导致学习到的生成模型受到限制。<br>➢近似法<br>由于目标函数难解一般只能在学习过程中逼近目标函<br>数的下界，并不是对目标函数的逼近。<br>➢马尔科夫链方法<br>计算复杂度高<br><strong>生成式对抗网络Generative Adversarial Networks (GANs)</strong><br><img src="/2022/02/25/Automatic-facial-feature-points-location/pic2.png" alt="GAN原理"><br>生成网络G的输入是一个来自常见概率分布的随机噪声矢量，输出是计算机生成的图片；判别网络D的输入是图片x，x可能是真实图片也可能是生成图片，判别网络D的输出是一个标量，用来代表x是真实图片的概率。<br>GAN的核心思想来源于博弈论的纳什均衡，它设定参与游戏双方分别为一个生成器和一个判别器，生成器的目的是尽量去学习真实的数据分布，而判别器的目的是尽量正确判别输入数据是来自真实数据还是来自生成器；为了取得游戏胜利，两个参与者需要不断优化，各自提高自己的生成能力和判别能力，这个学习的优化过程就是寻找二者之间的一个纳什均衡。<br><img src="/2022/02/25/Automatic-facial-feature-points-location/pic3.png" alt="GAN训练"><br><img src="/2022/02/25/Automatic-facial-feature-points-location/pic4.png" alt="GAN训练"><br><img src="/2022/02/25/Automatic-facial-feature-points-location/pic4.png" alt="GAN实现"></p>
 <p><strong>关于深度特征点识别网络(deep land- mark identification network,DLIN)</strong></p>
 <p>选摘：在此背景下，我们提出了一种全自动多线性算法，可以在大量不同身份和表情的3D人脸上建立密集对应(≥13,500点)。我们首先训练一个深度卷积神经网络(CNN)来识别地标。cnn已被广泛应用于二维纹理图像，其中地面真实标签的训练数据是丰富可用的。然而，对于3D人脸，却缺乏包含面部形状、种族和表情显著变化的训练数据。我们的深度地标识别网络(DLIN)使用商业软件(FaceGenTM)生成的合成3D图像进行训练，能够以高准确度和高效率检测11个生物意义重大的[28]面部地标。接下来，我们使用测地进化的关卡集曲线[29]将3D人脸划分为五个Voronoi区域。在每个区域内检测出一组稀疏的识别关键点，并用于弹性对齐两个给定人脸的相应区域形状。然后通过所有训练人脸的区域顶点之间的最近邻匹配实现密集对应。最后，由密集对应的人脸构造三维可变形模型，通过迭代优化拟合可变形模型，将对应信息传递到不可见的三维人脸。</p>
 <div class="xControl active">
@@ -347,7 +346,7 @@
                 文章
             </span>
             <span class="count">
-                34
+                35
             </span>
         </a>
         <a class="meta-item" href="/categories/">
@@ -355,7 +354,7 @@
                 分类
             </span>
             <span class="count">
-                6
+                7
             </span>
         </a>
         <a class="meta-item" href="/tags/">
@@ -363,7 +362,7 @@
                 标签
             </span>
             <span class="count">
-                9
+                10
             </span>
         </a>
     </div>
@@ -374,7 +373,7 @@
                 
   <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
     <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%93%B2%E5%AD%A6/">哲学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%87%E5%AD%A6/">文学</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%93%B2%E5%AD%A6/">哲学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%87%E5%AD%A6/">文学</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%85%E9%9D%A2%E9%85%8D%E5%87%86%E7%AE%97%E6%B3%95/">颅面配准算法</a><span class="category-list-count">5</span></li></ul>
   </aside>
 
 
@@ -383,7 +382,7 @@
   <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
     <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
       <div class="tag-clouds">
-        <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/%E6%83%85%E6%84%9F/" style="font-size: 0.73em;">情感</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" style="font-size: 0.67em;">数学建模</a> <a href="/tags/%E6%96%87%E5%AD%A6/" style="font-size: 0.73em;">文学</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 0.6em;">机器学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 0.8em;">深度学习</a> <a href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" style="font-size: 0.6em;">蓝桥杯</a> <a href="/tags/%E8%BD%B6%E9%97%BB/" style="font-size: 0.6em;">轶闻</a>
+        <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/%E6%83%85%E6%84%9F/" style="font-size: 0.7em;">情感</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" style="font-size: 0.65em;">数学建模</a> <a href="/tags/%E6%96%87%E5%AD%A6/" style="font-size: 0.7em;">文学</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 0.65em;">机器学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 0.8em;">深度学习</a> <a href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" style="font-size: 0.6em;">蓝桥杯</a> <a href="/tags/%E8%BD%B6%E9%97%BB/" style="font-size: 0.6em;">轶闻</a> <a href="/tags/%E9%A2%85%E9%9D%A2%E9%85%8D%E5%87%86%E7%AE%97%E6%B3%95/" style="font-size: 0.75em;">颅面配准算法</a>
       </div>
   </aside>
 
@@ -394,6 +393,12 @@
   <div class="tab-content">
       <ul class="list-group">
         
+        
+          
+          
+            <a class="list-group-item" href="/2022/06/17/pumpkin-book-2/"><i class="fa  fa-book"></i> 吃瓜教程2</a>
+            
+          
         
           
           
@@ -420,11 +425,7 @@
           
         
           
-          
-            <a class="list-group-item" href="/2022/04/18/mathorcup-1/"><i class="fa  fa-book"></i> mathorcup四天比赛之旅</a>
             
-          
-        
           
             
           

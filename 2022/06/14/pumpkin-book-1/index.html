@@ -76,7 +76,7 @@
     
   </style>
   
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
     <body class="custom-background">
@@ -193,7 +193,7 @@
 <p><strong>属性值</strong>(attribute value)</p>
 <p><strong>样本空间</strong>(sample space)</p>
 <p><strong>特征向量</strong>(feature vector)</p>
-<p><img src="pic1.png" alt="dimensionality"></p>
+<p><img src="/2022/06/14/pumpkin-book-1/pic1.png" alt="dimensionality"></p>
 <p>离散值——<strong>分类</strong> (classification)</p>
 <p>连续值——<strong>回归</strong>(regression)</p>
 <p>两个类别——<strong>二分类</strong></p>
@@ -201,17 +201,17 @@
 <h2 id="1-3-假设空间"><a href="#1-3-假设空间" class="headerlink" title="1.3 假设空间"></a>1.3 假设空间</h2><p><strong>归纳</strong>(induction)与<strong>演绎</strong>(deduction)是科学推理的两大基本手段.前者是从 特殊到一般的“<strong>泛化</strong>”(generalization)过程，即从具体的事实归结出一般性规 律；后者则是从一般到特殊的“<strong>特化</strong>”(specialization)过程，即从基础原理推演 出具体状况.例如，在数学公理系统中，基于一组公理和推理规则推导出与之 相洽的定理，这是演绎；而 “从样例中学习”显然是一个归纳的过程，因此亦称 “<strong>归纳学习</strong> ”(inductive learning). </p>
 <h1 id="第二章-模型评估与选择"><a href="#第二章-模型评估与选择" class="headerlink" title="第二章 模型评估与选择"></a>第二章 模型评估与选择</h1><h2 id="2-1-经验误差与过拟合"><a href="#2-1-经验误差与过拟合" class="headerlink" title="2.1 经验误差与过拟合"></a>2.1 经验误差与过拟合</h2><p>通常我们把分类错误的样本数占样本总数的比例称为“<strong>错误率</strong>”(error rate ),即如果在m个样本中有a 个样本分类错误，则错误率E = a/m ;相应的, 1-a /m 称为 “<strong>精度</strong>”(accuracy),即 “精度= 1-错误率”.更一般地,我们把学习器的实际预测输出与样本的真实输出之间的差异称为“<strong>误差</strong>”(error), 学习器在训练集上的误差称为 “<strong>训练误差</strong> ”(training error)或 “经验误差”(empirical error),在新样本上的误差称为 “<strong>泛化误差</strong>”(generalization error).</p>
 <h2 id="2-2-评估方法"><a href="#2-2-评估方法" class="headerlink" title="2.2 评估方法"></a>2.2 评估方法</h2><p>通常，我们可通过实验测试来对学习器的泛化误差进行评估并进而做出选 择.为此 需使用一个“<strong>测试集</strong>”(testing set)来测试学习器对新样本的判别能力，然后以测试集上的“<strong>测试误差</strong>”(testing error)作为泛化误差的近似.通常，我们假设测试样本也是从样本真实分布中独立同分布采样而得.但需注意的是，测试集应该尽可能与训练集互斥，即测试样本尽量不在训练集中出现、未在训练过程中使用过. </p>
-<h3 id="2-2-1-留出法"><a href="#2-2-1-留出法" class="headerlink" title="2.2.1 留出法"></a>2.2.1 留出法</h3><p><img src="pic2.png" alt="hold-out"></p>
-<h3 id="2-2-2-交叉验证法"><a href="#2-2-2-交叉验证法" class="headerlink" title="2.2.2 交叉验证法"></a>2.2.2 交叉验证法</h3><p><img src="pic3.png" alt="cross validation"></p>
-<h3 id="2-2-3-自助法"><a href="#2-2-3-自助法" class="headerlink" title="2.2.3 自助法"></a>2.2.3 自助法</h3><p><img src="pic4.png" alt="bootstrapping"></p>
+<h3 id="2-2-1-留出法"><a href="#2-2-1-留出法" class="headerlink" title="2.2.1 留出法"></a>2.2.1 留出法</h3><p><img src="/2022/06/14/pumpkin-book-1/pic2.png" alt="hold-out"></p>
+<h3 id="2-2-2-交叉验证法"><a href="#2-2-2-交叉验证法" class="headerlink" title="2.2.2 交叉验证法"></a>2.2.2 交叉验证法</h3><p><img src="/2022/06/14/pumpkin-book-1/pic3.png" alt="cross validation"></p>
+<h3 id="2-2-3-自助法"><a href="#2-2-3-自助法" class="headerlink" title="2.2.3 自助法"></a>2.2.3 自助法</h3><p><img src="/2022/06/14/pumpkin-book-1/pic4.png" alt="bootstrapping"></p>
 <h3 id="2-2-4-调参与最终模型"><a href="#2-2-4-调参与最终模型" class="headerlink" title="2.2.4 调参与最终模型"></a>2.2.4 调参与最终模型</h3><p>大多数学习算法都有些<strong>参数</strong>(parameter)需要设定，参数配置不同，学得模型的性能往往有显著差别.因此,在进行模型评估与选择时，除了要对适用学习算法进行选择，还需对算法参数进行设定，这就是通常所说的“参数调节”或简称 “<strong>调参</strong> “ (parameter tuning). </p>
 <h2 id="2-3-性能度量"><a href="#2-3-性能度量" class="headerlink" title="2.3 性能度量"></a>2.3 性能度量</h2><p>对学习器的泛化性能进行评估，不仅需要有效可行的实验估计方法，还需 要有衡量模型泛化能力的评价标准，这就是<strong>性能度量</strong>(performance measure).性能度量反映了任务需求，在对比不同模型的能力时，使用不同的性能度量往往会导致不同的评判结果；这意味着模型的“好坏”是相对的，什么样的模型是好的，不仅取决于算法和数据，还决定于任务需求. </p>
-<p><img src="pic5.png" alt="performance measure"></p>
-<h3 id="2-3-1-错误率与精度"><a href="#2-3-1-错误率与精度" class="headerlink" title="2.3.1 错误率与精度"></a>2.3.1 错误率与精度</h3><p><img src="pic6.png" alt="错误率和精度"></p>
-<h3 id="2-3-2-查准率、查全率与F1"><a href="#2-3-2-查准率、查全率与F1" class="headerlink" title="2.3.2 查准率、查全率与F1"></a>2.3.2 查准率、查全率与F1</h3><p><img src="pic7.png" alt="查准率与查全率"></p>
-<p><img src="pic8.png" alt="查准率与查全率"></p>
-<p><img src="pic9.png" alt="F1度量"></p>
-<p><img src="pic10.png" alt="F1度量的一般形式"></p>
+<p><img src="/2022/06/14/pumpkin-book-1/pic5.png" alt="performance measure"></p>
+<h3 id="2-3-1-错误率与精度"><a href="#2-3-1-错误率与精度" class="headerlink" title="2.3.1 错误率与精度"></a>2.3.1 错误率与精度</h3><p><img src="/2022/06/14/pumpkin-book-1/pic6.png" alt="错误率和精度"></p>
+<h3 id="2-3-2-查准率、查全率与F1"><a href="#2-3-2-查准率、查全率与F1" class="headerlink" title="2.3.2 查准率、查全率与F1"></a>2.3.2 查准率、查全率与F1</h3><p><img src="/2022/06/14/pumpkin-book-1/pic7.png" alt="查准率与查全率"></p>
+<p><img src="/2022/06/14/pumpkin-book-1/pic8.png" alt="查准率与查全率"></p>
+<p><img src="/2022/06/14/pumpkin-book-1/pic9.png" alt="F1度量"></p>
+<p><img src="/2022/06/14/pumpkin-book-1/pic10.png" alt="F1度量的一般形式"></p>
 
         </div>
         
@@ -314,6 +314,10 @@
             </div>
             
             
+            <div class="nav-next clearfix">
+                <a title=" 吃瓜教程2" href="/2022/06/17/pumpkin-book-2/">下一篇 &gt;</a>
+            </div>
+            
         </nav>
     
     
@@ -348,7 +352,7 @@
                 文章
             </span>
             <span class="count">
-                34
+                35
             </span>
         </a>
         <a class="meta-item" href="/categories/">
@@ -356,7 +360,7 @@
                 分类
             </span>
             <span class="count">
-                6
+                7
             </span>
         </a>
         <a class="meta-item" href="/tags/">
@@ -364,7 +368,7 @@
                 标签
             </span>
             <span class="count">
-                9
+                10
             </span>
         </a>
     </div>
@@ -375,7 +379,7 @@
                 
   <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
     <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%93%B2%E5%AD%A6/">哲学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%87%E5%AD%A6/">文学</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%93%B2%E5%AD%A6/">哲学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%87%E5%AD%A6/">文学</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%85%E9%9D%A2%E9%85%8D%E5%87%86%E7%AE%97%E6%B3%95/">颅面配准算法</a><span class="category-list-count">5</span></li></ul>
   </aside>
 
 
@@ -384,7 +388,7 @@
   <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
     <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
       <div class="tag-clouds">
-        <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/%E6%83%85%E6%84%9F/" style="font-size: 0.73em;">情感</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" style="font-size: 0.67em;">数学建模</a> <a href="/tags/%E6%96%87%E5%AD%A6/" style="font-size: 0.73em;">文学</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 0.6em;">机器学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 0.8em;">深度学习</a> <a href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" style="font-size: 0.6em;">蓝桥杯</a> <a href="/tags/%E8%BD%B6%E9%97%BB/" style="font-size: 0.6em;">轶闻</a>
+        <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/%E6%83%85%E6%84%9F/" style="font-size: 0.7em;">情感</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" style="font-size: 0.65em;">数学建模</a> <a href="/tags/%E6%96%87%E5%AD%A6/" style="font-size: 0.7em;">文学</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 0.65em;">机器学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 0.8em;">深度学习</a> <a href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" style="font-size: 0.6em;">蓝桥杯</a> <a href="/tags/%E8%BD%B6%E9%97%BB/" style="font-size: 0.6em;">轶闻</a> <a href="/tags/%E9%A2%85%E9%9D%A2%E9%85%8D%E5%87%86%E7%AE%97%E6%B3%95/" style="font-size: 0.75em;">颅面配准算法</a>
       </div>
   </aside>
 
@@ -395,6 +399,12 @@
   <div class="tab-content">
       <ul class="list-group">
         
+        
+          
+          
+            <a class="list-group-item" href="/2022/06/17/pumpkin-book-2/"><i class="fa  fa-book"></i> 吃瓜教程2</a>
+            
+          
         
           
           
@@ -421,11 +431,7 @@
           
         
           
-          
-            <a class="list-group-item" href="/2022/04/18/mathorcup-1/"><i class="fa  fa-book"></i> mathorcup四天比赛之旅</a>
             
-          
-        
           
             
           

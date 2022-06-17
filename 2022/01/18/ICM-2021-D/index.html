@@ -76,7 +76,7 @@
     
   </style>
   
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
     <body class="custom-background">
@@ -190,8 +190,7 @@
                 </div>
             
             <hr />
-            <p><strong>2021 ICM</strong><br><strong>Problem D: The Influence of Music</strong></p>
-<span id="more"></span>
+            <p><strong>2021 ICM</strong><br><strong>Problem D: The Influence of Music</strong><br><span id="more"></span></p>
 <h2 id="题目原文"><a href="#题目原文" class="headerlink" title="题目原文"></a>题目原文</h2><div class="xControl">
     <div class="xHeading"><div class="xIcon"><i class="fa fa-plus"></i></div><span>题目原文(点击此栏展开)</span></div>
     <div class="xContent"><div class="inner">
@@ -199,9 +198,7 @@
 <p>Some artists can list a dozen or more other artists who they say influenced their own musical work. It has also been suggested that influence can be measured by the degree of similarity between song characteristics, such as structure, rhythm, or lyrics. There are sometimes revolutionary shifts in music, offering new sounds or tempos, such as when a new genre emerges, or there is a reinvention of an existing genre (e.g. classical, pop/rock, jazz, etc.). This can be due to a sequence of small changes, a cooperative effort of artists, a series of influential artists, or a shift within society.</p>
 <p>Many songs have similar sounds, and many artists have contributed to major shifts in a musical genre. Sometimes these shifts are due to one artist influencing another. Sometimes it is a change that emerges in response to external events (such as major world events or technological advances). By considering networks of songs and their musical characteristics, we can begin to capture the influence that musical artists have on each other. And, perhaps, we can also gain a better understanding of how music evolves through societies over time.</p>
 <p>Your team has been identified by the Integrative Collective Music (ICM) Society to develop a model that measures musical influence. This problem asks you to examine evolutionary and revolutionary trends of artists and genres. To do this, your team has been given several data sets by the ICM:</p>
-<ol>
-<li>   “influence_data” 1 represents musical influencers and followers, as reported by the artists themselves, as well as the opinions of industry experts. These data contains influencers and followers for 5,854 artists in the last 90 years.</li>
-</ol>
+<p>1)    “influence_data” 1 represents musical influencers and followers, as reported by the artists themselves, as well as the opinions of industry experts. These data contains influencers and followers for 5,854 artists in the last 90 years.</p>
 <p>2)“full_music_data”2 provides 16 variable entries, including musical features such as danceability, tempo, loudness, and key, along with artist_name and artist_id for each of 98,340 songs. These data are used to create two summary data sets, including:</p>
 <p>a.mean values by artist “data_by_artist”,</p>
 <p>b.means across years “data_by_year”.</p>
@@ -229,18 +226,14 @@
  
     </div></div>
     </div>
-
-<h2 id="题目译文"><a href="#题目译文" class="headerlink" title="题目译文"></a>题目译文</h2><p><strong>2021年ICM</strong><br><strong>问题D：音乐的影响</strong></p>
-<div class="xControl">
+<h2 id="题目译文"><a href="#题目译文" class="headerlink" title="题目译文"></a>题目译文</h2><p><strong>2021年ICM</strong><br><strong>问题D：音乐的影响</strong><br><div class="xControl">
     <div class="xHeading"><div class="xIcon"><i class="fa fa-plus"></i></div><span>题目译文(点击此栏展开)</span></div>
     <div class="xContent"><div class="inner">
         <p>音乐是人类社会的一部分，是文化遗产的重要组成部分。 作为理解音乐在人类集体经验中所扮演角色的努力的一部分，我们被要求开发一种方法来量化音乐进化。 当艺术家创作一首新音乐时，有许多因素可以影响他们，包括他们与生俱来的创造力、当前的社会或政治事件、获得新的乐器或工具的机会或其他个人经历。 我们的目标是了解和衡量以前制作的音乐对新音乐和音乐艺术家的影响。</p>
 <p>一些艺术家可以列出十几个或更多的其他艺术家，他们说他们影响了他们自己的音乐作品。 还有人建议，影响可以用歌曲特征之间的相似程度来衡量，如结构、节奏或歌词。 音乐有时会发生革命性的变化，提供新的声音或节奏，例如当一个新的体裁出现时，或者有一个现有的体裁的重新发明(例如。 古典、流行/摇滚、爵士乐等。)。 这可能是由于一系列微小的变化，艺术家的合作努力，一系列有影响力的艺术家，或社会内部的转变。</p>
 <p>许多歌曲有着相似的声音，许多艺术家为音乐流派的重大转变做出了贡献。 有时这些变化是由于一个艺术家影响另一个艺术家。 有时，它是针对外部事件（如重大世界事件或技术进步)而出现的变化）。 通过考虑歌曲网络及其音乐特征，我们可以开始捕捉音乐艺术家对彼此的影响。 也许，我们还可以更好地了解音乐是如何随着时间的推移在社会中演变的。</p>
 <p>您的团队已经被整合集体音乐(ICM)协会确定，以开发一个衡量音乐影响的模型。 这个问题要求你研究艺术家和流派的进化和革命趋势。 为了做到这一点，ICM给了您的团队几个数据集：</p>
-<ol>
-<li>   “influence_data”1 代表音乐影响者和追随者，如艺术家自己报告的，以及行业         专家的意见。 这些数据包含了过去90年来5,854名艺术家的影响者和追随者。</li>
-</ol>
+<p>1)    “influence_data”1 代表音乐影响者和追随者，如艺术家自己报告的，以及行业         专家的意见。 这些数据包含了过去90年来5,854名艺术家的影响者和追随者。</p>
 <p>2)“full_music_data”2 提供16个可变的条目，包括音乐特征，如舞蹈性，节<br>奏，响度和键，以及98，340首歌曲的artist_name和artist_id。 这些数据用于创建两个汇总数据集，包括：</p>
 <p>a.艺术家“data_by_artist”的平均价值”，<br>b.意味着多年的“data_by_year”。</p>
 <p>1 这些数据来自All Music.com<br>2 这些数据是从Spotify的API中获得的</p>
@@ -266,9 +259,9 @@
 <p>说明：<br>-duration_ms：轨道的持续时间(毫秒。 （整数）<br>-流行：赛道的流行。 值将在0到100之间，其中100是最受欢迎的。 流行度是通过算法来计算的，在很大程度上是基于赛道上的总播放次数和最近的播放次数。 一般来说， 现在播放频率更高的歌曲将比过去播放频率更高的歌曲更受欢迎。 重复轨道(例如。同一曲目来自单一和专辑)是独立的。 艺术家和专辑的流行在数学上来源于曲目的流行。 （整数）<br>-年份：轨道发布的年份。 （1921年至2020年为整数）<br>-release_date：轨道发布的日历日期大多采用yyyy-mm-dd格式，但日期的精度可能会有所不同，有些只是作为yyyy给出的。<br>-song_title（审查）：轨道的名称。 运行软件是为了删除歌曲标题中任何潜在的显式单词。<br>-计数：特定艺术家的歌曲数量表示在full_music_data.csv文件中。 （整数）</p>
  
     </div></div>
-    </div>
+    </div></p>
 <h2 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h2><p><strong>题目要求:</strong><br>（1）根据附件数据influence_data，构建音乐人之间的定向网络模型，或许会根据不同的音乐派别划分成多个子图，进而做出描述性分析与可视化；构建影响力指标表示音乐人的影响程度，可以参考复杂网络、聚类思想中的有向加权度指标。<br>（2）根据附件数据full_music_data 探讨不同流派音乐内部的相似性，可以参考聚类有效性评价指标DB、DUNN等，关键问题是需要我们构建相似性指标。<br>（3）分析不同类别音乐人或音乐之间的类内相似性差异，这些差异随时间是如何变化的，不同类别的音乐人或派系之间是否存在交互（文化背景等因素所导致）。<br>（4）分析不同派系的音乐中，影响者到连接者之间的影响力（Q1指标）是否存在明显差异或共性，如7种音乐特性与5种人声特征之间的规律。<br>（5）从数据中找出重大变革时间点，确定这些时间点的历史背景，确定主要的特征以更有效地表示这些飞跃，找出相关巨大贡献的艺术家。<br>（6）分析不同类型音乐随时间变化的影响过程（内部音乐人互相影响、外部不同派系音乐之间的影响）。提出综合指标来表示这种影响随时间的变化模式。<br>（7）该小问较难，一种可行的建议是从音乐人的作品数据（歌曲名、歌词等）中提取文本信息，获取主题词汇来表示时间、环境特征。<br>（8）模型推广。进一步研究模型的运行模式，以适用于更丰富的音乐数据集等。</p>
-<p><strong>结合一篇论文分析（论文来源于网络，侵删）</strong><br><img src="pic1.png" alt="summary"><br><img src="pic2.png" alt="The workflow of the paper"><br><strong>任务1</strong><br>将influencers和fllowers视为结点，构建网络，涉及5603个艺术家和42770个影响（数据集：influence——data.csv）<br><img src="pic3.png" alt="3D Directed Influencer Network"><br>子图筛选出10个顶级艺术家以及每一位艺术家与其追随者相连<br><img src="pic4.png" alt="Directed Influencer Subnetwork"><br>在影响者和跟随者之间建立了一个有向网络，基于网络理论，提出了三种不同的度量——度中心性、加权度中心性和特征中心性。然后，开发了这些指标的组合，作为音乐影响的综合。之后，创建了一个子网来说明影响力。<br><strong>任务2</strong><br>进行数据清洗，删除违背常识的变量<br>一些音乐特征具有相似的含义，例如“能量”和“响度”都反映了音轨的强度和活动，为了减少相似度计算时的共线性的影响，使用主成分分析(PCA)来减少数据的离散度，同时尽可能保持数据的变化。<br><img src="pic5.png" alt="Cumulative Variance Contribution Rate"><br>在主成分分析结果的基础上，选择前7个主成分，忽略REST，新的7个变量保持了80%以上的原始数据信息。<br>首先利用主成分分析对数据进行降维和共线性处理，然后定义和计算不同路径之间的距离，以获得艺术家之间的相似性。通过计算平均相似度，采用Mann-Whitney检验.结果表明，在概率为62.8%，p值小于0.001的情况下，某一体裁中的艺术家比体裁之间的艺术家更相似。<br>所有艺术家之间的相似性如图所示。Mann-Whitney的统计数据显示，以62.8%的概率和小于0.001的p值，流派中的艺术家比流派之间的艺术家更相似。<br><img src="pic6.png" alt="Similarity between artists within a genre and between genres"><br><strong>任务3</strong><br>为了比较音乐的相似性和对体裁层次的影响，首先将数据集中的体裁合并为DataSet“datunce_data.csv”和数据集“data_by_artist.csv”，然后根据不同的类型对数据进行分组。<br>Figure 12 shows the Similarity Matrix and Influence Matrix between Genres. Blues andEasy Listening share some similar characteristics in musical features,whereas Electronic andVocal are more similar. As for influence, Pop/Rock significantly influences other genres. Interestingly, Pop/Rock has a strong influence on R&amp;B, but they do not share significant similarityin musical characteristics, which we will discuss the reason later.<br><img src="pic7.png" alt="Influence and Similarity between and within genres"><br><img src="pic8.png" alt="Similarity within genres"><br>根据提出的音乐相似性度量， 发现在分析不同类型时，体裁内部和类型之间的相似性和影响差异很大。针对不同类型的不同类型，建立了体裁分类树模型。通过对不同时期影响因素的分析，探索了体裁的演化路径。基于类型尺度的定向网络，发现流行/摇滚与R&amp;B、布鲁斯和民间有着很强的关系。<br><strong>任务4</strong><br><img src="pic9.png" alt="Similarity Bayesian Network of the Beatles and their followers"><br>建立了一个基于音乐特征相似性的相似贝叶斯网络来识别真实的跟随者。然后，应用多元二样本法，发现没有强有力的证据(p值&gt;0.1)，任何音乐特征都比其他特征具有更强的“传染性”。<br><strong>任务5</strong><br><img src="pic10.png" alt="Energy and Acousticness in different genres"><br>首先分析了流派的兴衰，发现了20世纪50年代的音乐革命。提出了一种动态规划算法，用于检测MUSIC特征中与革命相一致的变化点。结果表明，声学、能量、舞步能力和响度可能意味着革命。基于贝叶斯网络，Elvis Presley和Cliff Richard代表了革命者。<br>Our Similarity Bayesian Network is shown in figure.Elvis Presley, an influencer who hasthe most followers in 1950s in Pop/Rock, leads a countercultural movement in the United States.At the same time, Cliff Richard, an English artist, makes a dramatic change on the evolution ofthe genre. These two revolutionaries not only reinvent the existing genre, but also inspire artistslike Moti and Freestyle to create a new genre -Electronic.Therefore,Elvis Presley and CliffRichard represent revolutionaries in 1950s music revolution.<br><strong>任务6</strong><br><img src="pic11.png" alt="Changes of music characteristics in Pop/Rock"><br>为了进一步了解流行音乐/摇滚的演变，提出了一种基于整个流派音乐特征滞后趋势的动态影响指示器。在1960年代到2010年代，有10位动态影响者，每个人对流行/摇滚都有自己独特的影响。此外，还解释了流行/摇滚的演变过程。<br><strong>任务7</strong><br><img src="pic12.png" alt="Culture-influence processes"><br>基于时间序列分析检测出三个重要时期，显示音乐对文化的影响。在所建立的模型基础上，确定了诸如文化运动的社会变化和互联网的扩散等技术变化。</p>
+<p><strong>结合一篇论文分析（论文来源于网络，侵删）</strong><br><img src="/2022/01/18/ICM-2021-D/pic1.png" alt="summary"><br><img src="/2022/01/18/ICM-2021-D/pic2.png" alt="The workflow of the paper"><br><strong>任务1</strong><br>将influencers和fllowers视为结点，构建网络，涉及5603个艺术家和42770个影响（数据集：influence——data.csv）<br><img src="/2022/01/18/ICM-2021-D/pic3.png" alt="3D Directed Influencer Network"><br>子图筛选出10个顶级艺术家以及每一位艺术家与其追随者相连<br><img src="/2022/01/18/ICM-2021-D/pic4.png" alt="Directed Influencer Subnetwork"><br>在影响者和跟随者之间建立了一个有向网络，基于网络理论，提出了三种不同的度量——度中心性、加权度中心性和特征中心性。然后，开发了这些指标的组合，作为音乐影响的综合。之后，创建了一个子网来说明影响力。<br><strong>任务2</strong><br>进行数据清洗，删除违背常识的变量<br>一些音乐特征具有相似的含义，例如“能量”和“响度”都反映了音轨的强度和活动，为了减少相似度计算时的共线性的影响，使用主成分分析(PCA)来减少数据的离散度，同时尽可能保持数据的变化。<br><img src="/2022/01/18/ICM-2021-D/pic5.png" alt="Cumulative Variance Contribution Rate"><br>在主成分分析结果的基础上，选择前7个主成分，忽略REST，新的7个变量保持了80%以上的原始数据信息。<br>首先利用主成分分析对数据进行降维和共线性处理，然后定义和计算不同路径之间的距离，以获得艺术家之间的相似性。通过计算平均相似度，采用Mann-Whitney检验.结果表明，在概率为62.8%，p值小于0.001的情况下，某一体裁中的艺术家比体裁之间的艺术家更相似。<br>所有艺术家之间的相似性如图所示。Mann-Whitney的统计数据显示，以62.8%的概率和小于0.001的p值，流派中的艺术家比流派之间的艺术家更相似。<br><img src="/2022/01/18/ICM-2021-D/pic6.png" alt="Similarity between artists within a genre and between genres"><br><strong>任务3</strong><br>为了比较音乐的相似性和对体裁层次的影响，首先将数据集中的体裁合并为DataSet“datunce_data.csv”和数据集“data_by_artist.csv”，然后根据不同的类型对数据进行分组。<br>Figure 12 shows the Similarity Matrix and Influence Matrix between Genres. Blues andEasy Listening share some similar characteristics in musical features,whereas Electronic andVocal are more similar. As for influence, Pop/Rock significantly influences other genres. Interestingly, Pop/Rock has a strong influence on R&amp;B, but they do not share significant similarityin musical characteristics, which we will discuss the reason later.<br><img src="/2022/01/18/ICM-2021-D/pic7.png" alt="Influence and Similarity between and within genres"><br><img src="/2022/01/18/ICM-2021-D/pic8.png" alt="Similarity within genres"><br>根据提出的音乐相似性度量， 发现在分析不同类型时，体裁内部和类型之间的相似性和影响差异很大。针对不同类型的不同类型，建立了体裁分类树模型。通过对不同时期影响因素的分析，探索了体裁的演化路径。基于类型尺度的定向网络，发现流行/摇滚与R&amp;B、布鲁斯和民间有着很强的关系。<br><strong>任务4</strong><br><img src="/2022/01/18/ICM-2021-D/pic9.png" alt="Similarity Bayesian Network of the Beatles and their followers"><br>建立了一个基于音乐特征相似性的相似贝叶斯网络来识别真实的跟随者。然后，应用多元二样本法，发现没有强有力的证据(p值&gt;0.1)，任何音乐特征都比其他特征具有更强的“传染性”。<br><strong>任务5</strong><br><img src="/2022/01/18/ICM-2021-D/pic10.png" alt="Energy and Acousticness in different genres"><br>首先分析了流派的兴衰，发现了20世纪50年代的音乐革命。提出了一种动态规划算法，用于检测MUSIC特征中与革命相一致的变化点。结果表明，声学、能量、舞步能力和响度可能意味着革命。基于贝叶斯网络，Elvis Presley和Cliff Richard代表了革命者。<br>Our Similarity Bayesian Network is shown in figure.Elvis Presley, an influencer who hasthe most followers in 1950s in Pop/Rock, leads a countercultural movement in the United States.At the same time, Cliff Richard, an English artist, makes a dramatic change on the evolution ofthe genre. These two revolutionaries not only reinvent the existing genre, but also inspire artistslike Moti and Freestyle to create a new genre -Electronic.Therefore,Elvis Presley and CliffRichard represent revolutionaries in 1950s music revolution.<br><strong>任务6</strong><br><img src="/2022/01/18/ICM-2021-D/pic11.png" alt="Changes of music characteristics in Pop/Rock"><br>为了进一步了解流行音乐/摇滚的演变，提出了一种基于整个流派音乐特征滞后趋势的动态影响指示器。在1960年代到2010年代，有10位动态影响者，每个人对流行/摇滚都有自己独特的影响。此外，还解释了流行/摇滚的演变过程。<br><strong>任务7</strong><br><img src="/2022/01/18/ICM-2021-D/pic12.png" alt="Culture-influence processes"><br>基于时间序列分析检测出三个重要时期，显示音乐对文化的影响。在所建立的模型基础上，确定了诸如文化运动的社会变化和互联网的扩散等技术变化。</p>
 
         </div>
         
@@ -409,7 +402,7 @@
                 文章
             </span>
             <span class="count">
-                34
+                35
             </span>
         </a>
         <a class="meta-item" href="/categories/">
@@ -417,7 +410,7 @@
                 分类
             </span>
             <span class="count">
-                6
+                7
             </span>
         </a>
         <a class="meta-item" href="/tags/">
@@ -425,7 +418,7 @@
                 标签
             </span>
             <span class="count">
-                9
+                10
             </span>
         </a>
     </div>
@@ -448,7 +441,7 @@
                 
   <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
     <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%93%B2%E5%AD%A6/">哲学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%87%E5%AD%A6/">文学</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%93%B2%E5%AD%A6/">哲学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%87%E5%AD%A6/">文学</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%85%E9%9D%A2%E9%85%8D%E5%87%86%E7%AE%97%E6%B3%95/">颅面配准算法</a><span class="category-list-count">5</span></li></ul>
   </aside>
 
 
@@ -457,7 +450,7 @@
   <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
     <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
       <div class="tag-clouds">
-        <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/%E6%83%85%E6%84%9F/" style="font-size: 0.73em;">情感</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" style="font-size: 0.67em;">数学建模</a> <a href="/tags/%E6%96%87%E5%AD%A6/" style="font-size: 0.73em;">文学</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 0.6em;">机器学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 0.8em;">深度学习</a> <a href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" style="font-size: 0.6em;">蓝桥杯</a> <a href="/tags/%E8%BD%B6%E9%97%BB/" style="font-size: 0.6em;">轶闻</a>
+        <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/%E6%83%85%E6%84%9F/" style="font-size: 0.7em;">情感</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" style="font-size: 0.65em;">数学建模</a> <a href="/tags/%E6%96%87%E5%AD%A6/" style="font-size: 0.7em;">文学</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 0.65em;">机器学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 0.8em;">深度学习</a> <a href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" style="font-size: 0.6em;">蓝桥杯</a> <a href="/tags/%E8%BD%B6%E9%97%BB/" style="font-size: 0.6em;">轶闻</a> <a href="/tags/%E9%A2%85%E9%9D%A2%E9%85%8D%E5%87%86%E7%AE%97%E6%B3%95/" style="font-size: 0.75em;">颅面配准算法</a>
       </div>
   </aside>
 
@@ -468,6 +461,12 @@
   <div class="tab-content">
       <ul class="list-group">
         
+        
+          
+          
+            <a class="list-group-item" href="/2022/06/17/pumpkin-book-2/"><i class="fa  fa-book"></i> 吃瓜教程2</a>
+            
+          
         
           
           
@@ -494,11 +493,7 @@
           
         
           
-          
-            <a class="list-group-item" href="/2022/04/18/mathorcup-1/"><i class="fa  fa-book"></i> mathorcup四天比赛之旅</a>
             
-          
-        
           
             
           

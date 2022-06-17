@@ -13,7 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <meta name="format-detection" content="telphone=no, email=no" />
   
-    <meta name="keywords" content="深度学习" />
+    <meta name="keywords" content="颅面配准算法" />
   
   <meta name="description" content="FaceGen的使用">
 <meta property="og:type" content="article">
@@ -24,9 +24,9 @@
 <meta property="og:locale">
 <meta property="og:image" content="http://sunxinbin.cn/images/avatar.webp">
 <meta property="article:published_time" content="2022-03-31T10:00:00.000Z">
-<meta property="article:modified_time" content="2022-04-03T14:59:08.260Z">
+<meta property="article:modified_time" content="2022-06-15T14:39:31.553Z">
 <meta property="article:author" content="孙新斌">
-<meta property="article:tag" content="深度学习">
+<meta property="article:tag" content="颅面配准算法">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://sunxinbin.cn/images/avatar.webp">
 <meta name="twitter:site" content="@null">
@@ -76,7 +76,7 @@
     
   </style>
   
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
     <body class="custom-background">
@@ -173,7 +173,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~5.17K
+                        ~5.16K
                     
                     字
                 </li>
@@ -182,84 +182,75 @@
         </header>
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
-                本文最后编辑于 <time datetime="1648997948260"></time> 前，其中的内容可能需要更新。
+                本文最后编辑于 <time datetime="1655303971553"></time> 前，其中的内容可能需要更新。
             </div>
             
             <hr />
             <h2 id="FaceGen的使用"><a href="#FaceGen的使用" class="headerlink" title="FaceGen的使用"></a>FaceGen的使用</h2><span id="more"></span>
-
 <p><strong>（接上篇）</strong></p>
 <p><strong>FaceGen Modeller与FaceGen 3D Print可以使用其他很多格式进行导出与查看</strong></p>
 <p><strong>以下为三款程序之间的对比：</strong></p>
-<p><img src="pic7.png" alt="(三款软件)自左向右分别是：FaceGen Aritst,FaceGen Modeller,FaceGen 3D Print"></p>
-<p><img src="aritst.png" alt="FaceGen Aritst"></p>
+<p><img src="/2022/03/31/paperreading-4/pic7.png" alt="(三款软件)自左向右分别是：FaceGen Aritst,FaceGen Modeller,FaceGen 3D Print"></p>
+<p><img src="/2022/03/31/paperreading-4/aritst.png" alt="FaceGen Aritst"></p>
 <p><strong>FaceGen Artist</strong>支持直接导入图片自动生成人脸模型，支持多张人脸图片的组合，允许调整人脸的各种细节（包括年龄、性别、种族、肤色、皱纹、痣，头发和许多其他参数），直到达到您想要的效果，依此类推。</p>
 <p>非常易于使用。您只需导入您要调整的正确脸部照片，然后软件将分析图像并创建新的脸部网格以及相应的整体皮肤纹理。创建好的人脸模型可以直接导入<strong>DAZ Studio</strong>使用。此外，它还支持连接3D打印机程序进行打印操作。</p>
 <p>FaceGen Artist细节处理非常细致，五官的处理非常精准。它可以帮助用户轻松调整整张脸的各种细节，从而完美完成整张脸模型的设计和调整，让人物形象更加生动。</p>
-<p><img src="modeller.png" alt="FaceGen Modeller"></p>
+<p><img src="/2022/03/31/paperreading-4/modeller.png" alt="FaceGen Modeller"></p>
 <p><strong>FaceGen Modeller</strong> 作为一款小巧易用、功能强大、高效的 3D 人脸建模工具，可以随机或从照片中创建 3D、逼真的人脸，支持多种面部细节的调整，包括种族、性别、年龄、眼睛、眉毛、鼻孔等150多个五官。此外，它采用带有表情和色调的动画形式实时显示结果，可以存储为<strong>BMP、JPG、TGA、TIF</strong>等格式的图像，也可以导出为<strong>FBX、OBJ、3DS、WRL</strong>等3D 文件格式。</p>
-<p><img src="pic11.png" alt="3DS的导出格式"></p>
-<p><img src="3DPrint.png" alt="FaceGen 3D Print"></p>
+<p><img src="/2022/03/31/paperreading-4/pic11.png" alt="3DS的导出格式"></p>
+<p><img src="/2022/03/31/paperreading-4/3DPrint.png" alt="FaceGen 3D Print"></p>
 <p><strong>FaceGen 3D Print Demo</strong>塑造一个有底座的头部人像，导出格式支持<strong>PNG,JPEG,TARGA,BMP</strong>文件格式。</p>
 <h2 id="Towards-Fast-Accurate-and-Stable-3D-Dense-Face-Alignment"><a href="#Towards-Fast-Accurate-and-Stable-3D-Dense-Face-Alignment" class="headerlink" title="Towards Fast, Accurate and Stable 3D Dense Face Alignment"></a>Towards Fast, Accurate and Stable 3D Dense Face Alignment</h2><p><strong>关于快速，准确和稳定的三维密集人脸对准</strong></p>
 <p>1.采用轻量级的网络模型回归出3DMM的参数（论文2.1节），然后为该网络设置了<strong>meta-joint optimization</strong>优化策略(论文2.2节)，动态的组合wpdc(Weighted Parameter Distance）和vdc(Vertex Distance Cost）损失函数，从而加速了拟合的速度，也使得拟合的效果更加精确 </p>
 <p>2.提出landmark-regression regularization（特征点回归正则化）来加速拟合的速度和精确度</p>
 <p>3.为了解决在video上的三维人脸对齐任务（相邻帧之间的三维重建更加稳定，快速，连续性），在基于video数据上训练的模型，但video视频数据库缺乏时，提出了3D aided short-video-synthesis（三维辅助短视频合成技术），将一个静止的图片在平面内还有平面外旋转变成一个短视频</p>
-<p><img src="pic8.png" alt="3D aided short-video-synthesis"></p>
+<p><img src="/2022/03/31/paperreading-4/pic8.png" alt="3D aided short-video-synthesis"></p>
 <h3 id="3DMM"><a href="#3DMM" class="headerlink" title="3DMM"></a>3DMM</h3><p>1.回归参数截取</p>
 <p>2.参数的归一化处理</p>
 <p>3.3D人脸与2D人脸之间的公式只差一个正投影P参数</p>
 <h3 id="损失函数设计"><a href="#损失函数设计" class="headerlink" title="损失函数设计"></a>损失函数设计</h3><p><strong>设计fWPDC</strong></p>
-<p><img src="pic9.png" alt=" fWPDC: Fast WPDC Algorithm."></p>
+<p><img src="/2022/03/31/paperreading-4/pic9.png" alt=" fWPDC: Fast WPDC Algorithm."></p>
 <p><strong>在使用fwpdc损失函数训练好模型后，然后保存此次模型的训练结果；之后开始进行下次训练，在训练前，将模型的参数初始化为上次保存的模型，然后在使用vdc损失函数继续对该模型进行训练！<br>基于这种发现，提出了meta-joint optimization ，即动态的组合fwpdc和vdc损失函数进行训练。</strong></p>
-<p><img src="pic10.png" alt="Overview of the meta-joint optimization."></p>
+<p><img src="/2022/03/31/paperreading-4/pic10.png" alt="Overview of the meta-joint optimization."></p>
 <h3 id="3D-Aided-Short-video-synthesis-三维辅助短视频合成技术"><a href="#3D-Aided-Short-video-synthesis-三维辅助短视频合成技术" class="headerlink" title="3D Aided Short-video-synthesis(三维辅助短视频合成技术)"></a>3D Aided Short-video-synthesis(三维辅助短视频合成技术)</h3><p>经测试发现，该技术共有两个作用； 一是对模型的训练有促进作用（用NME来衡量模型是否优越，可用21，68，NK个三维特征点之间的距离损失来计算dist）；二是促进了在视频上进行三维人脸重建时候的稳定性（用相邻帧之间的偏移差异来衡量视频中三维人脸重建的稳定性）</p>
 <h2 id="3DFFA-V2代码的实现"><a href="#3DFFA-V2代码的实现" class="headerlink" title="3DFFA_V2代码的实现"></a>3DFFA_V2代码的实现</h2><p><strong>首先，附属代码未提供测试与训练的代码，只提供了训练好的模型并将其储存</strong></p>
 <p><strong>关于定义204[3, 64]个点，为什么要定义u_base , w_sha_base , w_exp_base的说明</strong></p>
 <p><strong>(此解释 by CSDN 博主 LX-CV提供)</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#  在行上链接形状向量基于表情向量基，维度为[53215x3,50]</span></span><br><span class="line">     w = np.concatenate((self.w_shp, self.w_exp), axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">     <span class="comment">#  求列向量的范数，维度是[1,50]</span></span><br><span class="line">     self.w_norm = np.linalg.norm(w, axis=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">     <span class="comment">#  这些参数是用系数特征点表示的重建三维人脸模型的时候公式中所涉及的数据</span></span><br><span class="line">     <span class="comment">#  维度为[204,1];取平均形状的204个数</span></span><br><span class="line">     self.u_base = self.u[self.keypoints].reshape(-<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">     <span class="comment">#  维度为[204,40],取形状向量基</span></span><br><span class="line">     self.w_shp_base = self.w_shp[self.keypoints]</span><br><span class="line">     <span class="comment">#  维度为[204,10],取表情向量基</span></span><br><span class="line">     self.w_exp_base = self.w_exp[self.keypoints]</span><br></pre></td></tr></table></figure>
-
 <p><strong>obj文件</strong>： 将人脸保存为obj文件 即保存了这个特征点的形状属性，又保存了这个点的纹理属性（r1, g1, b1） ；<br><strong>ply文件</strong>：将人脸保存为ply文件， 只保存了这个特征点的形状属性(x1, y1, z1)，不保存纹理属性；</p>
 <p><strong>Faceboxs边界框检测器：</strong></p>
 <p><strong>(本代码 by CSDN 博主 LX-CV提供)</strong></p>
 <p>facebox检测器传入人脸照片，返回的是个列表，用来存储边界框bbox(是个列表，共有5个数据)，有几个人脸就有几个边界框 ； 接下来可以利用bbox边界框获得roi_box参数，然后便可以利用roi_box参数画出边框或者精确的剪切出人脸照片</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">sys.path.append(<span class="string">&#x27;..&#x27;</span>)</span><br><span class="line"><span class="keyword">from</span> FaceBoxes <span class="keyword">import</span> FaceBoxes</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">from</span> utiles.functions <span class="keyword">import</span> parse_roi_box_from_bbox</span><br><span class="line"></span><br><span class="line">RED = (<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>)</span><br><span class="line">GREEN = (<span class="number">0</span>, <span class="number">255</span>, <span class="number">0</span>)</span><br><span class="line">BLUE = (<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">img = cv2.imread(<span class="string">&#x27;C:\Desktop\3DDFA_V2-master\examples\inputs\emma.jpg&#x27;</span>)</span><br><span class="line">width = img.shape[<span class="number">1</span>]</span><br><span class="line">height = img.shape[<span class="number">0</span>]</span><br><span class="line">img = cv2.resize(img, (<span class="built_in">int</span>(width*<span class="number">0.2</span>), <span class="built_in">int</span>(height*<span class="number">0.2</span>)), interpolation=cv2.INTER_AREA)</span><br><span class="line"></span><br><span class="line">face_detector = FaceBoxes()</span><br><span class="line">boxes = face_detector(img)  <span class="comment"># 获得边界框bbox ; 有几个人脸就有几个bbox ;</span></span><br><span class="line"></span><br><span class="line">roi_boxes = []  <span class="comment"># 用来存储roi_box参数 ；</span></span><br><span class="line"><span class="keyword">for</span> box <span class="keyword">in</span> boxes:</span><br><span class="line">   roi_box = parse_roi_box_from_bbox(box)  <span class="comment"># 利用bbox边界框获得roi_box参数 ；</span></span><br><span class="line">   roi_boxes.append(roi_box)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> box <span class="keyword">in</span> roi_boxes:</span><br><span class="line">    left, top, right, bottom = np.<span class="built_in">round</span>(box).astype(np.int32)</span><br><span class="line">    left_top = (left, top)</span><br><span class="line">    right_top = (right, top)</span><br><span class="line">    right_bottom = (right, bottom)</span><br><span class="line">    left_bottom = (left, bottom)</span><br><span class="line">    cv2.line(img, left_top, right_top, BLUE, <span class="number">1</span>, cv2.LINE_AA)</span><br><span class="line">    cv2.line(img, right_top, right_bottom, BLUE, <span class="number">1</span>, cv2.LINE_AA)</span><br><span class="line">    cv2.line(img, right_bottom, left_bottom, BLUE, <span class="number">1</span>, cv2.LINE_AA)</span><br><span class="line">    cv2.line(img, left_bottom, left_top, BLUE, <span class="number">1</span>, cv2.LINE_AA)</span><br><span class="line"></span><br><span class="line">cv2.imshow(<span class="string">&quot;win&quot;</span>, img)</span><br><span class="line">cv2.waitKey()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
 <p><strong>挂vpn会出现无法pip的情况</strong></p>
 <p><strong>Windows上运行需修改部分代码与函数，包括但不仅限于：</strong></p>
-<p><img src="pic2.png" alt="添加函数"></p>
-<p><img src="pic3.png" alt="改善一个.py文件"></p>
+<p><img src="/2022/03/31/paperreading-4/pic2.png" alt="添加函数"></p>
+<p><img src="/2022/03/31/paperreading-4/pic3.png" alt="改善一个.py文件"></p>
 <p><strong>运行效果如下：</strong></p>
-<p><img src="pic1.png" alt="2d_sparse"></p>
-<p><img src="pic6.png" alt="2d_dense"></p>
-<p><img src="emma_3d.jpg" alt="emma_3d"></p>
-<p><img src="zhangzifeng1.png" alt="张子枫"></p>
-<p><img src="zhangzifeng1_2d_dense.jpg" alt="zhangzifeng1_2d_dense"></p>
-<p><img src="zhangzifeng1_2d_sparse.jpg" alt="zhangzifeng1_2d_sparse"></p>
-<p><img src="zhangzifeng1_3d.jpg" alt="zhangzifeng1_3d"></p>
-<p><img src="zhangzifeng1_depth.jpg" alt="zhangzifeng1_depth"></p>
-<style>.bbplayer{width: 100%; max-width: 850px; margin: auto}</style><div class="bbplayer"><iframe class="bbplayer" id="mmedia-zyCLkVYOxmCmZPQK" src="https://player.bilibili.com/player.html?bvid=BV1Xr4y1H7ti&page=1&high_quality=1&danmaku=true" allowfullscreen="allowfullscreen" scrolling="no" border="0" frameborder="0" framespacing="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts allow-popups"></iframe></div><script> document.getElementById("mmedia-zyCLkVYOxmCmZPQK").style.height=document.getElementById("mmedia-zyCLkVYOxmCmZPQK").scrollWidth*0.76+"px";
+<p><img src="/2022/03/31/paperreading-4/pic1.png" alt="2d_sparse"></p>
+<p><img src="/2022/03/31/paperreading-4/pic6.png" alt="2d_dense"></p>
+<p><img src="/2022/03/31/paperreading-4/emma_3d.jpg" alt="emma_3d"></p>
+<p><img src="/2022/03/31/paperreading-4/zhangzifeng1.png" alt="张子枫"></p>
+<p><img src="/2022/03/31/paperreading-4/zhangzifeng1_2d_dense.jpg" alt="zhangzifeng1_2d_dense"></p>
+<p><img src="/2022/03/31/paperreading-4/zhangzifeng1_2d_sparse.jpg" alt="zhangzifeng1_2d_sparse"></p>
+<p><img src="/2022/03/31/paperreading-4/zhangzifeng1_3d.jpg" alt="zhangzifeng1_3d"></p>
+<p><img src="/2022/03/31/paperreading-4/zhangzifeng1_depth.jpg" alt="zhangzifeng1_depth"></p>
+<style>.bbplayer{width: 100%; max-width: 850px; margin: auto}</style><div class="bbplayer"><iframe class="bbplayer" id="mmedia-TgXoPsdqqDtquSGJ" src="https://player.bilibili.com/player.html?bvid=BV1Xr4y1H7ti&page=1&high_quality=1&danmaku=true" allowfullscreen="allowfullscreen" scrolling="no" border="0" frameborder="0" framespacing="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts allow-popups"></iframe></div><script> document.getElementById("mmedia-TgXoPsdqqDtquSGJ").style.height=document.getElementById("mmedia-TgXoPsdqqDtquSGJ").scrollWidth*0.76+"px";
     window.onresize = function(){
-      document.getElementById("mmedia-zyCLkVYOxmCmZPQK").style.height=document.getElementById("mmedia-zyCLkVYOxmCmZPQK").scrollWidth*0.76+"px";
+      document.getElementById("mmedia-TgXoPsdqqDtquSGJ").style.height=document.getElementById("mmedia-TgXoPsdqqDtquSGJ").scrollWidth*0.76+"px";
     }; </script>
-
-<style>.bbplayer{width: 100%; max-width: 850px; margin: auto}</style><div class="bbplayer"><iframe class="bbplayer" id="mmedia-kFuzDnfsFBPJfQcu" src="https://player.bilibili.com/player.html?bvid=BV1J3411H7RT&page=1&high_quality=1&danmaku=true" allowfullscreen="allowfullscreen" scrolling="no" border="0" frameborder="0" framespacing="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts allow-popups"></iframe></div><script> document.getElementById("mmedia-kFuzDnfsFBPJfQcu").style.height=document.getElementById("mmedia-kFuzDnfsFBPJfQcu").scrollWidth*0.76+"px";
+<style>.bbplayer{width: 100%; max-width: 850px; margin: auto}</style><div class="bbplayer"><iframe class="bbplayer" id="mmedia-CKVoYKqfvfvgWxHn" src="https://player.bilibili.com/player.html?bvid=BV1J3411H7RT&page=1&high_quality=1&danmaku=true" allowfullscreen="allowfullscreen" scrolling="no" border="0" frameborder="0" framespacing="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts allow-popups"></iframe></div><script> document.getElementById("mmedia-CKVoYKqfvfvgWxHn").style.height=document.getElementById("mmedia-CKVoYKqfvfvgWxHn").scrollWidth*0.76+"px";
     window.onresize = function(){
-      document.getElementById("mmedia-kFuzDnfsFBPJfQcu").style.height=document.getElementById("mmedia-kFuzDnfsFBPJfQcu").scrollWidth*0.76+"px";
+      document.getElementById("mmedia-CKVoYKqfvfvgWxHn").style.height=document.getElementById("mmedia-CKVoYKqfvfvgWxHn").scrollWidth*0.76+"px";
     }; </script>
-
-<style>.bbplayer{width: 100%; max-width: 850px; margin: auto}</style><div class="bbplayer"><iframe class="bbplayer" id="mmedia-yIxlSGGBcYDiceUX" src="https://player.bilibili.com/player.html?bvid=BV19Y4y1v77x&page=1&high_quality=1&danmaku=true" allowfullscreen="allowfullscreen" scrolling="no" border="0" frameborder="0" framespacing="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts allow-popups"></iframe></div><script> document.getElementById("mmedia-yIxlSGGBcYDiceUX").style.height=document.getElementById("mmedia-yIxlSGGBcYDiceUX").scrollWidth*0.76+"px";
+<style>.bbplayer{width: 100%; max-width: 850px; margin: auto}</style><div class="bbplayer"><iframe class="bbplayer" id="mmedia-VuYrxdhLJUrIdIvY" src="https://player.bilibili.com/player.html?bvid=BV19Y4y1v77x&page=1&high_quality=1&danmaku=true" allowfullscreen="allowfullscreen" scrolling="no" border="0" frameborder="0" framespacing="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts allow-popups"></iframe></div><script> document.getElementById("mmedia-VuYrxdhLJUrIdIvY").style.height=document.getElementById("mmedia-VuYrxdhLJUrIdIvY").scrollWidth*0.76+"px";
     window.onresize = function(){
-      document.getElementById("mmedia-yIxlSGGBcYDiceUX").style.height=document.getElementById("mmedia-yIxlSGGBcYDiceUX").scrollWidth*0.76+"px";
+      document.getElementById("mmedia-VuYrxdhLJUrIdIvY").style.height=document.getElementById("mmedia-VuYrxdhLJUrIdIvY").scrollWidth*0.76+"px";
     }; </script>
-
-<style>.bbplayer{width: 100%; max-width: 850px; margin: auto}</style><div class="bbplayer"><iframe class="bbplayer" id="mmedia-qRyCnPPuRJxcqOAU" src="https://player.bilibili.com/player.html?bvid=BV1QY4y1p7Tt&page=1&high_quality=1&danmaku=true" allowfullscreen="allowfullscreen" scrolling="no" border="0" frameborder="0" framespacing="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts allow-popups"></iframe></div><script> document.getElementById("mmedia-qRyCnPPuRJxcqOAU").style.height=document.getElementById("mmedia-qRyCnPPuRJxcqOAU").scrollWidth*0.76+"px";
+<style>.bbplayer{width: 100%; max-width: 850px; margin: auto}</style><div class="bbplayer"><iframe class="bbplayer" id="mmedia-PDhYEmSBBLkOcggx" src="https://player.bilibili.com/player.html?bvid=BV1QY4y1p7Tt&page=1&high_quality=1&danmaku=true" allowfullscreen="allowfullscreen" scrolling="no" border="0" frameborder="0" framespacing="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts allow-popups"></iframe></div><script> document.getElementById("mmedia-PDhYEmSBBLkOcggx").style.height=document.getElementById("mmedia-PDhYEmSBBLkOcggx").scrollWidth*0.76+"px";
     window.onresize = function(){
-      document.getElementById("mmedia-qRyCnPPuRJxcqOAU").style.height=document.getElementById("mmedia-qRyCnPPuRJxcqOAU").scrollWidth*0.76+"px";
+      document.getElementById("mmedia-PDhYEmSBBLkOcggx").style.height=document.getElementById("mmedia-PDhYEmSBBLkOcggx").scrollWidth*0.76+"px";
     }; </script>
-
 <p><strong>仍建议使用Linux或MacOS运行</strong></p>
 
         </div>
@@ -347,10 +338,10 @@
             <div class="footer-tag clearfix">
                 <div class="pull-left">
                 <i class="fa fa-tags"></i>
-                    <a class="tag-none-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a>
+                    <a class="tag-none-link" href="/tags/%E9%A2%85%E9%9D%A2%E9%85%8D%E5%87%86%E7%AE%97%E6%B3%95/" rel="tag">颅面配准算法</a>
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-04-03</span>
+                <span>最后编辑：2022-06-15</span>
                 </div>
             </div>
         </footer>
@@ -401,7 +392,7 @@
                 文章
             </span>
             <span class="count">
-                34
+                35
             </span>
         </a>
         <a class="meta-item" href="/categories/">
@@ -409,7 +400,7 @@
                 分类
             </span>
             <span class="count">
-                6
+                7
             </span>
         </a>
         <a class="meta-item" href="/tags/">
@@ -417,7 +408,7 @@
                 标签
             </span>
             <span class="count">
-                9
+                10
             </span>
         </a>
     </div>
@@ -428,7 +419,7 @@
                 
   <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
     <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%93%B2%E5%AD%A6/">哲学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%87%E5%AD%A6/">文学</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%93%B2%E5%AD%A6/">哲学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%87%E5%AD%A6/">文学</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A2%85%E9%9D%A2%E9%85%8D%E5%87%86%E7%AE%97%E6%B3%95/">颅面配准算法</a><span class="category-list-count">5</span></li></ul>
   </aside>
 
 
@@ -437,7 +428,7 @@
   <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
     <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
       <div class="tag-clouds">
-        <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/%E6%83%85%E6%84%9F/" style="font-size: 0.73em;">情感</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" style="font-size: 0.67em;">数学建模</a> <a href="/tags/%E6%96%87%E5%AD%A6/" style="font-size: 0.73em;">文学</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 0.6em;">机器学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 0.8em;">深度学习</a> <a href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" style="font-size: 0.6em;">蓝桥杯</a> <a href="/tags/%E8%BD%B6%E9%97%BB/" style="font-size: 0.6em;">轶闻</a>
+        <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/%E6%83%85%E6%84%9F/" style="font-size: 0.7em;">情感</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" style="font-size: 0.65em;">数学建模</a> <a href="/tags/%E6%96%87%E5%AD%A6/" style="font-size: 0.7em;">文学</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 0.65em;">机器学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 0.8em;">深度学习</a> <a href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" style="font-size: 0.6em;">蓝桥杯</a> <a href="/tags/%E8%BD%B6%E9%97%BB/" style="font-size: 0.6em;">轶闻</a> <a href="/tags/%E9%A2%85%E9%9D%A2%E9%85%8D%E5%87%86%E7%AE%97%E6%B3%95/" style="font-size: 0.75em;">颅面配准算法</a>
       </div>
   </aside>
 
@@ -448,6 +439,12 @@
   <div class="tab-content">
       <ul class="list-group">
         
+        
+          
+          
+            <a class="list-group-item" href="/2022/06/17/pumpkin-book-2/"><i class="fa  fa-book"></i> 吃瓜教程2</a>
+            
+          
         
           
           
@@ -474,11 +471,7 @@
           
         
           
-          
-            <a class="list-group-item" href="/2022/04/18/mathorcup-1/"><i class="fa  fa-book"></i> mathorcup四天比赛之旅</a>
             
-          
-        
           
             
           
