@@ -24,7 +24,7 @@
 <meta property="og:locale">
 <meta property="og:image" content="http://sunxinbin.cn/images/avatar.webp">
 <meta property="article:published_time" content="2022-06-20T15:31:28.000Z">
-<meta property="article:modified_time" content="2022-06-20T15:44:26.405Z">
+<meta property="article:modified_time" content="2022-06-21T02:31:18.452Z">
 <meta property="article:author" content="孙新斌">
 <meta property="article:tag" content="Undergraduate courses">
 <meta name="twitter:card" content="summary">
@@ -171,7 +171,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        1183
+                        ~2.32K
                     
                     字
                 </li>
@@ -180,7 +180,7 @@
         </header>
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
-                本文最后编辑于 <time datetime="1655739866405"></time> 前，其中的内容可能需要更新。
+                本文最后编辑于 <time datetime="1655778678452"></time> 前，其中的内容可能需要更新。
             </div>
             
             <hr />
@@ -210,6 +210,7 @@
 <h1 id="第四章-存储器管理（内存储器）"><a href="#第四章-存储器管理（内存储器）" class="headerlink" title="第四章 存储器管理（内存储器）"></a>第四章 存储器管理（内存储器）</h1><h2 id="带有快表机制的内存访问时间计算"><a href="#带有快表机制的内存访问时间计算" class="headerlink" title="带有快表机制的内存访问时间计算"></a>带有快表机制的内存访问时间计算</h2><p><img src="/2022/06/20/operating-system/pic6.png" alt="不缺页时的有效访存时间"></p>
 <p><img src="/2022/06/20/operating-system/pic7.png" alt="综合有效访存时间"></p>
 <h1 id="第五章-虚拟存储器（内存储器）"><a href="#第五章-虚拟存储器（内存储器）" class="headerlink" title="第五章 虚拟存储器（内存储器）"></a>第五章 虚拟存储器（内存储器）</h1><h2 id="页面置换算法-LRU"><a href="#页面置换算法-LRU" class="headerlink" title="页面置换算法(LRU)"></a>页面置换算法(LRU)</h2><h1 id="第六章-输入-出系统（设备管理）"><a href="#第六章-输入-出系统（设备管理）" class="headerlink" title="第六章 输入/出系统（设备管理）"></a>第六章 输入/出系统（设备管理）</h1><h2 id="中断与异常"><a href="#中断与异常" class="headerlink" title="中断与异常"></a>中断与异常</h2><p><img src="/2022/06/20/operating-system/pic9.png" alt="外部中断和异常"></p>
+<p><strong>简答</strong></p>
 <h2 id="缓冲区技术"><a href="#缓冲区技术" class="headerlink" title="缓冲区技术"></a>缓冲区技术</h2><h2 id="磁盘调度算法FCFS-SSTF-SCAN-CSACN"><a href="#磁盘调度算法FCFS-SSTF-SCAN-CSACN" class="headerlink" title="磁盘调度算法FCFS,SSTF,SCAN,CSACN"></a>磁盘调度算法FCFS,SSTF,SCAN,CSACN</h2><p><strong>PPT p64—p73</strong></p>
 <h1 id="第七章-文件管理（磁盘文件管理）"><a href="#第七章-文件管理（磁盘文件管理）" class="headerlink" title="第七章 文件管理（磁盘文件管理）"></a>第七章 文件管理（磁盘文件管理）</h1><h2 id="文件的逻辑结构和物理结构"><a href="#文件的逻辑结构和物理结构" class="headerlink" title="文件的逻辑结构和物理结构"></a>文件的逻辑结构和物理结构</h2><p><img src="/2022/06/20/operating-system/pic8.png" alt="逻辑地址转为物理地址"></p>
 <h3 id="文件的逻辑结构：流式结构、记录式结构（用户使用角度）"><a href="#文件的逻辑结构：流式结构、记录式结构（用户使用角度）" class="headerlink" title="文件的逻辑结构：流式结构、记录式结构（用户使用角度）"></a>文件的逻辑结构：流式结构、记录式结构（用户使用角度）</h3><p><strong>流式文件</strong>是指文件内的数据是一个完整的字符流，不可以进一步细分</p>
@@ -222,7 +223,7 @@
 <p><strong>程序级接口——系统调用</strong></p>
 <p>操作系统还提供一种适用于应用程序中的功能调用接口，叫做系统调用(system call)，允许用户在自己的应用程序中调用系统中提供的一些功能模块。</p>
 <p>系统调用是应用程序获得操作系统服务的唯一途径。</p>
-<p>CPU的两种工作状态：管态、目态</p>
+<p>CPU的两种工作状态：管态（执行系统程序的状态，允许执行所有指令）、目态（执行用户程序的状态，只允许执行非特权指令）</p>
 <h2 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h2><p>操作系统提供一种适用于应用程序中的功能调用接口，叫做系统调用，允许用户在自己的应用程序中调用系统中提供的一些功能模块。</p>
 <p>系统调用分类：</p>
 <ol>
@@ -238,6 +239,44 @@
 <p><img src="/2022/06/20/operating-system/pic3.png" alt="分层关系"></p>
 <p><img src="/2022/06/20/operating-system/pic4.png" alt="系统调用实现与处理过程"></p>
 <p><img src="/2022/06/20/operating-system/pic5.png" alt="系统调用执行过程与Linux"></p>
+<h1 id="Urgent"><a href="#Urgent" class="headerlink" title="Urgent"></a>Urgent</h1><p><strong>临界区</strong>——一段代码 ≠ <strong>临界资源</strong></p>
+<p><strong>临界区</strong><br>概念：每个进程中访问临界资源的那段程序称之为临界区。<br>临界区不是内核对象，而是系统提供的一种数据结构，程序中可以声明一个该类型的变量，之后用它来实现对资源的互斥访问。当欲访问某一临界资源时，先将该临界区加锁（若临界区不空闲则等待），用完该资源后，将临界区释放。<br>补充（待定）：分类：临界区也是代码的称呼，所以一个进程可能有多个临界区，分别用来访问不同的临界资源。<br>内核程序临界资源：系统时钟<br>普通临界资源：普通I/O设备，如打印机（进程访问这些资源的时候，很慢，会自动阻塞，等待资源使用完成）</p>
+<p><strong>内存分配算法</strong>——首次适应算法FF、循环首次适应NF、最佳适应BF、最坏适应WF算法</p>
+<p><strong>分段与分页区分</strong></p>
+<p><strong>缓冲区的引入</strong>：速度不一致问题</p>
+<p>无论是字符设备还是块设备，它们的运行速度都远低于CPU的速度。为了缓和CPU和I/O设备之间的矛盾、提高CPU的利用率，在现代OS中都无一例外地分别为字符设备和块设备配置了相应的缓冲区。缓冲区有着多种形式，如单缓冲区、双缓冲区、循环缓冲区、公用缓冲池等，以满足不同情况的需要。</p>
+<p><strong>为什么抽象为文件</strong>：可以用一套统一的API访问设备，排除了设备的特异性。</p>
+<p><strong>CPU的两种工作状态</strong>：管态（执行系统程序的状态，允许执行所有指令）、目态（执行用户程序的状态，只允许执行非特权指令）</p>
+<p><strong>操作系统基本特征</strong></p>
+<p><strong>进程的状态的切换</strong></p>
+<p><img src="/2022/06/20/operating-system/pic10.png" alt="状态的切换"></p>
+<p>fork()</p>
+<p><strong>中断</strong>——trap和interrupt的区别</p>
+<p><strong>可屏蔽中断</strong>：<br>常由计算机的外设或一些接口功能产生，如时钟、键盘、打印机、串行口等，这种类型的中断可以在CPU要处理其它紧急操作时，被软件屏蔽或忽略.</p>
+<p><strong>非屏蔽中断</strong>：<br>由意外事件导致，如电源断电、内存校验错误等.<br>对于这种类型的中断事件，无法通过软件进行屏蔽，CPU必须无条件响应</p>
+<p><strong>外中断和内中断的区别</strong></p>
+<p><strong>动态分区管理问题</strong></p>
+<p><strong>计算访存次数（隐式链接）</strong></p>
+<p><strong>关于死锁问题的资源分配图</strong></p>
+<p><strong>文件的索引组织方式</strong></p>
+<p><img src="/2022/06/20/operating-system/pic11.png" alt="索引"></p>
+<p><strong>启动磁盘的次数（第八章）</strong></p>
+<p><strong>页面置换算法(LRU)与快表结合</strong></p>
+<p><img src="/2022/06/20/operating-system/pic12.png" alt="页面置换算法(LRU)与快表结合"></p>
+<p><img src="/2022/06/20/operating-system/pic13.png" alt="磁盘"></p>
+<p><img src="/2022/06/20/operating-system/pic14.png" alt="单缓冲与双缓冲"></p>
+<p><strong>不唯一的多缓冲区问题</strong></p>
+<p>理发师问题</p>
+<p><strong>内部碎片管理方法</strong></p>
+<p><strong>缓冲池技术：</strong><br>缓冲池，说到底也是缓冲区，只不过这种缓冲区较其他缓冲区来说能更好的实现cpu并行和设备的利用率。</p>
+<p>缓冲池里主要包括如下方面。用于对数据进行读写的公共区域：</p>
+<p>1、 emq空缓冲队列：用于取出空缓冲区来进行读写等操作。</p>
+<p>2、 inq输入队列：用来记录输入设备输入的数据，以便用户程序读取。</p>
+<p>3、outq输出队列：用来记录用户程序输出到设备(显示屏或是文件等)的数据，以便用户程序读取。<br><strong>计算题：</strong></p>
+<p><strong>低级调度</strong></p>
+<p><strong>页面置换</strong></p>
+<p><strong>文件存储空间分配</strong></p>
+<p><strong>磁盘访问</strong></p>
 
         </div>
         
@@ -327,7 +366,7 @@
                     <a class="tag-none-link" href="/tags/Undergraduate-courses/" rel="tag">Undergraduate courses</a>
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-06-20</span>
+                <span>最后编辑：2022-06-21</span>
                 </div>
             </div>
         </footer>
