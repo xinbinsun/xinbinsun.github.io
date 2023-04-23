@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="Chinese/English">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/avatar.webp">
+  
+  <title>(一)对Dlib库初识 | Neo Sun</title>
+  <meta name="author" content="孙新斌" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="ML" />
+  
+  <meta name="description" content="此处Dlib官方网站">
+<meta property="og:type" content="article">
+<meta property="og:title" content="(一)对Dlib库初识">
+<meta property="og:url" content="http://sunxinbin.cn/2022/12/13/dlib-note/index.html">
+<meta property="og:site_name" content="Neo Sun">
+<meta property="og:description" content="此处Dlib官方网站">
+<meta property="og:locale">
+<meta property="og:image" content="http://sunxinbin.cn/images/avatar.webp">
+<meta property="article:published_time" content="2022-12-13T12:30:00.000Z">
+<meta property="article:modified_time" content="2023-03-30T11:23:45.881Z">
+<meta property="article:author" content="孙新斌">
+<meta property="article:tag" content="ML">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://sunxinbin.cn/images/avatar.webp">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>Archives</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>Search Engine</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>About</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            <li><a href="https://sunxinbin.cn">Blog</a></li>
+                                                        
+                                                    
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://github.com/xinbinsun">Github</a></li>
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Neo Sun</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Neo Sun</h2> <br />
+                        <span>What&#39;s past is prologue</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://sunxinbin.cn/2022/12/13/dlib-note/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">(一)对Dlib库初识</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2022-12-13T12:30:00.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2022-12-13</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> Author <span itemprop="name">孙新斌</span>
+                </li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~9.00K
+                    
+                    words
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>This article has been edited <time datetime="1680175425881"></time> ago, and some of its content might need to be updated.</p></div>
+            </div>
+            
+            
+            
+            <hr />
+            <div itemprop="articleBody"><p>此处<a target="_blank" rel="noopener" href="http://dlib.net/">Dlib官方网站</a><span id="more"></span></p>
+<h1 id="一、安装Dlib库"><a href="#一、安装Dlib库" class="headerlink" title="一、安装Dlib库"></a>一、安装Dlib库</h1><p><strong>Dlib库简介</strong></p>
+<p>Dlib is a modern C++ toolkit containing machine learning algorithms and tools for creating complex software in C++ to solve real world problems. It is used in both industry and academia in a wide range of domains including robotics, embedded devices, mobile phones, and large high performance computing environments. Dlib’s <a target="_blank" rel="noopener" href="http://dlib.net/license.html">open source licensing</a> allows you to use it in any application, free of charge.</p>
+<p>To follow or participate in the development of dlib subscribe to <a target="_blank" rel="noopener" href="https://github.com/davisking/dlib">dlib on github</a>. Also be sure to read the <a target="_blank" rel="noopener" href="http://dlib.net/howto_contribute.html">how to contribute</a> page if you intend to submit code to the project.</p>
+<p>To quickly get started using dlib, <a target="_blank" rel="noopener" href="http://dlib.net/compile.html">follow these instructions to build dlib</a>.</p>
+<ol>
+<li><p>安装cmake库</p>
+</li>
+<li><p>安装boost库</p>
+</li>
+<li><p>安装dlib库</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pip install cmake</span><br><span class="line">pip install boost</span><br><span class="line"><span class="comment"># whl文件在下方链接中</span></span><br><span class="line">pip install dlib<span class="literal">-19</span>.<span class="number">19.0</span><span class="literal">-cp37-cp37m-win_amd64</span>.whl</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://github.com/RvTechiNNovate/face_recog_dlib_file">Dlib库whl文件下载地址</a></p>
+<p><a target="_blank" rel="noopener" href="http://dlib.net/files/">Dlib相关文件</a></p>
+<p>还可以添加face_recognition库等等。</p>
+<h1 id="二、-代码运行样例测试"><a href="#二、-代码运行样例测试" class="headerlink" title="二、 代码运行样例测试"></a>二、 代码运行样例测试</h1><p><strong>环境配置需求</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">blurhash==1.1.4</span><br><span class="line">boost==0.1</span><br><span class="line">certifi==2022.12.7</span><br><span class="line">charset-normalizer==2.1.1</span><br><span class="line">click==8.1.3</span><br><span class="line">cmake==3.25.0</span><br><span class="line">colorama==0.4.6</span><br><span class="line">decorator==5.1.1</span><br><span class="line">dlib @ file:///F:/Desktop/face_recog_dlib_file/dlib-19.19.0-cp37-cp37m-win_amd64.whl</span><br><span class="line">face-recognition==1.3.0</span><br><span class="line">face-recognition-models==0.3.0</span><br><span class="line">greenlet==2.0.1</span><br><span class="line">idna==3.4</span><br><span class="line">imageio==2.22.4</span><br><span class="line">importlib-metadata==5.1.0</span><br><span class="line">Mastodon.py==1.8.0</span><br><span class="line">networkx==2.6.3</span><br><span class="line">numpy==1.21.6</span><br><span class="line">opencv-python==4.6.0.66</span><br><span class="line">packaging==22.0</span><br><span class="line">Pillow==9.3.0</span><br><span class="line">python-dateutil==2.8.2</span><br><span class="line">python-magic==0.4.27</span><br><span class="line">PyWavelets==1.3.0</span><br><span class="line">requests==2.28.1</span><br><span class="line">scikit-image==0.19.3</span><br><span class="line">scipy==1.7.3</span><br><span class="line">six==1.16.0</span><br><span class="line">SQLAlchemy==1.4.45</span><br><span class="line">tifffile==2021.11.2</span><br><span class="line">typing_extensions==4.4.0</span><br><span class="line">urllib3==1.26.13</span><br><span class="line">zipp==3.11.0</span><br></pre></td></tr></table></figure>
+<p><strong>代码样例</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> dlib</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> OrderedDict</span><br><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">&quot;ignore&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># https://mydreamambitious.blog.csdn.net/article/details/123535760</span></span><br><span class="line"><span class="comment"># 对于68个检测点，将人脸的几个关键点排列成有序，便于后面的遍历</span></span><br><span class="line">shape_predictor_68_face_landmark = OrderedDict([</span><br><span class="line">    (<span class="string">&#x27;mouth&#x27;</span>, (<span class="number">48</span>, <span class="number">68</span>)),</span><br><span class="line">    (<span class="string">&#x27;right_eyebrow&#x27;</span>, (<span class="number">17</span>, <span class="number">22</span>)),</span><br><span class="line">    (<span class="string">&#x27;left_eye_brow&#x27;</span>, (<span class="number">22</span>, <span class="number">27</span>)),</span><br><span class="line">    (<span class="string">&#x27;right_eye&#x27;</span>, (<span class="number">36</span>, <span class="number">42</span>)),</span><br><span class="line">    (<span class="string">&#x27;left_eye&#x27;</span>, (<span class="number">42</span>, <span class="number">48</span>)),</span><br><span class="line">    (<span class="string">&#x27;nose&#x27;</span>, (<span class="number">27</span>, <span class="number">36</span>)),</span><br><span class="line">    (<span class="string">&#x27;jaw&#x27;</span>, (<span class="number">0</span>, <span class="number">17</span>))</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 绘制人脸画矩形框</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">drawRectangle</span>(<span class="params">detected, frame</span>):</span><br><span class="line">    margin = <span class="number">0.2</span></span><br><span class="line">    img_h, img_w, _ = np.shape(frame)</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(detected) &gt; <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">for</span> i, locate <span class="keyword">in</span> <span class="built_in">enumerate</span>(detected):</span><br><span class="line">            x1, y1, x2, y2, w, h = locate.left(), locate.top(), locate.right() + <span class="number">1</span>, locate.bottom() + <span class="number">1</span>, locate.width(), locate.height()</span><br><span class="line"></span><br><span class="line">            xw1 = <span class="built_in">max</span>(<span class="built_in">int</span>(x1 - margin * w), <span class="number">0</span>)</span><br><span class="line">            yw1 = <span class="built_in">max</span>(<span class="built_in">int</span>(y1 - margin * h), <span class="number">0</span>)</span><br><span class="line">            xw2 = <span class="built_in">min</span>(<span class="built_in">int</span>(x2 + margin * w), img_w - <span class="number">1</span>)</span><br><span class="line">            yw2 = <span class="built_in">min</span>(<span class="built_in">int</span>(y2 + margin * h), img_h - <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">            cv2.rectangle(frame, (x1, y1), (x2, y2), (<span class="number">0</span>, <span class="number">255</span>, <span class="number">0</span>), <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">            face = frame[yw1:yw2 + <span class="number">1</span>, xw1:xw2 + <span class="number">1</span>, :]</span><br><span class="line">            cv2.putText(frame, <span class="string">&#x27;Person&#x27;</span>, (locate.left(), locate.top() - <span class="number">10</span>),</span><br><span class="line">                        cv2.FONT_HERSHEY_SIMPLEX, <span class="number">1.2</span>, (<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>), <span class="number">3</span>)</span><br><span class="line">    <span class="keyword">return</span> frame</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 对检测之后获取的人脸关键点坐标进行转换</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">predict2Np</span>(<span class="params">predict</span>):</span><br><span class="line">    <span class="comment"># 创建68*2关键点的二维空数组[(x1,y1),(x2,y2)……]</span></span><br><span class="line">    dims = np.zeros(shape=(predict.num_parts, <span class="number">2</span>), dtype=np.<span class="built_in">int</span>)</span><br><span class="line">    <span class="comment"># 遍历人脸的每个关键点获取二维坐标</span></span><br><span class="line">    length = predict.num_parts</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, length):</span><br><span class="line">        dims[i] = (predict.part(i).x, predict.part(i).y)</span><br><span class="line">    <span class="keyword">return</span> dims</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载人脸检测与关键点定位</span></span><br><span class="line"><span class="comment"># http://dlib.net/python/index.html#dlib_pybind11.get_frontal_face_detector</span></span><br><span class="line">detector = dlib.get_frontal_face_detector()</span><br><span class="line"><span class="comment"># http://dlib.net/python/index.html#dlib_pybind11.shape_predictor</span></span><br><span class="line">criticPoints = dlib.shape_predictor(<span class="string">&quot;shape_predictor_68_face_landmarks.dat&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 遍历预测框，进行人脸的关键点绘制</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">drawCriticPoints</span>(<span class="params">detected, frame</span>):</span><br><span class="line">    <span class="keyword">for</span> (step, locate) <span class="keyword">in</span> <span class="built_in">enumerate</span>(detected):</span><br><span class="line">        <span class="comment"># 对获取的人脸框再进行人脸关键点检测</span></span><br><span class="line">        <span class="comment"># 获取68个关键点的坐标值</span></span><br><span class="line">        dims = criticPoints(frame, locate)</span><br><span class="line">        <span class="comment"># 将得到的坐标值转换为二维</span></span><br><span class="line">        dims = predict2Np(dims)</span><br><span class="line">        <span class="comment"># 通过得到的关键点坐标进行关键点绘制</span></span><br><span class="line">        <span class="comment"># 从i-&gt;j这个范围内的都是同一个区域：比如上面的鼻子就是从27-&gt;36</span></span><br><span class="line">        <span class="keyword">for</span> (name, (i, j)) <span class="keyword">in</span> shape_predictor_68_face_landmark.items():</span><br><span class="line">            <span class="comment"># 对每个部位进行绘点</span></span><br><span class="line">            <span class="keyword">for</span> (x, y) <span class="keyword">in</span> dims[i:j]:</span><br><span class="line">                cv2.circle(img=frame, center=(x, y),</span><br><span class="line">                           radius=<span class="number">2</span>, color=(<span class="number">0</span>, <span class="number">255</span>, <span class="number">0</span>), thickness=-<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> frame</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 单张图片的人脸关键点检测</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">signal_detect</span>(<span class="params">img_path=<span class="string">&#x27;137-9-in.jpg&#x27;</span></span>):</span><br><span class="line">    img = cv2.imread(img_path)</span><br><span class="line">    detected = detector(img)</span><br><span class="line">    frame = drawRectangle(detected, img)</span><br><span class="line">    frame = drawCriticPoints(detected, img)</span><br><span class="line">    cv2.imshow(<span class="string">&#x27;frame&#x27;</span>, frame)</span><br><span class="line">    cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">    cv2.destroyAllWindows()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 实时的人脸关键点检测</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">detect_time</span>():</span><br><span class="line">    cap = cv2.VideoCapture(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">while</span> cap.isOpened():</span><br><span class="line">        ret, frame = cap.read()</span><br><span class="line">        detected = detector(frame)</span><br><span class="line">        frame = drawRectangle(detected, frame)</span><br><span class="line">        frame = drawCriticPoints(detected, frame)</span><br><span class="line">        cv2.imshow(<span class="string">&#x27;frame&#x27;</span>, frame)</span><br><span class="line">        key = cv2.waitKey(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">if</span> key == <span class="number">27</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    cap.release()</span><br><span class="line">    cv2.destroyAllWindows()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Pycharm&#x27;</span>)</span><br><span class="line">    signal_detect()</span><br><span class="line">    <span class="comment"># detect_time()</span></span><br></pre></td></tr></table></figure>
+<p><strong>代码运行展示</strong></p>
+<p><img src="/2022/12/13/dlib-note/pic1.jpg" alt="运行结果"></p>
+<h1 id="三、-特征点标定"><a href="#三、-特征点标定" class="headerlink" title="三、 特征点标定"></a>三、 特征点标定</h1><p><strong>使用openCV与dlib实现人脸68特征点的检测与手动修改</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> dlib</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义全局变量</span></span><br><span class="line">LButtonFirstAction = <span class="literal">False</span></span><br><span class="line">MovingPoint = <span class="literal">False</span></span><br><span class="line">PreviousPosition = (-<span class="number">1</span>, -<span class="number">1</span>)</span><br><span class="line">PreviousPointColor = np.zeros([<span class="number">7</span>, <span class="number">7</span>, <span class="number">3</span>])</span><br><span class="line">MovingPNum = -<span class="number">1</span></span><br><span class="line">IniPointColor = np.zeros([<span class="number">68</span>, <span class="number">7</span>, <span class="number">7</span>, <span class="number">3</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取训练模型</span></span><br><span class="line">predictor_path = <span class="string">&quot;shape_predictor_68_face_landmarks.dat&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用官方提供的模型构建特征提取器</span></span><br><span class="line">predictor = dlib.shape_predictor(predictor_path)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用dlib自带的frontal_face_detector作为人脸检测器</span></span><br><span class="line">detector = dlib.get_frontal_face_detector()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回检测框边缘坐标与人脸特征点矩阵（68*2）</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_landmarks</span>(<span class="params">img, predictor, detector</span>):</span><br><span class="line">    rects = detector(img, <span class="number">1</span>)</span><br><span class="line">    edge = [(rects[<span class="number">0</span>].left(), rects[<span class="number">0</span>].top()), (rects[<span class="number">0</span>].right(), rects[<span class="number">0</span>].bottom())]</span><br><span class="line">    <span class="keyword">return</span> edge, [(p.x, p.y) <span class="keyword">for</span> p <span class="keyword">in</span> predictor(img, rects[<span class="number">0</span>]).parts()]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">on_mouse</span>(<span class="params">event, x, y, flags, marks</span>):</span><br><span class="line">    <span class="comment"># 全局变量声明</span></span><br><span class="line">    <span class="keyword">global</span> LButtonFirstAction</span><br><span class="line">    <span class="keyword">global</span> MovingPNum</span><br><span class="line">    <span class="keyword">global</span> MovingPoint</span><br><span class="line">    <span class="keyword">global</span> PreviousPosition</span><br><span class="line">    <span class="keyword">global</span> PreviousPointColor</span><br><span class="line">    <span class="keyword">global</span> IniPointColor</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 鼠标左键按下</span></span><br><span class="line">    <span class="keyword">if</span> event == cv2.EVENT_LBUTTONDOWN:</span><br><span class="line">        LButtonFirstAction = <span class="literal">True</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">68</span>):</span><br><span class="line">            <span class="keyword">if</span> np.sqrt(np.square(x - marks[i][<span class="number">0</span>]) + np.square(y - marks[i][<span class="number">1</span>])) &lt; <span class="number">10</span>:</span><br><span class="line">                MovingPNum = i</span><br><span class="line">                MovingPoint = <span class="literal">True</span></span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;Moving point %d&quot;</span> % i)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 鼠标左键抬起</span></span><br><span class="line">    <span class="keyword">elif</span> event == cv2.EVENT_LBUTTONUP:</span><br><span class="line">        <span class="keyword">if</span> MovingPoint:</span><br><span class="line">            IniPointColor[MovingPNum] = PreviousPointColor</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;Point &#123;&#125; was moved to location&#123;&#125;&quot;</span>.<span class="built_in">format</span>(MovingPNum, (x, y)))</span><br><span class="line">            MovingPNum = -<span class="number">1</span></span><br><span class="line">            MovingPoint = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 鼠标移动</span></span><br><span class="line">    <span class="keyword">elif</span> event == cv2.EVENT_MOUSEMOVE:</span><br><span class="line">        <span class="keyword">if</span> MovingPoint <span class="keyword">and</span> MovingPNum != -<span class="number">1</span>:</span><br><span class="line">            <span class="keyword">if</span> LButtonFirstAction:</span><br><span class="line">                PreviousPointColor = IniPointColor[MovingPNum]</span><br><span class="line">                LButtonFirstAction = <span class="literal">False</span></span><br><span class="line">            PreviousPosition = marks[MovingPNum]</span><br><span class="line">            marks[MovingPNum] = (x, y)</span><br><span class="line">            img[PreviousPosition[<span class="number">1</span>] - <span class="number">3</span>:PreviousPosition[<span class="number">1</span>] + <span class="number">4</span>,</span><br><span class="line">            PreviousPosition[<span class="number">0</span>] - <span class="number">3</span>:PreviousPosition[<span class="number">0</span>] + <span class="number">4</span>, :] = PreviousPointColor.copy()</span><br><span class="line"></span><br><span class="line">            PreviousPointColor = img[y - <span class="number">3</span>:y + <span class="number">4</span>, x - <span class="number">3</span>:x + <span class="number">4</span>, :].copy()</span><br><span class="line">            img[y - <span class="number">3</span>:y + <span class="number">4</span>, x - <span class="number">3</span>:x + <span class="number">4</span>, :] = np.zeros([<span class="number">7</span>, <span class="number">7</span>, <span class="number">3</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">f = <span class="string">&#x27;137-9-in.jpg&#x27;</span></span><br><span class="line">img = cv2.imread(f)</span><br><span class="line">edge, marks = get_landmarks(img, predictor, detector)</span><br><span class="line">cv2.rectangle(img, edge[<span class="number">0</span>], edge[<span class="number">1</span>], (<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>), thickness=<span class="number">2</span>)</span><br><span class="line"><span class="comment"># 计数器</span></span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> p <span class="keyword">in</span> marks:</span><br><span class="line">    IniPointColor[i] = img[p[<span class="number">1</span>] - <span class="number">3</span>:p[<span class="number">1</span>] + <span class="number">4</span>, p[<span class="number">0</span>] - <span class="number">3</span>:p[<span class="number">0</span>] + <span class="number">4</span>, :].copy()</span><br><span class="line">    img[p[<span class="number">1</span>] - <span class="number">3</span>:p[<span class="number">1</span>] + <span class="number">4</span>, p[<span class="number">0</span>] - <span class="number">3</span>:p[<span class="number">0</span>] + <span class="number">4</span>, :] = np.zeros([<span class="number">7</span>, <span class="number">7</span>, <span class="number">3</span>])</span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line">cv2.namedWindow(f, cv2.WINDOW_AUTOSIZE)</span><br><span class="line"><span class="comment"># 调用鼠标响应事件</span></span><br><span class="line">cv2.setMouseCallback(f, on_mouse, marks)</span><br><span class="line"><span class="keyword">while</span> (<span class="number">1</span>):</span><br><span class="line">    cv2.imshow(f, img)</span><br><span class="line">    <span class="keyword">if</span> cv2.waitKey(<span class="number">20</span>) &amp; <span class="number">0xFF</span> == <span class="number">27</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+<p><img src="/2022/12/13/dlib-note/pic3.jpg" alt="修改部分特征点位置后的图像"></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 特征点位置</span></span><br><span class="line"><span class="number">0</span> (<span class="number">78</span>, <span class="number">168</span>)</span><br><span class="line"><span class="number">1</span> (<span class="number">86</span>, <span class="number">201</span>)</span><br><span class="line"><span class="number">2</span> (<span class="number">94</span>, <span class="number">232</span>)</span><br><span class="line"><span class="number">3</span> (<span class="number">102</span>, <span class="number">264</span>)</span><br><span class="line"><span class="number">4</span> (<span class="number">116</span>, <span class="number">292</span>)</span><br><span class="line"><span class="number">5</span> (<span class="number">137</span>, <span class="number">317</span>)</span><br><span class="line"><span class="number">6</span> (<span class="number">159</span>, <span class="number">341</span>)</span><br><span class="line"><span class="number">7</span> (<span class="number">187</span>, <span class="number">359</span>)</span><br><span class="line"><span class="number">8</span> (<span class="number">221</span>, <span class="number">360</span>)</span><br><span class="line"><span class="number">9</span> (<span class="number">254</span>, <span class="number">349</span>)</span><br><span class="line"><span class="number">10</span> (<span class="number">280</span>, <span class="number">326</span>)</span><br><span class="line"><span class="number">11</span> (<span class="number">300</span>, <span class="number">300</span>)</span><br><span class="line"><span class="number">12</span> (<span class="number">317</span>, <span class="number">272</span>)</span><br><span class="line"><span class="number">13</span> (<span class="number">323</span>, <span class="number">240</span>)</span><br><span class="line"><span class="number">14</span> (<span class="number">321</span>, <span class="number">205</span>)</span><br><span class="line"><span class="number">15</span> (<span class="number">320</span>, <span class="number">172</span>)</span><br><span class="line"><span class="number">16</span> (<span class="number">319</span>, <span class="number">140</span>)</span><br><span class="line"><span class="number">17</span> (<span class="number">93</span>, <span class="number">146</span>)</span><br><span class="line"><span class="number">18</span> (<span class="number">105</span>, <span class="number">131</span>)</span><br><span class="line"><span class="number">19</span> (<span class="number">124</span>, <span class="number">123</span>)</span><br><span class="line"><span class="number">20</span> (<span class="number">145</span>, <span class="number">122</span>)</span><br><span class="line"><span class="number">21</span> (<span class="number">166</span>, <span class="number">128</span>)</span><br><span class="line"><span class="number">22</span> (<span class="number">209</span>, <span class="number">122</span>)</span><br><span class="line"><span class="number">23</span> (<span class="number">229</span>, <span class="number">113</span>)</span><br><span class="line"><span class="number">24</span> (<span class="number">251</span>, <span class="number">110</span>)</span><br><span class="line"><span class="number">25</span> (<span class="number">271</span>, <span class="number">113</span>)</span><br><span class="line"><span class="number">26</span> (<span class="number">288</span>, <span class="number">124</span>)</span><br><span class="line"><span class="number">27</span> (<span class="number">190</span>, <span class="number">153</span>)</span><br><span class="line"><span class="number">28</span> (<span class="number">193</span>, <span class="number">175</span>)</span><br><span class="line"><span class="number">29</span> (<span class="number">195</span>, <span class="number">198</span>)</span><br><span class="line"><span class="number">30</span> (<span class="number">198</span>, <span class="number">221</span>)</span><br><span class="line"><span class="number">31</span> (<span class="number">176</span>, <span class="number">234</span>)</span><br><span class="line"><span class="number">32</span> (<span class="number">189</span>, <span class="number">237</span>)</span><br><span class="line"><span class="number">33</span> (<span class="number">202</span>, <span class="number">240</span>)</span><br><span class="line"><span class="number">34</span> (<span class="number">214</span>, <span class="number">234</span>)</span><br><span class="line"><span class="number">35</span> (<span class="number">225</span>, <span class="number">228</span>)</span><br><span class="line"><span class="number">36</span> (<span class="number">122</span>, <span class="number">165</span>)</span><br><span class="line"><span class="number">37</span> (<span class="number">132</span>, <span class="number">158</span>)</span><br><span class="line"><span class="number">38</span> (<span class="number">145</span>, <span class="number">157</span>)</span><br><span class="line"><span class="number">39</span> (<span class="number">159</span>, <span class="number">161</span>)</span><br><span class="line"><span class="number">40</span> (<span class="number">146</span>, <span class="number">167</span>)</span><br><span class="line"><span class="number">41</span> (<span class="number">133</span>, <span class="number">168</span>)</span><br><span class="line"><span class="number">42</span> (<span class="number">227</span>, <span class="number">152</span>)</span><br><span class="line"><span class="number">43</span> (<span class="number">237</span>, <span class="number">144</span>)</span><br><span class="line"><span class="number">44</span> (<span class="number">250</span>, <span class="number">142</span>)</span><br><span class="line"><span class="number">45</span> (<span class="number">263</span>, <span class="number">146</span>)</span><br><span class="line"><span class="number">46</span> (<span class="number">252</span>, <span class="number">151</span>)</span><br><span class="line"><span class="number">47</span> (<span class="number">240</span>, <span class="number">153</span>)</span><br><span class="line"><span class="number">48</span> (<span class="number">158</span>, <span class="number">275</span>)</span><br><span class="line"><span class="number">49</span> (<span class="number">172</span>, <span class="number">264</span>)</span><br><span class="line"><span class="number">50</span> (<span class="number">190</span>, <span class="number">258</span>)</span><br><span class="line"><span class="number">51</span> (<span class="number">205</span>, <span class="number">259</span>)</span><br><span class="line"><span class="number">52</span> (<span class="number">218</span>, <span class="number">254</span>)</span><br><span class="line"><span class="number">53</span> (<span class="number">238</span>, <span class="number">254</span>)</span><br><span class="line"><span class="number">54</span> (<span class="number">257</span>, <span class="number">258</span>)</span><br><span class="line"><span class="number">55</span> (<span class="number">244</span>, <span class="number">283</span>)</span><br><span class="line"><span class="number">56</span> (<span class="number">226</span>, <span class="number">295</span>)</span><br><span class="line"><span class="number">57</span> (<span class="number">211</span>, <span class="number">299</span>)</span><br><span class="line"><span class="number">58</span> (<span class="number">195</span>, <span class="number">300</span>)</span><br><span class="line"><span class="number">59</span> (<span class="number">174</span>, <span class="number">294</span>)</span><br><span class="line"><span class="number">60</span> (<span class="number">166</span>, <span class="number">275</span>)</span><br><span class="line"><span class="number">61</span> (<span class="number">191</span>, <span class="number">268</span>)</span><br><span class="line"><span class="number">62</span> (<span class="number">206</span>, <span class="number">268</span>)</span><br><span class="line"><span class="number">63</span> (<span class="number">220</span>, <span class="number">264</span>)</span><br><span class="line"><span class="number">64</span> (<span class="number">248</span>, <span class="number">261</span>)</span><br><span class="line"><span class="number">65</span> (<span class="number">223</span>, <span class="number">277</span>)</span><br><span class="line"><span class="number">66</span> (<span class="number">208</span>, <span class="number">281</span>)</span><br><span class="line"><span class="number">67</span> (<span class="number">193</span>, <span class="number">281</span>)</span><br></pre></td></tr></table></figure>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">This work is licensed under <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</a></h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> Share</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://sunxinbin.cn/2022/12/13/dlib-note/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://sunxinbin.cn/2022/12/13/dlib-note/";
+            const title         = "「(一)对Dlib库初识」";
+            const excerpt       = `此处Dlib官方网站`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/ML/" rel="tag">ML</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2023-03-30T11:23:45.881Z" itemprop="dateModified">Last modify：2023-03-30</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" Latex学习" href="/2022/09/03/Latex-Use/">&lt; older</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" Artificial Intelligence" href="/2023/01/16/artificial-intelligence/">Newer &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center">Computer Science & Technology</p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                Post
+            </span>
+            <span class="count">
+                47
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                Category
+            </span>
+            <span class="count">
+                10
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                Tag
+            </span>
+            <span class="count">
+                20
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>Categories List</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Craniofacial-Registration/">Craniofacial Registration</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DL/">DL</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Feature-Point-Punctuation-Algorithm/">Feature Point Punctuation Algorithm</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Literature/">Literature</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ML/">ML</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematical-Modeling/">Mathematical Modeling</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Philosophy/">Philosophy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Undergraduate-Courses/">Undergraduate Courses</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">2</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>Tagcloud</h4>
+      <div class="tag-clouds">
+        <a href="/tags/A-single-spark-can-start-a-prairie-fire/" style="font-size: 0.6em;">A single spark can start a prairie fire</a> <a href="/tags/Algorithm/" style="font-size: 0.6em;">Algorithm</a> <a href="/tags/Anecdote/" style="font-size: 0.6em;">Anecdote</a> <a href="/tags/CV/" style="font-size: 0.6em;">CV</a> <a href="/tags/Craniofacial-Registration/" style="font-size: 0.6em;">Craniofacial Registration</a> <a href="/tags/DL/" style="font-size: 0.8em;">DL</a> <a href="/tags/Emotion/" style="font-size: 0.7em;">Emotion</a> <a href="/tags/Feature-Point-Punctuation-Algorithm/" style="font-size: 0.75em;">Feature Point Punctuation Algorithm</a> <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/Latex/" style="font-size: 0.6em;">Latex</a> <a href="/tags/Literature/" style="font-size: 0.75em;">Literature</a> <a href="/tags/ML/" style="font-size: 0.7em;">ML</a> <a href="/tags/Mathematical-Modeling/" style="font-size: 0.65em;">Mathematical Modeling</a> <a href="/tags/OpenAI/" style="font-size: 0.6em;">OpenAI</a> <a href="/tags/Philosophy/" style="font-size: 0.6em;">Philosophy</a> <a href="/tags/Python/" style="font-size: 0.6em;">Python</a> <a href="/tags/Undergraduate-Courses/" style="font-size: 0.75em;">Undergraduate Courses</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>Recent posts</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2023/04/05/python-to-exe/"><i class="fa  fa-book"></i> Python如何打包为exe文件</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/30/Dynamic-Programming/"><i class="fa  fa-book"></i> Dynamic Programming</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/05/Common-instruction-set/"><i class="fa  fa-book"></i> NewBing&ChatGPT</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/01/25/Big-data-analysis-method/"><i class="fa  fa-book"></i> Big data analysis method</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/01/16/artificial-intelligence/"><i class="fa  fa-book"></i> Artificial Intelligence</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        <li><a href="mailto:2332431354@qq.com"><i class="fa fa-envelope"></i></a></li>
+                        
+                        
+                        
+                        
+                        <li><a target="_blank" rel="me" href="https://nya.one/@SunXinbin"><i class="fa fa fa-share-alt-square"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/xinbinsun"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2023 Neo Sun Copyright.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by 孙新斌.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            <li><a href="https://beian.miit.gov.cn" rel="external nofollow" target="_blank">鲁ICP备23010101号</a></li>
+                            <li><a href="http://www.beian.gov.cn" rel="external nofollow" target="_blank"><img src="/images/psr.webp" width="12" height="12" loading="lazy" decoding="auto" />鲁公网安备371402000348</a></li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>

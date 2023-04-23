@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="Chinese/English">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/avatar.webp">
+  
+  <title>FaceGen的使用（二）与3DFFA_V2代码的实现 | Neo Sun</title>
+  <meta name="author" content="孙新斌" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="Feature Point Punctuation Algorithm" />
+  
+  <meta name="description" content="FaceGen的使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FaceGen的使用（二）与3DFFA_V2代码的实现">
+<meta property="og:url" content="http://sunxinbin.cn/2022/03/31/paperreading-4/index.html">
+<meta property="og:site_name" content="Neo Sun">
+<meta property="og:description" content="FaceGen的使用">
+<meta property="og:locale">
+<meta property="og:image" content="http://sunxinbin.cn/images/avatar.webp">
+<meta property="article:published_time" content="2022-03-31T10:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-30T11:28:42.109Z">
+<meta property="article:author" content="孙新斌">
+<meta property="article:tag" content="Feature Point Punctuation Algorithm">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://sunxinbin.cn/images/avatar.webp">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>Archives</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>Search Engine</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>About</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            <li><a href="https://sunxinbin.cn">Blog</a></li>
+                                                        
+                                                    
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://github.com/xinbinsun">Github</a></li>
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Neo Sun</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Neo Sun</h2> <br />
+                        <span>What&#39;s past is prologue</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://sunxinbin.cn/2022/03/31/paperreading-4/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">FaceGen的使用（二）与3DFFA_V2代码的实现</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2022-03-31T10:00:00.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2022-03-31</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> Author <span itemprop="name">孙新斌</span>
+                </li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~5.16K
+                    
+                    words
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>This article has been edited <time datetime="1680175722109"></time> ago, and some of its content might need to be updated.</p></div>
+            </div>
+            
+            
+            
+            <hr />
+            <div itemprop="articleBody"><h2 id="FaceGen的使用"><a href="#FaceGen的使用" class="headerlink" title="FaceGen的使用"></a>FaceGen的使用</h2><span id="more"></span>
+<p><strong>（接上篇）</strong></p>
+<p><strong>FaceGen Modeller与FaceGen 3D Print可以使用其他很多格式进行导出与查看</strong></p>
+<p><strong>以下为三款程序之间的对比：</strong></p>
+<p><img src="/2022/03/31/paperreading-4/pic7.png" alt="(三款软件)自左向右分别是：FaceGen Aritst,FaceGen Modeller,FaceGen 3D Print"></p>
+<p><img src="/2022/03/31/paperreading-4/aritst.png" alt="FaceGen Aritst"></p>
+<p><strong>FaceGen Artist</strong>支持直接导入图片自动生成人脸模型，支持多张人脸图片的组合，允许调整人脸的各种细节（包括年龄、性别、种族、肤色、皱纹、痣，头发和许多其他参数），直到达到您想要的效果，依此类推。</p>
+<p>非常易于使用。您只需导入您要调整的正确脸部照片，然后软件将分析图像并创建新的脸部网格以及相应的整体皮肤纹理。创建好的人脸模型可以直接导入<strong>DAZ Studio</strong>使用。此外，它还支持连接3D打印机程序进行打印操作。</p>
+<p>FaceGen Artist细节处理非常细致，五官的处理非常精准。它可以帮助用户轻松调整整张脸的各种细节，从而完美完成整张脸模型的设计和调整，让人物形象更加生动。</p>
+<p><img src="/2022/03/31/paperreading-4/modeller.png" alt="FaceGen Modeller"></p>
+<p><strong>FaceGen Modeller</strong> 作为一款小巧易用、功能强大、高效的 3D 人脸建模工具，可以随机或从照片中创建 3D、逼真的人脸，支持多种面部细节的调整，包括种族、性别、年龄、眼睛、眉毛、鼻孔等150多个五官。此外，它采用带有表情和色调的动画形式实时显示结果，可以存储为<strong>BMP、JPG、TGA、TIF</strong>等格式的图像，也可以导出为<strong>FBX、OBJ、3DS、WRL</strong>等3D 文件格式。</p>
+<p><img src="/2022/03/31/paperreading-4/pic11.png" alt="3DS的导出格式"></p>
+<p><img src="/2022/03/31/paperreading-4/3DPrint.png" alt="FaceGen 3D Print"></p>
+<p><strong>FaceGen 3D Print Demo</strong>塑造一个有底座的头部人像，导出格式支持<strong>PNG,JPEG,TARGA,BMP</strong>文件格式。</p>
+<h2 id="Towards-Fast-Accurate-and-Stable-3D-Dense-Face-Alignment"><a href="#Towards-Fast-Accurate-and-Stable-3D-Dense-Face-Alignment" class="headerlink" title="Towards Fast, Accurate and Stable 3D Dense Face Alignment"></a>Towards Fast, Accurate and Stable 3D Dense Face Alignment</h2><p><strong>关于快速，准确和稳定的三维密集人脸对准</strong></p>
+<p>1.采用轻量级的网络模型回归出3DMM的参数（论文2.1节），然后为该网络设置了<strong>meta-joint optimization</strong>优化策略(论文2.2节)，动态的组合wpdc(Weighted Parameter Distance）和vdc(Vertex Distance Cost）损失函数，从而加速了拟合的速度，也使得拟合的效果更加精确 </p>
+<p>2.提出landmark-regression regularization（特征点回归正则化）来加速拟合的速度和精确度</p>
+<p>3.为了解决在video上的三维人脸对齐任务（相邻帧之间的三维重建更加稳定，快速，连续性），在基于video数据上训练的模型，但video视频数据库缺乏时，提出了3D aided short-video-synthesis（三维辅助短视频合成技术），将一个静止的图片在平面内还有平面外旋转变成一个短视频</p>
+<p><img src="/2022/03/31/paperreading-4/pic8.png" alt="3D aided short-video-synthesis"></p>
+<h3 id="3DMM"><a href="#3DMM" class="headerlink" title="3DMM"></a>3DMM</h3><p>1.回归参数截取</p>
+<p>2.参数的归一化处理</p>
+<p>3.3D人脸与2D人脸之间的公式只差一个正投影P参数</p>
+<h3 id="损失函数设计"><a href="#损失函数设计" class="headerlink" title="损失函数设计"></a>损失函数设计</h3><p><strong>设计fWPDC</strong></p>
+<p><img src="/2022/03/31/paperreading-4/pic9.png" alt=" fWPDC: Fast WPDC Algorithm."></p>
+<p><strong>在使用fwpdc损失函数训练好模型后，然后保存此次模型的训练结果；之后开始进行下次训练，在训练前，将模型的参数初始化为上次保存的模型，然后在使用vdc损失函数继续对该模型进行训练！<br>基于这种发现，提出了meta-joint optimization ，即动态的组合fwpdc和vdc损失函数进行训练。</strong></p>
+<p><img src="/2022/03/31/paperreading-4/pic10.png" alt="Overview of the meta-joint optimization."></p>
+<h3 id="3D-Aided-Short-video-synthesis-三维辅助短视频合成技术"><a href="#3D-Aided-Short-video-synthesis-三维辅助短视频合成技术" class="headerlink" title="3D Aided Short-video-synthesis(三维辅助短视频合成技术)"></a>3D Aided Short-video-synthesis(三维辅助短视频合成技术)</h3><p>经测试发现，该技术共有两个作用； 一是对模型的训练有促进作用（用NME来衡量模型是否优越，可用21，68，NK个三维特征点之间的距离损失来计算dist）；二是促进了在视频上进行三维人脸重建时候的稳定性（用相邻帧之间的偏移差异来衡量视频中三维人脸重建的稳定性）</p>
+<h2 id="3DFFA-V2代码的实现"><a href="#3DFFA-V2代码的实现" class="headerlink" title="3DFFA_V2代码的实现"></a>3DFFA_V2代码的实现</h2><p><strong>首先，附属代码未提供测试与训练的代码，只提供了训练好的模型并将其储存</strong></p>
+<p><strong>关于定义204[3, 64]个点，为什么要定义u_base , w_sha_base , w_exp_base的说明</strong></p>
+<p><strong>(此解释 by CSDN 博主 LX-CV提供)</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#  在行上链接形状向量基于表情向量基，维度为[53215x3,50]</span></span><br><span class="line">     w = np.concatenate((self.w_shp, self.w_exp), axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">     <span class="comment">#  求列向量的范数，维度是[1,50]</span></span><br><span class="line">     self.w_norm = np.linalg.norm(w, axis=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">     <span class="comment">#  这些参数是用系数特征点表示的重建三维人脸模型的时候公式中所涉及的数据</span></span><br><span class="line">     <span class="comment">#  维度为[204,1];取平均形状的204个数</span></span><br><span class="line">     self.u_base = self.u[self.keypoints].reshape(-<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">     <span class="comment">#  维度为[204,40],取形状向量基</span></span><br><span class="line">     self.w_shp_base = self.w_shp[self.keypoints]</span><br><span class="line">     <span class="comment">#  维度为[204,10],取表情向量基</span></span><br><span class="line">     self.w_exp_base = self.w_exp[self.keypoints]</span><br></pre></td></tr></table></figure>
+<p><strong>obj文件</strong>： 将人脸保存为obj文件 即保存了这个特征点的形状属性，又保存了这个点的纹理属性（r1, g1, b1） ；<br><strong>ply文件</strong>：将人脸保存为ply文件， 只保存了这个特征点的形状属性(x1, y1, z1)，不保存纹理属性；</p>
+<p><strong>Faceboxs边界框检测器：</strong></p>
+<p><strong>(本代码 by CSDN 博主 LX-CV提供)</strong></p>
+<p>facebox检测器传入人脸照片，返回的是个列表，用来存储边界框bbox(是个列表，共有5个数据)，有几个人脸就有几个边界框 ； 接下来可以利用bbox边界框获得roi_box参数，然后便可以利用roi_box参数画出边框或者精确的剪切出人脸照片</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">sys.path.append(<span class="string">&#x27;..&#x27;</span>)</span><br><span class="line"><span class="keyword">from</span> FaceBoxes <span class="keyword">import</span> FaceBoxes</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">from</span> utiles.functions <span class="keyword">import</span> parse_roi_box_from_bbox</span><br><span class="line"></span><br><span class="line">RED = (<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>)</span><br><span class="line">GREEN = (<span class="number">0</span>, <span class="number">255</span>, <span class="number">0</span>)</span><br><span class="line">BLUE = (<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">img = cv2.imread(<span class="string">&#x27;C:\Desktop\3DDFA_V2-master\examples\inputs\emma.jpg&#x27;</span>)</span><br><span class="line">width = img.shape[<span class="number">1</span>]</span><br><span class="line">height = img.shape[<span class="number">0</span>]</span><br><span class="line">img = cv2.resize(img, (<span class="built_in">int</span>(width*<span class="number">0.2</span>), <span class="built_in">int</span>(height*<span class="number">0.2</span>)), interpolation=cv2.INTER_AREA)</span><br><span class="line"></span><br><span class="line">face_detector = FaceBoxes()</span><br><span class="line">boxes = face_detector(img)  <span class="comment"># 获得边界框bbox ; 有几个人脸就有几个bbox ;</span></span><br><span class="line"></span><br><span class="line">roi_boxes = []  <span class="comment"># 用来存储roi_box参数 ；</span></span><br><span class="line"><span class="keyword">for</span> box <span class="keyword">in</span> boxes:</span><br><span class="line">   roi_box = parse_roi_box_from_bbox(box)  <span class="comment"># 利用bbox边界框获得roi_box参数 ；</span></span><br><span class="line">   roi_boxes.append(roi_box)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> box <span class="keyword">in</span> roi_boxes:</span><br><span class="line">    left, top, right, bottom = np.<span class="built_in">round</span>(box).astype(np.int32)</span><br><span class="line">    left_top = (left, top)</span><br><span class="line">    right_top = (right, top)</span><br><span class="line">    right_bottom = (right, bottom)</span><br><span class="line">    left_bottom = (left, bottom)</span><br><span class="line">    cv2.line(img, left_top, right_top, BLUE, <span class="number">1</span>, cv2.LINE_AA)</span><br><span class="line">    cv2.line(img, right_top, right_bottom, BLUE, <span class="number">1</span>, cv2.LINE_AA)</span><br><span class="line">    cv2.line(img, right_bottom, left_bottom, BLUE, <span class="number">1</span>, cv2.LINE_AA)</span><br><span class="line">    cv2.line(img, left_bottom, left_top, BLUE, <span class="number">1</span>, cv2.LINE_AA)</span><br><span class="line"></span><br><span class="line">cv2.imshow(<span class="string">&quot;win&quot;</span>, img)</span><br><span class="line">cv2.waitKey()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>挂vpn会出现无法pip的情况</strong></p>
+<p><strong>Windows上运行需修改部分代码与函数，包括但不仅限于：</strong></p>
+<p><img src="/2022/03/31/paperreading-4/pic2.png" alt="添加函数"></p>
+<p><img src="/2022/03/31/paperreading-4/pic3.png" alt="改善一个.py文件"></p>
+<p><strong>运行效果如下：</strong></p>
+<p><img src="/2022/03/31/paperreading-4/pic1.png" alt="2d_sparse"></p>
+<p><img src="/2022/03/31/paperreading-4/pic6.png" alt="2d_dense"></p>
+<p><img src="/2022/03/31/paperreading-4/emma_3d.jpg" alt="emma_3d"></p>
+<p><img src="/2022/03/31/paperreading-4/zhangzifeng1.png" alt="张子枫"></p>
+<p><img src="/2022/03/31/paperreading-4/zhangzifeng1_2d_dense.jpg" alt="zhangzifeng1_2d_dense"></p>
+<p><img src="/2022/03/31/paperreading-4/zhangzifeng1_2d_sparse.jpg" alt="zhangzifeng1_2d_sparse"></p>
+<p><img src="/2022/03/31/paperreading-4/zhangzifeng1_3d.jpg" alt="zhangzifeng1_3d"></p>
+<p><img src="/2022/03/31/paperreading-4/zhangzifeng1_depth.jpg" alt="zhangzifeng1_depth"></p>
+<style>.bbplayer{width: 100%; max-width: 850px; margin: auto}</style><div class="bbplayer"><iframe class="bbplayer" id="mmedia-DnYUySLfkUTIHIRo" src="https://player.bilibili.com/player.html?bvid=BV1Xr4y1H7ti&page=1&high_quality=1&danmaku=true" allowfullscreen="allowfullscreen" scrolling="no" border="0" frameborder="0" framespacing="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts allow-popups"></iframe></div><script> document.getElementById("mmedia-DnYUySLfkUTIHIRo").style.height=document.getElementById("mmedia-DnYUySLfkUTIHIRo").scrollWidth*0.76+"px";
+    window.onresize = function(){
+      document.getElementById("mmedia-DnYUySLfkUTIHIRo").style.height=document.getElementById("mmedia-DnYUySLfkUTIHIRo").scrollWidth*0.76+"px";
+    }; </script>
+<style>.bbplayer{width: 100%; max-width: 850px; margin: auto}</style><div class="bbplayer"><iframe class="bbplayer" id="mmedia-zenFncknIEcetAhh" src="https://player.bilibili.com/player.html?bvid=BV1J3411H7RT&page=1&high_quality=1&danmaku=true" allowfullscreen="allowfullscreen" scrolling="no" border="0" frameborder="0" framespacing="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts allow-popups"></iframe></div><script> document.getElementById("mmedia-zenFncknIEcetAhh").style.height=document.getElementById("mmedia-zenFncknIEcetAhh").scrollWidth*0.76+"px";
+    window.onresize = function(){
+      document.getElementById("mmedia-zenFncknIEcetAhh").style.height=document.getElementById("mmedia-zenFncknIEcetAhh").scrollWidth*0.76+"px";
+    }; </script>
+<style>.bbplayer{width: 100%; max-width: 850px; margin: auto}</style><div class="bbplayer"><iframe class="bbplayer" id="mmedia-yaNUgbCCFyeySJza" src="https://player.bilibili.com/player.html?bvid=BV19Y4y1v77x&page=1&high_quality=1&danmaku=true" allowfullscreen="allowfullscreen" scrolling="no" border="0" frameborder="0" framespacing="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts allow-popups"></iframe></div><script> document.getElementById("mmedia-yaNUgbCCFyeySJza").style.height=document.getElementById("mmedia-yaNUgbCCFyeySJza").scrollWidth*0.76+"px";
+    window.onresize = function(){
+      document.getElementById("mmedia-yaNUgbCCFyeySJza").style.height=document.getElementById("mmedia-yaNUgbCCFyeySJza").scrollWidth*0.76+"px";
+    }; </script>
+<style>.bbplayer{width: 100%; max-width: 850px; margin: auto}</style><div class="bbplayer"><iframe class="bbplayer" id="mmedia-aCWxBaOnWuTyvMVi" src="https://player.bilibili.com/player.html?bvid=BV1QY4y1p7Tt&page=1&high_quality=1&danmaku=true" allowfullscreen="allowfullscreen" scrolling="no" border="0" frameborder="0" framespacing="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts allow-popups"></iframe></div><script> document.getElementById("mmedia-aCWxBaOnWuTyvMVi").style.height=document.getElementById("mmedia-aCWxBaOnWuTyvMVi").scrollWidth*0.76+"px";
+    window.onresize = function(){
+      document.getElementById("mmedia-aCWxBaOnWuTyvMVi").style.height=document.getElementById("mmedia-aCWxBaOnWuTyvMVi").scrollWidth*0.76+"px";
+    }; </script>
+<p><strong>仍建议使用Linux或MacOS运行</strong></p>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">This work is licensed under <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</a></h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> Share</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://sunxinbin.cn/2022/03/31/paperreading-4/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://sunxinbin.cn/2022/03/31/paperreading-4/";
+            const title         = "「FaceGen的使用（二）与3DFFA_V2代码的实现」";
+            const excerpt       = `FaceGen的使用`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/Feature-Point-Punctuation-Algorithm/" rel="tag">Feature Point Punctuation Algorithm</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2023-03-30T11:28:42.109Z" itemprop="dateModified">Last modify：2023-03-30</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" FaceGen使用与三维人脸对准代码" href="/2022/03/26/paperreading-3/">&lt; older</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" 天局" href="/2022/04/05/shengtianbanzi/">Newer &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center">Computer Science & Technology</p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                Post
+            </span>
+            <span class="count">
+                47
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                Category
+            </span>
+            <span class="count">
+                10
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                Tag
+            </span>
+            <span class="count">
+                20
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>Categories List</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Craniofacial-Registration/">Craniofacial Registration</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DL/">DL</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Feature-Point-Punctuation-Algorithm/">Feature Point Punctuation Algorithm</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Literature/">Literature</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ML/">ML</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematical-Modeling/">Mathematical Modeling</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Philosophy/">Philosophy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Undergraduate-Courses/">Undergraduate Courses</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">2</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>Tagcloud</h4>
+      <div class="tag-clouds">
+        <a href="/tags/A-single-spark-can-start-a-prairie-fire/" style="font-size: 0.6em;">A single spark can start a prairie fire</a> <a href="/tags/Algorithm/" style="font-size: 0.6em;">Algorithm</a> <a href="/tags/Anecdote/" style="font-size: 0.6em;">Anecdote</a> <a href="/tags/CV/" style="font-size: 0.6em;">CV</a> <a href="/tags/Craniofacial-Registration/" style="font-size: 0.6em;">Craniofacial Registration</a> <a href="/tags/DL/" style="font-size: 0.8em;">DL</a> <a href="/tags/Emotion/" style="font-size: 0.7em;">Emotion</a> <a href="/tags/Feature-Point-Punctuation-Algorithm/" style="font-size: 0.75em;">Feature Point Punctuation Algorithm</a> <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/Latex/" style="font-size: 0.6em;">Latex</a> <a href="/tags/Literature/" style="font-size: 0.75em;">Literature</a> <a href="/tags/ML/" style="font-size: 0.7em;">ML</a> <a href="/tags/Mathematical-Modeling/" style="font-size: 0.65em;">Mathematical Modeling</a> <a href="/tags/OpenAI/" style="font-size: 0.6em;">OpenAI</a> <a href="/tags/Philosophy/" style="font-size: 0.6em;">Philosophy</a> <a href="/tags/Python/" style="font-size: 0.6em;">Python</a> <a href="/tags/Undergraduate-Courses/" style="font-size: 0.75em;">Undergraduate Courses</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>Recent posts</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2023/04/05/python-to-exe/"><i class="fa  fa-book"></i> Python如何打包为exe文件</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/30/Dynamic-Programming/"><i class="fa  fa-book"></i> Dynamic Programming</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/05/Common-instruction-set/"><i class="fa  fa-book"></i> NewBing&ChatGPT</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/01/25/Big-data-analysis-method/"><i class="fa  fa-book"></i> Big data analysis method</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/01/16/artificial-intelligence/"><i class="fa  fa-book"></i> Artificial Intelligence</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        <li><a href="mailto:2332431354@qq.com"><i class="fa fa-envelope"></i></a></li>
+                        
+                        
+                        
+                        
+                        <li><a target="_blank" rel="me" href="https://nya.one/@SunXinbin"><i class="fa fa fa-share-alt-square"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/xinbinsun"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2023 Neo Sun Copyright.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by 孙新斌.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            <li><a href="https://beian.miit.gov.cn" rel="external nofollow" target="_blank">鲁ICP备23010101号</a></li>
+                            <li><a href="http://www.beian.gov.cn" rel="external nofollow" target="_blank"><img src="/images/psr.webp" width="12" height="12" loading="lazy" decoding="auto" />鲁公网安备371402000348</a></li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>

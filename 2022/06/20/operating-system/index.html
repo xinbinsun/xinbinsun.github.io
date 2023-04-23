@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="Chinese/English">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/avatar.webp">
+  
+  <title>Operating System | Neo Sun</title>
+  <meta name="author" content="孙新斌" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="Undergraduate Courses" />
+  
+  <meta name="description" content="第一章 操作系统引论">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Operating System">
+<meta property="og:url" content="http://sunxinbin.cn/2022/06/20/operating-system/index.html">
+<meta property="og:site_name" content="Neo Sun">
+<meta property="og:description" content="第一章 操作系统引论">
+<meta property="og:locale">
+<meta property="og:image" content="http://sunxinbin.cn/images/avatar.webp">
+<meta property="article:published_time" content="2022-06-20T15:31:28.000Z">
+<meta property="article:modified_time" content="2023-03-30T11:25:45.503Z">
+<meta property="article:author" content="孙新斌">
+<meta property="article:tag" content="Undergraduate Courses">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://sunxinbin.cn/images/avatar.webp">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>Archives</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>Search Engine</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>About</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            <li><a href="https://sunxinbin.cn">Blog</a></li>
+                                                        
+                                                    
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://github.com/xinbinsun">Github</a></li>
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Neo Sun</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Neo Sun</h2> <br />
+                        <span>What&#39;s past is prologue</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://sunxinbin.cn/2022/06/20/operating-system/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">Operating System</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2022-06-20T15:31:28.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2022-06-20</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> Author <span itemprop="name">孙新斌</span>
+                </li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~2.32K
+                    
+                    words
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>This article has been edited <time datetime="1680175545503"></time> ago, and some of its content might need to be updated.</p></div>
+            </div>
+            
+            
+            
+            <hr />
+            <div itemprop="articleBody"><h1 id="第一章-操作系统引论"><a href="#第一章-操作系统引论" class="headerlink" title="第一章 操作系统引论"></a>第一章 操作系统引论<span id="more"></span></h1><h2 id="OS的基本特征和主要功能"><a href="#OS的基本特征和主要功能" class="headerlink" title="OS的基本特征和主要功能"></a>OS的基本特征和主要功能</h2><p><strong>OS的基本特征</strong>：并发性、异步性，虚拟性，共享性</p>
+<p><strong>OS的主要功能</strong>：处理机管理功能、设备管理功能、存储器管理功能、文件管理功能、操作系统与用户之间的接口</p>
+<h1 id="第二章-进程的描述和控制（CPU）"><a href="#第二章-进程的描述和控制（CPU）" class="headerlink" title="第二章 进程的描述和控制（CPU）"></a>第二章 进程的描述和控制（CPU）</h1><h2 id="用信号量机制实现进程并发中的同步与互斥"><a href="#用信号量机制实现进程并发中的同步与互斥" class="headerlink" title="用信号量机制实现进程并发中的同步与互斥"></a>用信号量机制实现进程并发中的同步与互斥</h2><p><strong>理发师问题（PPT p20—p30）</strong></p>
+<p><strong>线程是什么？</strong></p>
+<ol>
+<li>线程是现代操作系统引入的一种执行实体</li>
+<li>线程又称‘’轻型进程‘，是进程的组成部分</li>
+<li>进程是资源占有单位，线程只是CPU调度单位</li>
+</ol>
+<p><strong>多线程结构进程的优点</strong></p>
+<ol>
+<li>快速线程切换</li>
+<li>通信易于实现</li>
+<li>减少管理开销</li>
+<li>并发程度很高</li>
+</ol>
+<p><strong>进程与线程的区别：</strong></p>
+<p><strong>进程</strong>：独立的实体单位</p>
+<p>独立占有资源，进程拥有对资源的控制权和所有权</p>
+<p>独立参与调度/执行，进程是一个可被操作系统调度和分派的单位</p>
+<p><strong>线程</strong>：调度运行的单位；不单独占有资源的单位，共享其所属进程的资源</p>
+<h1 id="第三章-处理机调度与死锁（CPU）"><a href="#第三章-处理机调度与死锁（CPU）" class="headerlink" title="第三章 处理机调度与死锁（CPU）"></a>第三章 处理机调度与死锁（CPU）</h1><h2 id="银行家算法、死锁检测（资源有向图）"><a href="#银行家算法、死锁检测（资源有向图）" class="headerlink" title="银行家算法、死锁检测（资源有向图）"></a>银行家算法、死锁检测（资源有向图）</h2><p><strong>死锁检测（资源有向图）PPT p37—p40</strong></p>
+<p><strong>银行家算法</strong></p>
+<h1 id="第四章-存储器管理（内存储器）"><a href="#第四章-存储器管理（内存储器）" class="headerlink" title="第四章 存储器管理（内存储器）"></a>第四章 存储器管理（内存储器）</h1><h2 id="带有快表机制的内存访问时间计算"><a href="#带有快表机制的内存访问时间计算" class="headerlink" title="带有快表机制的内存访问时间计算"></a>带有快表机制的内存访问时间计算</h2><p><img src="/2022/06/20/operating-system/pic6.png" alt="不缺页时的有效访存时间"></p>
+<p><img src="/2022/06/20/operating-system/pic7.png" alt="综合有效访存时间"></p>
+<h1 id="第五章-虚拟存储器（内存储器）"><a href="#第五章-虚拟存储器（内存储器）" class="headerlink" title="第五章 虚拟存储器（内存储器）"></a>第五章 虚拟存储器（内存储器）</h1><h2 id="页面置换算法-LRU"><a href="#页面置换算法-LRU" class="headerlink" title="页面置换算法(LRU)"></a>页面置换算法(LRU)</h2><h1 id="第六章-输入-出系统（设备管理）"><a href="#第六章-输入-出系统（设备管理）" class="headerlink" title="第六章 输入/出系统（设备管理）"></a>第六章 输入/出系统（设备管理）</h1><h2 id="中断与异常"><a href="#中断与异常" class="headerlink" title="中断与异常"></a>中断与异常</h2><p><img src="/2022/06/20/operating-system/pic9.png" alt="外部中断和异常"></p>
+<p><strong>简答</strong></p>
+<h2 id="缓冲区技术"><a href="#缓冲区技术" class="headerlink" title="缓冲区技术"></a>缓冲区技术</h2><h2 id="磁盘调度算法FCFS-SSTF-SCAN-CSACN"><a href="#磁盘调度算法FCFS-SSTF-SCAN-CSACN" class="headerlink" title="磁盘调度算法FCFS,SSTF,SCAN,CSACN"></a>磁盘调度算法FCFS,SSTF,SCAN,CSACN</h2><p><strong>PPT p64—p73</strong></p>
+<h1 id="第七章-文件管理（磁盘文件管理）"><a href="#第七章-文件管理（磁盘文件管理）" class="headerlink" title="第七章 文件管理（磁盘文件管理）"></a>第七章 文件管理（磁盘文件管理）</h1><h2 id="文件的逻辑结构和物理结构"><a href="#文件的逻辑结构和物理结构" class="headerlink" title="文件的逻辑结构和物理结构"></a>文件的逻辑结构和物理结构</h2><p><img src="/2022/06/20/operating-system/pic8.png" alt="逻辑地址转为物理地址"></p>
+<h3 id="文件的逻辑结构：流式结构、记录式结构（用户使用角度）"><a href="#文件的逻辑结构：流式结构、记录式结构（用户使用角度）" class="headerlink" title="文件的逻辑结构：流式结构、记录式结构（用户使用角度）"></a>文件的逻辑结构：流式结构、记录式结构（用户使用角度）</h3><p><strong>流式文件</strong>是指文件内的数据是一个完整的字符流，不可以进一步细分</p>
+<p><strong>记录式文件</strong>在逻辑上可看成是一组记录的集合。每个几里路又彼此相关的若干数据项组成。</p>
+<h3 id="文件的物理结构：顺序结构、链式结构、索引结构（操作系统存储角度）"><a href="#文件的物理结构：顺序结构、链式结构、索引结构（操作系统存储角度）" class="headerlink" title="文件的物理结构：顺序结构、链式结构、索引结构（操作系统存储角度）"></a>文件的物理结构：顺序结构、链式结构、索引结构（操作系统存储角度）</h3><p><strong>连续存储结构</strong>文件体在磁盘上占用连续的存储空间</p>
+<p><strong>非连续存储结构</strong>文件提在磁盘上占用不连续的存储空间（连接存储（隐式链接存储、显式连接存储）、索引存储）</p>
+<h2 id="采用多级索引的方式文件系统最大允许长度的计算"><a href="#采用多级索引的方式文件系统最大允许长度的计算" class="headerlink" title="采用多级索引的方式文件系统最大允许长度的计算"></a>采用多级索引的方式文件系统最大允许长度的计算</h2><p><strong>PPT p165—p179</strong></p>
+<h1 id="第八章-磁盘存储器的管理（磁盘文件管理）"><a href="#第八章-磁盘存储器的管理（磁盘文件管理）" class="headerlink" title="第八章 磁盘存储器的管理（磁盘文件管理）"></a>第八章 磁盘存储器的管理（磁盘文件管理）</h1><h1 id="第九章-操作系统的接口"><a href="#第九章-操作系统的接口" class="headerlink" title="第九章 操作系统的接口"></a>第九章 操作系统的接口</h1><p><strong>操作系统接口</strong>：操作系统中有专门相应用户控制要求的接口，负责系统与用户之间的双向信息传送。</p>
+<p><strong>联机命令接口：</strong>1.命令行方式操作接口（键盘命令）2.图形化界面（鼠标点击）</p>
+<p><strong>程序级接口——系统调用</strong></p>
+<p>操作系统还提供一种适用于应用程序中的功能调用接口，叫做系统调用(system call)，允许用户在自己的应用程序中调用系统中提供的一些功能模块。</p>
+<p>系统调用是应用程序获得操作系统服务的唯一途径。</p>
+<p>CPU的两种工作状态：管态（执行系统程序的状态，允许执行所有指令）、目态（执行用户程序的状态，只允许执行非特权指令）</p>
+<h2 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h2><p>操作系统提供一种适用于应用程序中的功能调用接口，叫做系统调用，允许用户在自己的应用程序中调用系统中提供的一些功能模块。</p>
+<p>系统调用分类：</p>
+<ol>
+<li>进程和作业管理类</li>
+<li>文件操作类</li>
+<li>设备管理类</li>
+<li>主存管理类</li>
+<li>信息维护类</li>
+<li>通信类</li>
+</ol>
+<p><img src="/2022/06/20/operating-system/pic1.png" alt="系统调用与API函数的区别"></p>
+<p><img src="/2022/06/20/operating-system/pic2.png" alt="调用关系链"></p>
+<p><img src="/2022/06/20/operating-system/pic3.png" alt="分层关系"></p>
+<p><img src="/2022/06/20/operating-system/pic4.png" alt="系统调用实现与处理过程"></p>
+<p><img src="/2022/06/20/operating-system/pic5.png" alt="系统调用执行过程与Linux"></p>
+<h1 id="Urgent"><a href="#Urgent" class="headerlink" title="Urgent"></a>Urgent</h1><p><strong>临界区</strong>——一段代码 ≠ <strong>临界资源</strong></p>
+<p><strong>临界区</strong><br>概念：每个进程中访问临界资源的那段程序称之为临界区。<br>临界区不是内核对象，而是系统提供的一种数据结构，程序中可以声明一个该类型的变量，之后用它来实现对资源的互斥访问。当欲访问某一临界资源时，先将该临界区加锁（若临界区不空闲则等待），用完该资源后，将临界区释放。<br>补充（待定）：分类：临界区也是代码的称呼，所以一个进程可能有多个临界区，分别用来访问不同的临界资源。<br>内核程序临界资源：系统时钟<br>普通临界资源：普通I/O设备，如打印机（进程访问这些资源的时候，很慢，会自动阻塞，等待资源使用完成）</p>
+<p><strong>内存分配算法</strong>——首次适应算法FF、循环首次适应NF、最佳适应BF、最坏适应WF算法</p>
+<p><strong>分段与分页区分</strong></p>
+<p><strong>缓冲区的引入</strong>：速度不一致问题</p>
+<p>无论是字符设备还是块设备，它们的运行速度都远低于CPU的速度。为了缓和CPU和I/O设备之间的矛盾、提高CPU的利用率，在现代OS中都无一例外地分别为字符设备和块设备配置了相应的缓冲区。缓冲区有着多种形式，如单缓冲区、双缓冲区、循环缓冲区、公用缓冲池等，以满足不同情况的需要。</p>
+<p><strong>为什么抽象为文件</strong>：可以用一套统一的API访问设备，排除了设备的特异性。</p>
+<p><strong>CPU的两种工作状态</strong>：管态（执行系统程序的状态，允许执行所有指令）、目态（执行用户程序的状态，只允许执行非特权指令）</p>
+<p><strong>操作系统基本特征</strong></p>
+<p><strong>进程的状态的切换</strong></p>
+<p><img src="/2022/06/20/operating-system/pic10.png" alt="状态的切换"></p>
+<p>fork()</p>
+<p><strong>中断</strong>——trap和interrupt的区别</p>
+<p><strong>可屏蔽中断</strong>：<br>常由计算机的外设或一些接口功能产生，如时钟、键盘、打印机、串行口等，这种类型的中断可以在CPU要处理其它紧急操作时，被软件屏蔽或忽略.</p>
+<p><strong>非屏蔽中断</strong>：<br>由意外事件导致，如电源断电、内存校验错误等.<br>对于这种类型的中断事件，无法通过软件进行屏蔽，CPU必须无条件响应</p>
+<p><strong>外中断和内中断的区别</strong></p>
+<p><strong>动态分区管理问题</strong></p>
+<p><strong>计算访存次数（隐式链接）</strong></p>
+<p><strong>关于死锁问题的资源分配图</strong></p>
+<p><strong>文件的索引组织方式</strong></p>
+<p><img src="/2022/06/20/operating-system/pic11.png" alt="索引"></p>
+<p><strong>启动磁盘的次数（第八章）</strong></p>
+<p><strong>页面置换算法(LRU)与快表结合</strong></p>
+<p><img src="/2022/06/20/operating-system/pic12.png" alt="页面置换算法(LRU)与快表结合"></p>
+<p><img src="/2022/06/20/operating-system/pic13.png" alt="磁盘"></p>
+<p><img src="/2022/06/20/operating-system/pic14.png" alt="单缓冲与双缓冲"></p>
+<p><strong>不唯一的多缓冲区问题</strong></p>
+<p>理发师问题</p>
+<p><strong>内部碎片管理方法</strong></p>
+<p><strong>缓冲池技术：</strong><br>缓冲池，说到底也是缓冲区，只不过这种缓冲区较其他缓冲区来说能更好的实现cpu并行和设备的利用率。</p>
+<p>缓冲池里主要包括如下方面。用于对数据进行读写的公共区域：</p>
+<p>1、 emq空缓冲队列：用于取出空缓冲区来进行读写等操作。</p>
+<p>2、 inq输入队列：用来记录输入设备输入的数据，以便用户程序读取。</p>
+<p>3、outq输出队列：用来记录用户程序输出到设备(显示屏或是文件等)的数据，以便用户程序读取。<br><strong>计算题：</strong></p>
+<p><strong>低级调度</strong></p>
+<p><strong>页面置换</strong></p>
+<p><strong>文件存储空间分配</strong></p>
+<p><strong>磁盘访问</strong></p>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">This work is licensed under <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</a></h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> Share</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://sunxinbin.cn/2022/06/20/operating-system/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://sunxinbin.cn/2022/06/20/operating-system/";
+            const title         = "「Operating System」";
+            const excerpt       = `第一章 操作系统引论`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/Undergraduate-Courses/" rel="tag">Undergraduate Courses</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2023-03-30T11:25:45.503Z" itemprop="dateModified">Last modify：2023-03-30</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" Algorithm programming and analysis" href="/2022/06/19/Algorithm-programming-and-analysis/">&lt; older</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" 山东大学第八届“可视计算”" href="/2022/07/11/220710/">Newer &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center">Computer Science & Technology</p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                Post
+            </span>
+            <span class="count">
+                47
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                Category
+            </span>
+            <span class="count">
+                10
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                Tag
+            </span>
+            <span class="count">
+                20
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>Categories List</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Craniofacial-Registration/">Craniofacial Registration</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DL/">DL</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Feature-Point-Punctuation-Algorithm/">Feature Point Punctuation Algorithm</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Literature/">Literature</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ML/">ML</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematical-Modeling/">Mathematical Modeling</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Philosophy/">Philosophy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Undergraduate-Courses/">Undergraduate Courses</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">2</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>Tagcloud</h4>
+      <div class="tag-clouds">
+        <a href="/tags/A-single-spark-can-start-a-prairie-fire/" style="font-size: 0.6em;">A single spark can start a prairie fire</a> <a href="/tags/Algorithm/" style="font-size: 0.6em;">Algorithm</a> <a href="/tags/Anecdote/" style="font-size: 0.6em;">Anecdote</a> <a href="/tags/CV/" style="font-size: 0.6em;">CV</a> <a href="/tags/Craniofacial-Registration/" style="font-size: 0.6em;">Craniofacial Registration</a> <a href="/tags/DL/" style="font-size: 0.8em;">DL</a> <a href="/tags/Emotion/" style="font-size: 0.7em;">Emotion</a> <a href="/tags/Feature-Point-Punctuation-Algorithm/" style="font-size: 0.75em;">Feature Point Punctuation Algorithm</a> <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/Latex/" style="font-size: 0.6em;">Latex</a> <a href="/tags/Literature/" style="font-size: 0.75em;">Literature</a> <a href="/tags/ML/" style="font-size: 0.7em;">ML</a> <a href="/tags/Mathematical-Modeling/" style="font-size: 0.65em;">Mathematical Modeling</a> <a href="/tags/OpenAI/" style="font-size: 0.6em;">OpenAI</a> <a href="/tags/Philosophy/" style="font-size: 0.6em;">Philosophy</a> <a href="/tags/Python/" style="font-size: 0.6em;">Python</a> <a href="/tags/Undergraduate-Courses/" style="font-size: 0.75em;">Undergraduate Courses</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>Recent posts</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2023/04/05/python-to-exe/"><i class="fa  fa-book"></i> Python如何打包为exe文件</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/30/Dynamic-Programming/"><i class="fa  fa-book"></i> Dynamic Programming</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/05/Common-instruction-set/"><i class="fa  fa-book"></i> NewBing&ChatGPT</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/01/25/Big-data-analysis-method/"><i class="fa  fa-book"></i> Big data analysis method</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/01/16/artificial-intelligence/"><i class="fa  fa-book"></i> Artificial Intelligence</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        <li><a href="mailto:2332431354@qq.com"><i class="fa fa-envelope"></i></a></li>
+                        
+                        
+                        
+                        
+                        <li><a target="_blank" rel="me" href="https://nya.one/@SunXinbin"><i class="fa fa fa-share-alt-square"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/xinbinsun"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2023 Neo Sun Copyright.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by 孙新斌.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            <li><a href="https://beian.miit.gov.cn" rel="external nofollow" target="_blank">鲁ICP备23010101号</a></li>
+                            <li><a href="http://www.beian.gov.cn" rel="external nofollow" target="_blank"><img src="/images/psr.webp" width="12" height="12" loading="lazy" decoding="auto" />鲁公网安备371402000348</a></li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>

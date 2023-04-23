@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="Chinese/English">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/avatar.webp">
+  
+  <title>Python如何打包为exe文件 | Neo Sun</title>
+  <meta name="author" content="孙新斌" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="Python" />
+  
+  <meta name="description" content="为什么要打包？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python如何打包为exe文件">
+<meta property="og:url" content="http://sunxinbin.cn/2023/04/05/python-to-exe/index.html">
+<meta property="og:site_name" content="Neo Sun">
+<meta property="og:description" content="为什么要打包？">
+<meta property="og:locale">
+<meta property="og:image" content="http://sunxinbin.cn/images/avatar.webp">
+<meta property="article:published_time" content="2023-04-05T04:32:32.000Z">
+<meta property="article:modified_time" content="2023-04-05T16:26:36.914Z">
+<meta property="article:author" content="孙新斌">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://sunxinbin.cn/images/avatar.webp">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>Archives</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>Search Engine</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>About</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            <li><a href="https://sunxinbin.cn">Blog</a></li>
+                                                        
+                                                    
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://github.com/xinbinsun">Github</a></li>
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Neo Sun</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Neo Sun</h2> <br />
+                        <span>What&#39;s past is prologue</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://sunxinbin.cn/2023/04/05/python-to-exe/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">Python如何打包为exe文件</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2023-04-05T04:32:32.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2023-04-05</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> Author <span itemprop="name">孙新斌</span>
+                </li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~2.91K
+                    
+                    words
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>This article has been edited <time datetime="1680711996914"></time> ago, and some of its content might need to be updated.</p></div>
+            </div>
+            
+            
+            
+            <hr />
+            <div itemprop="articleBody"><h1 id="为什么要打包？"><a href="#为什么要打包？" class="headerlink" title="为什么要打包？"></a>为什么要打包？<span id="more"></span></h1><p>当你想把你做的python游戏或者是脚本等.py文件发给别人时，打包为.exe文件，即使对方没有安装python也能运行。</p>
+<h2 id="安装pyinstaller"><a href="#安装pyinstaller" class="headerlink" title="安装pyinstaller"></a>安装<a target="_blank" rel="noopener" href="https://pyinstaller.org/en/stable/">pyinstaller</a></h2><p>安装pyinstaller很简单，直接cmd使用<strong>pip</strong>命令即可</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pyinstaller</span><br></pre></td></tr></table></figure>
+<h3 id="pyinstaller打包项目全过程"><a href="#pyinstaller打包项目全过程" class="headerlink" title="pyinstaller打包项目全过程"></a>pyinstaller打包项目全过程</h3><p>项目包含多个 Python 文件、多个个资源文件夹，资源文件夹里面又包含了一些子文件夹和 图片。</p>
+<h3 id="第一步：启动虚拟环境，切换至目标文件夹路径位置"><a href="#第一步：启动虚拟环境，切换至目标文件夹路径位置" class="headerlink" title="第一步：启动虚拟环境，切换至目标文件夹路径位置"></a>第一步：启动虚拟环境，切换至目标文件夹路径位置</h3><p><strong>虚拟环境创建方法见本文附录</strong></p>
+<p><img src="/2023/04/05/python-to-exe/pic1.png" alt="切换至目标文件夹路径位置"></p>
+<p>如图已进入项目目录，虚拟环境已激活（py37）</p>
+<h3 id="第二步：虚拟环境安装pyinstaller与其他第三方包（使用虚拟环境是为了使得依赖包调用最少，尽量使exe文件为轻量级）"><a href="#第二步：虚拟环境安装pyinstaller与其他第三方包（使用虚拟环境是为了使得依赖包调用最少，尽量使exe文件为轻量级）" class="headerlink" title="第二步：虚拟环境安装pyinstaller与其他第三方包（使用虚拟环境是为了使得依赖包调用最少，尽量使exe文件为轻量级）"></a>第二步：虚拟环境安装pyinstaller与其他第三方包（使用虚拟环境是为了使得依赖包调用最少，尽量使exe文件为轻量级）</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pyinstaller</span><br></pre></td></tr></table></figure>
+<p><img src="/2023/04/05/python-to-exe/pic2.png" alt></p>
+<h3 id="第三步：生成-spec-文件（Pyinstaller-已经安装）"><a href="#第三步：生成-spec-文件（Pyinstaller-已经安装）" class="headerlink" title="第三步：生成 spec 文件（Pyinstaller 已经安装）"></a>第三步：生成 spec 文件（Pyinstaller 已经安装）</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyi<span class="literal">-makespec</span> <span class="operator">-F</span> <span class="literal">-w</span> Main.py</span><br></pre></td></tr></table></figure>
+<p><img src="/2023/04/05/python-to-exe/pic3.png" alt></p>
+<h3 id="第五步：编辑-spec-文件"><a href="#第五步：编辑-spec-文件" class="headerlink" title="第五步：编辑 spec 文件"></a>第五步：编辑 spec 文件</h3><p><img src="/2023/04/05/python-to-exe/pic4.png" alt="image-20230405235534207"></p>
+<p>如图所示，第一个方框内是写入所有打包的.py文件，datas中写入所有项目的资源文件夹，由于我将其他python文件编写为了python软件包并放在了虚拟环境目录下，所以只有一个Main.py需要被打包。</p>
+<p>自己编写的包可以放在虚拟环境的”.\venv\Lib\site-packages”路径下，关于<strong>如何将自己写的python文件编为python软件包：文件夹内含有“init.py”文件，则该文件夹默认为python软件包</strong></p>
+<h3 id="第六步：打包项目（注意这里的对象是-spec-文件）"><a href="#第六步：打包项目（注意这里的对象是-spec-文件）" class="headerlink" title="第六步：打包项目（注意这里的对象是 spec 文件）"></a>第六步：打包项目（注意这里的对象是 spec 文件）</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Pyinstaller Main.spec</span><br></pre></td></tr></table></figure>
+<p>打包成功！</p>
+<p><img src="/2023/04/05/python-to-exe/pic5.png" alt="image-20230406000240327"></p>
+<p>注：我的项目文件中用到了虚拟环境中<strong>face_recognition_models</strong>文件夹下的<strong>shape_predictor_68_face_landmarks.dat</strong>，但是打包过程中无法将它跟随虚拟环境打包，于是我将它跟随资源文件打包，解决了这个问题。</p>
+<p>最后在项目中的 dist 文件夹，打开后会有一个 <strong>exe 文件</strong>，该文件可在windows系统中独立执行，不再依赖自行创建的python环境。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th><strong>参数选项</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-F, -onefile</td>
+<td>只生成一个单个文件（只有一个 exe 文件）</td>
+</tr>
+<tr>
+<td>-D, -onedir</td>
+<td>打包多个文件，在dist中生成很多依赖文件，适合以框架形式编写工具代码，这样代码易于维护</td>
+</tr>
+<tr>
+<td>-K, –tk</td>
+<td>在部署时包含 TCL/TK</td>
+</tr>
+<tr>
+<td>-a, -ascii</td>
+<td>不包含编码在支持 Unicode 的 Python 版本上默认包含所有的编码</td>
+</tr>
+<tr>
+<td>-d, -debug</td>
+<td>产生 debug 版本的可执行文件</td>
+</tr>
+<tr>
+<td>-w, -windowed, -noconsole</td>
+<td>使用 Windows 子系统执行当程序启动的时候不会打开命令行(只对 Windows 有效)</td>
+</tr>
+<tr>
+<td>-c, -nowindowed, -console</td>
+<td>使用控制台子系统执行(默认)(只对 Windows 有效)、pyinstaller -c xxxx.py、pyinstaller xxxx.py —console</td>
+</tr>
+<tr>
+<td>-s, -strip</td>
+<td>可执行文件和共享库将 run through strip</td>
+</tr>
+<tr>
+<td>-X, -upx</td>
+<td>如果有 UPX 安装(执行 Configure.py 时检测)，会压缩执行文件( Windows 系统中的 DLL 也会)</td>
+</tr>
+<tr>
+<td>-o DIR, -out=DIR</td>
+<td>指定 spec 文件的生成目录，如果没有指定，而且当前目录是 PyInstaller 的根目录，会自动创建一个用于输出( spec 和生成的可执行文件)的目录、如果没有指定，而当前目录不是 Pyinstaller 的根目录，则会输出到当前的目录下</td>
+</tr>
+<tr>
+<td>-p DIR, -path=DIR</td>
+<td>设置导入路径(和使用 PYTHONPATH 效果相似)、可以用路径分割符( Windows 使用分号，Linux 使用冒号)分割，指定多个目录、也可以使用多个 -p 参数来设置多个导入路径，让 pyinstaller 自己去找程序需要的资源</td>
+</tr>
+<tr>
+<td>-i -icon=<FILE.ICO></FILE.ICO></td>
+<td>将 file.ico 添加为可执行文件的资源(只对 Windows 系统有效)，改变程序的图标</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>以上是<strong>pyinstaller</strong>常用命令，更多内容请见<a target="_blank" rel="noopener" href="https://pyinstaller.org/en/stable/requirements.html#windows">官网</a></p>
+<h1 id="附录-Python常用命令"><a href="#附录-Python常用命令" class="headerlink" title="附录   Python常用命令"></a>附录   Python常用命令</h1><h2 id="创建虚拟环境"><a href="#创建虚拟环境" class="headerlink" title="创建虚拟环境"></a>创建虚拟环境</h2><p><strong>python创建虚拟环境</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">md</span> envs</span><br><span class="line"><span class="comment"># 创建虚拟环境</span></span><br><span class="line">python <span class="literal">-m</span> venv env_name</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> env_name</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> Scripts</span><br><span class="line"><span class="comment"># 激活环境</span></span><br><span class="line">.\activate</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装Django</span></span><br><span class="line">pip install django</span><br></pre></td></tr></table></figure>
+<p><strong>设置国内源</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 清华源</span></span><br><span class="line">pip config <span class="built_in">set</span> global.index<span class="literal">-url</span> https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 阿里源</span></span><br><span class="line">pip config <span class="built_in">set</span> global.index<span class="literal">-url</span> https://mirrors.aliyun.com/pypi/simple/</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 腾讯源</span></span><br><span class="line">pip config <span class="built_in">set</span> global.index<span class="literal">-url</span> http://mirrors.cloud.tencent.com/pypi/simple</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 豆瓣源</span></span><br><span class="line">pip config <span class="built_in">set</span> global.index<span class="literal">-url</span> https://pypi.douban.com/simple/</span><br></pre></td></tr></table></figure>
+<h3 id="使用requirement-txt批量安装"><a href="#使用requirement-txt批量安装" class="headerlink" title="使用requirement.txt批量安装"></a>使用requirement.txt批量安装</h3><p><strong>pip安装 requirments.txt</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install <span class="literal">-r</span> ./requirements.txt</span><br></pre></td></tr></table></figure>
+<h3 id="对项目生成requirement依赖，以便于其他人对项目的fork"><a href="#对项目生成requirement依赖，以便于其他人对项目的fork" class="headerlink" title="对项目生成requirement依赖，以便于其他人对项目的fork"></a>对项目生成requirement依赖，以便于其他人对项目的fork</h3><p><strong>freeze-适用于虚拟环境</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#生成requirement依赖</span></span><br><span class="line">pip freeze &gt; requirements.txt</span><br></pre></td></tr></table></figure>
+<p><strong>检查cuda版本（cmd命令）</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvidia<span class="literal">-smi</span></span><br></pre></td></tr></table></figure>
+<h2 id="常用Python代码"><a href="#常用Python代码" class="headerlink" title="常用Python代码"></a>常用Python代码</h2><p><strong>python消除警告</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">&quot;ignore&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>plt绘图中文乱码</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plt.rcParams[<span class="string">&#x27;font.sans-serif&#x27;</span>] = [<span class="string">&#x27;KaiTi&#x27;</span>, <span class="string">&#x27;SimHei&#x27;</span>, <span class="string">&#x27;FangSong&#x27;</span>]  <span class="comment"># 汉字字体,优先使用楷体，如果找不到楷体，则使用黑体</span></span><br><span class="line">plt.rcParams[<span class="string">&#x27;font.size&#x27;</span>] = <span class="number">12</span>  <span class="comment"># 字体大小</span></span><br><span class="line">plt.rcParams[<span class="string">&#x27;axes.unicode_minus&#x27;</span>] = <span class="literal">False</span>  <span class="comment"># 正常显示负号</span></span><br></pre></td></tr></table></figure>
+<p><strong>使用pip安装notebook</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install jupyter notebook</span><br></pre></td></tr></table></figure>
+<p><strong>更改juypter打开默认位置</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook <span class="literal">--generate-config</span></span><br></pre></td></tr></table></figure>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">This work is licensed under <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</a></h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> Share</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://sunxinbin.cn/2023/04/05/python-to-exe/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://sunxinbin.cn/2023/04/05/python-to-exe/";
+            const title         = "「Python如何打包为exe文件」";
+            const excerpt       = `为什么要打包？`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/Python/" rel="tag">Python</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2023-04-05T16:26:36.914Z" itemprop="dateModified">Last modify：2023-04-06</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" Dynamic Programming" href="/2023/03/30/Dynamic-Programming/">&lt; older</a>
+            </div>
+            
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center">Computer Science & Technology</p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                Post
+            </span>
+            <span class="count">
+                47
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                Category
+            </span>
+            <span class="count">
+                10
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                Tag
+            </span>
+            <span class="count">
+                20
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>Categories List</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Craniofacial-Registration/">Craniofacial Registration</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DL/">DL</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Feature-Point-Punctuation-Algorithm/">Feature Point Punctuation Algorithm</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Literature/">Literature</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ML/">ML</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematical-Modeling/">Mathematical Modeling</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Philosophy/">Philosophy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Undergraduate-Courses/">Undergraduate Courses</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">2</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>Tagcloud</h4>
+      <div class="tag-clouds">
+        <a href="/tags/A-single-spark-can-start-a-prairie-fire/" style="font-size: 0.6em;">A single spark can start a prairie fire</a> <a href="/tags/Algorithm/" style="font-size: 0.6em;">Algorithm</a> <a href="/tags/Anecdote/" style="font-size: 0.6em;">Anecdote</a> <a href="/tags/CV/" style="font-size: 0.6em;">CV</a> <a href="/tags/Craniofacial-Registration/" style="font-size: 0.6em;">Craniofacial Registration</a> <a href="/tags/DL/" style="font-size: 0.8em;">DL</a> <a href="/tags/Emotion/" style="font-size: 0.7em;">Emotion</a> <a href="/tags/Feature-Point-Punctuation-Algorithm/" style="font-size: 0.75em;">Feature Point Punctuation Algorithm</a> <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/Latex/" style="font-size: 0.6em;">Latex</a> <a href="/tags/Literature/" style="font-size: 0.75em;">Literature</a> <a href="/tags/ML/" style="font-size: 0.7em;">ML</a> <a href="/tags/Mathematical-Modeling/" style="font-size: 0.65em;">Mathematical Modeling</a> <a href="/tags/OpenAI/" style="font-size: 0.6em;">OpenAI</a> <a href="/tags/Philosophy/" style="font-size: 0.6em;">Philosophy</a> <a href="/tags/Python/" style="font-size: 0.6em;">Python</a> <a href="/tags/Undergraduate-Courses/" style="font-size: 0.75em;">Undergraduate Courses</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>Recent posts</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2023/04/05/python-to-exe/"><i class="fa  fa-book"></i> Python如何打包为exe文件</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/30/Dynamic-Programming/"><i class="fa  fa-book"></i> Dynamic Programming</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/05/Common-instruction-set/"><i class="fa  fa-book"></i> NewBing&ChatGPT</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/01/25/Big-data-analysis-method/"><i class="fa  fa-book"></i> Big data analysis method</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/01/16/artificial-intelligence/"><i class="fa  fa-book"></i> Artificial Intelligence</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        <li><a href="mailto:2332431354@qq.com"><i class="fa fa-envelope"></i></a></li>
+                        
+                        
+                        
+                        
+                        <li><a target="_blank" rel="me" href="https://nya.one/@SunXinbin"><i class="fa fa fa-share-alt-square"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/xinbinsun"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2023 Neo Sun Copyright.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by 孙新斌.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            <li><a href="https://beian.miit.gov.cn" rel="external nofollow" target="_blank">鲁ICP备23010101号</a></li>
+                            <li><a href="http://www.beian.gov.cn" rel="external nofollow" target="_blank"><img src="/images/psr.webp" width="12" height="12" loading="lazy" decoding="auto" />鲁公网安备371402000348</a></li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>

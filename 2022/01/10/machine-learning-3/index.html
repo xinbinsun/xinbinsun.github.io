@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="Chinese/English">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/avatar.webp">
+  
+  <title>单变量线性回归 | Neo Sun</title>
+  <meta name="author" content="孙新斌" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="DL" />
+  
+  <meta name="description" content="监督式机器学习的基本术语">
+<meta property="og:type" content="article">
+<meta property="og:title" content="单变量线性回归">
+<meta property="og:url" content="http://sunxinbin.cn/2022/01/10/machine-learning-3/index.html">
+<meta property="og:site_name" content="Neo Sun">
+<meta property="og:description" content="监督式机器学习的基本术语">
+<meta property="og:locale">
+<meta property="og:image" content="http://sunxinbin.cn/images/avatar.webp">
+<meta property="article:published_time" content="2022-01-10T12:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-30T11:27:05.405Z">
+<meta property="article:author" content="孙新斌">
+<meta property="article:tag" content="DL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://sunxinbin.cn/images/avatar.webp">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>Archives</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>Search Engine</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>About</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            <li><a href="https://sunxinbin.cn">Blog</a></li>
+                                                        
+                                                    
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://github.com/xinbinsun">Github</a></li>
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Neo Sun</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Neo Sun</h2> <br />
+                        <span>What&#39;s past is prologue</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://sunxinbin.cn/2022/01/10/machine-learning-3/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">单变量线性回归</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2022-01-10T12:00:00.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2022-01-10</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> Author <span itemprop="name">孙新斌</span>
+                </li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~5.33K
+                    
+                    words
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>This article has been edited <time datetime="1680175625405"></time> ago, and some of its content might need to be updated.</p></div>
+            </div>
+            
+            
+            
+                <div class="kratos-post-inner-toc toc-div-class" >
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%91%E7%9D%A3%E5%BC%8F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9C%AF%E8%AF%AD"><span class="toc-number">1.</span> <span class="toc-text">监督式机器学习的基本术语</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%87%E7%AD%BE%E5%92%8C%E7%89%B9%E5%BE%81"><span class="toc-number">1.1.</span> <span class="toc-text">标签和特征</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E6%9C%AC%E5%92%8C%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.2.</span> <span class="toc-text">样本和模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83"><span class="toc-number">1.3.</span> <span class="toc-text">训练</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8D%9F%E5%A4%B1"><span class="toc-number">1.4.</span> <span class="toc-text">损失</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="toc-number">1.5.</span> <span class="toc-text">定义损失函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E7%9A%84%E8%BF%AD%E4%BB%A3%E6%96%B9%E6%B3%95"><span class="toc-number">1.6.</span> <span class="toc-text">训练模型的迭代方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E8%A6%81%E7%82%B9"><span class="toc-number">1.7.</span> <span class="toc-text">模型训练要点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%B6%E6%95%9B"><span class="toc-number">1.8.</span> <span class="toc-text">收敛</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95"><span class="toc-number">1.9.</span> <span class="toc-text">梯度下降法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E7%8E%87"><span class="toc-number">1.10.</span> <span class="toc-text">学习率</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B6%85%E5%8F%82%E6%95%B0"><span class="toc-number">1.11.</span> <span class="toc-text">超参数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E9%97%AE%E9%A2%98TensorFlow%E5%AE%9E%E6%88%98"><span class="toc-number">2.</span> <span class="toc-text">线性回归问题TensorFlow实战</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E6%AD%A5%E9%AA%A4"><span class="toc-number">2.1.</span> <span class="toc-text">核心步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%BA%E5%B7%A5%E6%95%B0%E6%8D%AE%E9%9B%86%E7%94%9F%E6%88%90"><span class="toc-number">2.2.</span> <span class="toc-text">人工数据集生成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.3.</span> <span class="toc-text">构建模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B%E5%87%BD%E6%95%B0"><span class="toc-number">2.4.</span> <span class="toc-text">定义模型函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84"><span class="toc-number">2.5.</span> <span class="toc-text">定义模型结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%8F%98%E9%87%8F"><span class="toc-number">2.6.</span> <span class="toc-text">创建变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.7.</span> <span class="toc-text">训练模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-1"><span class="toc-number">2.8.</span> <span class="toc-text">定义损失函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%BC%98%E5%8C%96%E5%99%A8"><span class="toc-number">2.9.</span> <span class="toc-text">定义优化器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%BC%9A%E8%AF%9D"><span class="toc-number">2.10.</span> <span class="toc-text">创建会话</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E8%AE%AD%E7%BB%83"><span class="toc-number">2.11.</span> <span class="toc-text">迭代训练</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-number">2.12.</span> <span class="toc-text">可视化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E7%BB%88%E5%8F%AF%E8%A7%86%E5%8C%96%E7%BB%93%E6%9E%9C%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-number">2.13.</span> <span class="toc-text">最终可视化结果如下：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">2.14.</span> <span class="toc-text">小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E7%A8%8B%E5%BA%8F%E9%99%84%E4%B8%8B%EF%BC%9A"><span class="toc-number">2.15.</span> <span class="toc-text">完整程序附下：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%9B%E9%98%B6"><span class="toc-number">3.</span> <span class="toc-text">进阶</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E6%8D%9F%E5%A4%B1%E5%80%BC"><span class="toc-number">3.1.</span> <span class="toc-text">显示损失值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D"><span class="toc-number">3.2.</span> <span class="toc-text">随机梯度下降</span></a></li></ol></li></ol>
+                </div>
+            
+            <hr />
+            <div itemprop="articleBody"><h1 id="监督式机器学习的基本术语"><a href="#监督式机器学习的基本术语" class="headerlink" title="监督式机器学习的基本术语"></a>监督式机器学习的基本术语<span id="more"></span></h1><h2 id="标签和特征"><a href="#标签和特征" class="headerlink" title="标签和特征"></a>标签和特征</h2><p>标签是我们要预测的真实事物：y  线性回归中的y变量<br>特征是指用于描述数据的输入变量：xi  线性回归中的 {x1 ,x2 ,…,xn }变量</p>
+<h2 id="样本和模型"><a href="#样本和模型" class="headerlink" title="样本和模型"></a>样本和模型</h2><p>样本是指数据的特定实例：x<br>有标签样本具有{特征，标签}： {x ，y}   //用于训练模型<br>无标签样本具有{特征，？}： {x ，?}     //用于对新数据做出预测<br>模型可将样本映射到预测标签：y’        //由模型的内部参数定义，这些内部参数值是通过学习得到的</p>
+<h2 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h2><p>训练模型表示通过有标签样本来学习（确定）所有权重和偏差的理想值</p>
+<p>在监督式学习中，机器学习算法通过以下方式构建模型：<br>检查多个样本并尝试找出可最大限度地减少损失的模型<br>这一过程称为经验风险最小化</p>
+<h2 id="损失"><a href="#损失" class="headerlink" title="损失"></a>损失</h2><p>损失是对糟糕预测的惩罚： 损失是一个数值，表示对于单个样本而言模型预测的准确程度<br>如果模型的预测完全准确，则损失为零，否则损失会较大<br>训练模型的目标是从所有样本中找到一组平均损失“较小”的权重和偏差</p>
+<h2 id="定义损失函数"><a href="#定义损失函数" class="headerlink" title="定义损失函数"></a>定义损失函数</h2><p>L1损失 ：基于模型预测的值与标签的实际值之差的绝对值</p>
+<p>平方损失 ：一种常见的损失函数，又称为 L2损失<br>均方误差 ( MSE) 指的是每个样本的平均平方损失</p>
+<p><img src="/2022/01/10/machine-learning-3/pic1.png" alt="MSE"></p>
+<h2 id="训练模型的迭代方法"><a href="#训练模型的迭代方法" class="headerlink" title="训练模型的迭代方法"></a>训练模型的迭代方法</h2><p><img src="/2022/01/10/machine-learning-3/pic2.png" alt="method"></p>
+<h2 id="模型训练要点"><a href="#模型训练要点" class="headerlink" title="模型训练要点"></a>模型训练要点</h2><p>首先对权重w和偏差b进行初始猜测，然后反复调整这些猜测，直到获得损失可能最低的权重和偏差为止</p>
+<h2 id="收敛"><a href="#收敛" class="headerlink" title="收敛"></a>收敛</h2><p>在学习优化过程中，机器学习系统将根据所有标签去重新评估所有特征，为损失函数生成一个新值，而该值又产生新的参数值。<br>通常，您可以不断迭代，直到总体损失不再变化或至少变化极其缓慢为止。这时候，我们可以说该模型已收敛</p>
+<h2 id="梯度下降法"><a href="#梯度下降法" class="headerlink" title="梯度下降法"></a>梯度下降法</h2><p>梯度：一个向量（矢量），表示某一函数在该点处的方向导数沿着该方向取得最大值，即函数在该点处沿着该方向（此梯度的方向）变化最快，变化率最大</p>
+<p>梯度是矢量:具有方向和大小</p>
+<h2 id="学习率"><a href="#学习率" class="headerlink" title="学习率"></a>学习率</h2><p>用梯度乘以一个称为学习速率（有时也称为 步长）的标量，以确定下一个点的位置</p>
+<h2 id="超参数"><a href="#超参数" class="headerlink" title="超参数"></a>超参数</h2><p>在机器学习中，超参数是在开始学习过程 之前设置值的参数，而不是通过训练得到的参数数据</p>
+<p>通常情况下，需要对超参数进行优化，选择一组好的超参数，可以提高学习的性能和效果</p>
+<p>超参数是编程人员在机器学习算法中用于调整的旋钮</p>
+<p>典型超参数：学习率、神经网络的隐含层数量……</p>
+<hr>
+<h1 id="线性回归问题TensorFlow实战"><a href="#线性回归问题TensorFlow实战" class="headerlink" title="线性回归问题TensorFlow实战"></a>线性回归问题TensorFlow实战</h1><h2 id="核心步骤"><a href="#核心步骤" class="headerlink" title="核心步骤"></a>核心步骤</h2><p>（1）准备数据<br>（2）构建模型<br>（3）训练模型<br>（4）进行预测</p>
+<h2 id="人工数据集生成"><a href="#人工数据集生成" class="headerlink" title="人工数据集生成"></a>人工数据集生成</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">%matplotlib inline</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line">np.random.seed(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">x_data = np.linspace(-<span class="number">1</span>,<span class="number">1</span>,<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line">y_data = <span class="number">2</span> * x_data + <span class="number">1.0</span> + np.random.randn(*x_data.shape) * <span class="number">0.4</span></span><br><span class="line"></span><br><span class="line">plt.scatter(x_data,y_data)</span><br><span class="line">plt.plot(x_data,<span class="number">2</span> * x_data +<span class="number">1.0</span>,color = <span class="string">&#x27;red&#x27;</span>,linewidth=<span class="number">3</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>（可以使用tab键进行代码补齐）</p>
+<h2 id="构建模型"><a href="#构建模型" class="headerlink" title="构建模型"></a>构建模型</h2><p>定位训练数据的占位符，x是特征值，y是标签值<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = tf.placeholder(<span class="string">&quot;float&quot;</span>,name = <span class="string">&quot;x&quot;</span>)</span><br><span class="line">y = tf.placeholder(<span class="string">&quot;float&quot;</span>,name = <span class="string">&quot;y&quot;</span>)</span><br></pre></td></tr></table></figure></p>
+<h2 id="定义模型函数"><a href="#定义模型函数" class="headerlink" title="定义模型函数"></a>定义模型函数</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">model</span>(<span class="params">x,w,b</span>):</span><br><span class="line">    <span class="keyword">return</span> tf.multiply(x,w) + b		</span><br></pre></td></tr></table></figure>
+<h2 id="定义模型结构"><a href="#定义模型结构" class="headerlink" title="定义模型结构"></a>定义模型结构</h2><h2 id="创建变量"><a href="#创建变量" class="headerlink" title="创建变量"></a>创建变量</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">w = tf.Variable(<span class="number">1.0</span>,name = <span class="string">&quot;w0&quot;</span>)</span><br><span class="line">b = tf.Variable(<span class="number">0.0</span>,name = <span class="string">&quot;b0&quot;</span>)</span><br><span class="line">pred = model(x,w,b)		</span><br></pre></td></tr></table></figure>
+<h2 id="训练模型"><a href="#训练模型" class="headerlink" title="训练模型"></a>训练模型</h2><p>设置训练参数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">train_epochs = <span class="number">10</span></span><br><span class="line">learning_rate = <span class="number">0.05</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="定义损失函数-1"><a href="#定义损失函数-1" class="headerlink" title="定义损失函数"></a>定义损失函数</h2><p>• 损失函数用于描述预测值与真实值之间的误差，从而指导模型收敛方向<br>• 常见损失函数：均方差（Mean Square Error, MSE）和交叉熵（cross-entropy）<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">loss_function = tf.reduce_mean(tf.square(y-pred))</span><br></pre></td></tr></table></figure></p>
+<h2 id="定义优化器"><a href="#定义优化器" class="headerlink" title="定义优化器"></a>定义优化器</h2><p>定义优化器Optimizer，初始化一个GradientDescentOptimizer<br>设置学习率和优化目标：最小化损失<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(loss_function)</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<h2 id="创建会话"><a href="#创建会话" class="headerlink" title="创建会话"></a>创建会话</h2><p>声明会话<br>变量初始化</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sess = tf.Session()</span><br><span class="line">init = tf.global_variables_initializer()</span><br><span class="line">sess.run(init)</span><br></pre></td></tr></table></figure>
+<h2 id="迭代训练"><a href="#迭代训练" class="headerlink" title="迭代训练"></a>迭代训练</h2><p>模型训练阶段，设置迭代轮次，每次通过将样本逐个输入模型，进行梯度下降优化操作每轮迭代后，绘制出模型曲线<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(train_epochs):</span><br><span class="line">    <span class="keyword">for</span> xs,ys <span class="keyword">in</span> <span class="built_in">zip</span>(x_data,y_data):</span><br><span class="line">        _,loss = sess.run([optimizer,loss_function],feed_dict=&#123;x:xs,y:ys&#125;)</span><br><span class="line">    b0temp = b.<span class="built_in">eval</span>(session = sess)</span><br><span class="line">    w0temp = w.<span class="built_in">eval</span>(session=sess)</span><br><span class="line">    plt.plot(x_data,w0temp * x_data + b0temp)</span><br></pre></td></tr></table></figure></p>
+<h2 id="可视化"><a href="#可视化" class="headerlink" title="可视化"></a>可视化</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">plt.scatter(x_data,y_data,label=<span class="string">&#x27;Original data&#x27;</span>)</span><br><span class="line">plt.plot(x_data,x_data * sess.run(w) + sess.run(b),\</span><br><span class="line">        label=<span class="string">&#x27;Fitted line&#x27;</span>,color = <span class="string">&#x27;r&#x27;</span>,linewidth=<span class="number">3</span>)</span><br><span class="line">plt.legend(loc=<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="最终可视化结果如下："><a href="#最终可视化结果如下：" class="headerlink" title="最终可视化结果如下："></a>最终可视化结果如下：</h2><p><img src="/2022/01/10/machine-learning-3/pic3.png" alt="result"></p>
+<p>利用模型 进行预测<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">x_test = <span class="number">3.21</span></span><br><span class="line"></span><br><span class="line">predict = sess.run(pred, feed_dict=&#123;x: x_test&#125;)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;预测值：%f&quot;</span>%predict)</span><br><span class="line"></span><br><span class="line">target = <span class="number">2</span> * x_test +<span class="number">1.0</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;目标值：%f&quot;</span>%target)</span><br></pre></td></tr></table></figure><br>结果显示，模型预测结果极佳</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>通过一个简单的例子介绍了利用Tensorflow实现机器学习的思路，重点讲解了下述步骤：<br>（1）生成人工数据集及其可视化<br>（2）构建线性模型<br>（3）定义损失函数<br>（4）定义优化器、最小化损失函数<br>（5）训练结果的可视化<br>（6）利用学习到的模型进行预测</p>
+<h2 id="完整程序附下："><a href="#完整程序附下：" class="headerlink" title="完整程序附下："></a>完整程序附下：</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">%matplotlib inline</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line">np.random.seed(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">x_data = np.linspace(-<span class="number">1</span>,<span class="number">1</span>,<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line">y_data = <span class="number">2</span> * x_data + <span class="number">1.0</span> + np.random.randn(*x_data.shape) * <span class="number">0.4</span></span><br><span class="line"></span><br><span class="line">x = tf.placeholder(<span class="string">&quot;float&quot;</span>,name = <span class="string">&quot;x&quot;</span>)</span><br><span class="line">y = tf.placeholder(<span class="string">&quot;float&quot;</span>,name = <span class="string">&quot;y&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">model</span>(<span class="params">x,w,b</span>):</span><br><span class="line">    <span class="keyword">return</span> tf.multiply(x,w) + b</span><br><span class="line"></span><br><span class="line">w = tf.Variable(<span class="number">1.0</span>,name = <span class="string">&quot;w0&quot;</span>)</span><br><span class="line">b = tf.Variable(<span class="number">0.0</span>,name = <span class="string">&quot;b0&quot;</span>)</span><br><span class="line"></span><br><span class="line">pred = model(x,w,b)</span><br><span class="line"></span><br><span class="line">train_epochs = <span class="number">10</span></span><br><span class="line">learning_rate = <span class="number">0.05</span></span><br><span class="line"></span><br><span class="line">loss_function = tf.reduce_mean(tf.square(y-pred))</span><br><span class="line"></span><br><span class="line">optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(loss_function)</span><br><span class="line"></span><br><span class="line">sess = tf.Session()</span><br><span class="line">init = tf.global_variables_initializer()</span><br><span class="line">sess.run(init)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(train_epochs):</span><br><span class="line">    <span class="keyword">for</span> xs,ys <span class="keyword">in</span> <span class="built_in">zip</span>(x_data,y_data):</span><br><span class="line">        _,loss = sess.run([optimizer,loss_function],feed_dict=&#123;x:xs,y:ys&#125;)</span><br><span class="line">    b0temp = b.<span class="built_in">eval</span>(session = sess)</span><br><span class="line">    w0temp = w.<span class="built_in">eval</span>(session=sess)</span><br><span class="line"><span class="comment">#    plt.plot(x_data,w0temp * x_data + b0temp)</span></span><br><span class="line">    </span><br><span class="line">plt.scatter(x_data,y_data,label=<span class="string">&#x27;Original data&#x27;</span>)</span><br><span class="line">plt.plot(x_data,x_data * sess.run(w) + sess.run(b),\</span><br><span class="line">        label=<span class="string">&#x27;Fitted line&#x27;</span>,color = <span class="string">&#x27;r&#x27;</span>,linewidth=<span class="number">3</span>)</span><br><span class="line">plt.legend(loc=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">x_test = <span class="number">3.21</span></span><br><span class="line"></span><br><span class="line">predict = sess.run(pred, feed_dict=&#123;x: x_test&#125;)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;预测值：%f&quot;</span>%predict)</span><br><span class="line"></span><br><span class="line">target = <span class="number">2</span> * x_test +<span class="number">1.0</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;目标值：%f&quot;</span>%target)</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h1><h2 id="显示损失值"><a href="#显示损失值" class="headerlink" title="显示损失值"></a>显示损失值</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">step = <span class="number">0</span></span><br><span class="line">loss_list = []</span><br><span class="line">display_step = <span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(train_epochs):</span><br><span class="line">    <span class="keyword">for</span> xs,ys <span class="keyword">in</span> <span class="built_in">zip</span>(x_data,y_data):</span><br><span class="line">        _,loss = sess.run([optimizer,loss_function],feed_dict=&#123;x:xs,y:ys&#125;)</span><br><span class="line">    </span><br><span class="line">        loss_list.append(loss)</span><br><span class="line">        step=step+<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> step % display_step == <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;Train Epoch:&quot;</span>, <span class="string">&#x27;%02d&#x27;</span>%(epoch+<span class="number">1</span>),<span class="string">&quot;Step:%03d&quot;</span>%(step),<span class="string">&quot;loss=&quot;</span>,\</span><br><span class="line">                 <span class="string">&quot;&#123;:.9f&#125;&quot;</span>,<span class="built_in">format</span>(loss))</span><br><span class="line">    b0temp = b.<span class="built_in">eval</span>(session = sess)</span><br><span class="line">    w0temp = w.<span class="built_in">eval</span>(session=sess)</span><br><span class="line">    plt.plot(x_data,w0temp * x_data + b0temp)</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+<h2 id="随机梯度下降"><a href="#随机梯度下降" class="headerlink" title="随机梯度下降"></a>随机梯度下降</h2><p>在梯度下降法中， 批量指的是用于在单次迭代中计算梯度的样本总数</p>
+<p>假定批量是指整个数据集，数据集通常包含很大样本（数万甚至数千亿），此外， 数据集通常包含多个特征。因此，一个批量可能相当巨大。如果是超大批量，则单次迭代就可能要花费很长时间进行计算</p>
+<p>随机梯度下降法 ( SGD) 每次迭代只使用一个样本（批量大小为 1），如果进行足够的迭代，SGD 也可以发挥作用。“随机”这一术语表示构成各个批量的一个样本都是随机选择的</p>
+<p>小批量随机梯度下降法（量 小批量 SGD）是介于全批量迭代与 SGD 之间的折衷方案。小批量通常包含 10-1000 个随机选择的样本。小批量 SGD 可以减少 SGD 中的杂乱样本数量，但仍然比全批量更高效</p>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">This work is licensed under <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</a></h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> Share</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://sunxinbin.cn/2022/01/10/machine-learning-3/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://sunxinbin.cn/2022/01/10/machine-learning-3/";
+            const title         = "「单变量线性回归」";
+            const excerpt       = `监督式机器学习的基本术语`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/DL/" rel="tag">DL</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2023-03-30T11:27:05.405Z" itemprop="dateModified">Last modify：2023-03-30</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" TensorFlow编程基础" href="/2022/01/09/machine-learning-2/">&lt; older</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" 多元线性回归：波士顿房价预测问题" href="/2022/01/11/machine-learning-4/">Newer &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center">Computer Science & Technology</p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                Post
+            </span>
+            <span class="count">
+                47
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                Category
+            </span>
+            <span class="count">
+                10
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                Tag
+            </span>
+            <span class="count">
+                20
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix toc-div-class" >
+    <div class="photo-background"></div>
+    <h4 class="widget-title no-after">
+        <i class="fa fa-compass"></i>
+        Toc
+        <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
+    </h4>
+    <div class="textwidget">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%91%E7%9D%A3%E5%BC%8F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9C%AF%E8%AF%AD"><span class="toc-text">监督式机器学习的基本术语</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%87%E7%AD%BE%E5%92%8C%E7%89%B9%E5%BE%81"><span class="toc-text">标签和特征</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E6%9C%AC%E5%92%8C%E6%A8%A1%E5%9E%8B"><span class="toc-text">样本和模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83"><span class="toc-text">训练</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8D%9F%E5%A4%B1"><span class="toc-text">损失</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="toc-text">定义损失函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E7%9A%84%E8%BF%AD%E4%BB%A3%E6%96%B9%E6%B3%95"><span class="toc-text">训练模型的迭代方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E8%A6%81%E7%82%B9"><span class="toc-text">模型训练要点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%B6%E6%95%9B"><span class="toc-text">收敛</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95"><span class="toc-text">梯度下降法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E7%8E%87"><span class="toc-text">学习率</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B6%85%E5%8F%82%E6%95%B0"><span class="toc-text">超参数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E9%97%AE%E9%A2%98TensorFlow%E5%AE%9E%E6%88%98"><span class="toc-text">线性回归问题TensorFlow实战</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E6%AD%A5%E9%AA%A4"><span class="toc-text">核心步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%BA%E5%B7%A5%E6%95%B0%E6%8D%AE%E9%9B%86%E7%94%9F%E6%88%90"><span class="toc-text">人工数据集生成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E6%A8%A1%E5%9E%8B"><span class="toc-text">构建模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B%E5%87%BD%E6%95%B0"><span class="toc-text">定义模型函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84"><span class="toc-text">定义模型结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%8F%98%E9%87%8F"><span class="toc-text">创建变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B"><span class="toc-text">训练模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-1"><span class="toc-text">定义损失函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%BC%98%E5%8C%96%E5%99%A8"><span class="toc-text">定义优化器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%BC%9A%E8%AF%9D"><span class="toc-text">创建会话</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E8%AE%AD%E7%BB%83"><span class="toc-text">迭代训练</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-text">可视化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E7%BB%88%E5%8F%AF%E8%A7%86%E5%8C%96%E7%BB%93%E6%9E%9C%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-text">最终可视化结果如下：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-text">小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E7%A8%8B%E5%BA%8F%E9%99%84%E4%B8%8B%EF%BC%9A"><span class="toc-text">完整程序附下：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%9B%E9%98%B6"><span class="toc-text">进阶</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E6%8D%9F%E5%A4%B1%E5%80%BC"><span class="toc-text">显示损失值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D"><span class="toc-text">随机梯度下降</span></a></li></ol></li></ol>
+    </div>
+</aside>
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>Categories List</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Craniofacial-Registration/">Craniofacial Registration</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DL/">DL</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Feature-Point-Punctuation-Algorithm/">Feature Point Punctuation Algorithm</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Literature/">Literature</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ML/">ML</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematical-Modeling/">Mathematical Modeling</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Philosophy/">Philosophy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Undergraduate-Courses/">Undergraduate Courses</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">2</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>Tagcloud</h4>
+      <div class="tag-clouds">
+        <a href="/tags/A-single-spark-can-start-a-prairie-fire/" style="font-size: 0.6em;">A single spark can start a prairie fire</a> <a href="/tags/Algorithm/" style="font-size: 0.6em;">Algorithm</a> <a href="/tags/Anecdote/" style="font-size: 0.6em;">Anecdote</a> <a href="/tags/CV/" style="font-size: 0.6em;">CV</a> <a href="/tags/Craniofacial-Registration/" style="font-size: 0.6em;">Craniofacial Registration</a> <a href="/tags/DL/" style="font-size: 0.8em;">DL</a> <a href="/tags/Emotion/" style="font-size: 0.7em;">Emotion</a> <a href="/tags/Feature-Point-Punctuation-Algorithm/" style="font-size: 0.75em;">Feature Point Punctuation Algorithm</a> <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/Latex/" style="font-size: 0.6em;">Latex</a> <a href="/tags/Literature/" style="font-size: 0.75em;">Literature</a> <a href="/tags/ML/" style="font-size: 0.7em;">ML</a> <a href="/tags/Mathematical-Modeling/" style="font-size: 0.65em;">Mathematical Modeling</a> <a href="/tags/OpenAI/" style="font-size: 0.6em;">OpenAI</a> <a href="/tags/Philosophy/" style="font-size: 0.6em;">Philosophy</a> <a href="/tags/Python/" style="font-size: 0.6em;">Python</a> <a href="/tags/Undergraduate-Courses/" style="font-size: 0.75em;">Undergraduate Courses</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>Recent posts</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2023/04/05/python-to-exe/"><i class="fa  fa-book"></i> Python如何打包为exe文件</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/30/Dynamic-Programming/"><i class="fa  fa-book"></i> Dynamic Programming</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/05/Common-instruction-set/"><i class="fa  fa-book"></i> NewBing&ChatGPT</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/01/25/Big-data-analysis-method/"><i class="fa  fa-book"></i> Big data analysis method</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/01/16/artificial-intelligence/"><i class="fa  fa-book"></i> Artificial Intelligence</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        <li><a href="mailto:2332431354@qq.com"><i class="fa fa-envelope"></i></a></li>
+                        
+                        
+                        
+                        
+                        <li><a target="_blank" rel="me" href="https://nya.one/@SunXinbin"><i class="fa fa fa-share-alt-square"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/xinbinsun"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2023 Neo Sun Copyright.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by 孙新斌.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            <li><a href="https://beian.miit.gov.cn" rel="external nofollow" target="_blank">鲁ICP备23010101号</a></li>
+                            <li><a href="http://www.beian.gov.cn" rel="external nofollow" target="_blank"><img src="/images/psr.webp" width="12" height="12" loading="lazy" decoding="auto" />鲁公网安备371402000348</a></li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>

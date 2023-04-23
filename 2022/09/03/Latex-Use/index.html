@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="Chinese/English">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/avatar.webp">
+  
+  <title>Latex学习 | Neo Sun</title>
+  <meta name="author" content="孙新斌" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="Latex" />
+  
+  <meta name="description" content="一、Markdown与Latex的区别">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Latex学习">
+<meta property="og:url" content="http://sunxinbin.cn/2022/09/03/Latex-Use/index.html">
+<meta property="og:site_name" content="Neo Sun">
+<meta property="og:description" content="一、Markdown与Latex的区别">
+<meta property="og:locale">
+<meta property="og:image" content="http://sunxinbin.cn/images/avatar.webp">
+<meta property="article:published_time" content="2022-09-03T15:00:00.000Z">
+<meta property="article:modified_time" content="2022-12-12T08:42:57.205Z">
+<meta property="article:author" content="孙新斌">
+<meta property="article:tag" content="Latex">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://sunxinbin.cn/images/avatar.webp">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>Archives</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>Search Engine</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>About</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            <li><a href="https://sunxinbin.cn">Blog</a></li>
+                                                        
+                                                    
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://github.com/xinbinsun">Github</a></li>
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Neo Sun</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Neo Sun</h2> <br />
+                        <span>What&#39;s past is prologue</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://sunxinbin.cn/2022/09/03/Latex-Use/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">Latex学习</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2022-09-03T15:00:00.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2022-09-03</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> Author <span itemprop="name">孙新斌</span>
+                </li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~12.66K
+                    
+                    words
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>This article has been edited <time datetime="1670834577205"></time> ago, and some of its content might need to be updated.</p></div>
+            </div>
+            
+            
+            
+            <hr />
+            <div itemprop="articleBody"><h1 id="一、Markdown与Latex的区别"><a href="#一、Markdown与Latex的区别" class="headerlink" title="一、Markdown与Latex的区别"></a>一、Markdown与Latex的区别</h1><h1 id><a href="#" class="headerlink" title></a><span id="more"></span></h1><p><strong>latex是纯学术风格,写paper写书用；markdown是程序员风格,写笔记贴代码片段用 简单说,latex适合长篇.精致,比如数学公式.图片位置调整.表格样式调整.而markdown就是粗线条,简易编辑。</strong>本篇文章就是以markdown语法进行编写。</p>
+<p><a target="_blank" rel="noopener" href="https://markdown.com.cn/cheat-sheet.html">markdown语法的官方教程</a></p>
+<h1 id="二、Latex的背景"><a href="#二、Latex的背景" class="headerlink" title="二、Latex的背景"></a>二、Latex的背景</h1><p>LaTeX（LATEX，音译“拉泰赫”）是一种基于ΤΕΧ的排版系统，由美国计算机学家莱斯利·兰伯特（Leslie Lamport）在20世纪80年代初期开发，利用这种格式，即使使用者没有排版和程序设计的知识也可以充分发挥由<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/TeX/3794463?fromModule=lemma_inlink">TeX</a>所提供的强大功能，能在几天、甚至几小时内生成很多具有书籍质量的印刷品。对于生成复杂表格和数学公式，这一点表现得尤为突出。因此它非常适用于生成高印刷质量的科技和数学类文档。这个系统同样适用于生成从简单的信件到完整书籍的所有其他种类的文档。</p>
+<p>Latex新手指南：<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/info/lshort/chinese/lshort-zh-cn.pdf">The Short Introduction to LaTeX2e (Chinese Simplified)</a></p>
+<h1 id="三、Latex语法基础：命令与环境"><a href="#三、Latex语法基础：命令与环境" class="headerlink" title="三、Latex语法基础：命令与环境"></a>三、Latex语法基础：命令与环境</h1><h2 id="1-命令与环境"><a href="#1-命令与环境" class="headerlink" title="1.命令与环境"></a>1.命令与环境</h2><h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a><strong>命令</strong></h3><p><strong>什么是命令</strong></p>
+<p>不同于其他编程语言(C/C++, Python等)会使用关键词,函数和类来实现程序,Latex语法中大多以命令的形式存在<br>而每一个命令都会有具体的功能,如标题制作,目录制作,或者是设置文档的编码格式等等</p>
+<p><strong>命令的格式</strong><br>Latex中的命令具体有以下三种形式:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">无参数</span><br><span class="line"><span class="keyword">\commad</span></span><br><span class="line"><span class="keyword">\maketitle</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">有n个必须参数</span><br><span class="line"><span class="keyword">\command</span>&#123;参数1&#125;&#123;参数2&#125;...&#123;参数n&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">有n个可选参数</span><br><span class="line"><span class="keyword">\command</span>[可选参数1]...[可选参数n]</span><br></pre></td></tr></table></figure>
+<p><strong>Latex语法举例</strong></p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%===============文章体裁:论文================</span></span><br><span class="line"><span class="keyword">\documentclass</span>[UTF8]&#123;article&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">%=================导言部分===================</span></span><br><span class="line"><span class="comment">%导入包</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;ctex&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;authblk&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">%标题制作</span></span><br><span class="line"><span class="keyword">\title</span>&#123;论文示例&#125;</span><br><span class="line"><span class="keyword">\author</span>&#123;孙新斌,<span class="keyword">\ </span>Jack<span class="keyword">\ </span>Wang&#125;</span><br><span class="line"><span class="keyword">\affil</span>&#123;College of Computer Science <span class="keyword">\&amp;</span> Technology, QDU&#125;</span><br><span class="line"><span class="keyword">\date</span>&#123;<span class="keyword">\today</span>&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">%=================正式开始书写===============</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">\maketitle</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">\section</span>&#123;摘要&#125;</span><br><span class="line">	这是一个LaTex 论文示例,由Texstudio编写。</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2022/09/03/Latex-Use/pic1.png" alt="示例如图所示"></p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>[]&#123;&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;&#125;</span><br><span class="line"><span class="keyword">\title</span>&#123;&#125;</span><br><span class="line"><span class="keyword">\author</span>&#123;&#125;</span><br><span class="line"><span class="keyword">\affil</span>&#123;&#125;</span><br><span class="line"><span class="keyword">\date</span>&#123;&#125;</span><br><span class="line"><span class="keyword">\today</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;&#125;</span><br><span class="line"><span class="keyword">\maketitle</span></span><br><span class="line"><span class="keyword">\section</span>&#123;&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;&#125;</span><br><span class="line"><span class="comment">%常用命令</span></span><br></pre></td></tr></table></figure>
+<h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><p><strong>什么是环境</strong><br>我们编写的文档内容为了避免代码和我们书写的正文内容混杂,我们从夹杂代码和正文内容的纯文本的连续上下文中划分出部分空间,这部分空间将作为独立的整体,我们可以将正文内容写在这些空出来的部分中</p>
+<p>对于这些空间,我们可以提前使用一些命令,设定好这些空间的环境,即设定好这些空间的环境,即编译好之后最终的展示格式,因此环境其实就是我们为特定部分的正文设定的格式,这个特定部分可以是后面的全文,也可以是正文的部分,例如一段话,一张图片等等</p>
+<p><strong>例如下面的例子(\\\表示换行)</strong></p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%===============文章体裁:论文================</span></span><br><span class="line"><span class="keyword">\documentclass</span>[UTF8]&#123;article&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;ctex&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	这是一个有article,ctex,document环境的语句<span class="keyword">\\</span></span><br><span class="line">	<span class="comment">%下面的this具有article,ctex,documnet和textbf环境</span></span><br><span class="line">	&#123;<span class="keyword">\textbf</span> &#123;this&#125;&#125;<span class="keyword">\\</span></span><br><span class="line">	这句话也只有documentclass和document环境,没有this环境</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<p>正如代码中提到的,我们的命令其实可以分为两种,第一种是产生效果的命令,例如制作标题的\maketitle,另外一种就是对后文添加环境的命令</p>
+<h4 id="环境的作用和作用域"><a href="#环境的作用和作用域" class="headerlink" title="环境的作用和作用域"></a>环境的作用和作用域</h4><p>就像诸多编程语言中变量具有作用域,我们的环境其实也具有作用域,具体来说就是环境可以影响的正文的范围</p>
+<p>有的环境的作用域是全文,例如上面例子中一开始的<strong>\documentclass[UTF8]{article}</strong>就规定了文章的体裁是论文,使用的编码方式是UTF-8,其作用域就是全文.</p>
+<p>接下来的<strong>\usepackage{ctex}</strong>指明我们将使用<strong>ctex</strong>这个包/宏包. 包/宏包类似于编程语言的库,库中有很多写好的函数给我们使用,宏包中也有很多能够产生各种效果的命令.这里使用的<strong>ctex</strong>宏包的一个功能就是提供中文的显示和排版.所以\usepackage{ctex}这个命令的作用域也是全文.</p>
+<p><strong>\begin</strong>和<strong>\end</strong>命令用于开始和结束特定的环境,我们这里使用的<strong>\begin{document}和\end{document}</strong>就是开始和结束名为document的环境,两个命令之间的内容都将受到环境document的作用. document的作用就是展示文档, 在document环境的作用域范围内的内容在编译后都将会展示出来.<strong>在document环境内的内容才会被展示, 而在document环境外的内容不会被展示</strong></p>
+<h2 id="2-隔离上下文"><a href="#2-隔离上下文" class="headerlink" title="2.隔离上下文"></a>2.隔离上下文</h2><p>接下来我们继续向下看刚才的例子,我们用上面的例子引出 隔离上下文</p>
+<p>我们编写了这样一句话<code>&#123;\textbf &#123;this&#125;&#125;</code>,命令\textbf的作用是加粗处于其作用域的文字.</p>
+<p>我们首先看下<strong>\textbf</strong>的作用域</p>
+<p><img src="/2022/09/03/Latex-Use/pic2.png" alt="示例如图所示"></p>
+<p>我们能够发现第一句仅加粗了t,而第二句加粗了整句话,而从<code>\textbf</code>这句话本身来看,其作用域就是其后紧接着的一个字符(注意由于其只能作用一个字符,因此如果我们加粗的第一个字符是中文的话就会报错,因此中文汉字作为第一个字符就会报错)</p>
+<p>在正式编写的时候,我们通常将不同的段落放在不同的<code>&#123; &#125;</code>中来管理环境,例如<strong>(空行表示另起一段)</strong></p>
+<h1 id="四、Latex语法基础：Latex文件格式简介"><a href="#四、Latex语法基础：Latex文件格式简介" class="headerlink" title="四、Latex语法基础：Latex文件格式简介"></a>四、Latex语法基础：Latex文件格式简介</h1><h2 id="Latex基本文件的基本结构"><a href="#Latex基本文件的基本结构" class="headerlink" title="Latex基本文件的基本结构"></a>Latex基本文件的基本结构</h2><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>[12pt, letterpaper]&#123;article&#125;<span class="comment">%用于设置LaTex文件所生成文档的格式</span></span><br><span class="line"><span class="comment">%正文字体大小为12pt, 页面规格是A4, 使用article文档格式</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\usepackage</span>[utf8]&#123;inputenc&#125;<span class="comment">%设置在编译LaTex文件时要导入的扩展包</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;comment&#125; </span><br><span class="line"></span><br><span class="line"><span class="comment">% Title</span></span><br><span class="line"><span class="keyword">\title</span>&#123;Document Title&#125;</span><br><span class="line"><span class="keyword">\author</span>&#123;Nobody <span class="keyword">\thanks</span>&#123;Somebody&#125;&#125;</span><br><span class="line"><span class="keyword">\date</span>&#123;Some Date&#125;</span><br><span class="line"><span class="comment">%==================导言=======================</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;titlepage&#125;</span><br><span class="line"><span class="keyword">\maketitle</span><span class="comment">%生成封面</span></span><br><span class="line"><span class="keyword">\end</span>&#123;titlepage&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\tableofcontents</span><span class="comment">%生成目录</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;abstract&#125;</span><br><span class="line">This is a simple paragraph at the beginning of the </span><br><span class="line">document. A brief introduction about the main subject.</span><br><span class="line"><span class="keyword">\end</span>&#123;abstract&#125;</span><br><span class="line"></span><br><span class="line">First document. This is a simple example, with no </span><br><span class="line">extra parameters or packages included.</span><br><span class="line"> </span><br><span class="line"><span class="comment">% Comments </span></span><br><span class="line"><span class="keyword">\begin</span>&#123;comment&#125;</span><br><span class="line">This text won&#x27;t show up in the compiled pdf</span><br><span class="line">this is just a multi-line comment. Useful</span><br><span class="line">to, for instance, comment out slow-rendering</span><br><span class="line">while working on the draft.</span><br><span class="line"><span class="keyword">\end</span>&#123;comment&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125; </span><br></pre></td></tr></table></figure>
+<blockquote>
+<p># $ % ^ &amp; _ { } \   ——这些字符(reserved characters)在Latex中有特殊的意义，要想在生成的文档中显示这些字符，Latex文档中这些字符前加反斜杠”\\’’</p>
+<p>$\backslash$ 输出反斜杠(因为两个反斜杠”\\”在Latex中是换行命令)</p>
+<p>~波浪线(tidle)在LaTeX中是插入空格命令，可用数学公式环境的$ \sim $向TeX文档中插入波浪线.</p>
+</blockquote>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\pagenumbering</span>&#123;arabic&#125;<span class="comment">%设置页码数字类型</span></span><br><span class="line"><span class="keyword">\setcounter</span>&#123;page&#125;&#123;page number&#125;<span class="comment">%设置页码</span></span><br><span class="line"><span class="keyword">\thispagestyle</span>&#123;empty&#125;<span class="comment">%当前页不标页码</span></span><br></pre></td></tr></table></figure>
+<p>eg.如果在封面不标记页码，目录页使用小写罗马数字标记页码，正文部分使用阿拉伯数字标记页码</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">%% Making title pate</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;titlepage&#125;</span><br><span class="line"><span class="keyword">\maketitle</span></span><br><span class="line"><span class="keyword">\thispagestyle</span>&#123;empty&#125; </span><br><span class="line"><span class="keyword">\end</span>&#123;titlepage&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">%% Contents</span></span><br><span class="line"><span class="keyword">\pagenumbering</span>&#123;roman&#125;</span><br><span class="line"><span class="keyword">\tableofcontents</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\newpage</span></span><br><span class="line"><span class="keyword">\pagenumbering</span>&#123;arabic&#125;</span><br><span class="line"><span class="keyword">\setcounter</span>&#123;page&#125;&#123;1&#125; </span><br><span class="line">======正文======</span><br></pre></td></tr></table></figure>
+<h2 id="版面设置"><a href="#版面设置" class="headerlink" title="版面设置"></a>版面设置</h2><h3 id="段落行间距"><a href="#段落行间距" class="headerlink" title="段落行间距"></a>段落行间距</h3><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>[UTF8]&#123;article&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;setspace&#125;<span class="comment">%使用该扩展包</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">%%双倍行间距 </span></span><br><span class="line"><span class="keyword">\begin</span>&#123;spacing&#125;&#123;2.0&#125;</span><br><span class="line">段落内容。</span><br><span class="line"><span class="keyword">\end</span>&#123;spacing&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">%%单倍行间距 </span></span><br><span class="line"><span class="keyword">\begin</span>&#123;spacing&#125;&#123;1.0&#125;</span><br><span class="line">段落内容。</span><br><span class="line"><span class="keyword">\end</span>&#123;spacing&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="段落间空白"><a href="#段落间空白" class="headerlink" title="段落间空白"></a>段落间空白</h3><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\hspace</span>&#123;1cm&#125;</span><br><span class="line"><span class="keyword">\vspace</span>&#123;5pt&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="居中"><a href="#居中" class="headerlink" title="居中"></a>居中</h3><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;center&#125; </span><br><span class="line">...</span><br><span class="line"><span class="keyword">\end</span>&#123;center&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="左、右对齐"><a href="#左、右对齐" class="headerlink" title="左、右对齐"></a>左、右对齐</h3><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;flushleft&#125;</span><br><span class="line">...</span><br><span class="line"><span class="keyword">\end</span>&#123;flushleft&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;flushright&#125;</span><br><span class="line">...</span><br><span class="line"><span class="keyword">\end</span>&#123;flushright&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>样例</strong></p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;center&#125; </span><br><span class="line">登鹳雀楼 <span class="keyword">\\</span></span><br><span class="line">~~~~~~~~ &#123;<span class="keyword">\footnotesize</span> 王之涣&#125; <span class="keyword">\\</span></span><br><span class="line"><span class="keyword">\hfill</span> <span class="keyword">\\</span> </span><br><span class="line">白日依山尽 <span class="keyword">\\</span></span><br><span class="line">黄河入海流 <span class="keyword">\\</span> </span><br><span class="line">欲穷千里目 <span class="keyword">\\</span></span><br><span class="line">更上一层楼 <span class="keyword">\\</span></span><br><span class="line"><span class="keyword">\end</span>&#123;center&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;flushleft&#125;</span><br><span class="line">这一行在左侧 <span class="keyword">\\</span> </span><br><span class="line">这一行也要在左侧 <span class="keyword">\\</span></span><br><span class="line"><span class="keyword">\end</span>&#123;flushleft&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;flushright&#125;</span><br><span class="line">这一行在右侧  <span class="keyword">\\</span> </span><br><span class="line">这一行也要在右侧  <span class="keyword">\\</span></span><br><span class="line"><span class="keyword">\end</span>&#123;flushright&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="verbatim-居中显示及其作用"><a href="#verbatim-居中显示及其作用" class="headerlink" title="verbatim 居中显示及其作用"></a>verbatim 居中显示及其作用</h3><p><strong>verbatim环境(抄录环境)使LaTex源文件的内容原样呈现于最终文档。这些内容不受center, flushleft, flushright等命令的影响。</strong>若想让verbatim环境中内容居中显示，需要使用 verbatimbox等扩展包.</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%首先在导言区加入:</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;verbatimbox&#125;</span><br><span class="line"><span class="comment">%正文中示例：</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;verbbox&#125;</span><br><span class="line"><span class="params">#</span>include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line">    printf(&quot;Hello World! <span class="keyword">\n</span>&quot;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;verbbox&#125;  </span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;figure&#125;[ht]</span><br><span class="line">  <span class="keyword">\centering</span>            <span class="comment">%% 居中显示 </span></span><br><span class="line">  <span class="keyword">\theverbbox</span> </span><br><span class="line"><span class="keyword">\end</span>&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="线框"><a href="#线框" class="headerlink" title="线框"></a>线框</h3><p><strong>使用\fbox给文字加线框; 使用\parbox给段落添加线框.</strong></p>
+<p>样例</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\fbox</span>&#123;A&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\hfill</span> </span><br><span class="line"></span><br><span class="line"><span class="keyword">\fbox</span>&#123;</span><br><span class="line">  Use <span class="built_in">$</span><span class="keyword">\backslash</span> fbox<span class="built_in">$</span> environment for creating line box.</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;center&#125;</span><br><span class="line"><span class="keyword">\fbox</span>&#123;</span><br><span class="line">  Box lies in center. However  </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;center&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;center&#125;</span><br><span class="line"><span class="keyword">\fbox</span>&#123; </span><br><span class="line">  <span class="keyword">\parbox</span>&#123;<span class="keyword">\textwidth</span>&#125;&#123; </span><br><span class="line">    <span class="keyword">\begin</span>&#123;center&#125;</span><br><span class="line">      This is a <span class="keyword">\\</span></span><br><span class="line">      Full size box  <span class="keyword">\\</span></span><br><span class="line">    <span class="keyword">\end</span>&#123;center&#125;</span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;center&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;center&#125;</span><br><span class="line"><span class="keyword">\fbox</span>&#123; </span><br><span class="line">  <span class="keyword">\parbox</span>&#123;0.4<span class="keyword">\textwidth</span>&#125;&#123; </span><br><span class="line">    <span class="keyword">\begin</span>&#123;center&#125;</span><br><span class="line">      This is a <span class="keyword">\\</span></span><br><span class="line">      Small size box  <span class="keyword">\\</span></span><br><span class="line">    <span class="keyword">\end</span>&#123;center&#125;</span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;center&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="图片插入及引用"><a href="#图片插入及引用" class="headerlink" title="图片插入及引用"></a>图片插入及引用</h2><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>[pdftex]&#123;graphicx&#125;</span><br><span class="line"><span class="comment">% 设置图片文件存放路径</span></span><br><span class="line"><span class="keyword">\graphicspath</span>&#123;&#123;../figures&#125;  </span><br><span class="line"> </span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line"><span class="comment">% 在正文中引用图片时使用\ref </span></span><br><span class="line">  In Figure <span class="keyword">\ref</span>&#123;fig:foo&#125; </span><br><span class="line"><span class="keyword">\begin</span>&#123;figure&#125;</span><br><span class="line"><span class="comment">%设置对齐格式</span></span><br><span class="line"><span class="keyword">\centering</span>   <span class="comment">%图片居于页面中部</span></span><br><span class="line"><span class="comment">%指定图形大小和图形名称  </span></span><br><span class="line"><span class="keyword">\includegraphics</span> [width=0.8，height=2.5]&#123;foo.png&#125; </span><br><span class="line"><span class="comment">%设置标题 </span></span><br><span class="line"><span class="keyword">\caption</span>&#123;Foo&#125; </span><br><span class="line"><span class="comment">%设置图形引用名称</span></span><br><span class="line"><span class="keyword">\label</span>&#123;fig:foo&#125; </span><br><span class="line"><span class="keyword">\end</span>&#123;figure&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;tabular&#125;&#123;llr&#125;<span class="comment">%定义表格</span></span><br><span class="line"><span class="keyword">\hline</span></span><br><span class="line"><span class="keyword">\multicolumn</span>&#123;2&#125;&#123;c&#125;&#123;Item&#125; <span class="keyword">\\</span></span><br><span class="line"><span class="keyword">\cline</span>&#123;1-2&#125;</span><br><span class="line">Animal    <span class="built_in">&amp;</span> Description <span class="built_in">&amp;</span> Price (<span class="keyword">\$</span>) <span class="keyword">\\</span></span><br><span class="line"><span class="keyword">\hline</span></span><br><span class="line">Gnat      <span class="built_in">&amp;</span> per gram    <span class="built_in">&amp;</span> 13.65      <span class="keyword">\\</span></span><br><span class="line">          <span class="built_in">&amp;</span> each        <span class="built_in">&amp;</span> 0.01       <span class="keyword">\\</span></span><br><span class="line">Gnu       <span class="built_in">&amp;</span> stuffed     <span class="built_in">&amp;</span> 92.50      <span class="keyword">\\</span></span><br><span class="line">Emu       <span class="built_in">&amp;</span> stuffed     <span class="built_in">&amp;</span> 33.33      <span class="keyword">\\</span></span><br><span class="line">Armadillo <span class="built_in">&amp;</span> frozen      <span class="built_in">&amp;</span> 8.99       <span class="keyword">\\</span></span><br><span class="line"><span class="keyword">\hline</span></span><br><span class="line"><span class="keyword">\end</span>&#123;tabular&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="表格中行间距"><a href="#表格中行间距" class="headerlink" title="表格中行间距"></a>表格中行间距</h3><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\renewcommand</span>&#123;<span class="keyword">\arraystretch</span>&#125;&#123;1.5&#125;<span class="comment">%\arraystretch命令可以设置行间距(默认值是1.0)</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>使用\noalign{\smallskip} 也可以改变行间距. \smallskip 命令等价于\vspace{smallskipamount}。smallskipamount的大小依赖于文档类型. 与\smallskip 命令类似的还有\medskip,\bigskip . 另外，也可以在每一行尾的 换行符 后设置行间距。</p>
+</blockquote>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;tabular&#125;&#123;c&#125;</span><br><span class="line"><span class="keyword">\hline</span></span><br><span class="line">Normal  <span class="keyword">\\</span></span><br><span class="line"><span class="keyword">\hline</span>  </span><br><span class="line">  smallskip(under the characters)  <span class="keyword">\\</span> <span class="keyword">\noalign</span>&#123;<span class="keyword">\smallskip</span>&#125; </span><br><span class="line"><span class="keyword">\hline</span>  <span class="keyword">\noalign</span>&#123;<span class="keyword">\smallskip</span>&#125; </span><br><span class="line">smallskip(over the characters) <span class="keyword">\\</span> </span><br><span class="line"><span class="keyword">\hline</span>  <span class="keyword">\noalign</span>&#123;<span class="keyword">\medskip</span>&#125; </span><br><span class="line"> medskip  <span class="keyword">\\</span></span><br><span class="line"><span class="keyword">\hline</span>  <span class="keyword">\noalign</span>&#123;<span class="keyword">\bigskip</span>&#125;</span><br><span class="line"> bigskip  <span class="keyword">\\</span></span><br><span class="line"><span class="keyword">\hline</span></span><br><span class="line">  0.5cm <span class="keyword">\\</span>[0.5cm]  </span><br><span class="line"><span class="keyword">\hline</span>   </span><br><span class="line"><span class="keyword">\end</span>&#123;tabular&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="三线表样例"><a href="#三线表样例" class="headerlink" title="三线表样例"></a>三线表样例</h3><p>Latex中默认的线条宽度是0.4pt, 如果想要使用粗一点的线条，可以使用 booktabs环境包. 这需要在Latex文档的导言部分添加命令:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>&#123;booktabs&#125;  </span><br></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;table&#125;[h]</span><br><span class="line"><span class="keyword">\centering</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;tabular&#125;&#123;ccc&#125;</span><br><span class="line"><span class="keyword">\toprule</span></span><br><span class="line">Name <span class="built_in">&amp;</span> ID <span class="built_in">&amp;</span> Gender<span class="keyword">\\</span></span><br><span class="line"><span class="keyword">\midrule</span></span><br><span class="line">Tom <span class="built_in">&amp;</span> 001<span class="built_in">&amp;</span> Male<span class="keyword">\\</span></span><br><span class="line">Rose <span class="built_in">&amp;</span> 002<span class="built_in">&amp;</span> Female<span class="keyword">\\</span></span><br><span class="line"><span class="keyword">\bottomrule</span></span><br><span class="line"><span class="keyword">\end</span>&#123;tabular&#125;</span><br><span class="line"><span class="keyword">\caption</span>&#123;这是一张三线表&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;table&#125; </span><br><span class="line"><span class="comment">%其中\toprule 命令是画出表格最上边的一条粗实线(rule). \bottomrule命令是画出表格最下边的一条粗实线.</span></span><br><span class="line"><span class="comment">%\midrule 命令是画出表格中间的细实线。</span></span><br></pre></td></tr></table></figure>
+<p><strong>示例</strong></p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>[a4paper,oneside,12pt]&#123;article&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;ctex&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;authblk&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;graphicx&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;CJK&#125;</span><br><span class="line"> <span class="keyword">\usepackage</span>&#123;indentfirst&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\usepackage</span>[a4paper]&#123;geometry&#125;</span><br><span class="line"><span class="keyword">\geometry</span>&#123;left=2cm, right=2cm, top=3cm, bottom=3.5cm,&#125;</span><br><span class="line"><span class="keyword">\setlength</span>&#123;<span class="keyword">\footskip</span>&#125;&#123;3cm&#125;</span><br><span class="line"><span class="comment">% 另外一种调用方式</span></span><br><span class="line"><span class="comment">% \usepackage[paperwidth=5.5in, paperheight=8.5in]&#123;geometry&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">\thispagestyle</span>&#123;empty&#125; </span><br><span class="line">	<span class="keyword">\begin</span>&#123;center&#125;</span><br><span class="line">		<span class="keyword">\includegraphics</span>&#123;logo1&#125;</span><br><span class="line">	<span class="keyword">\end</span>&#123;center&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">\vspace</span>&#123;50pt&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">\begin</span>&#123;center&#125;</span><br><span class="line">		<span class="keyword">\Huge</span> 2022年秋季学期<span class="keyword">\\</span></span><br><span class="line">		<span class="keyword">\vspace</span>&#123;50pt&#125;</span><br><span class="line">		&#123;<span class="keyword">\fontsize</span>&#123;36pt&#125;&#123;0pt&#125;操作系统课程设计报告&#125;<span class="comment">%小初</span></span><br><span class="line">		</span><br><span class="line">		<span class="keyword">\vspace</span>&#123;120pt&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">\huge</span> 组长：<span class="keyword">\underline</span>&#123;<span class="keyword">\qquad</span><span class="keyword">\quad</span> 孙新斌<span class="keyword">\qquad</span><span class="keyword">\quad</span>&#125;<span class="keyword">\\</span></span><br><span class="line">		<span class="keyword">\huge</span> 成员：<span class="keyword">\underline</span>&#123;<span class="keyword">\qquad</span><span class="keyword">\quad</span> 李明阳<span class="keyword">\qquad</span><span class="keyword">\quad</span>&#125;<span class="keyword">\\</span></span><br><span class="line">		<span class="keyword">\huge</span> 成员：<span class="keyword">\underline</span>&#123;<span class="keyword">\qquad</span><span class="keyword">\quad</span> 刘泳良<span class="keyword">\qquad</span><span class="keyword">\quad</span>&#125;<span class="keyword">\\</span></span><br><span class="line">	<span class="keyword">\end</span>&#123;center&#125;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">\newpage</span></span><br><span class="line">	<span class="keyword">\pagenumbering</span>&#123;arabic&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">\begin</span>&#123;center&#125;</span><br><span class="line">		&#123;<span class="keyword">\fontsize</span>&#123;22pt&#125;&#123;22pt&#125;课程设计选题一<span class="keyword">\quad</span> 多线程单词统计&#125;<span class="keyword">\\</span><span class="comment">%二号</span></span><br><span class="line">	<span class="keyword">\end</span>&#123;center&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\section</span>*&#123;<span class="keyword">\fontsize</span>&#123;16pt&#125;&#123;16pt&#125;一、设计要求&#125;<span class="comment">%三号</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">\begin</span>&#123;itemize&#125;</span><br><span class="line">		<span class="keyword">\item</span>[]</span><br><span class="line">		&#123;<span class="keyword">\fontsize</span>&#123;14pt&#125;&#123;14pt&#125;<span class="keyword">\selectfont</span> 1、从网上下载一些英文小说，用多线程实现单词总数的统计&#125;<span class="keyword">\\</span></span><br><span class="line">		&#123;<span class="keyword">\fontsize</span>&#123;14pt&#125;&#123;14pt&#125;<span class="keyword">\selectfont</span> 2、用多线程统计单词出现频率并从中找出Top-N热词&#125;<span class="keyword">\\</span></span><br><span class="line">		&#123;<span class="keyword">\fontsize</span>&#123;14pt&#125;&#123;14pt&#125;<span class="keyword">\selectfont</span> 3、在以上多线程程序中直观展示出多线程并发调度的过程&#125;<span class="keyword">\\</span></span><br><span class="line">		&#123;<span class="keyword">\fontsize</span>&#123;14pt&#125;&#123;14pt&#125;<span class="keyword">\selectfont</span> 4、用单线程实现以上功能，并比较单线程和多线程的时间效率&#125;</span><br><span class="line">	<span class="keyword">\end</span>&#123;itemize&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">\setlength</span>&#123;<span class="keyword">\parindent</span>&#125;&#123;2em&#125; </span><br><span class="line">	</span><br><span class="line"><span class="keyword">\section</span>*&#123;<span class="keyword">\fontsize</span>&#123;16pt&#125;&#123;16pt&#125;二、背景知识及设计思路&#125;<span class="comment">%三号</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">\begin</span>&#123;itemize&#125;</span><br><span class="line">		<span class="keyword">\item</span>[]</span><br><span class="line">		&#123;<span class="keyword">\fontsize</span>&#123;14pt&#125;&#123;14pt&#125;<span class="keyword">\selectfont</span> 设计思路：&#125;<span class="keyword">\\</span></span><br><span class="line">		&#123;<span class="keyword">\fontsize</span>&#123;14pt&#125;&#123;14pt&#125;<span class="keyword">\selectfont</span> 1、根据文件的数量创建多个线程，一个线程统计一个文件中的单词&#125;<span class="keyword">\\</span></span><br><span class="line">		&#123;<span class="keyword">\fontsize</span>&#123;14pt&#125;&#123;14pt&#125;<span class="keyword">\selectfont</span> 2、英文单词为由英文字母或数字组成的字符序列，大小写不敏感&#125;<span class="keyword">\\</span></span><br><span class="line">		&#123;<span class="keyword">\fontsize</span>&#123;14pt&#125;&#123;14pt&#125;<span class="keyword">\selectfont</span> 3、如果两个线程需要安全地共享一个公共计数器，需要把公共计数器加锁&#125;</span><br><span class="line">	<span class="keyword">\end</span>&#123;itemize&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\section</span>*&#123;<span class="keyword">\fontsize</span>&#123;16pt&#125;&#123;16pt&#125;三、设计方案&#125;<span class="comment">%三号</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">\begin</span>&#123;itemize&#125;</span><br><span class="line">		<span class="keyword">\item</span>[]</span><br><span class="line">		&#123;<span class="keyword">\fontsize</span>&#123;14pt&#125;&#123;14pt&#125;<span class="keyword">\selectfont</span> 1.数据结构设计&#125;</span><br><span class="line">	<span class="keyword">\end</span>&#123;itemize&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">\begin</span>&#123;itemize&#125;</span><br><span class="line">		<span class="keyword">\item</span>[]</span><br><span class="line">		&#123;<span class="keyword">\fontsize</span>&#123;14pt&#125;&#123;14pt&#125;<span class="keyword">\selectfont</span> 2.程序结构设计（模块图，流程图，函数调用关系图）&#125;</span><br><span class="line">	<span class="keyword">\end</span>&#123;itemize&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">\begin</span>&#123;itemize&#125;</span><br><span class="line">		<span class="keyword">\item</span>[]</span><br><span class="line">		&#123;<span class="keyword">\fontsize</span>&#123;14.0pt&#125;&#123;14pt&#125;<span class="keyword">\selectfont</span> 3.用到的Linux系统调用函数说明&#125;</span><br><span class="line">	<span class="keyword">\end</span>&#123;itemize&#125;</span><br><span class="line">	</span><br><span class="line"><span class="keyword">\section</span>*&#123;<span class="keyword">\fontsize</span>&#123;16pt&#125;&#123;16pt&#125;四、设计源代码&#125;<span class="comment">%三号</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">\begin</span>&#123;itemize&#125;</span><br><span class="line">		<span class="keyword">\item</span>[]</span><br><span class="line">		&#123;<span class="keyword">\fontsize</span>&#123;14pt&#125;&#123;14pt&#125;<span class="keyword">\selectfont</span>  </span><br><span class="line">			1、xxxx&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">\end</span>&#123;itemize&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\section</span>*&#123;<span class="keyword">\fontsize</span>&#123;16pt&#125;&#123;16pt&#125;五、调试方案及调试过程问题分析&#125;<span class="comment">%三号</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">\begin</span>&#123;itemize&#125;</span><br><span class="line">		<span class="keyword">\item</span>[]</span><br><span class="line">		&#123;<span class="keyword">\fontsize</span>&#123;14pt&#125;&#123;14pt&#125;<span class="keyword">\selectfont</span> 1、xxxx&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">\end</span>&#123;itemize&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\section</span>*&#123;<span class="keyword">\fontsize</span>&#123;16pt&#125;&#123;16pt&#125;六、运行结果与分析&#125;<span class="comment">%三号</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">\begin</span>&#123;itemize&#125;</span><br><span class="line">		<span class="keyword">\item</span>[]</span><br><span class="line">		&#123;<span class="keyword">\fontsize</span>&#123;14pt&#125;&#123;14pt&#125;<span class="keyword">\selectfont</span> 1、xxxx&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">\end</span>&#123;itemize&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\section</span>*&#123;<span class="keyword">\fontsize</span>&#123;16pt&#125;&#123;16pt&#125;七、总结&#125;<span class="comment">%三号</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">\begin</span>&#123;itemize&#125;</span><br><span class="line">		<span class="keyword">\item</span>[]</span><br><span class="line">		&#123;<span class="keyword">\fontsize</span>&#123;14pt&#125;&#123;14pt&#125;<span class="keyword">\selectfont</span> 1、xxxx&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">\end</span>&#123;itemize&#125;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">This work is licensed under <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</a></h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> Share</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://sunxinbin.cn/2022/09/03/Latex-Use/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://sunxinbin.cn/2022/09/03/Latex-Use/";
+            const title         = "「Latex学习」";
+            const excerpt       = `一、Markdown与Latex的区别`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/Latex/" rel="tag">Latex</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2022-12-12T08:42:57.205Z" itemprop="dateModified">Last modify：2022-12-12</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" 在扩大的中央工作会议上的讲话" href="/2022/07/16/19620130/">&lt; older</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" (一)对Dlib库初识" href="/2022/12/13/dlib-note/">Newer &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center">Computer Science & Technology</p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                Post
+            </span>
+            <span class="count">
+                47
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                Category
+            </span>
+            <span class="count">
+                10
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                Tag
+            </span>
+            <span class="count">
+                20
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>Categories List</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Craniofacial-Registration/">Craniofacial Registration</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DL/">DL</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Feature-Point-Punctuation-Algorithm/">Feature Point Punctuation Algorithm</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Literature/">Literature</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ML/">ML</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematical-Modeling/">Mathematical Modeling</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Philosophy/">Philosophy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Undergraduate-Courses/">Undergraduate Courses</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">2</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>Tagcloud</h4>
+      <div class="tag-clouds">
+        <a href="/tags/A-single-spark-can-start-a-prairie-fire/" style="font-size: 0.6em;">A single spark can start a prairie fire</a> <a href="/tags/Algorithm/" style="font-size: 0.6em;">Algorithm</a> <a href="/tags/Anecdote/" style="font-size: 0.6em;">Anecdote</a> <a href="/tags/CV/" style="font-size: 0.6em;">CV</a> <a href="/tags/Craniofacial-Registration/" style="font-size: 0.6em;">Craniofacial Registration</a> <a href="/tags/DL/" style="font-size: 0.8em;">DL</a> <a href="/tags/Emotion/" style="font-size: 0.7em;">Emotion</a> <a href="/tags/Feature-Point-Punctuation-Algorithm/" style="font-size: 0.75em;">Feature Point Punctuation Algorithm</a> <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/Latex/" style="font-size: 0.6em;">Latex</a> <a href="/tags/Literature/" style="font-size: 0.75em;">Literature</a> <a href="/tags/ML/" style="font-size: 0.7em;">ML</a> <a href="/tags/Mathematical-Modeling/" style="font-size: 0.65em;">Mathematical Modeling</a> <a href="/tags/OpenAI/" style="font-size: 0.6em;">OpenAI</a> <a href="/tags/Philosophy/" style="font-size: 0.6em;">Philosophy</a> <a href="/tags/Python/" style="font-size: 0.6em;">Python</a> <a href="/tags/Undergraduate-Courses/" style="font-size: 0.75em;">Undergraduate Courses</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>Recent posts</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2023/04/05/python-to-exe/"><i class="fa  fa-book"></i> Python如何打包为exe文件</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/30/Dynamic-Programming/"><i class="fa  fa-book"></i> Dynamic Programming</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/05/Common-instruction-set/"><i class="fa  fa-book"></i> NewBing&ChatGPT</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/01/25/Big-data-analysis-method/"><i class="fa  fa-book"></i> Big data analysis method</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/01/16/artificial-intelligence/"><i class="fa  fa-book"></i> Artificial Intelligence</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        <li><a href="mailto:2332431354@qq.com"><i class="fa fa-envelope"></i></a></li>
+                        
+                        
+                        
+                        
+                        <li><a target="_blank" rel="me" href="https://nya.one/@SunXinbin"><i class="fa fa fa-share-alt-square"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/xinbinsun"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2023 Neo Sun Copyright.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by 孙新斌.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            <li><a href="https://beian.miit.gov.cn" rel="external nofollow" target="_blank">鲁ICP备23010101号</a></li>
+                            <li><a href="http://www.beian.gov.cn" rel="external nofollow" target="_blank"><img src="/images/psr.webp" width="12" height="12" loading="lazy" decoding="auto" />鲁公网安备371402000348</a></li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>

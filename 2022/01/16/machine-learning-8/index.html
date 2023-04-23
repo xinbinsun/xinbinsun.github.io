@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="Chinese/English">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/avatar.webp">
+  
+  <title>图像识别问题：卷积神经网络与应用 | Neo Sun</title>
+  <meta name="author" content="孙新斌" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="DL" />
+  
+  <meta name="description" content="卷积神经网络Convolutional Neural Network(CNN)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图像识别问题：卷积神经网络与应用">
+<meta property="og:url" content="http://sunxinbin.cn/2022/01/16/machine-learning-8/index.html">
+<meta property="og:site_name" content="Neo Sun">
+<meta property="og:description" content="卷积神经网络Convolutional Neural Network(CNN)">
+<meta property="og:locale">
+<meta property="og:image" content="http://sunxinbin.cn/images/avatar.webp">
+<meta property="article:published_time" content="2022-01-16T12:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-30T11:26:22.682Z">
+<meta property="article:author" content="孙新斌">
+<meta property="article:tag" content="DL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://sunxinbin.cn/images/avatar.webp">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>Archives</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>Search Engine</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>About</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            <li><a href="https://sunxinbin.cn">Blog</a></li>
+                                                        
+                                                    
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://github.com/xinbinsun">Github</a></li>
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Neo Sun</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Neo Sun</h2> <br />
+                        <span>What&#39;s past is prologue</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://sunxinbin.cn/2022/01/16/machine-learning-8/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">图像识别问题：卷积神经网络与应用</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2022-01-16T12:00:00.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2022-01-16</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> Author <span itemprop="name">孙新斌</span>
+                </li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~13.54K
+                    
+                    words
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>This article has been edited <time datetime="1680175582682"></time> ago, and some of its content might need to be updated.</p></div>
+            </div>
+            
+            
+            
+                <div class="kratos-post-inner-toc toc-div-class" >
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E5%85%A8%E8%BF%9E%E6%8E%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%88%B0%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="toc-number">1.</span> <span class="toc-text">从全连接神经网络到卷积神经网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tensorflow%E4%B8%ADCNN%E7%9A%84%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text">Tensorflow中CNN的相关函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B%EF%BC%9ACIFAR-10%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB"><span class="toc-number">3.</span> <span class="toc-text">案例：CIFAR-10图像识别</span></a></li></ol>
+                </div>
+            
+            <hr />
+            <div itemprop="articleBody"><p><strong>卷积神经网络Convolutional Neural Network(CNN)</strong><br><span id="more"></span><br><strong>图像分类</strong><br>ImageNet图像分类错误率（top-5）当卷积神经网络达到152层时，错误率可达到3.57.而同比人类的错误率为5.1<br><strong>卷积神经网络成了机器视觉任务的一个极为重要的工具！</strong><br>认识卷积神经网络-TensorFlow对卷积神经网络的支持-案例：CIFAR-10图像识别</p>
+<h2 id="从全连接神经网络到卷积神经网络"><a href="#从全连接神经网络到卷积神经网络" class="headerlink" title="从全连接神经网络到卷积神经网络"></a>从全连接神经网络到卷积神经网络</h2><p><strong>全连接网络的局限性</strong><br>对于MNIST 手写数字识别，假如第一个隐层的节点数为500，那么一个全连接层的参数个数为：<br>28×28×1×500+500 ≈ 40万；<br>当图片更大时，比如CIFAR数据集中，图片大小为32×32×3，此时全连接层的参数有：<br>32×32×3×500+500 ≈ 150万</p>
+<p>当图片分辨率进一步提高时，当隐层数量增加时，<br>例如：600 x 600 图像，各隐层节点数分别为300,200和100，则参数个数为：<br>600 x 600 x 300 + 300 x 200 + 200 x 100 ≈ 1.08亿<br>参数增多会导致：<br><strong>计算速度减慢</strong><br><strong>过拟合</strong></p>
+<p><strong>需要更合理的结构来有效减少参数个数</strong></p>
+<p><strong>卷积神经网络的提出</strong><br>1962年Hubel和Wiesel通过对猫视觉皮层细胞的研究，提出了<strong>感受野(receptive field)</strong>的概念。视觉皮层的神经元就是局部接受信息的，只受某些特定区域刺激的响应，而不是对全局图像进行感知。<br>1984年日本学者Fukushima基于感受野概念提出<strong>神经认知机</strong>(neocognitron)。<br>CNN可看作是神经认知机的推广形式。<br><img src="/2022/01/16/machine-learning-8/pic1.png" alt="CNN"><br><img src="/2022/01/16/machine-learning-8/pic2.png" alt="CNN"><br><strong>卷积</strong><br>在介绍卷积神经网络的基本概念之前，我们先做一个矩阵运算：<br>（1）求点积：将5×5输入矩阵中3×3深蓝色区域中每个元素分别与其对应位置的权值（红色数字）相乘，然后再相加，所得到的值作为3×3输出矩阵（绿色）的第一个元素。<br>（2）滑动窗口：将3×3权值矩阵向右移动一个格（即，步长为1）<br>（3）重复操作：同样地，将此时深色区域内每个元素分别与对应的权值相乘然后再相加，所得到的值作为输出矩阵的第二个元素；重复上述“求点积-滑动窗口”操作，直至输出矩阵所有值被填满。<br>卷积核在 2 维输入数据上“滑动”，对当前输入部分的元素进行矩阵乘法，然后将结果汇为单个输出像素值，重复这个过程直到遍历整张图像，这个过程就叫做<strong>卷积</strong>，这个权值矩阵就是<strong>卷积核</strong><br>卷积操作后的图像称为<strong>特征图（feature map）</strong><br><img src="/2022/01/16/machine-learning-8/pic4.png" alt="卷积"><br>卷积层：卷积运算的主要目的是使原信号特征增强，并降低噪音。<br>定义卷积核 → 卷积操作 → 显示<br>卷积运算的主要目的是使原信号特征增强，并降低噪音。<br>对图像用一个卷积核进行卷积运算，实际上是一个滤波的过程。每个卷积核都是一种特征提取方式，就像是一个筛子，将图像中符合条件的部分筛选出来。</p>
+<p><strong>0填充(Padding)</strong><br>观察卷积示例，我们会发现一个<strong>现象</strong>：在卷积核滑动的过程中图像的边缘会被裁剪掉，将5×5特征矩阵转换为 3×3的特征矩阵。<br>如何使得输出尺寸与输入保持一致呢？<br>0填充：<br>用额外的“假”像素（通常值为 0）填充边缘。这样，在滑动时的卷积核可以允许原始边缘像素位于卷积核的中心，同时延伸到边缘之外的假像素，从而产生与输入（5×5蓝色）相同大小的输出（5×5绿色）。</p>
+<p><strong>多通道卷积</strong><br>每个卷积核都会将图像生成为另一幅特征映射图，即：<strong>一个卷积核提取一种特征</strong>。<br>为了使特征提取更充分，可以添加多个卷积核以提取不同的特征，也就是，<strong>多通道卷积</strong>。<br><strong>每个通道使用一个卷积核进行卷积操作</strong>，然后将这些特征图相同位置上的值相加，生成一张特征图。<br>每个通道使用一个卷积核进行卷积操作，然后将这些特征图相同位置上的值相加，生成一张特征图。<br><strong>加偏置</strong>。偏置的作用是对每个feature map加一个偏置项以便产生最终的输出特征图。</p>
+<p><strong>池化(pooling)</strong><br>在卷积层之后常常紧接着一个降采样层，通过减小矩阵的长和宽，从而达到减少参数的目的。<br>降采样是降低特定信号的采样率的过程。<br>计算图像一个区域上的某个特定特征的平均值或最大值，这种聚合操作就叫做池化（pooling）。<br>卷积层的作用是探测上一层特征的局部连接，而池化的作用是在语义上把相似的特征合并起来，从而达到降维目的。<br>这些概要统计特征不仅具有低得多的维度 (相比使用所有提取得到的特征)，同时还会改善结果(不容易过拟合)。<br>常用的池化方法：<br>(1) 均值池化：对池化区域内的像素点取均值，这种方法得到的特征数据对背景信息更敏感。<br>(2) 最大池化：对池化区域内所有像素点取最大值，这种方法得到的特征对纹理特征信息更加敏感。<br>隐层与隐层之间空间分辨率递减，因此，为了检测更多的特征信息、形成更多不同通道特征的组合，从而形成更复杂的特征，需要逐渐增加每层所含的平面数（也就是特征图的数量）。</p>
+<p><strong>步长(stride)</strong><br>步长是卷积操作的重要概念，表示卷积核在图片上移动的格数。<br>通过步长的变换，可以得到不同尺寸的卷积输出结果。<br>步长大于1的卷积操作也是<strong>降维的一种方式</strong><br>卷积后图片尺寸： 假如步长为S，原始图片尺寸为[N1,N1]，卷积核大小为[N2,N2]，那么卷积之后图像大小：<br>[(N1-N2)/S+1, (N1-N2)/S+1]</p>
+<p>卷积操作的作用：<br>使原信号特征增强（例如，得到显著的边缘特征），并且降低噪音。<br>降采样操作的作用：<br>减少数据处理量的同时保留有用的信息</p>
+<p><strong>过程概括</strong>：输入图像通过若干个“卷积→降采样”后，连接成一个向量输入到传统的分类器层中，最终得到输出。<br><strong>正则表达式</strong>：<br>输入层→（卷积层+→池化层？）+→全连接层+</p>
+<h2 id="Tensorflow中CNN的相关函数"><a href="#Tensorflow中CNN的相关函数" class="headerlink" title="Tensorflow中CNN的相关函数"></a>Tensorflow中CNN的相关函数</h2><p><strong>卷积函数</strong><br>卷积函数定义在tensorflow/python/ops下的nn_impl.py和nn_ops.py文件中:<br>tf.nn.conv2d(input, filter, strides, padding, use_cudnn_on_gpu=None,name=None)<br>tf.nn.depthwise_conv2d(input, filter, strides, padding, name=None)<br>tf.nn.separable_conv2d(input, depthwise_filter, pointwise_filter, strides,padding, name=None)</p>
+<p>• input：需要做卷积的输入数据。注意：这是一个4维的张量（[batch, in_height,in_width, in_channels]），要求类型为float32或float64其中之一。<br>• filter：卷积核。[filter_height, filter_width, in_channels, out_channels]<br>• strides：图像每一维的步长，是一个一维向量，长度为4<br>• padding：定义元素边框与元素内容之间的空间。”SAME”或”VALID”，这个值决定了不同的卷积方式。当为”SAME”时，表示边缘填充，适用于全尺寸操作；当为”VALID”时，表示边缘不填充。<br>• use_cudnn_on_gpu：bool类型，是否使用cudnn加速<br>• name：该操作的名称<br>• 返回值：返回一个tensor，即feature map</p>
+<p><strong>池化函数</strong><br>池化函数定义在tensorflow/python/ops下的nn.py和gen_nn_ops.py文件中:<br>最大池化：tf.nn.max_pool(value, ksize, strides, padding, name=None)<br>平均池化：tf.nn.avg_pool(value, ksize, strides, padding, name=None)</p>
+<p>• value：需要池化的输入。一般池化层接在卷积层后面，所以输入通常是conv2d所输出的feature map，依然是4维的张量（[batch, height, width,channels]）。<br>• ksize：池化窗口的大小，由于一般不在batch和channel上做池化，所以ksize一般是[1,height, width,1]，<br>• strides：图像每一维的步长，是一个一维向量，长度为4<br>• padding：和卷积函数中padding含义一样<br>• name：该操作的名称<br>• 返回值：返回一个tensor</p>
+<h2 id="案例：CIFAR-10图像识别"><a href="#案例：CIFAR-10图像识别" class="headerlink" title="案例：CIFAR-10图像识别"></a>案例：CIFAR-10图像识别</h2><p>CIFAR-10数据集：<br>• CIFAR-10是一个用于识别普适物体的小型数据集，它包含了10个类别的RGB彩色图片。<br>• 图片尺寸： 32 x 32<br>• 训练图片50000张，测试图片10000张</p>
+<p>下载数据集<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tarfile</span><br><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="comment">#下载</span></span><br><span class="line">url = <span class="string">&#x27;https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz&#x27;</span></span><br><span class="line">filepath = <span class="string">&#x27;data\cifar-10-python.tar.gz&#x27;</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.isfile(filepath):</span><br><span class="line">    result=urllib.request.urlretrieve(url,filepath)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;downloaded:&#x27;</span> ,result)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Data file already exists.&#x27;</span>)</span><br><span class="line"><span class="comment">#解压</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(<span class="string">&#x27;data\cifar-10-batches-py&#x27;</span>):</span><br><span class="line">    tfile = tarfile.<span class="built_in">open</span>(filepath, <span class="string">&#x27;r:gz&#x27;</span>)</span><br><span class="line">    result=tfile.extractall(<span class="string">&#x27;data/&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Extracted to ./data/cifar-10-batches-py/&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Directory already exists.&#x27;</span>)</span><br></pre></td></tr></table></figure><br>导入CIFAR数据集<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pickle <span class="keyword">as</span> p</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">load_CIFAR_batch</span>(<span class="params">filename</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;load single batch of cifar&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(filename, <span class="string">&#x27;rb&#x27;</span>)<span class="keyword">as</span> f:</span><br><span class="line">        <span class="comment">#—个样本由标签和图像数据组成</span></span><br><span class="line">        <span class="comment"># &lt;i x label&gt; &lt;3072 x pixel&gt; (3072=32x32x3)</span></span><br><span class="line">        <span class="comment">#...</span></span><br><span class="line">        <span class="comment">#&lt;1 x label&gt; &lt;3072 x pixel&gt;</span></span><br><span class="line">        data_dict = p.load(f, encoding=<span class="string">&#x27;bytes&#x27;</span>)</span><br><span class="line">        images= data_dict[<span class="string">b&#x27;data&#x27;</span>]</span><br><span class="line">        labels = data_dict[<span class="string">b&#x27;labels&#x27;</span>]</span><br><span class="line">        <span class="comment">#把原始数据结构调整为:BCWH</span></span><br><span class="line">        images = images.reshape(<span class="number">10000</span>,<span class="number">3</span>,<span class="number">32</span>,<span class="number">32</span>)</span><br><span class="line">        <span class="comment"># tensorflow处理图像数据的结构:BWHC</span></span><br><span class="line">        <span class="comment">#把通道数据C移动到最后—个维度</span></span><br><span class="line">        images = images.transpose (<span class="number">0</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>)</span><br><span class="line">                       </span><br><span class="line">        labels = np.array(labels)</span><br><span class="line">                       </span><br><span class="line">        <span class="keyword">return</span> images, labels</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">load_CIFAR_data</span>(<span class="params">data_dir</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;load CIFAR data&quot;&quot;&quot;</span></span><br><span class="line">    </span><br><span class="line">    images_train=[]</span><br><span class="line">    labels_train=[]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">        f=os.path.join(data_dir,<span class="string">&#x27;data_batch_%d&#x27;</span>% (i+<span class="number">1</span>))</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;loading&#x27;</span>,f)</span><br><span class="line">        <span class="comment">#调用load_CIFAR_batch()获得批量的图像及其对应的标签</span></span><br><span class="line">        image_batch,label_batch=load_CIFAR_batch(f)</span><br><span class="line">        images_train.append(image_batch)</span><br><span class="line">        labels_train.append(label_batch)</span><br><span class="line">        Xtrain=np.concatenate(images_train)</span><br><span class="line">        Ytrain=np.concatenate(labels_train)</span><br><span class="line">        <span class="keyword">del</span> image_batch ,label_batch</span><br><span class="line">        </span><br><span class="line">    Xtest,Ytest=load_CIFAR_batch(os.path.join(data_dir, <span class="string">&#x27;test_batch&#x27;</span>))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;finished loadding CIFAR-10 data&#x27;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#返回训练集的图像和标签，测试集的图像和标签</span></span><br><span class="line">    <span class="keyword">return</span> Xtrain, Ytrain,Xtest,Ytest</span><br><span class="line"></span><br><span class="line">data_dir = <span class="string">&#x27;data\cifar-10-batches-py&#x27;</span></span><br><span class="line">Xtrain,Ytrain,Xtest,Ytest = load_CIFAR_data(data_dir)</span><br></pre></td></tr></table></figure><br><em>显示数据集信息</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;training data shape:&#x27;</span>,Xtrain.shape)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;training labels shape: &#x27;</span>,Ytrain.shape)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;test data shape:&#x27;</span>,Xtest.shape)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;test labels shape:&#x27;</span>,Ytest.shape)</span><br></pre></td></tr></table></figure><br><em>查看多项images与label</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment">#定义标签字典，每—个数字所代表的图像类别的名称</span></span><br><span class="line">label_dict=&#123;<span class="number">0</span>:<span class="string">&quot; airplane&quot;</span>,<span class="number">1</span>:<span class="string">&quot;automobile&quot;</span>,<span class="number">2</span>:<span class="string">&quot;bird&quot;</span>,<span class="number">3</span>:<span class="string">&quot;cat&quot;</span>,<span class="number">4</span>:<span class="string">&quot;deer&quot;</span>,</span><br><span class="line">        <span class="number">5</span>:<span class="string">&quot;dog&quot;</span>,<span class="number">6</span>:<span class="string">&quot;frog&quot;</span>,<span class="number">7</span>:<span class="string">&quot;horse&quot;</span> ,<span class="number">8</span>:<span class="string">&quot;ship&quot;</span> ,<span class="number">9</span>:<span class="string">&quot;truck&quot;</span>&#125;</span><br><span class="line"><span class="comment">#定义显示图像数据及其对应标签的函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">plot_images_labels_prediction</span>(<span class="params">images,labels,prediction,idx,num=<span class="number">10</span></span>):</span><br><span class="line">    fig = plt.gcf()</span><br><span class="line">    fig.set_size_inches(<span class="number">12</span>,<span class="number">6</span>)</span><br><span class="line">    <span class="keyword">if</span> num&gt;<span class="number">10</span>:</span><br><span class="line">        num=<span class="number">10</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, num):</span><br><span class="line">        ax=plt.subplot(<span class="number">2</span>,<span class="number">5</span>,<span class="number">1</span>+i)</span><br><span class="line">        ax.imshow(images[idx],cmap=<span class="string">&#x27;binary&#x27;</span>)</span><br><span class="line">    </span><br><span class="line">        title=<span class="built_in">str</span>(i)+<span class="string">&#x27;,&#x27;</span>+label_dict[labels[idx]]</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(prediction)&gt;<span class="number">0</span>:</span><br><span class="line">            title+=<span class="string">&#x27;= &gt;&#x27;</span>+label_dict[prediction[idx]]</span><br><span class="line">    </span><br><span class="line">        ax.set_title(title,fontsize=<span class="number">10</span>)</span><br><span class="line">    </span><br><span class="line">        idx+=<span class="number">1</span></span><br><span class="line">    plt.show()</span><br><span class="line"><span class="comment">#显示图像数据及其对应标签</span></span><br><span class="line">plot_images_labels_prediction(Xtest,Ytest,[],<span class="number">11</span>,<span class="number">20</span>)</span><br></pre></td></tr></table></figure><br>数据预处理<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Xtrain[<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">Xtrain_normalize = Xtrain.astype(<span class="string">&#x27;float32&#x27;</span>)/<span class="number">255.0</span></span><br><span class="line">Xtest_normalize = Xtest.astype(<span class="string">&#x27;float32&#x27;</span>)/<span class="number">255.0</span></span><br><span class="line">Xtrain_normalize[<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>]</span><br></pre></td></tr></table></figure><br>-图像数据预处理<br>-标签数据预处理——独热编码<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> OneHotEncoder</span><br><span class="line">encoder = OneHotEncoder(sparse=<span class="literal">False</span>)</span><br><span class="line">yy =[[<span class="number">0</span>],[<span class="number">1</span>],[<span class="number">2</span>],[<span class="number">3</span>],[<span class="number">4</span>],[<span class="number">5</span>],[<span class="number">6</span>],[<span class="number">7</span>],[<span class="number">8</span>],[<span class="number">9</span>]]</span><br><span class="line">encoder.fit(yy)</span><br><span class="line">Ytrain_reshape = Ytrain.reshape(-<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line">Ytrain_onehot = encoder.transform(Ytrain_reshape)</span><br><span class="line">Ytest_reshape = Ytest.reshape(-<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line">Ytest_onehot = encoder.transform(Ytest_reshape)</span><br></pre></td></tr></table></figure><br>定义共享函数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#定义权值</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">weight</span>(<span class="params">shape</span>):</span><br><span class="line">    <span class="comment">#在构建模型时，需要使用tf.Variable来创建—个变量</span></span><br><span class="line">    <span class="comment">#在训练时，这个变量不断更新</span></span><br><span class="line">    <span class="comment">#使用函数tf.truncated_normal(截断的正态分布)生成标准差为0.1的随机数来初始化权值</span></span><br><span class="line">    <span class="keyword">return</span> tf.Variable(tf.truncated_normal(shape, stddev=<span class="number">0.1</span>), name =<span class="string">&#x27;W&#x27;</span>)</span><br><span class="line"><span class="comment">#定义偏置</span></span><br><span class="line"><span class="comment">#初始化为0.1</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">bias</span>(<span class="params">shape</span>):</span><br><span class="line">    <span class="keyword">return</span> tf.Variable(tf.constant(<span class="number">0.1</span>, shape=shape), name = <span class="string">&#x27;b&#x27;</span>)</span><br><span class="line"><span class="comment">#定义卷积操作</span></span><br><span class="line"><span class="comment">#步长为1,padding为&#x27;SAME&#x27;</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">conv2d</span>(<span class="params">x, W</span>):</span><br><span class="line">    <span class="comment"># tf.nn.conv2d(input, filter, strides, padding, use_cudnn_on_gpu=None, name=None)</span></span><br><span class="line">    <span class="keyword">return</span> tf.nn.conv2d(x, W, strides=[<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>], padding=<span class="string">&#x27;SAME&#x27;</span>)</span><br><span class="line"><span class="comment">#定义池化操作</span></span><br><span class="line"><span class="comment">#步长为2，即原尺寸的长和宽各除以2</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">max_pool_2x2</span>(<span class="params">x</span>):</span><br><span class="line"><span class="comment"># tf.nn.max_pool(value, ksize, strides, padding, name=None)</span></span><br><span class="line">    <span class="keyword">return</span> tf.nn.max_pool(x, ksize=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>], strides=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>], padding=<span class="string">&#x27;SAME&#x27;</span>)</span><br></pre></td></tr></table></figure><br>定义网格结构，建立CIFAR-10图像分类模型<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line">tf.reset_default_graph()</span><br><span class="line"><span class="comment">#输入层</span></span><br><span class="line"><span class="comment">#32x32图像，通道为3( RGB )</span></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">&#x27;input_layer&#x27;</span>):</span><br><span class="line">    x = tf.placeholder(<span class="string">&#x27;float&#x27;</span>,shape=[<span class="literal">None</span>,<span class="number">32</span>,<span class="number">32</span>,<span class="number">3</span>],name=<span class="string">&quot;x&quot;</span>)</span><br><span class="line"><span class="comment">#第1个卷积层</span></span><br><span class="line"><span class="comment">#输入通道:3，输出通道:32，卷积后图像尺寸不变，依然是32x32</span></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">&#x27;conv_1&#x27;</span>):</span><br><span class="line">    W1 = weight([<span class="number">3</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">32</span>])<span class="comment">#[lk_width, k_height, input_chn, output chn]</span></span><br><span class="line">    b1 = bias([<span class="number">32</span>])<span class="comment">#与output_chn—致</span></span><br><span class="line">    conv_1=conv2d(x,W1)+ b1</span><br><span class="line">    conv_1 = tf.nn.relu(conv_1 )</span><br><span class="line"><span class="comment">#第1个池化层</span></span><br><span class="line"><span class="comment">#将32x32图像缩小为16x16，池化不改变通道数量，因此依然是32个</span></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">&#x27;pool_1&#x27;</span>):</span><br><span class="line">    pool_1 = max_pool_2x2(conv_1)</span><br><span class="line"><span class="comment">#第2个卷积层</span></span><br><span class="line"><span class="comment">#输入通道:32，输出通道∶64，卷积后图像尺寸不变，依然是16x16</span></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">&#x27;conv_2&#x27;</span>):</span><br><span class="line">    W2 = weight([<span class="number">3</span>,<span class="number">3</span>,<span class="number">32</span>,<span class="number">64</span>])</span><br><span class="line">    b2 = bias([<span class="number">64</span>])</span><br><span class="line">    conv_2=conv2d(pool_1,W2)+ b2</span><br><span class="line">    conv_2 = tf.nn.relu(conv_2)</span><br><span class="line"></span><br><span class="line"><span class="comment">#第2个池化层</span></span><br><span class="line"><span class="comment">#将16x16图像缩小为8x8，池化不改变通道数量，因此依然是64个</span></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">&#x27;pool_2&#x27;</span>):</span><br><span class="line">    pool_2 = max_pool_2x2(conv_2)</span><br><span class="line"><span class="comment">#全连接层</span></span><br><span class="line"><span class="comment">#将池第2个池化层的64个8x8的图像转换为一维的向量，长度是64*8*8=4096#128个神经元</span></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">&#x27;fc&#x27;</span>):</span><br><span class="line">    W3= weight([<span class="number">4096</span>,<span class="number">128</span>])<span class="comment">#有128个神经元</span></span><br><span class="line">    b3= bias([<span class="number">128</span>])</span><br><span class="line">    flat = tf.reshape(pool_2,[-<span class="number">1</span>,<span class="number">4096</span>])</span><br><span class="line">    h = tf.nn.relu(tf.matmul(flat, W3)+ b3)</span><br><span class="line">    h_dropout= tf.nn.dropout(h, keep_prob=<span class="number">0.8</span>)</span><br><span class="line"><span class="comment">#输出层</span></span><br><span class="line"><span class="comment">#输出层共有10个神经元，对应到0-9这10个类别</span></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">&#x27;output_layer&#x27;</span>):</span><br><span class="line">    W4 = weight([<span class="number">128</span>,<span class="number">10</span>])</span><br><span class="line">    b4 = bias([<span class="number">10</span>])</span><br><span class="line">    pred= tf.nn.softmax(tf.matmul(h_dropout, W4)+b4)</span><br></pre></td></tr></table></figure><br><img src="/2022/01/16/machine-learning-8/pic5.png" alt="定义网络结构"><br>构建模型<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">&quot;optimizer&quot;</span>):</span><br><span class="line">    <span class="comment">#定义占位符</span></span><br><span class="line">    y = tf.placeholder(<span class="string">&quot;float&quot;</span>, shape=[<span class="literal">None</span>,<span class="number">10</span>],</span><br><span class="line">    name=<span class="string">&quot;label&quot;</span>)</span><br><span class="line">    <span class="comment">#定义损失函数</span></span><br><span class="line">    loss_function = tf.reduce_mean(</span><br><span class="line">            tf.nn.softmax_cross_entropy_with_logits_v2</span><br><span class="line">                (logits=pred,</span><br><span class="line">                labels=y))</span><br><span class="line">    <span class="comment">#选择优化器</span></span><br><span class="line">    optimizer = tf.train.AdamOptimizer(learning_rate=<span class="number">0.0001</span>)\</span><br><span class="line">            .minimize(loss_function)</span><br></pre></td></tr></table></figure><br>定义准确率<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">&quot;evaluation&quot;</span>):</span><br><span class="line">    correct_prediction = tf.equal(tf.argmax(pred,<span class="number">1</span>),</span><br><span class="line">                        tf.argmax(y,<span class="number">1</span>))</span><br><span class="line">    accuracy = tf.reduce_mean(tf.cast(correct_prediction, <span class="string">&quot;float&quot;</span>))</span><br></pre></td></tr></table></figure><br>启动会话<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> time</span><br><span class="line">train_epochs =<span class="number">25</span></span><br><span class="line">batch_size = <span class="number">50</span></span><br><span class="line">total_batch = <span class="built_in">int</span>(<span class="built_in">len</span>(Xtrain)/batch_size)</span><br><span class="line">epoch_list=[];accuracy_list=[];loss_list=[];</span><br><span class="line"></span><br><span class="line">epoch = tf.Variable(<span class="number">0</span>,name=<span class="string">&#x27;epoch&#x27;</span>,trainable=<span class="literal">False</span>)</span><br><span class="line">                        </span><br><span class="line">startTime=time()</span><br><span class="line"></span><br><span class="line">sess = tf.Session()</span><br><span class="line">init = tf.global_variables_initializer()</span><br><span class="line">sess.run(init)</span><br></pre></td></tr></table></figure><br>断点续训<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#设置检查点存储目录</span></span><br><span class="line">ckpt_dir = <span class="string">&quot;CIFAR10_log&quot;</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(ckpt_dir):</span><br><span class="line">    os.makedirs(ckpt_dir)</span><br><span class="line"><span class="comment">#生成saver</span></span><br><span class="line">saver = tf.train.Saver(max_to_keep=<span class="number">1</span>)</span><br><span class="line"><span class="comment">#如果有检查点文件，读取最新的检查点文件，恢复各种变量值</span></span><br><span class="line">ckpt = tf.train.latest_checkpoint(ckpt_dir )</span><br><span class="line"><span class="keyword">if</span> ckpt != <span class="literal">None</span>:</span><br><span class="line">    saver.restore(sess, ckpt)<span class="comment">#力加载所有的参数</span></span><br><span class="line">    <span class="comment">#从这里开始就可以直接使用模型进行预测，或者接着继续训练了</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Training from scratch.&quot;</span>)</span><br><span class="line"><span class="comment">#获取续训参数</span></span><br><span class="line">start = sess.run(epoch)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Training starts form &#123;&#125; epoch.&quot;</span>.<span class="built_in">format</span>(start+<span class="number">1</span>))</span><br></pre></td></tr></table></figure><br>迭代训练及改进<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_train_batch</span>(<span class="params">number, batch_size</span>):</span><br><span class="line">    <span class="keyword">return</span> Xtrain_normalize[number*batch_size:(number+<span class="number">1</span>)*batch_size],\</span><br><span class="line">                    Ytrain_onehot[number*batch_size:(number+<span class="number">1</span>)*batch_size]</span><br><span class="line"><span class="keyword">for</span> ep <span class="keyword">in</span> <span class="built_in">range</span>(start, train_epochs):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(total_batch):</span><br><span class="line">        batch_x, batch_y = get_train_batch(i,batch_size)</span><br><span class="line">        sess.run(optimizer,feed_dict=&#123;x: batch_x, y: batch_y&#125;)</span><br><span class="line">        <span class="keyword">if</span> i %<span class="number">100</span> == <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;Step &#123;&#125;&quot;</span>.<span class="built_in">format</span>(i), <span class="string">&quot;finished&quot;</span>)</span><br><span class="line">    loss,acc = sess.run([loss_function,accuracy],feed_dict=&#123;x: batch_x, y: batch_y&#125;)</span><br><span class="line">    epoch_list.append(ep+<span class="number">1</span>)</span><br><span class="line">    loss_list.append(loss);</span><br><span class="line">    accuracy_list.append(acc)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Train epoch:&quot;</span>,<span class="string">&#x27;%02d&#x27;</span>% (sess.run(epoch)+<span class="number">1</span>),\</span><br><span class="line">            <span class="string">&quot;Loss=&quot;</span>,<span class="string">&quot;&#123;:.6f&#125;&quot;</span>.<span class="built_in">format</span>(loss),<span class="string">&quot;Accuracy=&quot;</span>,acc)</span><br><span class="line">    <span class="comment">#保存检查点</span></span><br><span class="line">    saver.save(sess,ckpt_dir+<span class="string">&quot;.\CIFAR10_cnn_model.cpkt&quot;</span>,global_step=ep+<span class="number">1</span>)</span><br><span class="line">    sess.run(epoch.assign(ep+<span class="number">1</span>))</span><br><span class="line">                                                            </span><br><span class="line">duration =time()-startTime</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Train finished takes: &quot;</span>,duration)</span><br></pre></td></tr></table></figure><br>-增加网络层数<br>-增加迭代次数<br>-增加全连接层数<br>-增加全连接层的神经元个数<br>-数据扩增<br>可视化损失值<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">%matplotlib inline</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">fig = plt.gcf()</span><br><span class="line">fig.set_size_inches(<span class="number">4</span>,<span class="number">2</span>)</span><br><span class="line">plt.plot(epoch_list, loss_list, label = <span class="string">&#x27;loss&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;loss&#x27;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;epoch&#x27;</span>)</span><br><span class="line">plt.legend([<span class="string">&#x27;loss&#x27;</span>], loc=<span class="string">&#x27;upper right&#x27;</span>)</span><br></pre></td></tr></table></figure><br>可视化准确率<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(epoch_list, accuracy_list,label=<span class="string">&quot;accuracy&quot;</span> )</span><br><span class="line">fig = plt.gcf()</span><br><span class="line">fig.set_size_inches(<span class="number">4</span>,<span class="number">2</span>)</span><br><span class="line">plt.ylim(<span class="number">0.1</span>,<span class="number">1</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;accuracy&#x27;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;epoch&#x27;</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure><br>评估模型及预测<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">test_total_batch = <span class="built_in">int</span>(<span class="built_in">len</span>(Xtest_normalize)/batch_size)</span><br><span class="line">test_acc_sum = <span class="number">0.0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(test_total_batch):</span><br><span class="line">    test_image_batch = Xtest_normalize[i*batch_size:(i+<span class="number">1</span>)*batch_size]</span><br><span class="line">    test_label_batch = Ytest_onehot[i*batch_size:(i+<span class="number">1</span>)*batch_size]</span><br><span class="line">    test_batch_acc = sess.run(accuracy, feed_dict = &#123;x:test_image_batch,y:test_label_batch&#125;)</span><br><span class="line">    test_acc_sum += test_batch_acc</span><br><span class="line">test_acc = <span class="built_in">float</span>(test_acc_sum/test_total_batch)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Test accuracy:&#123;:.6f&#125;&quot;</span>.<span class="built_in">format</span>(test_acc))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">test_pred=sess.run(pred, feed_dict=&#123;x: Xtest_normalize[:<span class="number">10</span>]&#125;)</span><br><span class="line">prediction_result = sess.run(tf.argmax(test_pred,<span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">plot_images_labels_prediction(Xtest, Ytest,prediction_result,<span class="number">0</span>,<span class="number">10</span>)</span><br></pre></td></tr></table></figure><br>-计算测试集上的准确率<br>-利用模型进行预测<br>-可视化预测结果</p>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">This work is licensed under <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</a></h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> Share</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://sunxinbin.cn/2022/01/16/machine-learning-8/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://sunxinbin.cn/2022/01/16/machine-learning-8/";
+            const title         = "「图像识别问题：卷积神经网络与应用」";
+            const excerpt       = `卷积神经网络Convolutional Neural Network(CNN)`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/DL/" rel="tag">DL</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2023-03-30T11:26:22.682Z" itemprop="dateModified">Last modify：2023-03-30</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" 泰坦尼克号旅客生存预测：Keras应用实践" href="/2022/01/14/machine-learning-7/">&lt; older</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" Deep Dream:理解深度神经网络结构及应用" href="/2022/01/17/machine-learning-9/">Newer &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center">Computer Science & Technology</p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                Post
+            </span>
+            <span class="count">
+                47
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                Category
+            </span>
+            <span class="count">
+                10
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                Tag
+            </span>
+            <span class="count">
+                20
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix toc-div-class" >
+    <div class="photo-background"></div>
+    <h4 class="widget-title no-after">
+        <i class="fa fa-compass"></i>
+        Toc
+        <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
+    </h4>
+    <div class="textwidget">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E5%85%A8%E8%BF%9E%E6%8E%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%88%B0%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="toc-text">从全连接神经网络到卷积神经网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tensorflow%E4%B8%ADCNN%E7%9A%84%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0"><span class="toc-text">Tensorflow中CNN的相关函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B%EF%BC%9ACIFAR-10%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB"><span class="toc-text">案例：CIFAR-10图像识别</span></a></li></ol>
+    </div>
+</aside>
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>Categories List</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Craniofacial-Registration/">Craniofacial Registration</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DL/">DL</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Feature-Point-Punctuation-Algorithm/">Feature Point Punctuation Algorithm</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Literature/">Literature</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ML/">ML</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematical-Modeling/">Mathematical Modeling</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Philosophy/">Philosophy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Undergraduate-Courses/">Undergraduate Courses</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">2</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>Tagcloud</h4>
+      <div class="tag-clouds">
+        <a href="/tags/A-single-spark-can-start-a-prairie-fire/" style="font-size: 0.6em;">A single spark can start a prairie fire</a> <a href="/tags/Algorithm/" style="font-size: 0.6em;">Algorithm</a> <a href="/tags/Anecdote/" style="font-size: 0.6em;">Anecdote</a> <a href="/tags/CV/" style="font-size: 0.6em;">CV</a> <a href="/tags/Craniofacial-Registration/" style="font-size: 0.6em;">Craniofacial Registration</a> <a href="/tags/DL/" style="font-size: 0.8em;">DL</a> <a href="/tags/Emotion/" style="font-size: 0.7em;">Emotion</a> <a href="/tags/Feature-Point-Punctuation-Algorithm/" style="font-size: 0.75em;">Feature Point Punctuation Algorithm</a> <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/Latex/" style="font-size: 0.6em;">Latex</a> <a href="/tags/Literature/" style="font-size: 0.75em;">Literature</a> <a href="/tags/ML/" style="font-size: 0.7em;">ML</a> <a href="/tags/Mathematical-Modeling/" style="font-size: 0.65em;">Mathematical Modeling</a> <a href="/tags/OpenAI/" style="font-size: 0.6em;">OpenAI</a> <a href="/tags/Philosophy/" style="font-size: 0.6em;">Philosophy</a> <a href="/tags/Python/" style="font-size: 0.6em;">Python</a> <a href="/tags/Undergraduate-Courses/" style="font-size: 0.75em;">Undergraduate Courses</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>Recent posts</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2023/04/05/python-to-exe/"><i class="fa  fa-book"></i> Python如何打包为exe文件</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/30/Dynamic-Programming/"><i class="fa  fa-book"></i> Dynamic Programming</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/05/Common-instruction-set/"><i class="fa  fa-book"></i> NewBing&ChatGPT</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/01/25/Big-data-analysis-method/"><i class="fa  fa-book"></i> Big data analysis method</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/01/16/artificial-intelligence/"><i class="fa  fa-book"></i> Artificial Intelligence</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        <li><a href="mailto:2332431354@qq.com"><i class="fa fa-envelope"></i></a></li>
+                        
+                        
+                        
+                        
+                        <li><a target="_blank" rel="me" href="https://nya.one/@SunXinbin"><i class="fa fa fa-share-alt-square"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/xinbinsun"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2023 Neo Sun Copyright.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by 孙新斌.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            <li><a href="https://beian.miit.gov.cn" rel="external nofollow" target="_blank">鲁ICP备23010101号</a></li>
+                            <li><a href="http://www.beian.gov.cn" rel="external nofollow" target="_blank"><img src="/images/psr.webp" width="12" height="12" loading="lazy" decoding="auto" />鲁公网安备371402000348</a></li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>

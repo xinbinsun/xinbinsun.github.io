@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="Chinese/English">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/avatar.webp">
+  
+  <title>电影评论情感分析：RNN循环网络原理及自然语言处理NLP应用 | Neo Sun</title>
+  <meta name="author" content="孙新斌" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="DL" />
+  
+  <meta name="description" content="电影评论情感分析：RNN循环网络原理及自然语言处理NLP应用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="电影评论情感分析：RNN循环网络原理及自然语言处理NLP应用">
+<meta property="og:url" content="http://sunxinbin.cn/2022/01/20/machine-learning-10/index.html">
+<meta property="og:site_name" content="Neo Sun">
+<meta property="og:description" content="电影评论情感分析：RNN循环网络原理及自然语言处理NLP应用">
+<meta property="og:locale">
+<meta property="og:image" content="http://sunxinbin.cn/images/avatar.webp">
+<meta property="article:published_time" content="2022-01-20T12:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-30T11:26:09.634Z">
+<meta property="article:author" content="孙新斌">
+<meta property="article:tag" content="DL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://sunxinbin.cn/images/avatar.webp">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>Archives</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>Search Engine</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>About</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            <li><a href="https://sunxinbin.cn">Blog</a></li>
+                                                        
+                                                    
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://github.com/xinbinsun">Github</a></li>
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Neo Sun</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Neo Sun</h2> <br />
+                        <span>What&#39;s past is prologue</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://sunxinbin.cn/2022/01/20/machine-learning-10/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">电影评论情感分析：RNN循环网络原理及自然语言处理NLP应用</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2022-01-20T12:00:00.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2022-01-20</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> Author <span itemprop="name">孙新斌</span>
+                </li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~10.58K
+                    
+                    words
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>This article has been edited <time datetime="1680175569634"></time> ago, and some of its content might need to be updated.</p></div>
+            </div>
+            
+            
+            
+                <div class="kratos-post-inner-toc toc-div-class" >
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B5%E5%BD%B1%E8%AF%84%E8%AE%BA%E6%83%85%E6%84%9F%E5%88%86%E6%9E%90%E6%A1%88%E4%BE%8B%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">电影评论情感分析案例描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-number">2.</span> <span class="toc-text">自然语言处理基础知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IMDB%E6%95%B0%E6%8D%AE%E9%9B%86%E8%8E%B7%E5%8F%96%E4%B8%8E%E5%A4%84%E7%90%86%EF%BC%88%E9%9D%9ETF%E9%9B%86%E6%88%90%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">IMDB数据集获取与处理（非TF集成模式）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E9%A2%84%E8%AE%BE%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86"><span class="toc-number">3.1.</span> <span class="toc-text">非预设数据处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%8A%E8%A7%A3%E5%8E%8B"><span class="toc-number">3.2.</span> <span class="toc-text">下载数据集及解压</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%8F%96"><span class="toc-number">3.3.</span> <span class="toc-text">数据读取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86"><span class="toc-number">3.4.</span> <span class="toc-text">数据处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.5.</span> <span class="toc-text">构建模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9CRNN%E4%B8%8ELSTM%E4%BB%8B%E7%BB%8D"><span class="toc-number">4.</span> <span class="toc-text">循环神经网络RNN与LSTM介绍</span></a></li></ol>
+                </div>
+            
+            <hr />
+            <div itemprop="articleBody"><p><strong>电影评论情感分析</strong>：<strong>RNN循环网络原理及自然语言处理NLP应用</strong><br><span id="more"></span></p>
+<h2 id="电影评论情感分析案例描述"><a href="#电影评论情感分析案例描述" class="headerlink" title="电影评论情感分析案例描述"></a>电影评论情感分析案例描述</h2><p>情感分析（sentiment analysis），又称意见挖掘、倾向性分析，是对带有情感色彩的主观性文本进行分析、处理、归纳和推理的过程。<br>本例使用IMDb网络电影数据集，对电影评论的情感倾向进行分析。<a target="_blank" rel="noopener" href="https://www.imdb.com/">https://www.imdb.com/</a><br><strong>电影评论情感分析IMDb数据集</strong><br>IMDb全称Internet Movie Database(互联网电影资料库),是一个关于电影演员、电影、电视节目、电视明星、电子游戏和电影制作的在线数据库。<br><strong>利用模型进行预测</strong><br>对影评文字进行数据预处理得到特征，通过特征建造深度学习模型，通过模型预测分出正面评价与负面评价</p>
+<h2 id="自然语言处理基础知识"><a href="#自然语言处理基础知识" class="headerlink" title="自然语言处理基础知识"></a>自然语言处理基础知识</h2><p><strong>分词</strong><br>自然语言处理常见特征：<br>• 单独词<br>• 词的n元组<br>• 单独词或n元组出现的频率<br>• 词的词性<br>• 词的位置<br>……<br><strong>结巴分词</strong><br>• 三种分词模式：<br>① 精确模式：试图将句子最精确地切开，适合文本分析<br>② 全模式：把句子中所有的可以成词的词语都扫描出来, 速度非常快，但是不能解决歧义<br>③ 搜索引擎模式：在精确模式的基础上，对长词再次切分，提高召回率，适合用于搜索引擎分词<br>• 支持繁体分词<br>• 支持自定义词典<br>• jieba.cut 方法接受三个输入参数: 需要分词的字符串；cut_all 参数用来控制是否采用全模式；HMM 参数用来控制是否使用 HMM 模型<br>• jieba.cut_for_search 方法接受两个参数：需要分词的字符串；是否使用 HMM 模型。该方法适合用于搜索引擎构建倒排索引的分词<br>• jieba.cut 以及 jieba.cut_for_search 返回的结构都是一个可迭代的generator，可以使用 for 循环来获得分词后得到的每一个词语，或者用jieba.lcut 以及 jieba.lcut_for_search 直接返回 list<br>• 开发者可以指定自己自定义的词典，以便包含 jieba 词库里没有的词 • 用法： jieba.load_userdict(file_name)<br>• file_name 为文件类对象或自定义词典的路径<br>• 词典格式：一个词占一行；每一行分三部分：词语、词频（可省略）、词性（可省略），用空格隔开，顺序不可颠倒。 • file_name 若为路径或二进制方式打开的文件，则文件必须为 UTF-8 编码<br><strong>词的数字化表示方法与词嵌入</strong><br><strong>词的表示方法</strong><br>NLP的需要寻求恰当的文本表示方法<br>分词之后，词还需要表示成机器容易理解的形式，常见表示方法有：<strong>独热编码（One-Hot）</strong><br><strong>词嵌入</strong><br>• 将词汇嵌入到低维的连续向量空间中，即词被表示为实数域上的向量<br>• 能捕捉到词汇间的联系，比如，通过计算两个词嵌入的余弦值得到两个词汇的相关程度<br>• 运算速度快<br>• 能提高情感分析、机器翻译等众多自然语言处理问题的效果<br>词嵌入（word embedding）<br>一个词嵌入是一个稠密浮点数向量（向量长度可以设置）<br>它们是可以训练的参数<br>一般词嵌入是8维（对于小型数据集）到1024维（大型数据集）<br>更高的维度嵌入可以捕获词之间更细的关系，但是需要更多数据去学习</p>
+<p>常见的词嵌入模型有word2vec、GloVe等 word2vec<br>通过对具有数十亿词的新闻文章进行训练，Google提供了一组词向量的结果，可以从<a target="_blank" rel="noopener" href="http://word2vec.googlecode.com/svn/trunk/获取">http://word2vec.googlecode.com/svn/trunk/获取</a><br>GloVe（Wikipedia 2014+ Gigaword 5）<br>GloVe词嵌入可以从下面地址获得：<br><a target="_blank" rel="noopener" href="https://nlp.stanford.edu/projects/glove/">https://nlp.stanford.edu/projects/glove/</a><br>如果想要训练中文文本，这里有一些预训练的中文词嵌入可用：<br><a target="_blank" rel="noopener" href="https://github.com/Embedding/Chinese-Word-Vectors">https://github.com/Embedding/Chinese-Word-Vectors</a></p>
+<h2 id="IMDB数据集获取与处理（非TF集成模式）"><a href="#IMDB数据集获取与处理（非TF集成模式）" class="headerlink" title="IMDB数据集获取与处理（非TF集成模式）"></a>IMDB数据集获取与处理（非TF集成模式）</h2><h3 id="非预设数据处理"><a href="#非预设数据处理" class="headerlink" title="非预设数据处理"></a>非预设数据处理</h3><p>如果是自有数据，或者网络其他数据，需要写一套处理数据的程序<br>基本思路：<br>1 、获取数据，确定数据格式 规范；<br>2 、文字分词。英文分词可以按照空格分词，中文分词可以参考 jieba ；<br>3 、建立词索引表，给每个词一个数字索引 编号；<br>4 、段落文字转为词索引 向量；<br>5 、段度文字转为词嵌入</p>
+<h3 id="下载数据集及解压"><a href="#下载数据集及解压" class="headerlink" title="下载数据集及解压"></a>下载数据集及解压</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> tarfile</span><br><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> randint</span><br><span class="line"><span class="comment">#数据地址</span></span><br><span class="line">url=<span class="string">&quot;http://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz&quot;</span></span><br><span class="line"><span class="comment">#数据存放路径</span></span><br><span class="line">filepath=<span class="string">&quot;data/aclImdb_vl.tar.gz&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#如果当前目录下不存在data文件夹，则建立</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(<span class="string">&quot;data&quot;</span>):</span><br><span class="line">    os. makedirs(<span class="string">&quot;data&quot;</span>)</span><br><span class="line"><span class="comment">#下载数据，80兆左右</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.isfile(filepath):</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&#x27;downloading...&#x27;</span>)</span><br><span class="line">    result=urllib.request.urlretrieve(url,filepath)</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&#x27; downloaded:&#x27;</span> ,result)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(filepath,<span class="string">&#x27;is existed ! &#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#解压数据</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(<span class="string">&quot;data/aclImdb&quot;</span>) :</span><br><span class="line">    tfile=tarfile. <span class="built_in">open</span>(filepath,<span class="string">&quot;r:gz&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&#x27; extracting.. .&#x27;</span>)</span><br><span class="line">    result=tfile.extractall(<span class="string">&quot;data/&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&#x27; extraction completed&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;data/aclImdb is existed!&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="数据读取"><a href="#数据读取" class="headerlink" title="数据读取"></a>数据读取</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#将文本中不需要的字符清除，如html标签&lt;br /&gt;</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">remove_tags</span>(<span class="params">text</span>):</span><br><span class="line">    re_tag = re.<span class="built_in">compile</span>(<span class="string">r&#x27;&lt;[^&gt;]+&gt;&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> re_tag.sub(<span class="string">&#x27;&#x27;</span>, text)</span><br><span class="line"></span><br><span class="line"><span class="comment">#读取文件</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">read_files</span>(<span class="params">filetype</span>):</span><br><span class="line">    path = <span class="string">&quot;data/aclImdb/&quot;</span></span><br><span class="line">    file_list=[]</span><br><span class="line"><span class="comment">#读取正面评价的文件的路径，存到file_list列表里</span></span><br><span class="line">    positive_path=path + filetype+<span class="string">&quot;/pos/&quot;</span></span><br><span class="line">    <span class="keyword">for</span> f <span class="keyword">in</span> os.listdir(positive_path):</span><br><span class="line">        file_list+=[positive_path+f]</span><br><span class="line">    pos_files_num=<span class="built_in">len</span>(file_list)</span><br><span class="line">    <span class="comment">#读取负面评价的文件的路径，存到file_list列表里</span></span><br><span class="line">    negative_path=path + filetype+<span class="string">&quot;/neg/&quot;</span></span><br><span class="line">    <span class="keyword">for</span> f <span class="keyword">in</span> os.listdir(negative_path):</span><br><span class="line">        file_list+=[negative_path+f]</span><br><span class="line">    neg_files_num=<span class="built_in">len</span>(file_list)-pos_files_num</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;read&#x27;</span>,filetype,<span class="string">&#x27;files:&#x27;</span> , <span class="built_in">len</span>(file_list))</span><br><span class="line">    <span class="built_in">print</span>(pos_files_num,<span class="string">&#x27;pos files in&#x27;</span>,filetype,<span class="string">&#x27;files&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span> (neg_files_num, <span class="string">&#x27;neg files in&#x27;</span>,filetype, <span class="string">&#x27;files&#x27;</span>)</span><br><span class="line">    <span class="comment">#得到所有标签。标签用one-hot编码表示，正面评价标签为[1 0]，负面评价标签为[0 1]</span></span><br><span class="line">    all_labels = ([[<span class="number">1</span>,<span class="number">0</span>]] * pos_files_num +[[<span class="number">0</span>,<span class="number">1</span>]] *neg_files_num)</span><br><span class="line">    <span class="comment">#得到所有文本。</span></span><br><span class="line">    all_texts= []</span><br><span class="line">    <span class="keyword">for</span> fi <span class="keyword">in</span> file_list:</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(fi, encoding=<span class="string">&#x27;utf8&#x27;</span>) <span class="keyword">as</span> file_input:</span><br><span class="line">            <span class="comment">#文本中有&lt;br/&gt;这类html标签，将文本传入remove_tags函数</span></span><br><span class="line">            <span class="comment">#函数里使用正则表达式可以将这样的标签清除掉。</span></span><br><span class="line">            all_texts +=[remove_tags(<span class="string">&quot; &quot;</span>.join(file_input.readlines()))]</span><br><span class="line">    <span class="keyword">return</span> all_labels, all_texts</span><br><span class="line"></span><br><span class="line"><span class="comment">#得到训练与测试用的标签和文本</span></span><br><span class="line">train_labels,train_texts=read_files(<span class="string">&quot;train&quot;</span>)</span><br><span class="line">test_labels,test_texts=read_files(<span class="string">&quot;test&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#查看数据、标签</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;训练数据&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;正面评价:&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(train_texts[<span class="number">0</span>])</span><br><span class="line"><span class="built_in">print</span>(train_labels[<span class="number">0</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;负面评价:&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(train_texts[<span class="number">12500</span>])</span><br><span class="line"><span class="built_in">print</span>(train_labels[<span class="number">12500</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;测试数据&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;正面评价:&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(test_texts[<span class="number">0</span>])</span><br><span class="line"><span class="built_in">print</span>(test_labels[<span class="number">0</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;负面评价:&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(test_texts[<span class="number">12500</span>])</span><br><span class="line"><span class="built_in">print</span>(test_labels[<span class="number">12500</span>])</span><br></pre></td></tr></table></figure>
+<h3 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow.keras <span class="keyword">as</span> keras</span><br><span class="line"><span class="comment">#建立词汇词典Token</span></span><br><span class="line">token = keras.preprocessing.text.Tokenizer(num_words=<span class="number">4000</span>)</span><br><span class="line">token.fit_on_texts(train_texts)</span><br><span class="line"><span class="comment">#查看读取文档数量</span></span><br><span class="line">token.document_count</span><br><span class="line"><span class="comment">#将单词映射为他们的排名或索引</span></span><br><span class="line"><span class="built_in">print</span>(token.word_index)</span><br><span class="line"><span class="comment">#将单词映射为它们在训练期间所出现的文档或文本数量</span></span><br><span class="line">token.word_docs</span><br><span class="line"><span class="comment">#查看词汇出现的频次排名</span></span><br><span class="line"><span class="built_in">print</span>(token.word_counts)</span><br><span class="line"><span class="comment">#文字转数字列表</span></span><br><span class="line">train_sequences = token.texts_to_sequences(train_texts)</span><br><span class="line">test_sequences = token.texts_to_sequences(test_texts)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(train_texts[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(train_sequences[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">x_train = keras.preprocessing.sequence.pad_sequences(train_sequences,</span><br><span class="line">padding=<span class="string">&#x27;post&#x27;</span>,truncating=<span class="string">&#x27;post&#x27;</span>,maxlen=<span class="number">400</span>)</span><br><span class="line">x_test = keras.preprocessing.sequence.pad_sequences(test_sequences,</span><br><span class="line">padding=<span class="string">&#x27;post&#x27;</span>,truncating=<span class="string">&#x27;post&#x27;</span>,maxlen=<span class="number">400</span>)</span><br><span class="line"></span><br><span class="line">x_train.shape</span><br><span class="line"><span class="built_in">print</span>(x_train[<span class="number">0</span>])</span><br><span class="line"><span class="comment">#让转换后的数字列表长度相同</span></span><br><span class="line">x_train = keras.preprocessing. sequence.pad_sequences(train_sequences,</span><br><span class="line">                                                    padding=<span class="string">&#x27;post&#x27;</span>,</span><br><span class="line">                                                      truncating=<span class="string">&#x27;post&#x27;</span>,</span><br><span class="line">                                                      maxlen=<span class="number">400</span>)</span><br><span class="line">x_test = keras.preprocessing. sequence.pad_sequences(test_sequences,</span><br><span class="line">                                                    padding=<span class="string">&#x27;post&#x27;</span>,</span><br><span class="line">                                                     truncating=<span class="string">&#x27;post&#x27;</span>,</span><br><span class="line">                                                     maxlen=<span class="number">400</span>)</span><br><span class="line">y_train=np.array(train_labels)</span><br><span class="line"><span class="comment">#要把标签改为ndarray格式</span></span><br><span class="line">y_test=np.array(test_labels)</span><br></pre></td></tr></table></figure>
+<p><strong>texts_to_sequences(texts)</strong><br>texts：待转为序列的文本列表<br>返回值：序列的列表，列表中每个序列对应于一段输入文本<br><strong>填充序列pad_sequences</strong><br>keras.preprocessing.sequence.pad_sequences(sequences, maxlen=None,dtype=’int32’, padding=’pre’, truncating=’pre’, value=0.)<br>参数<br>sequences：浮点数或整数构成的两层嵌套列表<br>maxlen：None或整数，为序列的最大长度。大于此长度的序列将被截短，小于此长度的序列将填0.<br>dtype：返回的numpy array的数据类型<br>padding：‘pre’或‘post’，确定当需要补0时，在序列的起始还是结尾补<br>truncating：‘pre’或‘post’，确定当需要截断序列时，从起始还是结尾截断<br>value：浮点数，此值将在填充时代替默认的填充值0</p>
+<h3 id="构建模型"><a href="#构建模型" class="headerlink" title="构建模型"></a>构建模型</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">model = keras.models.Sequential()</span><br><span class="line">model.add (keras.layers.Embedding(output_dim=<span class="number">32</span>,</span><br><span class="line">                                  input_dim=<span class="number">4000</span>,</span><br><span class="line">                                  input_length=<span class="number">400</span>))</span><br><span class="line">model.add(keras.layers.Flatten())</span><br><span class="line">model.add(keras.layers.Dense(units=<span class="number">256</span>,activation=<span class="string">&#x27;relu&#x27;</span>))</span><br><span class="line">model.add(keras.layers.Dropout(<span class="number">0.3</span>))</span><br><span class="line">model.add(keras.layers.Dense(units=<span class="number">2</span>,activation=<span class="string">&#x27;softmax&#x27;</span>))</span><br><span class="line">model.summary()</span><br><span class="line"><span class="comment">#模型设置与训练</span></span><br><span class="line">model.<span class="built_in">compile</span>(optimizer=<span class="string">&#x27;adam&#x27;</span>,</span><br><span class="line">             loss=<span class="string">&#x27;categorical_crossentropy&#x27;</span>,</span><br><span class="line">             metrics=[<span class="string">&#x27;accuracy&#x27;</span>])</span><br><span class="line">history = model.fit(x_train, y_train,</span><br><span class="line">                   validation_split=<span class="number">0.2</span>,</span><br><span class="line">                   epochs=<span class="number">10</span>,</span><br><span class="line">                   batch_size=<span class="number">128</span>,</span><br><span class="line">                   verbose=<span class="number">1</span>)</span><br><span class="line"><span class="comment">#训练过程可视化</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">acc=history.history[<span class="string">&#x27;accuracy&#x27;</span>]</span><br><span class="line">val_acc=history.history[<span class="string">&#x27;val_accuracy&#x27;</span>]</span><br><span class="line">loss=history.history[<span class="string">&#x27;loss&#x27;</span>]</span><br><span class="line">val_loss=history.history[<span class="string">&#x27;val_loss&#x27;</span>]</span><br><span class="line">epochs=<span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(acc)+<span class="number">1</span>)</span><br><span class="line">plt.plot(epochs,loss,<span class="string">&#x27;r&#x27;</span>,label=<span class="string">&#x27;Training loss&#x27;</span>)</span><br><span class="line">plt.plot(epochs,val_loss,<span class="string">&#x27;b&#x27;</span>,label=<span class="string">&#x27;Validation loss&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Training and validation loss&#x27;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;Epochs&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;Loss&#x27;</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br><span class="line">plt.clf()<span class="comment"># clear figure</span></span><br><span class="line">acc_values=history.history[<span class="string">&#x27;accuracy&#x27;</span>]</span><br><span class="line">val_acc_values=history.history[<span class="string">&#x27;val_accuracy&#x27;</span>]</span><br><span class="line">plt.plot(epochs,acc,<span class="string">&#x27;r&#x27;</span>,label=<span class="string">&#x27;Training acc&#x27;</span>)</span><br><span class="line">plt.plot(epochs,val_acc,<span class="string">&#x27;b&#x27;</span>,label=<span class="string">&#x27;Validation acc&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Training and validation accutacy&#x27;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;Epochs&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;Accuracy&#x27;</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br><span class="line"><span class="comment">#评估模型准确率</span></span><br><span class="line">test_loss,test_acc=model.evaluate(x_test,y_test,verbose=<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Test Accuracy&#x27;</span>,test_acc)</span><br><span class="line"><span class="comment">#执行模型预测</span></span><br><span class="line">predictions=model.predict(x_test)</span><br><span class="line">predictions[<span class="number">0</span>]</span><br><span class="line"><span class="comment">#定义预测结果显示函数</span></span><br><span class="line">sentiment_dict=&#123;<span class="number">0</span>:<span class="string">&#x27;pos&#x27;</span>,<span class="number">1</span>:<span class="string">&#x27;neg&#x27;</span>&#125;</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">display_test_sentiment</span>(<span class="params">i</span>):</span><br><span class="line">    <span class="built_in">print</span>(test_texts[i])</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;label values:&#x27;</span>,sentiment_dict[np.argmax(y_test[i])],<span class="string">&#x27;predict value:&#x27;</span>,sentiment_dict[np.argmax(predictions[i])])</span><br><span class="line"><span class="comment">#查看预测结果</span></span><br><span class="line">display_test_sentiment(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tf.keras.layers.Embedding(input_dim, <span class="comment"># 输入词汇表的长度，最大词汇数+1</span></span><br><span class="line">output_dim, <span class="comment"># 输出词向量的维度</span></span><br><span class="line">input_length=<span class="literal">None</span> <span class="comment"># 输入Tensor的长度</span></span><br></pre></td></tr></table></figure>
+<p>如：<br>tf.keras.layers.Embedding(input_dim=3000,output_dim=50,input_length=200<br>输入的整型矩阵size： (batch, 200)<br>词典的词汇数：3000<br>输出shape： (batch, 200, 50)</p>
+<h2 id="循环神经网络RNN与LSTM介绍"><a href="#循环神经网络RNN与LSTM介绍" class="headerlink" title="循环神经网络RNN与LSTM介绍"></a>循环神经网络RNN与LSTM介绍</h2><p><strong>数据的时序与含义</strong><br>很多问题具有时序性，自然语言处理、视频图像处理、股票交易信息等等<br>多层全连接的神经网络或者卷积神经网络都只能根据当前的状态进行处理，不能很好地处理时序问题<br><strong>RNN的模型结构</strong><br><img src="/2022/01/20/machine-learning-10/pic1.png" alt="Recurrent Neural Network"><br><strong>普通RNN的不足：</strong><br><strong>梯度消失与梯度爆炸</strong><br><strong>长距离依赖问题</strong></p>
+<p><strong>LSTM网络结构（改进）</strong><br>传统RNN每一步的隐藏单元只是执行一个简单的tanh或ReLU操作。<br>LSTM基本结构和RNN相似，主要不同是LSTM对隐含层进行了改进<br>在LSMT中，每个神经元相当于一个记忆细胞（Cell）<br><strong>基本状态</strong><br>LSTM的关键是细胞的状态，细胞的状态类似于传送带，直接在整个链路上运行，只有一些少量的线性交互<br><strong>门 (Gate)</strong><br>LSTM有通过精心设计的称作“门”的结构来去除或者增加信息到细胞状态的能力。<br>门是一种让信息选择式通过的方法。包含一个Sigmoid神经网络层和一个点乘操作 。<br>Sigmoid层输出0到1之间的数值，描述每个部分有多少量可以通过。<br>0 代表“不许任何量通过”<br>1 代表“允许任何量通过”<br>LSTM 拥有三个门，来保护和控制细胞状态。<br>遗忘门：决定丢弃上一步的哪些信息。<br>该门会读取 ht−1和 xt，输出一个在 0 到 1 之间的数值给每个在细胞状态 Ct−1中的数字。1 表示“完全保留”，0 表示“完全舍弃”<br>输入门：决定加入哪些新的信息。<br>tanh层创建一个新的候选值向量 Ct~，加到状态中。<br>这里sigmoid层称“输入门层”，起到一个缩放的作用。<br>这两个信息产生对状态的更新。<br>形成新的细胞状态</p>
+<ol>
+<li>旧的细胞状态 Ct−1与 ft 相乘来丢弃一部分信息</li>
+<li>再加上 it∗Ct~（i是input输入门），生成新的细胞状态Ct<br>输出门：决定输出哪些信息。<br>把Ct输给 tanh 函数，得到一个候选的输出值<br>运行一个 sigmoid 层来确定细胞状态的哪个部分将输出出去<br>LSTM相比于RNN的优点：</li>
+<li>梯度下降法中，RNN的梯度求解是累乘的形式，由于LSTM的隐含层更复杂，LSTM在梯度求解时，式子是累加的形式，所以LSTM的梯度往往不会是一个接近于0的小值，缓解了梯度消失的问题。</li>
+<li>使用了门结构，解决了长距离依赖的问题。</li>
+</ol>
+<p><strong>基于LSTM结构的模型构建</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#建立模型</span></span><br><span class="line">model = keras.models.Sequential()</span><br><span class="line">model.add (keras.layers.Embedding(output_dim=<span class="number">32</span>,</span><br><span class="line">                                  input_dim=<span class="number">4000</span>,</span><br><span class="line">                                  input_length=<span class="number">400</span>))</span><br><span class="line">model.add(keras.layers.Bidirectional(keras.layers.LSTM(units=<span class="number">8</span>)))</span><br><span class="line">model.add(keras.layers.Dense(units=<span class="number">32</span>,activation=<span class="string">&#x27;relu&#x27;</span>))</span><br><span class="line">model.add(keras.layers.Dropout(<span class="number">0.3</span>))</span><br><span class="line">model.add(keras.layers.Dense(units=<span class="number">2</span>,activation=<span class="string">&#x27;softmax&#x27;</span>))</span><br><span class="line">model.summary()</span><br><span class="line"><span class="comment">#模型设置与训练</span></span><br><span class="line">model.<span class="built_in">compile</span>(optimizer=<span class="string">&#x27;adam&#x27;</span>,</span><br><span class="line">             loss=<span class="string">&#x27;categorical_crossentropy&#x27;</span>,</span><br><span class="line">             metrics=[<span class="string">&#x27;accuracy&#x27;</span>])</span><br><span class="line">history = model.fit(x_train, y_train,</span><br><span class="line">                   validation_split=<span class="number">0.2</span>,</span><br><span class="line">                   epochs=<span class="number">6</span>,</span><br><span class="line">                   batch_size=<span class="number">128</span>,</span><br><span class="line">                   verbose=<span class="number">1</span>)</span><br></pre></td></tr></table></figure></p>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">This work is licensed under <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</a></h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> Share</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://sunxinbin.cn/2022/01/20/machine-learning-10/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://sunxinbin.cn/2022/01/20/machine-learning-10/";
+            const title         = "「电影评论情感分析：RNN循环网络原理及自然语言处理NLP应用」";
+            const excerpt       = `电影评论情感分析：RNN循环网络原理及自然语言处理NLP应用`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/DL/" rel="tag">DL</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2023-03-30T11:26:09.634Z" itemprop="dateModified">Last modify：2023-03-30</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" 2021 ICM Problem D-The Influence of Music" href="/2022/01/18/ICM-2021-D/">&lt; older</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" 猫狗大战：迁移学习及应用" href="/2022/01/26/machine-learning-11/">Newer &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center">Computer Science & Technology</p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                Post
+            </span>
+            <span class="count">
+                47
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                Category
+            </span>
+            <span class="count">
+                10
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                Tag
+            </span>
+            <span class="count">
+                20
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix toc-div-class" >
+    <div class="photo-background"></div>
+    <h4 class="widget-title no-after">
+        <i class="fa fa-compass"></i>
+        Toc
+        <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
+    </h4>
+    <div class="textwidget">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B5%E5%BD%B1%E8%AF%84%E8%AE%BA%E6%83%85%E6%84%9F%E5%88%86%E6%9E%90%E6%A1%88%E4%BE%8B%E6%8F%8F%E8%BF%B0"><span class="toc-text">电影评论情感分析案例描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-text">自然语言处理基础知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IMDB%E6%95%B0%E6%8D%AE%E9%9B%86%E8%8E%B7%E5%8F%96%E4%B8%8E%E5%A4%84%E7%90%86%EF%BC%88%E9%9D%9ETF%E9%9B%86%E6%88%90%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-text">IMDB数据集获取与处理（非TF集成模式）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E9%A2%84%E8%AE%BE%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86"><span class="toc-text">非预设数据处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%8A%E8%A7%A3%E5%8E%8B"><span class="toc-text">下载数据集及解压</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%8F%96"><span class="toc-text">数据读取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86"><span class="toc-text">数据处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E6%A8%A1%E5%9E%8B"><span class="toc-text">构建模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9CRNN%E4%B8%8ELSTM%E4%BB%8B%E7%BB%8D"><span class="toc-text">循环神经网络RNN与LSTM介绍</span></a></li></ol>
+    </div>
+</aside>
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>Categories List</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Craniofacial-Registration/">Craniofacial Registration</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DL/">DL</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Feature-Point-Punctuation-Algorithm/">Feature Point Punctuation Algorithm</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Literature/">Literature</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ML/">ML</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematical-Modeling/">Mathematical Modeling</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Philosophy/">Philosophy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Undergraduate-Courses/">Undergraduate Courses</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">2</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>Tagcloud</h4>
+      <div class="tag-clouds">
+        <a href="/tags/A-single-spark-can-start-a-prairie-fire/" style="font-size: 0.6em;">A single spark can start a prairie fire</a> <a href="/tags/Algorithm/" style="font-size: 0.6em;">Algorithm</a> <a href="/tags/Anecdote/" style="font-size: 0.6em;">Anecdote</a> <a href="/tags/CV/" style="font-size: 0.6em;">CV</a> <a href="/tags/Craniofacial-Registration/" style="font-size: 0.6em;">Craniofacial Registration</a> <a href="/tags/DL/" style="font-size: 0.8em;">DL</a> <a href="/tags/Emotion/" style="font-size: 0.7em;">Emotion</a> <a href="/tags/Feature-Point-Punctuation-Algorithm/" style="font-size: 0.75em;">Feature Point Punctuation Algorithm</a> <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/Latex/" style="font-size: 0.6em;">Latex</a> <a href="/tags/Literature/" style="font-size: 0.75em;">Literature</a> <a href="/tags/ML/" style="font-size: 0.7em;">ML</a> <a href="/tags/Mathematical-Modeling/" style="font-size: 0.65em;">Mathematical Modeling</a> <a href="/tags/OpenAI/" style="font-size: 0.6em;">OpenAI</a> <a href="/tags/Philosophy/" style="font-size: 0.6em;">Philosophy</a> <a href="/tags/Python/" style="font-size: 0.6em;">Python</a> <a href="/tags/Undergraduate-Courses/" style="font-size: 0.75em;">Undergraduate Courses</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>Recent posts</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2023/04/05/python-to-exe/"><i class="fa  fa-book"></i> Python如何打包为exe文件</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/30/Dynamic-Programming/"><i class="fa  fa-book"></i> Dynamic Programming</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/05/Common-instruction-set/"><i class="fa  fa-book"></i> NewBing&ChatGPT</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/01/25/Big-data-analysis-method/"><i class="fa  fa-book"></i> Big data analysis method</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/01/16/artificial-intelligence/"><i class="fa  fa-book"></i> Artificial Intelligence</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        <li><a href="mailto:2332431354@qq.com"><i class="fa fa-envelope"></i></a></li>
+                        
+                        
+                        
+                        
+                        <li><a target="_blank" rel="me" href="https://nya.one/@SunXinbin"><i class="fa fa fa-share-alt-square"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/xinbinsun"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2023 Neo Sun Copyright.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by 孙新斌.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            <li><a href="https://beian.miit.gov.cn" rel="external nofollow" target="_blank">鲁ICP备23010101号</a></li>
+                            <li><a href="http://www.beian.gov.cn" rel="external nofollow" target="_blank"><img src="/images/psr.webp" width="12" height="12" loading="lazy" decoding="auto" />鲁公网安备371402000348</a></li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>

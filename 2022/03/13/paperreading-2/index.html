@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="Chinese/English">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/avatar.webp">
+  
+  <title>基于深度学习的3维人脸特征点自动检测 | Neo Sun</title>
+  <meta name="author" content="孙新斌" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="Feature Point Punctuation Algorithm" />
+  
+  <meta name="description" content="（基于深度学习的3维人脸特征点自动检测）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于深度学习的3维人脸特征点自动检测">
+<meta property="og:url" content="http://sunxinbin.cn/2022/03/13/paperreading-2/index.html">
+<meta property="og:site_name" content="Neo Sun">
+<meta property="og:description" content="（基于深度学习的3维人脸特征点自动检测）">
+<meta property="og:locale">
+<meta property="og:image" content="http://sunxinbin.cn/images/avatar.webp">
+<meta property="article:published_time" content="2022-03-13T14:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-30T11:28:27.989Z">
+<meta property="article:author" content="孙新斌">
+<meta property="article:tag" content="Feature Point Punctuation Algorithm">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://sunxinbin.cn/images/avatar.webp">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>Archives</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>Search Engine</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>About</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            <li><a href="https://sunxinbin.cn">Blog</a></li>
+                                                        
+                                                    
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://github.com/xinbinsun">Github</a></li>
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Neo Sun</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Neo Sun</h2> <br />
+                        <span>What&#39;s past is prologue</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://sunxinbin.cn/2022/03/13/paperreading-2/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">基于深度学习的3维人脸特征点自动检测</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2022-03-13T14:00:00.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2022-03-13</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> Author <span itemprop="name">孙新斌</span>
+                </li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~5.41K
+                    
+                    words
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>This article has been edited <time datetime="1680175707989"></time> ago, and some of its content might need to be updated.</p></div>
+            </div>
+            
+            
+            
+            <hr />
+            <div itemprop="articleBody"><p>（基于深度学习的3维人脸特征点自动检测）</p>
+<span id="more"></span>
+<h2 id="将3维模型转化为2维图像的方法"><a href="#将3维模型转化为2维图像的方法" class="headerlink" title="将3维模型转化为2维图像的方法"></a>将3维模型转化为2维图像的方法</h2><h3 id="Deep-landmark-identification-network-DLIN"><a href="#Deep-landmark-identification-network-DLIN" class="headerlink" title="Deep landmark identification network, DLIN"></a>Deep landmark identification network, DLIN</h3><p>结论：</p>
+<p>·提出一个多线性算法自动建立密集的点对点对应的任意数量的3D人脸，提出深度特征点识别网络对合成图像进行训练。</p>
+<p>·使用DLIN检测显著特征点，使用它们通过水平集曲线生产测地线距离图将3D人脸分割为Voronoi区域；利用这些区域中的·关键点以非刚性的方式对人脸中的相似区域进行对齐，通过神经网络搜索建立密集对应关系。</p>
+<p>·提出一种基于区域的三维可变型模型（R3DM），以有效地将密集的通信传播到大型数据集。</p>
+<p>·不依赖于现有的3D人脸模型。</p>
+<p>·论文原意将其应用于对诸如睡眠呼吸暂停症和自闭症谱系障碍等疾病进行表型分析。</p>
+<p><img src="/2022/03/13/paperreading-2/pic1.png" alt="Block diagram of the proposed dense 3D face correspondence algorithm. The red box contains steps that are performed offline. Note that both online (green boxes) and offline processes are fully automatic and the online process is very efficient given the complexity of the dense correspondence task. The timings are without using a GPU."></p>
+<p><img src="/2022/03/13/paperreading-2/pic2.png" alt="The process of generating training data for the DLIN. Left shows the process of preparing the input image while preparation of ground truth landmarks is shown on the right. The process is repeated for all input images to the DLIN."></p>
+<p><img src="/2022/03/13/paperreading-2/pic6.png" alt="Sample images from the FRGCv2 (first four) andBosphorus databases (last four) along with the landmarks used in this paper. We detect the 11 red coloured landmarks with DLIN and the three blue onesby fitting the R3DM."></p>
+<p><strong>1.生成合成训练数据</strong></p>
+<p>为了训练深度地标识别网络(DLIN)，作者使用商业软件(FaceGenTM)，通过改变面部形状和面部表情，综合生成真实的3D人脸。因为人脸是由模型生成的，所以特征点的真实位置就已经知道了。训练数据覆盖了由于年龄、种族和表情而导致的面部形状变化的巨大空间。还在训练数据中诱导姿态变化，以适应测试图像中的姿态变化。</p>
+<p><img src="/2022/03/13/paperreading-2/pic3.png" alt="(a) Sample images used to train the DLIN. Notice the variations in different modalities of the training data.(b) Network architecture of DLIN."></p>
+<p><strong>2.训练深度特征点识别网络</strong></p>
+<p>卷积层数为5层，上采样层改为4x层</p>
+<p>实验表明，减少8个卷积层可以使学习时间减少约3倍，特征点检测时间减少4倍。</p>
+<p><strong>3.使用DLIN进行特征点检测</strong></p>
+<p><img src="/2022/03/13/paperreading-2/pic7.png" alt="Results of landmark detection using the proposed DLIN on sample scans from the FRGCv2 (left
+four columns) and the Bosphorus (right four columns) datasets."></p>
+<p><img src="/2022/03/13/paperreading-2/pic8.png" alt="Results of landmark detection using the proposed DLIN on sample scans from the FRGCv2 (left
+four columns) and the Bosphorus (right four columns) datasets."></p>
+<p><strong>基于区域的密集对应</strong></p>
+<p>原因：医学应用中，特征点检测和对应的准确性至关重要，密集的对应必须非常精确.</p>
+<p>输入：一组用Fj表示的N个3D人脸及其对应的基准特征点Lj</p>
+<p><img src="/2022/03/13/paperreading-2/pic9.png" alt="水平集方程"></p>
+<p><img src="/2022/03/13/paperreading-2/pic10.png" alt="the Eikonal equation"></p>
+<p>通过计算最短曲面距离（又称为geodesic distance）利用Fsat Marching算法求解的LHS，找到了geodesic distance距离映射，然后将3D人脸划分为五个特征点相关的区域</p>
+<p><strong>——关于可形变模型拟合</strong></p>
+<p>R3DM：通过可变形模型拟合将密集对应传播到大量的查询面，比建立基于区域的对应更快</p>
+<p>作为验证密集通信算法质量的一种方法。</p>
+<p><img src="/2022/03/13/paperreading-2/pic11.png" alt="R3DM"></p>
+<p>US为主成分(PCs),V列为对应的荷载</p>
+<p>人脸通过DLIN特征点识别，分为五个面部区域，R3DM和查询人脸的鼻尖剧中，实现初始人脸对齐。通过上式给出的各区域统计模型进行变形，合成查询人脸区域内三位点随即子集，进行两步优化（矢量化查询和刚性变换）。最后将所有区域参数串联起来，作为表征人脸的特征。</p>
+<p><strong>具体实验</strong></p>
+<p>合成数据集训练DLIN，实验在真实的3D人脸数据集进行。</p>
+<hr>
+<p>使用数据集：基准的FRGCv2和Bosphorus数据集</p>
+<p>DLIN与FCN的比较：为了评估DLIN在FCN上的改进，作者遵循相同训练协议。更具体地说，DLIN是从零开始学习的，而FCN是在相同的训练数据上进行微调的。在4,007张FRGCv2扫描图上测试了这两种网络，并比较了地标定位误差和每幅图像的检测时间。从结果可以看出，DLIN的地标检测速度比FCN快4倍，而对所有地标的精度都等于或略优于FCN。</p>
+<p>作者在不同数据集上进行测试并给出比较结果。例如，在博斯普鲁斯数据集上使用类似的策略，对未见过的面孔进行无偏地标检测。DLIN探测到的11个地标的精度在2.95mm和1.83mm之间，从而将精度提高了30%。结果表明，该方法具有较高的精度和对大姿态和表情变化的鲁棒性。</p>
+<p>构建了两个模型R3DM1和R3DM2。</p>
+<div class="xControl">
+    <div class="xHeading"><div class="xIcon"><i class="fa fa-plus"></i></div><span>Conclusions</span></div>
+    <div class="xContent"><div class="inner">
+        <p>We presented an algorithm for dense correspondence over a large number of 3D faces across varying facial expressions and identities. We trained a Deep Landmark Identification Network (DLIN) using synthetic images to detect salient landmarks and used them to segment the 3D face into Voronoi regions by generating a geodesic distance map through level set curves. Keypoints in these regions were used to align similar regions across faces in a non-rigid manner and dense correspondence was established through NN search. We also proposed a Region based 3D Deformable Model (R3DM) to propagate the dense correspondences to large datasets efficiently. Experiments on benchmark datasets with challenging protocols show that our algorithm is faster and more accurate than existing state-of-the-art. Our algorithm is able to generate population specific accurate deformable 3D face models from scratch without relying on existing linear 3D face models such as the BFM. In the future, we intend to use our algorithm for phenotyping medical conditions such as Sleep Apnoea and Autistic Spectrum Disorder.</p>
+<p>我们提出了一种算法，用于在不同面部表情和身份的大量3D人脸上进行密集通信。我们使用合成图像训练深度地标识别网络(DLIN)来检测显著地标，并使用它们通过水平集曲线生成测地线距离图将3D人脸分割为Voronoi区域。利用这些区域中的关键点以非刚性的方式对人脸中的相似区域进行对齐，通过神经网络搜索建立密集对应关系。我们还提出了一种基于区域的三维可变形模型(R3DM)，以有效地将密集的通信传播到大型数据集。在具有挑战性协议的基准数据集上的实验表明，我们的算法比现有的最先进的算法更快、更准确。我们的算法能够从无开始生成特定人群的精确可变形3D人脸模型，而不依赖于现有的线性3D人脸模型(如BFM)。在未来，我们打算用我们的算法来对诸如睡眠呼吸暂停症和自闭症谱系障碍等疾病进行表型分析。</p>
+ 
+    </div></div>
+    </div>
+<p>思路：首先对三维人脸建立稠密准确的密集对应联系，据此组合不同身份和不同表情的人脸进行数据集的身份和表情扩增；也采用了HPR算法对旋转人脸的自遮挡进行了模拟，据此进行了数据集的姿态扩增。通过以上方法构建了一个百万级的三维人脸数据集，然后利用GridFit算法插值得到深度，俯角和仰角的三通道图像，从头训练了一个神经网络，在目前所有的公开三维人脸数据集中获得了非常好的成绩。</p>
+<h2 id="基于3维形变模型的方法"><a href="#基于3维形变模型的方法" class="headerlink" title="基于3维形变模型的方法"></a>基于3维形变模型的方法</h2><h3 id="3D-morphable-models-3DMM"><a href="#3D-morphable-models-3DMM" class="headerlink" title="3D morphable models,3DMM"></a>3D morphable models,3DMM</h3><p>算法主要流程<br>从上面的叙述中，我们可以直观的想象，主要有两个步骤，第一个是从人脸数据库中所有脸构建出一个平均的脸部模型，第二个完成形变模型与照片的匹配。这两个步骤中，都暗含了人脸与人脸之间的每一个点都拥有对应关系，且必须找到这种对应关系，完成点与点之间的配准，是最主要的难题。</p>
+<p>因此在进行建模的过程中，需要完成以下两个关键的问题：</p>
+<p>模型与照片的配准<br>如何避免生成怪异不可能的模型<br>文章主要组织为以下几部分对思路进行介绍：</p>
+<h4 id="三维形变的脸部模型"><a href="#三维形变的脸部模型" class="headerlink" title="三维形变的脸部模型"></a>三维形变的脸部模型</h4><p>这里作者将人脸分为了两种向量：<br>一种是形状向量（shape-vector），包含了X , Y , Z 坐标信息；另一种是纹理向量（texture-vector）， 包含了R , G , B颜色值信息<br>在有了以上的表示方法后，我们使用的建立三维形变的脸部模型由m mm个脸部模型组成，其中每一个都包含相应的$S_{i}, T_{i} $两种向量。</p>
+<h4 id="将形变模型与照片对应"><a href="#将形变模型与照片对应" class="headerlink" title="将形变模型与照片对应"></a>将形变模型与照片对应</h4><p>在有了形变模型之后，对于一张给定的人脸照片，我们需要将模型与人脸照片进行配准，然后对模型的参数进行调整，使其与照片中的人脸差异值达到最小。简单而言，不断依据模型与输入的人脸照片进行比对，不断进行迭代，使两者之间的比对误差达到最小，这个时候，我们可以近似认为该模型即为对应输入的人脸照片的三维模型。</p>
+<h3 id="3D-dense-face-alignment-3DDFA"><a href="#3D-dense-face-alignment-3DDFA" class="headerlink" title="3D dense face alignment,3DDFA"></a>3D dense face alignment,3DDFA</h3><h4 id="Face-Alignment"><a href="#Face-Alignment" class="headerlink" title="Face Alignment"></a>Face Alignment</h4><p>Face Alignment 人脸对齐任务是基于一定量的训练集，得到一个模型，使得该模型对输入的一张任意姿态下的人脸图像能够进行特征点(landmark)标记。Face Alignment 任务一般的呈现方式是人脸特征点的检测与标记。一般的二维人脸图像 Face Alignment 得到的结果是特征点的二维位置坐标信息。<br>Full pose range<br>文中将人脸转动角度小于45度的姿势称为 small-medium pose，对于转动角度大于45度，小于等于90度的姿势称为 large pose。即，此篇论文解决的问题是大姿势下的人脸对齐任务。最极端情况则是整张人脸图像上只有侧脸信息。</p>
+<p>通用的一些FA模型在大姿势的情况下会面临一些挑战：</p>
+<p>这些模型假定所有的特征点可见；<br>随着姿势的变化，人脸呈现的角度也会发生变化，在大姿势的情况下无法保证所有特征点可见；<br>不同的姿势带来的特征点标记困难程度也会上升，而对于一些不可见的点，现有的办法大部分是靠猜。</p>
+<h4 id="3DDFA-3D-Dense-Face-Alignment"><a href="#3DDFA-3D-Dense-Face-Alignment" class="headerlink" title="3DDFA(3D Dense Face Alignment)"></a>3DDFA(3D Dense Face Alignment)</h4><p>问题的转换<br>将常见的2D人脸特征点标记问题转换为3D拟合的任务。具体表现在需要求解的参数上。</p>
+<p>2D人脸特征点标记得到的结果：一系列2D特征点位置坐标<br>3D拟合需要求解的参数<br>pose 姿势参数：scale 缩放因子, rotation 旋转矩阵, translation 平移向量<br>morphing 变形参数: shape 形状系数, expression 表情系数<br>人脸形状的表示——3DMM<br>选择3DMM对人脸形状进行表示。在传统3DMM的基础上，加入3DMM拓展模型的 identity 和 expression 参数。那么，人脸形状 S的表示方式如下：<br><img src="/2022/03/13/paperreading-2/pic4.png" alt="公式(1)"></p>
+<p>其中，S 表示平均人脸形状，A 表示主成分向量，α 表示相应的系数。</p>
+<h4 id="参数估计方法——级联回归-CNN"><a href="#参数估计方法——级联回归-CNN" class="headerlink" title="参数估计方法——级联回归+CNN"></a>参数估计方法——级联回归+CNN</h4><p>级联回归：通过一系列回归器将一个指定的初始预测值逐步细化，每一个回归器都依靠前一个回归器的输出来执行下一步操作。联系到FA任务中，则是基于初始人脸形状，一般选择的是平均人脸形状，通过多次回归把参数回归到ground-truth的地方。</p>
+<p>卷积神经网络<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=CNN&amp;spm=1001.2101.3001.7020">CNN</a>：将人脸特征点标记看作从图像像素到特征点位置的回归操作。</p>
+<p>3DDFA方法则是将级联回归中的回归器设置为CNN。</p>
+<p>根据这个式子，需要了解的主要是四个部分：</p>
+<p>·回归目标，即参数p<br>·卷积神经网络的输入，即图像特征Fea的设计<br>·卷积神经网络的设计，即Net<br>·代价函数的设计<br><img src="/2022/03/13/paperreading-2/pic5.png" alt="An overview of 3DDFA."></p>
+<p>这篇论文主要是将二维的人脸特征标记问题转为了二维图像与三维模型的拟合问题。主要是通过级联的卷积神经网络，将二维人脸图像与三维变形模型进行拟合；使用3D变形模型构建得到的三维人脸并映射到二维人脸图像上的结果。</p>
+<p>重点还是在于大姿势人脸的一个三维重建，主要学习的也是三维映射所需要的各种参数。从而使得正面的三维人脸在映射过程中随着各个参数的变化而转变人脸呈现的角度。</p>
+<h3 id="Deep-face-feature-DFF"><a href="#Deep-face-feature-DFF" class="headerlink" title="Deep face feature,DFF"></a>Deep face feature,DFF</h3><p>本文基于深度学习的图像特征提取方法</p>
+<p>提出了一个由三个卷积网络组成的从粗到细的学习框架，经过训练可将</p>
+<p>深度人脸特征(DFF)是使用不同视图渲染的人脸图像之间的对应关系进行训练的。</p>
+<p>使用经过训练的DFF模型，可以为人脸图像的每个像素提取特征向量，从而区分不同的人脸区域，并被证明比通用的特征描述符更有效的人脸相关任务，如匹配和对齐。</p>
+<p>使用CNN提高回归精度，对于人脸图像的每个像素，使用该模型提取一个高维特征，该特征可以在无约束条件下准确地表示不同人脸图像上的相同解剖面部点</p>
+<p>·使用一个构造良好的训练数据集和一个新的损失函数</p>
+<p>·利用新设计的人脸特征提取器</p>
+<p>本文介绍了传统的经典人脸对齐方法，提出它们在不同视角下的局限性。     </p>
+<p>DFF是一种基于深度学习的人脸特征提取方法，利用不同姿势和表情下的对应关系，得到不同人脸图像中相同语义像素的深度人脸特征具有相似的值。因此，DFF能够捕获人脸图像的全局结构信息，在匹配、对齐等人脸相关任务上比SIFT等常用特征描述符更有效。作者提出了一种新的基于DFF的人脸对齐方法，实现了最先进的大姿态人脸对齐结果。</p>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">This work is licensed under <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</a></h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> Share</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://sunxinbin.cn/2022/03/13/paperreading-2/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://sunxinbin.cn/2022/03/13/paperreading-2/";
+            const title         = "「基于深度学习的3维人脸特征点自动检测」";
+            const excerpt       = `（基于深度学习的3维人脸特征点自动检测）`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/Feature-Point-Punctuation-Algorithm/" rel="tag">Feature Point Punctuation Algorithm</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2023-03-30T11:28:27.989Z" itemprop="dateModified">Last modify：2023-03-30</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" 基于深度学习的2维人脸特征点自动检测" href="/2022/03/07/paperreading-1/">&lt; older</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" 数模竞赛基础" href="/2022/03/22/matlab-learning/">Newer &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center">Computer Science & Technology</p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                Post
+            </span>
+            <span class="count">
+                47
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                Category
+            </span>
+            <span class="count">
+                10
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                Tag
+            </span>
+            <span class="count">
+                20
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>Categories List</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Craniofacial-Registration/">Craniofacial Registration</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DL/">DL</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Feature-Point-Punctuation-Algorithm/">Feature Point Punctuation Algorithm</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Literature/">Literature</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ML/">ML</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematical-Modeling/">Mathematical Modeling</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Philosophy/">Philosophy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Undergraduate-Courses/">Undergraduate Courses</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">2</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>Tagcloud</h4>
+      <div class="tag-clouds">
+        <a href="/tags/A-single-spark-can-start-a-prairie-fire/" style="font-size: 0.6em;">A single spark can start a prairie fire</a> <a href="/tags/Algorithm/" style="font-size: 0.6em;">Algorithm</a> <a href="/tags/Anecdote/" style="font-size: 0.6em;">Anecdote</a> <a href="/tags/CV/" style="font-size: 0.6em;">CV</a> <a href="/tags/Craniofacial-Registration/" style="font-size: 0.6em;">Craniofacial Registration</a> <a href="/tags/DL/" style="font-size: 0.8em;">DL</a> <a href="/tags/Emotion/" style="font-size: 0.7em;">Emotion</a> <a href="/tags/Feature-Point-Punctuation-Algorithm/" style="font-size: 0.75em;">Feature Point Punctuation Algorithm</a> <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/Latex/" style="font-size: 0.6em;">Latex</a> <a href="/tags/Literature/" style="font-size: 0.75em;">Literature</a> <a href="/tags/ML/" style="font-size: 0.7em;">ML</a> <a href="/tags/Mathematical-Modeling/" style="font-size: 0.65em;">Mathematical Modeling</a> <a href="/tags/OpenAI/" style="font-size: 0.6em;">OpenAI</a> <a href="/tags/Philosophy/" style="font-size: 0.6em;">Philosophy</a> <a href="/tags/Python/" style="font-size: 0.6em;">Python</a> <a href="/tags/Undergraduate-Courses/" style="font-size: 0.75em;">Undergraduate Courses</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>Recent posts</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2023/04/05/python-to-exe/"><i class="fa  fa-book"></i> Python如何打包为exe文件</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/30/Dynamic-Programming/"><i class="fa  fa-book"></i> Dynamic Programming</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/05/Common-instruction-set/"><i class="fa  fa-book"></i> NewBing&ChatGPT</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/01/25/Big-data-analysis-method/"><i class="fa  fa-book"></i> Big data analysis method</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/01/16/artificial-intelligence/"><i class="fa  fa-book"></i> Artificial Intelligence</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        <li><a href="mailto:2332431354@qq.com"><i class="fa fa-envelope"></i></a></li>
+                        
+                        
+                        
+                        
+                        <li><a target="_blank" rel="me" href="https://nya.one/@SunXinbin"><i class="fa fa fa-share-alt-square"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/xinbinsun"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2023 Neo Sun Copyright.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by 孙新斌.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            <li><a href="https://beian.miit.gov.cn" rel="external nofollow" target="_blank">鲁ICP备23010101号</a></li>
+                            <li><a href="http://www.beian.gov.cn" rel="external nofollow" target="_blank"><img src="/images/psr.webp" width="12" height="12" loading="lazy" decoding="auto" />鲁公网安备371402000348</a></li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>

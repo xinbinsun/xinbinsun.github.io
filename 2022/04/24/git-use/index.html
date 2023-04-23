@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="Chinese/English">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/avatar.webp">
+  
+  <title>Git的操作与使用 | Neo Sun</title>
+  <meta name="author" content="孙新斌" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="Git" />
+  
+  <meta name="description" content="GitGit是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git的操作与使用">
+<meta property="og:url" content="http://sunxinbin.cn/2022/04/24/git-use/index.html">
+<meta property="og:site_name" content="Neo Sun">
+<meta property="og:description" content="GitGit是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理。">
+<meta property="og:locale">
+<meta property="og:image" content="http://sunxinbin.cn/images/avatar.webp">
+<meta property="article:published_time" content="2022-04-24T02:25:37.000Z">
+<meta property="article:modified_time" content="2022-09-21T08:15:24.875Z">
+<meta property="article:author" content="孙新斌">
+<meta property="article:tag" content="Git">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://sunxinbin.cn/images/avatar.webp">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>Archives</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>Search Engine</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>About</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            <li><a href="https://sunxinbin.cn">Blog</a></li>
+                                                        
+                                                    
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://github.com/xinbinsun">Github</a></li>
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Neo Sun</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Neo Sun</h2> <br />
+                        <span>What&#39;s past is prologue</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://sunxinbin.cn/2022/04/24/git-use/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">Git的操作与使用</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2022-04-24T02:25:37.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2022-04-24</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> Author <span itemprop="name">孙新斌</span>
+                </li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~11.13K
+                    
+                    words
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>This article has been edited <time datetime="1663748124875"></time> ago, and some of its content might need to be updated.</p></div>
+            </div>
+            
+            
+            
+                <div class="kratos-post-inner-toc toc-div-class" >
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git"><span class="toc-number">1.</span> <span class="toc-text">Git</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E6%96%B9%E6%B3%95%E5%A4%A7%E5%85%A8"><span class="toc-number">1.1.</span> <span class="toc-text">Git常用命令及方法大全</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Egitee%EF%BC%88%E7%A0%81%E4%BA%91%EF%BC%89%E7%9A%84%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E9%93%BE%E6%8E%A5%EF%BC%88https%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">关于gitee（码云）的远程仓库链接（https）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%EF%BC%8C%E6%96%B0%E5%BB%BA%E4%BB%A3%E7%A0%81%E5%BA%93"><span class="toc-number">1.1.2.</span> <span class="toc-text">一，新建代码库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%EF%BC%8C%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.3.</span> <span class="toc-text">二，配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%EF%BC%8C%E5%A2%9E%E5%8A%A0-%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6"><span class="toc-number">1.1.4.</span> <span class="toc-text">三，增加&#x2F;删除文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%EF%BC%8C%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4"><span class="toc-number">1.1.5.</span> <span class="toc-text">四，代码提交</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%EF%BC%8C%E5%88%86%E6%94%AF"><span class="toc-number">1.1.6.</span> <span class="toc-text">五，分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%EF%BC%8C%E6%A0%87%E7%AD%BE"><span class="toc-number">1.1.7.</span> <span class="toc-text">六，标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%83%EF%BC%8C%E6%9F%A5%E7%9C%8B%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.8.</span> <span class="toc-text">七，查看信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AB%EF%BC%8C%E8%BF%9C%E7%A8%8B%E5%90%8C%E6%AD%A5"><span class="toc-number">1.1.9.</span> <span class="toc-text">八，远程同步</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%9D%EF%BC%8C%E6%92%A4%E9%94%80"><span class="toc-number">1.1.10.</span> <span class="toc-text">九，撤销</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%81%EF%BC%8C%E5%85%B6%E4%BB%96"><span class="toc-number">1.1.11.</span> <span class="toc-text">十，其他</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86%E7%AD%96%E7%95%A5"><span class="toc-number">1.2.</span> <span class="toc-text">Git分支管理策略</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E5%90%88%E5%B9%B6%E7%94%9F%E6%88%90%E7%9A%84%E6%96%B0%E8%8A%82%E7%82%B9%EF%BC%8C%E5%81%9A%E4%B8%80%E4%B8%AA%E6%A0%87%E7%AD%BE"><span class="toc-number">2.</span> <span class="toc-text">对合并生成的新节点，做一个标签</span></a></li></ol>
+                </div>
+            
+            <hr />
+            <div itemprop="articleBody"><h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><p>Git是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理。<span id="more"></span>也是Linus Torvalds为了帮助管理Linux内核开发而开发的一个开放源码的版本控制软件。</p>
+<p>软件平台：Windows,Mac OS,Linux/Unix</p>
+<p><img src="/2022/04/24/git-use/git.png" alt="git"></p>
+<h2 id="Git常用命令及方法大全"><a href="#Git常用命令及方法大全" class="headerlink" title="Git常用命令及方法大全"></a>Git常用命令及方法大全</h2><div class="xControl active">
+    <div class="xHeading"><div class="xIcon"><i class="fa fa-plus"></i></div><span>Git专用名词</span></div>
+    <div class="xContent pre-open"><div class="inner">
+        <ul>
+<li>Workspace：工作区</li>
+<li>Index / Stage：暂存区</li>
+<li>Repository：仓库区（或本地仓库）</li>
+<li>Remote：远程仓库</li>
+</ul>
+ 
+    </div></div>
+    </div>
+<p><strong>本地分支关联远程</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch --set-upstream-to=origin/分支名 分支名</span><br></pre></td></tr></table></figure>
+<h3 id="关于gitee（码云）的远程仓库链接（https）"><a href="#关于gitee（码云）的远程仓库链接（https）" class="headerlink" title="关于gitee（码云）的远程仓库链接（https）"></a>关于gitee（码云）的远程仓库链接（https）</h3><ol>
+<li><code>首先输入命令，链接自己的远程https库</code></li>
+<li><code>$ git remote add origin https://gitee.com/xinbinsun/windows_git.git</code></li>
+<li><code>使用拉取命令拉取库中数据</code></li>
+<li><code>$ git pull --rebase origin master</code></li>
+<li><code>拉取分支，提交代码等命令在下方有写</code></li>
+<li><code>最后在完成后提交分支</code></li>
+</ol>
+<h3 id="一，新建代码库"><a href="#一，新建代码库" class="headerlink" title="一，新建代码库"></a>一，新建代码库</h3><ol>
+<li><code># 在当前目录新建一个Git代码库</code></li>
+<li><code>$ git init</code></li>
+<li><code># 新建一个目录，将其初始化为Git代码库</code></li>
+<li><code>$ git init [project-name]</code></li>
+<li><code># 下载一个项目和它的整个代码历史</code></li>
+<li><code>$ git clone [url]</code></li>
+</ol>
+<h3 id="二，配置"><a href="#二，配置" class="headerlink" title="二，配置"></a>二，配置</h3><p>Git的设置文件为<code>.gitconfig</code>，它可以在用户主目录下（全局配置），也可以在项目目录下（项目配置）。</p>
+<ol>
+<li><code># 显示当前的Git配置</code></li>
+<li><code>$ git config --list</code></li>
+<li><code># 编辑Git配置文件</code></li>
+<li><code>$ git config -e [--global]</code></li>
+<li><code># 设置提交代码时的用户信息</code></li>
+<li><code>$ git config [--global] user.name &quot;[name]&quot;</code></li>
+<li><code>$ git config [--global] user.email &quot;[email address]&quot;</code></li>
+</ol>
+<h3 id="三，增加-删除文件"><a href="#三，增加-删除文件" class="headerlink" title="三，增加/删除文件"></a>三，增加/删除文件</h3><ol>
+<li><code># 添加指定文件到暂存区</code></li>
+<li><code>$ git add [file1] [file2] ...</code></li>
+<li><code># 添加指定目录到暂存区，包括子目录</code></li>
+<li><code>$ git add [dir]</code></li>
+<li><code># 添加当前目录的所有文件到暂存区</code></li>
+<li><code>$ git add .</code></li>
+<li><code># 添加每个变化前，都会要求确认</code></li>
+<li><code># 对于同一个文件的多处变化，可以实现分次提交</code></li>
+<li><code>$ git add -p</code></li>
+<li><code># 删除工作区文件，并且将这次删除放入暂存区</code></li>
+<li><code>$ git rm [file1] [file2] ...</code></li>
+<li><code># 停止追踪指定文件，但该文件会保留在工作区</code></li>
+<li><code>$ git rm --cached [file]</code></li>
+<li><code># 改名文件，并且将这个改名放入暂存区</code></li>
+<li><code>$ git mv [file-original] [file-renamed]</code></li>
+</ol>
+<h3 id="四，代码提交"><a href="#四，代码提交" class="headerlink" title="四，代码提交"></a>四，代码提交</h3><ol>
+<li><code># 提交暂存区到仓库区</code></li>
+<li><code>$ git commit -m [message]</code></li>
+<li><code># 提交暂存区的指定文件到仓库区</code></li>
+<li><code>$ git commit [file1] [file2] ... -m [message]</code></li>
+<li><code># 提交工作区自上次commit之后的变化，直接到仓库区</code></li>
+<li><code>$ git commit -a</code></li>
+<li><code># 提交时显示所有diff信息</code></li>
+<li><code>$ git commit -v</code></li>
+<li><code># 使用一次新的commit，替代上一次提交</code></li>
+<li><code># 如果代码没有任何新变化，则用来改写上一次commit的提交信息</code></li>
+<li><code>$ git commit --amend -m [message]</code></li>
+<li><code># 重做上一次commit，并包括指定文件的新变化</code></li>
+<li><code>$ git commit --amend [file1] [file2] ...</code></li>
+</ol>
+<h3 id="五，分支"><a href="#五，分支" class="headerlink" title="五，分支"></a>五，分支</h3><ol>
+<li><code># 列出所有本地分支</code></li>
+<li><code>$ git branch</code></li>
+<li><code># 列出所有远程分支</code></li>
+<li><code>$ git branch -r</code></li>
+<li><code># 列出所有本地分支和远程分支</code></li>
+<li><code>$ git branch -a</code></li>
+<li><code># 新建一个分支，但依然停留在当前分支</code></li>
+<li><code>$ git branch [branch-name]</code></li>
+<li><code># 以远程分支为基础新建一个分支，并切换到该分支</code></li>
+<li><code>$ git checkout -b [branch] origin/[remote-branch]</code></li>
+<li><code># 新建一个分支，指向指定commit</code></li>
+<li><code>$ git branch [branch] [commit]</code></li>
+<li><code># 新建一个分支，与指定的远程分支建立追踪关系</code></li>
+<li><code>$ git branch --track [branch] [remote-branch]</code></li>
+<li><code># 切换到指定分支，并更新工作区</code></li>
+<li><code>$ git checkout [branch-name]</code></li>
+<li><code># 切换到上一个分支</code></li>
+<li><code>$ git checkout -</code></li>
+<li><code># 建立追踪关系，在现有分支与指定的远程分支之间</code></li>
+<li><code>$ git branch --set-upstream [branch] [remote-branch]</code></li>
+<li><code># 合并指定分支到当前分支</code></li>
+<li><code>$ git merge [branch]</code></li>
+<li><code># 选择一个commit，合并进当前分支</code></li>
+<li><code>$ git cherry-pick [commit]</code></li>
+<li><code># 删除分支</code></li>
+<li><code>$ git branch -d [branch-name]</code></li>
+<li><code># 删除远程分支</code></li>
+<li><code>$ git push origin --delete [branch-name]</code></li>
+<li><code>$ git branch -dr [remote/branch]</code></li>
+</ol>
+<h3 id="六，标签"><a href="#六，标签" class="headerlink" title="六，标签"></a>六，标签</h3><ol>
+<li><code># 列出所有tag</code></li>
+<li><code>$ git tag</code></li>
+<li><code># 新建一个tag在当前commit</code></li>
+<li><code>$ git tag [tag]</code></li>
+<li><code># 新建一个tag在指定commit</code></li>
+<li><code>$ git tag [tag] [commit]</code></li>
+<li><code># 删除本地tag</code></li>
+<li><code>$ git tag -d [tag]</code></li>
+<li><code># 删除远程tag</code></li>
+<li><code>$ git push origin :refs/tags/[tagName]</code></li>
+<li><code># 查看tag信息</code></li>
+<li><code>$ git show [tag]</code></li>
+<li><code># 提交指定tag</code></li>
+<li><code>$ git push [remote] [tag]</code></li>
+<li><code># 提交所有tag</code></li>
+<li><code>$ git push [remote] --tags</code></li>
+<li><code># 新建一个分支，指向某个tag</code></li>
+<li><code>$ git checkout -b [branch] [tag]</code></li>
+</ol>
+<h3 id="七，查看信息"><a href="#七，查看信息" class="headerlink" title="七，查看信息"></a>七，查看信息</h3><ol>
+<li><code># 显示有变更的文件</code></li>
+<li><code>$ git status</code></li>
+<li><code># 显示当前分支的版本历史</code></li>
+<li><code>$ git log</code></li>
+<li><code># 显示commit历史，以及每次commit发生变更的文件</code></li>
+<li><code>$ git log --stat</code></li>
+<li><code># 搜索提交历史，根据关键词</code></li>
+<li><code>$ git log -S [keyword]</code></li>
+<li><code># 显示某个commit之后的所有变动，每个commit占据一行</code></li>
+<li><code>$ git log [tag] HEAD --pretty=format:%s</code></li>
+<li><code># 显示某个commit之后的所有变动，其&quot;提交说明&quot;必须符合搜索条件</code></li>
+<li><code>$ git log [tag] HEAD --grep feature</code></li>
+<li><code># 显示某个文件的版本历史，包括文件改名</code></li>
+<li><code>$ git log --follow [file]</code></li>
+<li><code>$ git whatchanged [file]</code></li>
+<li><code># 显示指定文件相关的每一次diff</code></li>
+<li><code>$ git log -p [file]</code></li>
+<li><code># 显示过去5次提交</code></li>
+<li><code>$ git log -5 --pretty --oneline</code></li>
+<li><code># 显示所有提交过的用户，按提交次数排序</code></li>
+<li><code>$ git shortlog -sn</code></li>
+<li><code># 显示指定文件是什么人在什么时间修改过</code></li>
+<li><code>$ git blame [file]</code></li>
+<li><code># 显示暂存区和工作区的差异</code></li>
+<li><code>$ git diff</code></li>
+<li><code># 显示暂存区和上一个commit的差异</code></li>
+<li><code>$ git diff --cached [file]</code></li>
+<li><code># 显示工作区与当前分支最新commit之间的差异</code></li>
+<li><code>$ git diff HEAD</code></li>
+<li><code># 显示两次提交之间的差异</code></li>
+<li><code>$ git diff [first-branch]...[second-branch]</code></li>
+<li><code># 显示今天你写了多少行代码</code></li>
+<li><code>$ git diff --shortstat &quot;@&#123;0 day ago&#125;&quot;</code></li>
+<li><code># 显示某次提交的元数据和内容变化</code></li>
+<li><code>$ git show [commit]</code></li>
+<li><code># 显示某次提交发生变化的文件</code></li>
+<li><code>$ git show --name-only [commit]</code></li>
+<li><code># 显示某次提交时，某个文件的内容</code></li>
+<li><code>$ git show [commit]:[filename]</code></li>
+<li><code># 显示当前分支的最近几次提交</code></li>
+<li><code>$ git reflog</code></li>
+</ol>
+<h3 id="八，远程同步"><a href="#八，远程同步" class="headerlink" title="八，远程同步"></a>八，远程同步</h3><ol>
+<li><code># 下载远程仓库的所有变动</code></li>
+<li><code>$ git fetch [remote]</code></li>
+<li><code># 显示所有远程仓库</code></li>
+<li><code>$ git remote -v</code></li>
+<li><code># 显示某个远程仓库的信息</code></li>
+<li><code>$ git remote show [remote]</code></li>
+<li><code># 增加一个新的远程仓库，并命名</code></li>
+<li><code>$ git remote add [shortname] [url]</code></li>
+<li><code># 取回远程仓库的变化，并与本地分支合并</code></li>
+<li><code>$ git pull [remote] [branch]</code></li>
+<li><code># 上传本地指定分支到远程仓库</code></li>
+<li><code>$ git push [remote] [branch]   e.g. $ git push origin master</code></li>
+<li><code># 强行推送当前分支到远程仓库，即使有冲突</code></li>
+<li><code>$ git push [remote] --force</code></li>
+<li><code># 推送所有分支到远程仓库</code></li>
+<li><code>$ git push [remote] --all</code></li>
+<li><code>$ git stash</code></li>
+<li><code>备份当前的工作区的内容，从最近的一次提交中读取相关内容，让工作区保证和上次提交的内容一致。同时，将当前的工作区内容保存到暂存区中。</code></li>
+<li><code>$ git pull</code></li>
+<li><code>拉取服务器上的代码到本地。</code></li>
+<li><code>$ git stash pop</code></li>
+<li><code>从暂存区读取最近一次保存的内容，恢复工作区的相关内容。由于可能存在多个Stash的内容，所以用栈来管理，pop会从最近的一个stash中读取内容并恢复。</code></li>
+<li><code>$ git stash list</code></li>
+<li><code>显示暂存区中的所有备份，可以利用这个列表来决定从那个地方恢复。</code></li>
+<li><code>$ git stash clear</code></li>
+<li><code>清空暂存区。</code></li>
+</ol>
+<h3 id="九，撤销"><a href="#九，撤销" class="headerlink" title="九，撤销"></a>九，撤销</h3><ol>
+<li><code># 恢复暂存区的指定文件到工作区</code></li>
+<li><code>$ git checkout [file]</code></li>
+<li><code># 恢复某个commit的指定文件到暂存区和工作区</code></li>
+<li><code>$ git checkout [commit] [file]</code></li>
+<li><code># 恢复暂存区的所有文件到工作区</code></li>
+<li><code>$ git checkout .</code></li>
+<li><code># 重置暂存区的指定文件，与上一次commit保持一致，但工作区不变</code></li>
+<li><code>$ git reset [file]</code></li>
+<li><code># 重置暂存区与工作区，与上一次commit保持一致</code></li>
+<li><code>$ git reset --hard</code></li>
+<li><code># 重置当前分支的指针为指定commit，同时重置暂存区，但工作区不变</code></li>
+<li><code>$ git reset [commit]</code></li>
+<li><code># 重置当前分支的HEAD为指定commit，同时重置暂存区和工作区，与指定commit一致</code></li>
+<li><code>$ git reset --hard [commit]</code></li>
+<li><code># 重置当前HEAD为指定commit，但保持暂存区和工作区不变</code></li>
+<li><code>$ git reset --keep [commit]</code></li>
+<li><code># 新建一个commit，用来撤销指定commit</code></li>
+<li><code># 后者的所有变化都将被前者抵消，并且应用到当前分支</code></li>
+<li><code>$ git revert [commit]</code></li>
+<li><code># 暂时将未提交的变化移除，稍后再移入</code></li>
+<li><code>$ git stash</code></li>
+<li><code>$ git stash pop</code></li>
+</ol>
+<h3 id="十，其他"><a href="#十，其他" class="headerlink" title="十，其他"></a>十，其他</h3><ol>
+<li><code># 生成一个可供发布的压缩包</code></li>
+<li><code>$ git archive</code></li>
+</ol>
+<h2 id="Git分支管理策略"><a href="#Git分支管理策略" class="headerlink" title="Git分支管理策略"></a>Git分支管理策略</h2><p><strong>一，主分支Master</strong></p>
+<p>首先，代码库应该有一个、且仅有一个主分支。所有提供给用户使用的正式版本，都在这个主分支上发布。</p>
+<p>Git主分支的名字，默认叫做Master。它是自动建立的，版本库初始化以后，默认就是在主分支在进行开发。</p>
+<p><strong>二，开发分支Develop</strong></p>
+<p>主分支只用来分布重大版本，日常开发应该在另一条分支上完成。我们把开发用的分支，叫做Develop。</p>
+<p>这个分支可以用来生成代码的最新隔夜版本（nightly）。如果想正式对外发布，就在Master分支上，对Develop分支进行”合并”（merge）。</p>
+<p>Git创建Develop分支的命令：</p>
+<blockquote>
+<p>　　git checkout -b develop master</p>
+</blockquote>
+<p>将Develop分支发布到Master分支的命令：</p>
+<p>切换到Master分支</p>
+<blockquote>
+<p>​         git checkout master</p>
+</blockquote>
+<p>对Develop分支进行合并</p>
+<blockquote>
+<p>　　git merge —no-ff develop</p>
+</blockquote>
+<p>这里稍微解释一下，上一条命令的—no-ff参数是什么意思。默认情况下，Git执行”快进式合并”（fast-farward merge），会直接将Master分支指向Develop分支。</p>
+<p>使用—no-ff参数后，会执行正常合并，在Master分支上生成一个新节点。为了保证版本演进的清晰，我们希望采用这种做法。关于合并的更多解释，请参考Benjamin Sandofsky的<a target="_blank" rel="noopener" href="http://sandofsky.com/blog/git-workflow.html">《Understanding the Git Workflow》</a>。</p>
+<p><strong>三，临时性分支</strong></p>
+<p>前面讲到版本库的两条主要分支：Master和Develop。前者用于正式发布，后者用于日常开发。其实，常设分支只需要这两条就够了，不需要其他了。</p>
+<p>但是，除了常设分支以外，还有一些临时性分支，用于应对一些特定目的的版本开发。临时性分支主要有三种：</p>
+<blockquote>
+<ul>
+<li>功能（feature）分支</li>
+<li>预发布（release）分支</li>
+<li>修补bug（fixbug）分支</li>
+</ul>
+</blockquote>
+<p>这三种分支都属于临时性需要，使用完以后，应该删除，使得代码库的常设分支始终只有Master和Develop。</p>
+<p><strong>四、 功能分支</strong></p>
+<p>接下来，一个个来看这三种”临时性分支”。</p>
+<p>第一种是功能分支，它是为了开发某种特定功能，从Develop分支上面分出来的。开发完成后，要再并入Develop。</p>
+<p>功能分支的名字，可以采用feature-*的形式命名。</p>
+<p>创建一个功能分支：</p>
+<blockquote>
+<p>　　git checkout -b feature-x develop</p>
+</blockquote>
+<p>开发完成后，将功能分支合并到develop分支：</p>
+<blockquote>
+<p>　　git checkout develop</p>
+</blockquote>
+<p>　　git merge —no-ff feature-x</p>
+<p>删除feature分支：</p>
+<blockquote>
+<p>　　git branch -d feature-x</p>
+</blockquote>
+<p><strong>五、预发布分支</strong></p>
+<p>第二种是预发布分支，它是指发布正式版本之前（即合并到Master分支之前），我们可能需要有一个预发布的版本进行测试。</p>
+<p>预发布分支是从Develop分支上面分出来的，预发布结束以后，必须合并进Develop和Master分支。它的命名，可以采用release-*的形式。</p>
+<p>创建一个预发布分支：</p>
+<blockquote>
+<p>　　git checkout -b release-1.2 develop</p>
+</blockquote>
+<p>确认没有问题后，合并到master分支：</p>
+<blockquote>
+<p>　　git checkout master</p>
+</blockquote>
+<p>　　git merge —no-ff release-1.2</p>
+<h1 id="对合并生成的新节点，做一个标签"><a href="#对合并生成的新节点，做一个标签" class="headerlink" title="对合并生成的新节点，做一个标签"></a>对合并生成的新节点，做一个标签</h1><p>　　git tag -a 1.2</p>
+<p>再合并到develop分支：</p>
+<blockquote>
+<p>　　git checkout develop</p>
+</blockquote>
+<p>　　git merge —no-ff release-1.2</p>
+<p>最后，删除预发布分支：</p>
+<blockquote>
+<p>　　git branch -d release-1.2</p>
+</blockquote>
+<p><strong>六、修补bug分支</strong></p>
+<p>最后一种是修补bug分支。软件正式发布以后，难免会出现bug。这时就需要创建一个分支，进行bug修补。</p>
+<p>修补bug分支是从Master分支上面分出来的。修补结束以后，再合并进Master和Develop分支。它的命名，可以采用fixbug-*的形式。</p>
+<p>创建一个修补bug分支：</p>
+<blockquote>
+<p>　　git checkout -b fixbug-0.1 master</p>
+</blockquote>
+<p>修补结束后，合并到master分支：</p>
+<blockquote>
+<p>　　git checkout master</p>
+</blockquote>
+<p>　　git merge —no-ff fixbug-0.1</p>
+<p>　　git tag -a 0.1.1</p>
+<p>再合并到develop分支：</p>
+<blockquote>
+<p>　　git checkout develop</p>
+</blockquote>
+<p>　　git merge —no-ff fixbug-0.1</p>
+<p>最后，删除”修补bug分支”：</p>
+<blockquote>
+<p>　　git branch -d fixbug-0.1</p>
+</blockquote>
+<p><strong>版本回退-撤销文件修改</strong></p>
+<p>{针对文件修改恢复}</p>
+<p><strong>工作区修改一个文件后，又想回到修改前(git add前)</strong></p>
+<ol>
+<li><p>当然可以直接手动再在工作区中将文件修改回去</p>
+</li>
+<li><p>修改后，通过命令git status查看</p>
+</li>
+<li><p><code>$ git status</code></p>
+</li>
+<li><code># On branch master</code></li>
+<li><code># Changes not staged for commit:</code></li>
+<li><code># (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</code></li>
+<li><code># (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</code></li>
+<li><code># modified: readme.txt</code></li>
+<li><code>no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</code></li>
+</ol>
+<p>这时Git会告诉你，git checkout — file可以丢弃工作区的修改：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -- readme.txt</span><br></pre></td></tr></table></figure>
+<p><strong>Note</strong>:</p>
+<p>\1. git checkout — file命令中的—很重要，没有—，就变成了“切换到另一个分支”的命令，我们在后面的分支管理中会再次遇到git checkout命令。</p>
+<p>\2. 命令git checkout — readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：</p>
+<p>一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。总之，就是让这个文件回到最近一次git commit或git add时的状态。</p>
+<p>\3. 工作区、暂存区的概念不清楚的可见于<a target="_blank" rel="noopener" href="http://blog.csdn.net/pipisorry/article/details/44588351">Git版本控制教程 - Git本地仓库</a></p>
+<p><strong>如果在工作区中修改了文件还git add到暂存区（但是在commit之前）</strong></p>
+<p>用git status查看一下，修改只是添加到了暂存区，还没有提交：</p>
+<ol>
+<li><code>$ git status</code></li>
+<li><code># On branch master</code></li>
+<li><code># Changes to be committed:</code></li>
+<li><code># (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)</code></li>
+<li><code># modified: readme.txt</code></li>
+</ol>
+<p>Git同样告诉我们，用命令git reset HEAD file可以把暂存区的修改撤销掉（unstage），重新放回工作区：</p>
+<ol>
+<li><code>$ git reset HEAD readme.txt</code></li>
+<li><code>Unstaged changes after reset:</code></li>
+<li><code>M readme.txt</code></li>
+</ol>
+<p>git reset命令既可以回退版本，也可以把暂存区的修改回退到工作区。当我们用HEAD时，表示最新的版本。</p>
+<p>再用git status查看一下，现在暂存区是干净的，工作区有修改。</p>
+<p>然后丢弃工作区的修改</p>
+<ol>
+<li><code>$ git checkout -- readme.txt</code></li>
+<li><code>$ git status</code></li>
+<li><code># On branch master</code></li>
+<li><code>nothing to commit (working directory clean)</code></li>
+</ol>
+<p><strong>不但修改了文件还从暂存区提交commit到了版本库 - 版本回退</strong></p>
+<p>版本回退可以回退到上一个版本。不过，这是有条件的，就是你还没有把自己的本地版本库推送到远程。Git是分布式版本控制系统。</p>
+<p>在工作中对某个文件（如readme.txt）进行多次修改交commit。</p>
+<p>可以通过版本控制系统命令告诉我们提交的历史记录，在Git中，我们用git log命令查看： </p>
+<ol>
+<li><code>$ git log</code></li>
+<li><code>commit 3628164fb26d48395383f8f31179f24e0882e1e0</code></li>
+<li><code>Author: Michael Liao &lt;askxuefeng@gmail.com&gt;</code></li>
+<li><code>Date: Tue Aug 20 15:11:49 2013 +0800</code></li>
+<li><code>append GPL</code></li>
+<li><code>commit ea34578d5496d7dd233c827ed32a8cd576c5ee85</code></li>
+<li><code>Author: Michael Liao &lt;askxuefeng@gmail.com&gt;</code></li>
+<li><code>Date: Tue Aug 20 14:53:12 2013 +0800</code></li>
+<li><code>add distributed</code></li>
+<li><code>commit cb926e7ea50ad11b8f9e909c05226233bf755030</code></li>
+<li><code>Author: Michael Liao &lt;askxuefeng@gmail.com&gt;</code></li>
+<li><code>Date: Mon Aug 19 17:51:55 2013 +0800</code></li>
+<li><code>wrote a readme file</code></li>
+</ol>
+<p><strong>Note</strong>:</p>
+<ol>
+<li><p>git log命令显示从最近到最远的提交日志，我们可以看到3次提交，最近的一次是append GPL，上一次是add distributed，最早的一次是wrote a readme file。</p>
+</li>
+<li><p>如果嫌输出信息太多，看得眼花缭乱的，可以试试加上—pretty=oneline参数：</p>
+</li>
+<li><p><code>$ git log --pretty=oneline</code></p>
+</li>
+<li><code>3628164fb26d48395383f8f31179f24e0882e1e0 append GPL</code></li>
+<li><code>ea34578d5496d7dd233c827ed32a8cd576c5ee85 add distributed</code></li>
+<li><p><code>cb926e7ea50ad11b8f9e909c05226233bf755030 wrote a readme file</code></p>
+</li>
+<li><p>你看到的一大串类似3628164…882e1e0的是commit id（版本号），和SVN不一样，Git的commit id不是1，2，3……递增的数字，而是一个SHA1计算出来的一个非常大的数字，用十六进制表示，而且你看到的commit id和我的肯定不一样，以你自己的为准。为什么commit id需要用这么一大串数字表示呢？因为Git是分布式的版本控制系统，后面我们还要研究多人在同一个版本库里工作，如果大家都用1，2，3……作为版本号，那肯定就冲突了。</p>
+</li>
+<li><p>每提交一个新版本，实际上Git就会把它们自动串成一条时间线。如果使用可视化工具（如GitX、github的客户端、pycharm）查看Git历史，就可以更清楚地看到提交历史的时间线。</p>
+</li>
+</ol>
+<p><strong>现在我们想要把readme.txt回退到上一个版本</strong></p>
+<p>如“add distributed”的那个版本，怎么做呢？首先，Git必须知道当前版本是哪个版本，在Git中，用HEAD表示当前版本，也就是最新的提交3628164…882e1e0（注意我的提交ID和你的肯定不一样），上一个版本就是HEAD^，上上一个版本就是HEAD^^，当然往上100个版本写100个^比较容易数不过来，所以写成HEAD~100。</p>
+<p>现在，我们要把当前版本“append GPL”回退到上一个版本“add distributed”，就可以使用git reset命令：</p>
+<ol>
+<li><code>$ **git re****set --hard HEAD^**</code></li>
+<li><code>HEAD **is** now **at** ea34578 **add** distributed</code></li>
+</ol>
+<p>这时readme.txt的内容就成了版本add distributed</p>
+<p>我们用git log再看看现在版本库的状态：</p>
+<ol>
+<li><code>$ git log</code></li>
+<li><code>commit ea34578d5496d7dd233c827ed32a8cd576c5ee85</code></li>
+<li><code>Author: Michael Liao &lt;askxuefeng@gmail.com&gt;</code></li>
+<li><code>Date: Tue Aug 20 14:53:12 2013 +0800</code></li>
+<li><code>add distributed</code></li>
+<li><code>commit cb926e7ea50ad11b8f9e909c05226233bf755030</code></li>
+<li><code>Author: Michael Liao &lt;askxuefeng@gmail.com&gt;</code></li>
+<li><code>Date: Mon Aug 19 17:51:55 2013 +0800</code></li>
+<li><code>wrote a readme file</code></li>
+</ol>
+<p>最新的那个版本append GPL已经看不到了！</p>
+<p><strong>恢复文件后，要是我们又想回到修改后的文件呢？（命令行窗口还没有被关掉）</strong></p>
+<p>{这个是git reset —hard后，又反悔了，想回到修改后的状态}</p>
+<p>只要上面的命令行窗口还没有被关掉，你就可以顺着往上找啊找啊，找到那个append GPL的commit id是3628164…，于是就可以指定回到未来的某个版本：</p>
+<ol>
+<li><code>$ git reset --hard 3628164</code></li>
+<li><code>HEAD is now at 3628164 append GPL</code></li>
+</ol>
+<p>版本号没必要写全，前几位就可以了，Git会自动去找。</p>
+<p>Git的版本回退速度非常快，因为Git在内部有个指向当前版本的HEAD指针，当你回退版本的时候，Git仅仅是把HEAD从指向append GPL改为指向add distributed，然后顺便把工作区的文件更新了。所以你让HEAD指向哪个版本号，你就把当前版本定位在哪。</p>
+<p><strong>恢复文件后，要是我们又想回到修改后的文件呢？（命令行窗口早就关掉了）</strong></p>
+<p>{这个是git reset —hard后，又反悔了，想回到修改后的状态}</p>
+<p>想恢复到新版本怎么办？找不到新版本的commit id怎么办？当你用$ git reset —hard HEAD^回退到add distributed版本时，再想恢复到append GPL，就必须找到append GPL的commit id。</p>
+<p>Git提供了一个命令git reflog用来记录你的每一次命令：[<a target="_blank" rel="noopener" href="http://blog.csdn.net/pipisorry/article/details/50669350">Git高级教程</a>:git log与git reflog]</p>
+<ol>
+<li><code>$ git reflog</code></li>
+<li><code>ea34578 HEAD@&#123;0&#125;: reset: moving to HEAD^</code></li>
+<li><code>3628164 HEAD@&#123;1&#125;: commit: append GPL</code></li>
+<li><code>ea34578 HEAD@&#123;2&#125;: commit: add distributed</code></li>
+<li><code>cb926e7 HEAD@&#123;3&#125;: commit (initial): wrote a readme file</code></li>
+</ol>
+<p>第二行显示append GPL的commit id是3628164。</p>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">This work is licensed under <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</a></h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> Share</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://sunxinbin.cn/2022/04/24/git-use/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://sunxinbin.cn/2022/04/24/git-use/";
+            const title         = "「Git的操作与使用」";
+            const excerpt       = `GitGit是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理。`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/Git/" rel="tag">Git</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2022-09-21T08:15:24.875Z" itemprop="dateModified">Last modify：2022-09-21</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" My first blog" href="/2022/04/19/hello-world/">&lt; older</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" Craniofacial identity authentication(颅面身份认证)" href="/2022/05/10/platform/">Newer &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center">Computer Science & Technology</p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                Post
+            </span>
+            <span class="count">
+                47
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                Category
+            </span>
+            <span class="count">
+                10
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                Tag
+            </span>
+            <span class="count">
+                20
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix toc-div-class" >
+    <div class="photo-background"></div>
+    <h4 class="widget-title no-after">
+        <i class="fa fa-compass"></i>
+        Toc
+        <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
+    </h4>
+    <div class="textwidget">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git"><span class="toc-text">Git</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E6%96%B9%E6%B3%95%E5%A4%A7%E5%85%A8"><span class="toc-text">Git常用命令及方法大全</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Egitee%EF%BC%88%E7%A0%81%E4%BA%91%EF%BC%89%E7%9A%84%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E9%93%BE%E6%8E%A5%EF%BC%88https%EF%BC%89"><span class="toc-text">关于gitee（码云）的远程仓库链接（https）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%EF%BC%8C%E6%96%B0%E5%BB%BA%E4%BB%A3%E7%A0%81%E5%BA%93"><span class="toc-text">一，新建代码库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%EF%BC%8C%E9%85%8D%E7%BD%AE"><span class="toc-text">二，配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%EF%BC%8C%E5%A2%9E%E5%8A%A0-%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6"><span class="toc-text">三，增加&#x2F;删除文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%EF%BC%8C%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4"><span class="toc-text">四，代码提交</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%EF%BC%8C%E5%88%86%E6%94%AF"><span class="toc-text">五，分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%EF%BC%8C%E6%A0%87%E7%AD%BE"><span class="toc-text">六，标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%83%EF%BC%8C%E6%9F%A5%E7%9C%8B%E4%BF%A1%E6%81%AF"><span class="toc-text">七，查看信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AB%EF%BC%8C%E8%BF%9C%E7%A8%8B%E5%90%8C%E6%AD%A5"><span class="toc-text">八，远程同步</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%9D%EF%BC%8C%E6%92%A4%E9%94%80"><span class="toc-text">九，撤销</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%81%EF%BC%8C%E5%85%B6%E4%BB%96"><span class="toc-text">十，其他</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86%E7%AD%96%E7%95%A5"><span class="toc-text">Git分支管理策略</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E5%90%88%E5%B9%B6%E7%94%9F%E6%88%90%E7%9A%84%E6%96%B0%E8%8A%82%E7%82%B9%EF%BC%8C%E5%81%9A%E4%B8%80%E4%B8%AA%E6%A0%87%E7%AD%BE"><span class="toc-text">对合并生成的新节点，做一个标签</span></a></li></ol>
+    </div>
+</aside>
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>Categories List</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Craniofacial-Registration/">Craniofacial Registration</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DL/">DL</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Feature-Point-Punctuation-Algorithm/">Feature Point Punctuation Algorithm</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Literature/">Literature</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ML/">ML</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematical-Modeling/">Mathematical Modeling</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Philosophy/">Philosophy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Undergraduate-Courses/">Undergraduate Courses</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">2</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>Tagcloud</h4>
+      <div class="tag-clouds">
+        <a href="/tags/A-single-spark-can-start-a-prairie-fire/" style="font-size: 0.6em;">A single spark can start a prairie fire</a> <a href="/tags/Algorithm/" style="font-size: 0.6em;">Algorithm</a> <a href="/tags/Anecdote/" style="font-size: 0.6em;">Anecdote</a> <a href="/tags/CV/" style="font-size: 0.6em;">CV</a> <a href="/tags/Craniofacial-Registration/" style="font-size: 0.6em;">Craniofacial Registration</a> <a href="/tags/DL/" style="font-size: 0.8em;">DL</a> <a href="/tags/Emotion/" style="font-size: 0.7em;">Emotion</a> <a href="/tags/Feature-Point-Punctuation-Algorithm/" style="font-size: 0.75em;">Feature Point Punctuation Algorithm</a> <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/Latex/" style="font-size: 0.6em;">Latex</a> <a href="/tags/Literature/" style="font-size: 0.75em;">Literature</a> <a href="/tags/ML/" style="font-size: 0.7em;">ML</a> <a href="/tags/Mathematical-Modeling/" style="font-size: 0.65em;">Mathematical Modeling</a> <a href="/tags/OpenAI/" style="font-size: 0.6em;">OpenAI</a> <a href="/tags/Philosophy/" style="font-size: 0.6em;">Philosophy</a> <a href="/tags/Python/" style="font-size: 0.6em;">Python</a> <a href="/tags/Undergraduate-Courses/" style="font-size: 0.75em;">Undergraduate Courses</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>Recent posts</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2023/04/05/python-to-exe/"><i class="fa  fa-book"></i> Python如何打包为exe文件</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/30/Dynamic-Programming/"><i class="fa  fa-book"></i> Dynamic Programming</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/05/Common-instruction-set/"><i class="fa  fa-book"></i> NewBing&ChatGPT</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/01/25/Big-data-analysis-method/"><i class="fa  fa-book"></i> Big data analysis method</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/01/16/artificial-intelligence/"><i class="fa  fa-book"></i> Artificial Intelligence</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        <li><a href="mailto:2332431354@qq.com"><i class="fa fa-envelope"></i></a></li>
+                        
+                        
+                        
+                        
+                        <li><a target="_blank" rel="me" href="https://nya.one/@SunXinbin"><i class="fa fa fa-share-alt-square"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/xinbinsun"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2023 Neo Sun Copyright.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by 孙新斌.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            <li><a href="https://beian.miit.gov.cn" rel="external nofollow" target="_blank">鲁ICP备23010101号</a></li>
+                            <li><a href="http://www.beian.gov.cn" rel="external nofollow" target="_blank"><img src="/images/psr.webp" width="12" height="12" loading="lazy" decoding="auto" />鲁公网安备371402000348</a></li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>

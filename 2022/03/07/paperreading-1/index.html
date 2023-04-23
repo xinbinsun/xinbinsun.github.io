@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="Chinese/English">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/avatar.webp">
+  
+  <title>基于深度学习的2维人脸特征点自动检测 | Neo Sun</title>
+  <meta name="author" content="孙新斌" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="Feature Point Punctuation Algorithm" />
+  
+  <meta name="description" content="基于深度学习的2维人脸特征点自动检测">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于深度学习的2维人脸特征点自动检测">
+<meta property="og:url" content="http://sunxinbin.cn/2022/03/07/paperreading-1/index.html">
+<meta property="og:site_name" content="Neo Sun">
+<meta property="og:description" content="基于深度学习的2维人脸特征点自动检测">
+<meta property="og:locale">
+<meta property="og:image" content="http://sunxinbin.cn/images/avatar.webp">
+<meta property="article:published_time" content="2022-03-07T14:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-30T11:28:17.964Z">
+<meta property="article:author" content="孙新斌">
+<meta property="article:tag" content="Feature Point Punctuation Algorithm">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://sunxinbin.cn/images/avatar.webp">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>Archives</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>Search Engine</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>About</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            <li><a href="https://sunxinbin.cn">Blog</a></li>
+                                                        
+                                                    
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://github.com/xinbinsun">Github</a></li>
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Neo Sun</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Neo Sun</h2> <br />
+                        <span>What&#39;s past is prologue</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://sunxinbin.cn/2022/03/07/paperreading-1/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">基于深度学习的2维人脸特征点自动检测</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2022-03-07T14:00:00.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2022-03-07</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> Author <span itemprop="name">孙新斌</span>
+                </li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~4.33K
+                    
+                    words
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>This article has been edited <time datetime="1680175697964"></time> ago, and some of its content might need to be updated.</p></div>
+            </div>
+            
+            
+            
+            <hr />
+            <div itemprop="articleBody"><p>基于深度学习的2维人脸特征点自动检测<br><span id="more"></span></p>
+<h1 id="基于级联卷积神经网络的方法"><a href="#基于级联卷积神经网络的方法" class="headerlink" title="基于级联卷积神经网络的方法"></a>基于级联卷积神经网络的方法</h1><h2 id="DCNN-deep-convolu-tional-neural-network"><a href="#DCNN-deep-convolu-tional-neural-network" class="headerlink" title="DCNN(deep convolu- tional neural network)"></a>DCNN(deep convolu- tional neural network)</h2><p>论文出处：Sun Y, Wang X G and Tang X O. 2013. Deep convolutional network cascade for facial point detection / / Proceedings of 2013 IEEE Con- ference on Computer Vision and Pattern Recognition. Portland, USA: IEEE: 3476-3483 [DOI: 10. 1109 / CVPR. 2013. 446]<br><strong>进展</strong>：<br>1.将CNN应用到人脸特征点识别<br>2.提出了级联卷积神经网络<br>3.对于关键点初始化进行了创新，避免陷入局部最优的漩涡<br>4.借鉴了<strong>局部共享权值</strong>的概念，人的五官为定点位置出现，故不需采用全局权值共享<br><strong>研究方法</strong>:<br>带有<strong>三级</strong>的级联卷积神经网络提取全局特征<br>级联卷积神经网络由三个level构成，level-1由三个CNN构成；level-2与level-3分别由十个CNN识别五个特征点但输入不同<br><img src="/2022/03/07/paperreading-1/pic1.png" alt="Three-level cascaded convolutional networks. The input is the face region returned by a face detector. The threenetworks at level 1 are denoted as F1, EN1, and NM1. Networks at level 2 are denoted as LE21, LE22, RE21, RE22, N21,N22, LM21, LM22, RM21, and RM22. Both LE21 and LE22 predict the left eye center, and so forth. Networks at level 3are denoted as LE31, LE32, RE31, RE32, N31, N32, LM31, LM32, RM31, and RM32. Green square is the face boundingbox given by the face detector. Yellow shaded areas are the input regions of networks. Red dots are the final predictions ateach level. Dots in other colors are predictions given by individual networks."><br>Level-1：三个CNN：F1（face 1）、EN1（eye，nose）、NM1（nose，mouth）；F1的input39<em>39，输出5个点；EN1input39</em>31，输出是3个点；NM1的input39<em>31，输出3个点。Level-1的输出是由三个CNN输出取平均得到<br><strong>局部权值共享</strong>来源文献<a target="_blank" rel="noopener" href="https://works.bepress.com/erik_learned_miller/44/">2012-CVPR Learning hierarchical representations for face verification with convolutional deep belief networks</a><br><em>*研究结果</em></em>：<br>解决了容易陷入全局最优的问题，使用卷积神经网络的提取能力，由粗到细的级联回归，提高了检测精度</p>
+<h2 id="LSTM-long-short-term-memory"><a href="#LSTM-long-short-term-memory" class="headerlink" title="LSTM(long short-term memory)"></a>LSTM(long short-term memory)</h2><p><strong>优势</strong>：<br>以模型尺寸的名义上的增加显着增强了全卷积网络的性能，并且需要对数据集进行最少的预处理;通过注意力长期短期记忆完全卷积网络（ALSTM-FCN）改善时间序列分类;模型输入的通用性，因此它在多种序列建模任务（例如文本分析，音乐识别和语音检测）上具有广泛的适用性;由于其体积小，效率高，因此可以轻松地部署到实时系统或嵌入式系统中</p>
+<h1 id="基于深度端到端回归的方法"><a href="#基于深度端到端回归的方法" class="headerlink" title="基于深度端到端回归的方法"></a>基于深度端到端回归的方法</h1><h2 id="DeCaFA-deep-convolutional-cascade-for-face-alignment"><a href="#DeCaFA-deep-convolutional-cascade-for-face-alignment" class="headerlink" title="DeCaFA(deep convolutional cascade for face alignment)"></a>DeCaFA(deep convolutional cascade for face alignment)</h2><p><strong>进展</strong>：<br>为每一定位任务生成特征点注意图；加权中间监督以及各阶段之间的有效特征融合；允许学习以端到端的方式逐步完善注意图；训练数据集少且精度合理<br><strong>研究方法</strong>：<br>采用端到端的深度全卷积级联结构保持全空间分辨率，使用多个具有空间softmax的链式转移层来为每个地标对齐任务生成地标式注意图。加权中间监督，以及各阶段之间的有效特征融合，允许学习以端到端方式逐步细化注意图。</p>
+<h1 id="基于自动编码器网络的方法"><a href="#基于自动编码器网络的方法" class="headerlink" title="基于自动编码器网络的方法"></a>基于自动编码器网络的方法</h1><h2 id="自动编码器-auto-encoder"><a href="#自动编码器-auto-encoder" class="headerlink" title="自动编码器(auto-encoder)"></a>自动编码器(auto-encoder)</h2><p>论文出处：Zhang C Q, Liu Y Q and Fu H Z. 2020. AE2-nets: autoencoder in autoencoder networks/ / Proceedings of 2019 IEEE / CVF Conference on Computer Vision and Pattern Recognition ( CVPR ). Long Beach, USA: IEEE: 2572-2580 [ DOI: 10. 1109 / CVPR. 2019. 00268]<br><strong>进展</strong>：把来自异构视图的内在信息编码为一个全面的表示，并且自动的平衡不同视图的互补性和一致性<br>由内部AE网络编码重建原始视图的输入，然后由外部AE网络对内部AE网络的输出进行重构编码表示。<br>每个单一视图。本文的主要贡献概括如下：<br>•我们提出了一种新颖的无监督多视图表示学习框架 - 自动编码器网络中的自动编码器（AE2-Nets），用于异构数据，可以灵活地将多个异构视图集成到一个完整的表示中。<br>•新型嵌套自动编码器网络可以联合形成视图特定表示学习和多视图表示学习 - 内部自动编码器网络有效地从每个单个视图中提取信息，而外部自动编码器网络模拟降级过程进行编码从每个单一视图的内在信息到共同的完整表示。<br><img src="/2022/03/07/paperreading-1/pic2.png" alt="Overview of the Autoencoder in Autoencoder Networks (AE2-Nets). The key components are the nested autoen-coder networks, which are composed of the inner AE networks (shown as the circle with green arrows) for view-specificencoding and the outer AE networks (shown as the circle with red arrows) for multiview encoding. View-specific encoding automatically extracts features from each view while multi-view encoding ensures the intact latent representation can be mapped back to each view with degradation process. Accordingly, the intrinsic information from multiple views are encoded into the learned latent intact representation. The learned latent representation could be used for subsequent tasks, and the task-specific goal could flexibly be incorporated into our framework as well (shown in gray dash lines)."><br>上图为算法核心表示，利用自动编码器思想<br><img src="/2022/03/07/paperreading-1/pic3.png" alt="主要公式"><br>(1)式为autoencoder公式，一共M+1层，中间有M层的连接，前M/2层是encoder过程，即把图片降维为一个低维的表示，后面的M/2层就为decoder过程，即把已经降维的表示再升维为原来的维度，图(c)的降维就是获取了autoencoder的第M/2层，因为这一层就是中间的维度较低的那一层，用这一层表示肯定更简单一点，因为维度较低，然后用一个隐藏层H来表示这个M/2层，H作为隐藏层，先给H层赋任意值，通过loss function优化H，最终找到适合网络<br><strong>代码具体执行过程：</strong><br><img src="/2022/03/07/paperreading-1/pic4.png" alt="code"><br>1.先作autoencoder，做autoencoder时候优化的是autoencoder网络但是同时要计算encoder产生的中间层和gi(L,v)的loss，把autoencoder的loss和中间层和gi(L,v)产生的loss加起来优化autoencoder网络。<br>2.根据训练好的autoencoder网络，然后再优化H到中间层的网络<br>3.现在已知H到中间层的网络，反过来找一个最佳输入<br>4.循环执行前者</p>
+<h2 id="基于小滤波器的深度卷积神经网络-deep-con-volution-neural-network-with-small-filter-DCNNSF"><a href="#基于小滤波器的深度卷积神经网络-deep-con-volution-neural-network-with-small-filter-DCNNSF" class="headerlink" title="基于小滤波器的深度卷积神经网络(deep con- volution neural network with small filter, DCNNSF)"></a>基于小滤波器的深度卷积神经网络(deep con- volution neural network with small filter, DCNNSF)</h2><p><strong>发展</strong>：<br>解决在复杂环境下，如姿势不同、光照条件以及遮挡等因素导致传统人脸特征点检测算法的精度大幅度下降的问题<br>有效减少参数的数量，避免了过拟合的问题，使模型达到更高精度和鲁棒性。<br><strong>研究方法：</strong><br>采用基于小滤波器的神卷积神经网络具体架构解决人脸5特征点预测问题<br><img src="/2022/03/07/paperreading-1/pic5.png" alt="网络架构"><br>网络的 I（Data）层为网络输入层，该层为整个网络输入一张 128×128的三通道彩色图片。网络的 Conv1_1层为第 一个卷积层（ConvolutionLayer），该层由 32个特征图谱（Feature Map）构成。特征图中的每个单元与输入层的一个 3×3的相邻区域相连，卷积的输入区域大小是 3×3，因此特征图是由 32个大小为3×3的卷积核从输入图片中卷积得到，每个特征图谱内参数共享。其输出 32个大小为 128×128的特征图。网络的 Conv1_2层为第二个相连 3×3卷积层，该层输入信息为 Conv1_1层中输出的 32个大小为 128×128特征图信息，其输出 64个大小为 128×128的特征图。网络的 Conv1_3层为第三个相连 3×3卷积层，该层输入信息为 Conv1_2层中输出的 64个大小为 128×128特征图信息。它的作用是与 Conv1_1层、Conv1_2层叠加，从而替代大型 7×7卷积层，减少参数，并达到相同的卷积效果。该层最终将 96个大小为 128×128的特征图输出到下一层中。<br>网络的 Pool1层为第一个池化层（Pooling Layer），该层对输入的特征图进行压缩，首先可以使特征图变小，有效简化网络计算复杂度；其次对特征进行压缩，以便于提取主要特征。Pool1接收输入为 Conv1_3层 64个大小为 128×128的特征图信息 ，使用最大池化（Max Pooling），池化领域 2×2最大领域，由于步长为 2，所输出的特征图为 128/2 = 64个，数据规模为原来的 1/4，最终输出 96个大小为 128×128的特征图。其他卷积层与池化层的具体操作同 Conv1_1、Conv1_2、Conv1_3、Pool1层类似，每个大型的卷积层之间初始参数以 32、64、96、128、160的方式递增，除了第<br>一个大型的卷积层，其他大型卷积层中的 3×3小卷积层之间的参数都以倍增的形式增加。因此 Pool5层最终输出 320个 4×4的特征图。Conv6_1、Conv6_2与 Conv7层都为全连接层 。<br>Conv6_1层接收来自 Pool5输出的特征图信息，将其转化为一维向量，用来表示整个面部点，并将结果输出到Conv6_2层中，使模型表达能力和非线性表达能力得到增强，最终通过 Conv7层输出一维向量（如式（1）所示），其中 x、y代表 10个人脸坐标信息。<br><strong>2维人脸特征点自动标定存在问题及发展趋势：</strong><br><a target="_blank" rel="noopener" href="http://www.cjig.cn/html/jig/2021/11/20211108.htm">摘自：Xu Y L, Zhao J L, Lyu Z H, Zhang Z M, Li J H and Pan Z K. 2021. Automatic facial feature points location based on deep learning: a review. Journal of Image and Graphics,26(11):2630-2644(徐亚丽,赵俊莉,吕智涵,张志梅,李劲华,潘振宽. 2021. 深度学习人脸特征点自动定位综述. 中国图象图形学报,26(11):2630-2644)[DOI:10. 11834 / jig. 200278]</a><br>在 2 维图像数据中,具有真实特征点标签的训练数据非常丰富。针对 2 维数据的特征点自动定位方法的研究已比较深入,包括级联卷积神经网络、深度端到端回归网络、自动编码器网络及其他改进CNN的网络,已取得较为理想的效果,并在人脸识别和人脸编辑等实际任务中广泛应用。 存在的主要问题和未来发展趋势包括以下方面:<br>1)从特征提取角度入手,使用自动学习更符合人脸图像的特征来优化特征点定位性能。<br>2)端到端的学习不需要手动标注但需要依靠大量数据,适用于大规模的数据集。所以端到端的方法可以从数据增强、数据生成以及如何构建小样 本深度学习网络结构方面继续研究。<br>3)自动编码器依据特定的样本进行训练,因此 其适用性很大程度上局限于与训练样本相似的数据且很容易过拟合,如何降低时间复杂度、避免陷入局 部最小值是亟待解决的问题。<br>4)对于姿态变化较大的图像,如何更好地处理姿态、初始化以及减少计算成本仍然值得探讨。综上所述,针对 2 维数据的人脸特征点自动标定研究,需要从网络结构、数据增强、特征选取和 初始化等方面创新。 同时,减少数据集的局限性、避免过拟合和减少时间复杂度也是需要考虑的问题。</p>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">This work is licensed under <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</a></h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> Share</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://sunxinbin.cn/2022/03/07/paperreading-1/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://sunxinbin.cn/2022/03/07/paperreading-1/";
+            const title         = "「基于深度学习的2维人脸特征点自动检测」";
+            const excerpt       = `基于深度学习的2维人脸特征点自动检测`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/Feature-Point-Punctuation-Algorithm/" rel="tag">Feature Point Punctuation Algorithm</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2023-03-30T11:28:17.964Z" itemprop="dateModified">Last modify：2023-03-30</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" 关于深度学习人脸特征点自动定位的学习" href="/2022/02/25/Automatic-facial-feature-points-location/">&lt; older</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" 基于深度学习的3维人脸特征点自动检测" href="/2022/03/13/paperreading-2/">Newer &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center">Computer Science & Technology</p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                Post
+            </span>
+            <span class="count">
+                47
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                Category
+            </span>
+            <span class="count">
+                10
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                Tag
+            </span>
+            <span class="count">
+                20
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>Categories List</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Craniofacial-Registration/">Craniofacial Registration</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DL/">DL</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Feature-Point-Punctuation-Algorithm/">Feature Point Punctuation Algorithm</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Literature/">Literature</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ML/">ML</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematical-Modeling/">Mathematical Modeling</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Philosophy/">Philosophy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Undergraduate-Courses/">Undergraduate Courses</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">2</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>Tagcloud</h4>
+      <div class="tag-clouds">
+        <a href="/tags/A-single-spark-can-start-a-prairie-fire/" style="font-size: 0.6em;">A single spark can start a prairie fire</a> <a href="/tags/Algorithm/" style="font-size: 0.6em;">Algorithm</a> <a href="/tags/Anecdote/" style="font-size: 0.6em;">Anecdote</a> <a href="/tags/CV/" style="font-size: 0.6em;">CV</a> <a href="/tags/Craniofacial-Registration/" style="font-size: 0.6em;">Craniofacial Registration</a> <a href="/tags/DL/" style="font-size: 0.8em;">DL</a> <a href="/tags/Emotion/" style="font-size: 0.7em;">Emotion</a> <a href="/tags/Feature-Point-Punctuation-Algorithm/" style="font-size: 0.75em;">Feature Point Punctuation Algorithm</a> <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/Latex/" style="font-size: 0.6em;">Latex</a> <a href="/tags/Literature/" style="font-size: 0.75em;">Literature</a> <a href="/tags/ML/" style="font-size: 0.7em;">ML</a> <a href="/tags/Mathematical-Modeling/" style="font-size: 0.65em;">Mathematical Modeling</a> <a href="/tags/OpenAI/" style="font-size: 0.6em;">OpenAI</a> <a href="/tags/Philosophy/" style="font-size: 0.6em;">Philosophy</a> <a href="/tags/Python/" style="font-size: 0.6em;">Python</a> <a href="/tags/Undergraduate-Courses/" style="font-size: 0.75em;">Undergraduate Courses</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>Recent posts</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2023/04/05/python-to-exe/"><i class="fa  fa-book"></i> Python如何打包为exe文件</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/30/Dynamic-Programming/"><i class="fa  fa-book"></i> Dynamic Programming</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/05/Common-instruction-set/"><i class="fa  fa-book"></i> NewBing&ChatGPT</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/01/25/Big-data-analysis-method/"><i class="fa  fa-book"></i> Big data analysis method</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/01/16/artificial-intelligence/"><i class="fa  fa-book"></i> Artificial Intelligence</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        <li><a href="mailto:2332431354@qq.com"><i class="fa fa-envelope"></i></a></li>
+                        
+                        
+                        
+                        
+                        <li><a target="_blank" rel="me" href="https://nya.one/@SunXinbin"><i class="fa fa fa-share-alt-square"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/xinbinsun"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2023 Neo Sun Copyright.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by 孙新斌.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            <li><a href="https://beian.miit.gov.cn" rel="external nofollow" target="_blank">鲁ICP备23010101号</a></li>
+                            <li><a href="http://www.beian.gov.cn" rel="external nofollow" target="_blank"><img src="/images/psr.webp" width="12" height="12" loading="lazy" decoding="auto" />鲁公网安备371402000348</a></li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>

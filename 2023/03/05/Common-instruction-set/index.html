@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="Chinese/English">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/avatar.webp">
+  
+  <title>NewBing&amp;ChatGPT | Neo Sun</title>
+  <meta name="author" content="孙新斌" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="OpenAI" />
+  
+  <meta name="description" content="ChatGPT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NewBing&amp;ChatGPT">
+<meta property="og:url" content="http://sunxinbin.cn/2023/03/05/Common-instruction-set/index.html">
+<meta property="og:site_name" content="Neo Sun">
+<meta property="og:description" content="ChatGPT">
+<meta property="og:locale">
+<meta property="og:image" content="http://sunxinbin.cn/images/avatar.webp">
+<meta property="article:published_time" content="2023-03-05T02:22:58.000Z">
+<meta property="article:modified_time" content="2023-04-23T06:16:56.012Z">
+<meta property="article:author" content="孙新斌">
+<meta property="article:tag" content="OpenAI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://sunxinbin.cn/images/avatar.webp">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>Archives</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>Search Engine</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>About</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            <li><a href="https://sunxinbin.cn">Blog</a></li>
+                                                        
+                                                    
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://github.com/xinbinsun">Github</a></li>
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Neo Sun</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Neo Sun</h2> <br />
+                        <span>What&#39;s past is prologue</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://sunxinbin.cn/2023/03/05/Common-instruction-set/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">NewBing&ChatGPT</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2023-03-05T02:22:58.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2023-03-05</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> Author <span itemprop="name">孙新斌</span>
+                </li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~11.27K
+                    
+                    words
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>This article has been edited <time datetime="1682230616012"></time> ago, and some of its content might need to be updated.</p></div>
+            </div>
+            
+            
+            
+            <hr />
+            <div itemprop="articleBody"><h1 id="ChatGPT"><a href="#ChatGPT" class="headerlink" title="ChatGPT"></a>ChatGPT<span id="more"></span></h1><p><a href="www.openai.com">OpenAI官网</a>   <a target="_blank" rel="noopener" href="https://openai.com/blog/chatgpt">ChatGPT</a>  <a target="_blank" rel="noopener" href="https://github.com/openai">github</a></p>
+<p>以下是OpenAI对训练ChatGPT所使用方法的简单描述：</p>
+<div class="xControl active">
+    <div class="xHeading"><div class="xIcon"><i class="fa fa-plus"></i></div><span>Methods</span></div>
+    <div class="xContent pre-open"><div class="inner">
+        <p>We trained this model using Reinforcement Learning from Human Feedback (RLHF), using the same methods as <a target="_blank" rel="noopener" href="https://openai.com/blog/instruction-following/">InstructGPT</a>, but with slight differences in the data collection setup. We trained an initial model using supervised fine-tuning: human AI trainers provided conversations in which they played both sides—the user and an AI assistant. We gave the trainers access to model-written suggestions to help them compose their responses. We mixed this new dialogue dataset with the InstructGPT dataset, which we transformed into a dialogue format.</p>
+<p>To create a reward model for reinforcement learning, we needed to collect comparison data, which consisted of two or more model responses ranked by quality. To collect this data, we took conversations that AI trainers had with the chatbot. We randomly selected a model-written message, sampled several alternative completions, and had AI trainers rank them. Using these reward models, we can fine-tune the model using <a target="_blank" rel="noopener" href="https://openai.com/blog/openai-baselines-ppo/">Proximal Policy Optimization</a>. We performed several iterations of this process.</p>
+ 
+    </div></div>
+    </div>
+<p><img src="/2023/03/05/Common-instruction-set/ChatGPT_Diagram.png" alt></p>
+<p>根据OpenAI的描述，ChatGPT采用的是Reinforcement Learning from Human Feedback (RLHF)方法对模型进行训练，下面是DataWhale开源社区关于强化学习的代码仓库，便于进行相关知识的学习：<a target="_blank" rel="noopener" href="https://github.com/datawhalechina/easy-rl">github</a></p>
+<h2 id="关于ChatGPT"><a href="#关于ChatGPT" class="headerlink" title="关于ChatGPT"></a>关于ChatGPT</h2><p>ChatGPT是Transformer和GPT等相关技术发展的集大成者。总体来说，ChatGPT的性能卓越的主要原因可以概括为三点：</p>
+<ol>
+<li>使用的机器学习模型表达能力强。</li>
+<li>训练所使用的数据量巨大。</li>
+<li>训练方法的先进性。</li>
+</ol>
+<h2 id="一-机器学习模型"><a href="#一-机器学习模型" class="headerlink" title="一 机器学习模型"></a>一 机器学习模型</h2><h3 id="基于文法的模型"><a href="#基于文法的模型" class="headerlink" title="基于文法的模型"></a>基于文法的模型</h3><p>这个阶段主要思路就是利用语言学家的智慧尝试总结出一套自然语言文法，并编写出基于规则的处理算法进行自然语言处理。我们熟悉的编译器也是通过这种方法将高级语言编译成机器语言的。可惜的是，自然语言是极其复杂的，基本上不太可能编写出一个完备的语法来处理所有的情况，所以这套方法一般只能处理自然语言一个子集，距离通用的自然语言处理还是差很远。</p>
+<h3 id="基于统计的模型"><a href="#基于统计的模型" class="headerlink" title="基于统计的模型"></a>基于统计的模型</h3><p>在这个阶段，大家开始尝试通过对大量已存在的自然语言文本（我们称之为语料库）进行统计，来试图得到一个基于统计的语言模型。比如通过统计，肯定可以确定“吃”后面接“饭”的概率肯定高于接其他词如“牛”的概率，即P(饭|吃)&gt;P(牛|吃)。</p>
+<p>虽然这个阶段有很多模型被使用，但是本质上，都是对语料库中的语料进行统计，并得出一个概率模型。一般来说，用途不同，概率模型也不一样。不过，为了行文方便，我们接下来统一以最常见的语言模型为例，即建模“一个上下文后面接某一个词的概率“。刚才说的一个词后面接另一个词的概率其实就是一元语言模型。</p>
+<h4 id="模型表达能力"><a href="#模型表达能力" class="headerlink" title="模型表达能力"></a>模型表达能力</h4><p>模型表达能力简单来说就是模型建模数据的能力，比如上文中的一元语言模型就无法建模“牛吃草”和“我吃饭”的区别，因为它建模的本质统计一个词后面跟另一个词的概率，在计算是选“草”还是选“饭”的时候，是根据“吃”这个词来的，而“牛”和“我”这个上下文对于一元语言模型已经丢失。</p>
+<h4 id="模型参数数量"><a href="#模型参数数量" class="headerlink" title="模型参数数量"></a>模型参数数量</h4><p>有人说，既然如此，为啥我们不基于更多的上下文来计算下一个词的概率，而仅仅基于前一个词呢？OK，这个其实就是所谓的n元语言模型。总体来说，n越大，模型参数越多，表达能力越强。当然训练模型所需要的数据量越大（显然嘛，因为需要统计的概率的数量变多了）。</p>
+<h4 id="模型结构"><a href="#模型结构" class="headerlink" title="模型结构"></a>模型结构</h4><p>然而，模型表达能力还有另一个制约因素，那就是模型本身的结构。对于基于统计的n元语言模型来说，它只是简单地统计一个词出现在一些词后面的概率，并不理解其中的各类文法、词法关系，那它还是无法建模一些复杂的语句。比如，“我白天一直在打游戏”和“我在天黑之前一直在玩游戏“两者语义很相似，但是基于统计的模型却无法理解两者的相似性。因此，就算你把海量的数据喂给基于统计的模型，它也不可能学到ChatGPT这种程度。</p>
+<h3 id="基于神经网络的模型"><a href="#基于神经网络的模型" class="headerlink" title="基于神经网络的模型"></a>基于神经网络的模型</h3><h4 id="RNN-amp-LSTM"><a href="#RNN-amp-LSTM" class="headerlink" title="RNN &amp; LSTM"></a>RNN &amp; LSTM</h4><p><img src="/2023/03/05/Common-instruction-set/image-20230306225647393.png" alt="LSTM"></p>
+<p>下面我们要用魔法打败魔法：</p>
+<p><img src="/2023/03/05/Common-instruction-set/20230306230257.png" alt></p>
+<h4 id="Attention-Mechanisms"><a href="#Attention-Mechanisms" class="headerlink" title="Attention Mechanisms"></a>Attention Mechanisms</h4><p><img src="/2023/03/05/Common-instruction-set/20230306231037.png" alt></p>
+<h4 id="Transformer"><a href="#Transformer" class="headerlink" title="Transformer"></a>Transformer</h4><p><img src="/2023/03/05/Common-instruction-set/20230306231433.png" alt></p>
+<p><strong>ChatGPT所依赖GPT3.5语言模型的的底层正是Transformer。</strong></p>
+<h2 id="二-训练数据"><a href="#二-训练数据" class="headerlink" title="二 训练数据"></a>二 训练数据</h2><p>训练数据和模型之间是紧密相关的。训练数据是用来训练机器学习模型的输入数据，而模型则是对这些数据进行处理和学习的算法或函数。</p>
+<p>在机器学习中，训练数据通常包括输入数据和相应的输出或标签。输入数据可以是各种形式的数据，如图像、文本、声音等。输出或标签则是我们希望模型能够预测的目标值，例如图像分类任务中的物体类别、文本情感分类任务中的情感类别等。</p>
+<p>模型是根据训练数据学习到的算法或函数，它能够将输入数据映射到输出或标签。模型的选择取决于任务类型和数据特征。例如，在图像分类任务中，卷积神经网络（CNN）是一种常用的模型，而在自然语言处理任务中，循环神经网络（RNN）和其变种，如长短时记忆网络（LSTM）和门控循环单元（GRU），则是常用的模型。</p>
+<p>训练数据的质量和数量直接影响模型的性能。更多、更准确的数据有助于模型更好地学习输入数据和输出或标签之间的关系，提高模型的精度。因此，选择合适的训练数据和充足的数据量是训练模型的关键。同时，模型的参数和结构也需要进行适当的调整和优化，以便更好地适应数据和任务，并达到更好的性能。</p>
+<h2 id="三-训练方法"><a href="#三-训练方法" class="headerlink" title="三 训练方法"></a>三 训练方法</h2><h3 id="监督学习-vs-无监督学习"><a href="#监督学习-vs-无监督学习" class="headerlink" title="监督学习 vs 无监督学习"></a>监督学习 vs 无监督学习</h3><p>监督学习和无监督学习是机器学习中两种基本的学习方式，它们有以下主要区别：</p>
+<ol>
+<li>监督学习需要标签数据，而无监督学习不需要。在监督学习中，训练数据包括输入数据和相应的标签或输出，而在无监督学习中，只有输入数据没有标签或输出。</li>
+<li>监督学习的目标是学习一个输入到输出的映射，而无监督学习的目标通常是学习数据的结构和特征。在监督学习中，我们希望模型能够准确地预测输出，如分类、回归等任务。而在无监督学习中，我们希望模型能够自动地发现数据的结构和特征，如聚类、降维等任务。</li>
+<li>监督学习通常需要更多的数据和计算资源，而无监督学习则相对较少。因为监督学习需要标签数据，而这些数据需要大量的人力和时间来收集和标注。而无监督学习通常只需要原始数据即可进行训练，因此数据的获取和标注成本更低。</li>
+<li>监督学习和无监督学习的应用场景不同。监督学习适用于已知输入和输出之间的映射关系的情况，例如分类、回归等任务。而无监督学习适用于没有明确标签或输出的情况，例如数据探索、特征提取等任务。</li>
+</ol>
+<p>总的来说，监督学习和无监督学习是机器学习中两种基本的学习方式，各有其优缺点和适用场景，需要根据任务和数据的特点来选择合适的学习方式。</p>
+<h3 id="迁移学习"><a href="#迁移学习" class="headerlink" title="迁移学习"></a>迁移学习</h3><p>Generative Pre-Training (GPT) models are trained using unsupervised learning approaches, specifically language modeling. Here are the general steps for training a GPT model:</p>
+<ol>
+<li>Preparing the Training Data: The first step is to collect a large corpus of text data. This corpus can be any type of text, such as books, articles, web pages, or social media posts. The text data is then preprocessed and tokenized into sequences of words or subwords.</li>
+<li>Pre-Training the Model: The GPT model is then trained on the preprocessed text data using a language modeling objective. The goal of language modeling is to predict the next word in a sequence of words given the previous words. The model is trained to maximize the likelihood of predicting the correct next word.</li>
+<li>Fine-Tuning the Model: Once the GPT model is pre-trained, it can be fine-tuned on a specific downstream task. This involves training the model on a smaller, task-specific dataset using supervised learning. The pre-trained GPT model is used as a starting point, and the final layers of the model are replaced with task-specific layers. The fine-tuned model is then trained to minimize the loss on the task-specific dataset.</li>
+</ol>
+<p>During pre-training, the GPT model learns to generate high-quality text by modeling the underlying structure and patterns in the input text data. The model is able to capture complex relationships between words and phrases, and can generate coherent and grammatical text that is similar to the training data. This unsupervised pre-training approach allows the GPT model to learn from a large amount of data without requiring task-specific annotations or labels. This makes GPT models highly versatile and applicable to a wide range of natural language processing tasks.</p>
+<h3 id="上下文学习"><a href="#上下文学习" class="headerlink" title="上下文学习"></a><strong>上下文学习</strong></h3><h3 id="指令微调与强化学习"><a href="#指令微调与强化学习" class="headerlink" title="指令微调与强化学习"></a><strong>指令微调与强化学习</strong></h3><p>下面是关于ChatGPT的两篇<strong>参考论文</strong>：</p>
+<p>Stiennon, Nisan, et al. “<a target="_blank" rel="noopener" href="https://proceedings.neurips.cc/paper/2020/hash/1f89885d556929e98d3ef9b86448f951-Abstract.html">Learning to summarize with human feedback</a>.” Advances in Neural Information Processing Systems 33 (2020): 3008-3021.  <a target="_blank" rel="noopener" href="https://proceedings.neurips.cc/paper/2020/file/1f89885d556929e98d3ef9b86448f951-Paper.pdf">pdf</a></p>
+<p>Gao, Leo, John Schulman, and Jacob Hilton. “<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2210.10760">Scaling Laws for Reward Model Overoptimization</a>.” arXiv preprint arXiv:2210.10760 (2022). <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2210.10760">pdf</a></p>
+<p>由于ChatGPT需要提示词进行引导，所以能够让其理解的清晰明了准确的提示词与规则是必要的，下面是github是一个关于prompt的代码仓库：<a target="_blank" rel="noopener" href="https://github.com/dair-ai/Prompt-Engineering-Guide">github</a></p>
+<p>当然，OpenAI也给了很多其他有趣的功能与体验，详见下图：</p>
+<p><img src="/2023/03/05/Common-instruction-set/platform.png" alt></p>
+<p>其中作为计算机科学技术系的学生，自然对Code Completion最感兴趣，下面是一个简单的测试：</p>
+<p><img src="/2023/03/05/Common-instruction-set/platform3.png" alt></p>
+<p>经过测试它进行简单代码模块书写没有问题，但是在复杂一些的要求中会出现逻辑混乱的错误。</p>
+<p>回到正题，ChatGPT与前代GPT-3的一个明显区别就是在训练策略上用上了<strong>强化学习</strong>，在ChatGPT里，具体就是让那n名外包人员不断地从模型的输出结果中筛选，判断哪些句子是好的，哪些是低质量的，这样就可以训练得到一个 reward 模型。通过 reward 模型来评价模型的输出结果好坏。</p>
+<p>ChatGPT 的影响在于：只要模型足够大，数据足够丰富，reward 模型经过了更多的人迭代和优化，完全可以创造一个无限逼近真实世界的超级 OpenAI 大脑。</p>
+<h1 id="关于GPT"><a href="#关于GPT" class="headerlink" title="关于GPT"></a>关于GPT</h1><h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><p>根据发布时间和引用量可以看出，Transformer 无疑是 GPT 系列模型和 BERT 模型的技术基石。根据下面的讲解，我们将知道 GPT 仅使用 Transformer 的解码器，采用预训练与微调的方式进行训练；受此启发，BERT 的作者在一两个月的时间内就把 BERT 模型实验跑通了，并且发现效果比较理想，最后也就有了这篇经典的论文。其实，当我们了解了 GPT 和 BERT 之后，不难发现 BERT 作者大量借鉴了 GPT 模型的思想，比如 GPT 和 BERT 的主要模块都来自 Transformer，一个是解码器，一个是编码器；都采用预训练与微调的方法；都向输入中添加特殊符号等等。当然，这并不是说 BERT 没有创新性，甚至其影响力远远超过 GPT。</p>
+<p>在详细介绍 GPT 系列模型之前，我们先简单对比一下这三个模型。三者的模型结构大同小异，都是仅对 Transformer 的解码器进行微小的调整。主要区别在于模型大小和训练方式的不同。</p>
+<p>GPT：主要采用 BookCorpus 数据集来训练语言模型，另外可供选择的数据集是 Word Benchmark，总大小约 5GB。GPT 的模型参数总量与 BERT~base~ 近似，约为 1.1 亿。其训练思想与 BERT 一致，预训练加与特定下游任务相关的微调。只在少数下游任务上效果相对理想。</p>
+<p>GPT-2：从网上收集了 40GB 的 WebText 数据集，该数据集包含 800 篇 Reddit 高赞文章，由于 Reddit 文章涉及各个领域，因此既保证了数据质量和数量，又保证了数据的多样性，训练出泛化能力更强的 GPT-2 模型。GPT-2 的模型参数总量为 15 亿，训练庞大的 GPT-2 模型耗费了 OpenAI 公司非常多资金，这也是 GPT-2 引用率不高的原因之一，但是，巨大的投入也带来比较理想的效果。GPT-2 的庞大性使得其无法在微调阶段不断更新模型参数，因为每次更新模型参数都将带来了巨大的成本消耗，因此放弃了微调方法，换成完全无监督的 Zero-shot 方法。</p>
+<p>GPT-3：GPT-3 模型参数总量达到了惊人的 1750 亿，数据集更是高达 45TB，单单是一个 GPT-3 模型就可能需要容量为 700GB 的硬盘来存储。海量的数据来自五个不同的语料库：Common Crawl，WebText2，Books1，Books2 和 Wikipedia，每个语料库都有不同的权重，对高质量的数据集进行更频繁的采样。GPT-3 采用 Few-shot，而不是 Zero-shot，使得模型的效果进一步提升，而且即使模型参数达到 1750 亿，效果仍然呈上升趋势。另外，在许多非常困难的下游任务上，比如撰写人类难以分辨的文章，甚至是编程，都有着非常惊艳的表现。</p>
+<p><img src="/2023/03/05/Common-instruction-set/Common-instruction-set\1.png" alt></p>
+<h2 id="二、GPT"><a href="#二、GPT" class="headerlink" title="二、GPT"></a>二、GPT</h2><h3 id="1-模型结构"><a href="#1-模型结构" class="headerlink" title="1.模型结构"></a>1.模型结构</h3><p>GPT 模型由与 Transformer 的编码器结构一致的部件堆叠而成，以解码器的机制运行。习惯上，我们会说：GPT 模型由多层 Transformer 解码器堆叠而成。模型结构如图所示。<br><img src="/2023/03/05/Common-instruction-set/Common-instruction-set\2.png" alt></p>
+<p>与 BERT 相比，GPT 的输入仅由词元嵌入和位置嵌入相加得到；与 Transformer 相比，GPT 的位置嵌入不再由正余弦函数给出，而是通过训练学习。</p>
+<p>GPT 训练分为两个阶段：第一个阶段是预训练阶段，主要利用大型语料库完成非监督学习；第二个阶段是微调，针对特定任务在相应的数据集中进行监督学习。</p>
+<h3 id="2-预训练"><a href="#2-预训练" class="headerlink" title="2.预训练"></a>2.预训练</h3><p>GPT 的预训练过程本质上是自回归语言模型的训练过程，这与 Transformer 解码器的训练一致。假设某个语料的词元序列为$u =${ $ u_ {1} $ , $ \cdots $ , $ u_ {n} $ } ，GPT 的预训练目标是最大化 $ L_ {1} $ (u).</p>
+<p>$ L_ {1} $ $(u)=$ $ \sum _ {i=1}^ {n} $ $ \log _ {P(u_ {i}} $ $ |_ {i-k} $ , $ \cdots $ , $ u_ {i-1} $ $;\Theta)$</p>
+<p>其中，$k$为上下文窗口大小，$P(⋅)$为由神经网络给出的条件概率，$\Theta$为神经网络的参数。在代码实现时，窗口大小由 Sequence Mask 控制。</p>
+<p>条件概率的具体计算过程描述如下。假设预测出的第$i$个位置的词元是$u$，其之前$k$个位置的词元为$U=($ $ u_ {-k} $ , $ \cdots $ , $ u_ {-1}  )$ ，简记$ P(u|u-k,  \cdots  ,u-1)$为 $P(u)$。将词元嵌入和位置嵌入的加和输入到 GPT 模型（多层 Transformer 解码器）中，经过线性映射和 Softmax 得到输出：<br> $ h_ {0} =  UW_ {e}  +  W_ {i} $<br> $ h_ {l}  =  transformer_ {b}  lock(  h_ {l-1}  )$<br> $ \forall  l  \in  [1,N]$<br>$P(u)=soft  \max  (  h_ {N}   W^ {T} )$</p>
+<p>其中，$N$为解码器个数，$W_e$为词元嵌入矩阵，$W_p$为位置嵌入矩阵，$h_l$为第$l$层解码器在第$i$个位置的输出向量。可见，训练模型本质上是在学习条件概率分布。</p>
+<h3 id="3-微调"><a href="#3-微调" class="headerlink" title="3.微调"></a>3.微调</h3><p>假设有标签的数据集$C$中每个样本包含一个句子$X={x^ {1},\cdots,x^{m}}$和对应的标签$y$。微调阶段，将$X$输入到完成预训练的模型中，获得最后一层解码器在最后一个位置的输出向量$h_N^m$,将其输入到一个额外的线性层来预测标签$y$:</p>
+<p>$P(  y|x^ {1} ,  \cdots  ,  x^ {m}  )=soft  \max  (  h_ {N}^ {m}   W_ {y}  )$</p>
+<p>我们认为最后一个位置的输出向量蕴含了整个句子的语义信息。GPT 微调目标是最大化 $L_2(\mathcal C)$</p>
+<p> $ L_ {2}  (C)=  \sum _ {x=y}^ {1}   \log _ {P}  (  y|x^ {1}  ,  \cdots  ,  x^ {m} )$</p>
+<p>另外，论文作者发现将自回归语言模型作为微调的辅助目标有助于提高模型的泛化能力、加快模型收敛。因此，一般使用两个损失函数的加权作为微调的损失函数：</p>
+<p> $ L_ {3}  (C)=  L_ {2}  (C)+  \lambda   L_ {1}  (C)$</p>
+<p>注意，GPT 在预训练阶段不会向数据中添加特殊符号，但是当涉及特定下游任务时，不同任务的输入格式有所不同（比如单语句分类和多语句分类），因此在微调时需要添加特殊符号 <START>、<DELIM> 和 <EXTRACT>，论文作者认为模型可以通过微调理解特殊符号的含义，所以不需要在预训练时引入特殊符号。三个符号分别插入到整个输入的起始位置、两段语句的中间以及整个输入的结尾位置。可见，这与 BERT 是不同的，BERT 在预训练阶段和微调阶段均向数据中添加了特殊符号。</EXTRACT></DELIM></START></p>
+<h3 id="4-下游任务"><a href="#4-下游任务" class="headerlink" title="4.下游任务"></a>4.下游任务</h3><p>论文作者为四个经典下游任务设计具体的处理方式，并在这些任务上对 GPT 进行评估。这四个经典的下游任务为，文本分类（Text Classification）、文本蕴涵（Textual entailment）、文本相似（Textual similarity）和问答与常识推理（Question Answering and Commonsense Reasoning）。与命名实体识别等任务不同，这些任务只要提取语句级语义向量即可，认为特殊符号 <EXTRACT> 对应的输出向量包含了任务需要的语义信息。</EXTRACT></p>
+<p><strong>文本分类：</strong>文本分类任务的微调过程如上所述，即标准微调过程。GPT 以添加特殊符号 <STRAT> 和 <EXTRACT> 的词元序列作为输入，将输出向量输入到线性映射层后 Softmax 分类。</EXTRACT></STRAT></p>
+<p><strong>文本蕴涵：</strong>文本蕴含的判断是非对称性句子关系任务，即 premise 只能作为第一段语句输入，hypothesis 只能作为第二段输入，不可交换顺序，两段语句由特殊符号 <DELIM>，判断是否能从 premise 得到 hypothesis。处理方式与文本分类相同。</DELIM></p>
+<p><strong>文本相似：</strong>文本相似性任务是对称性句子关系任务，即交换两段语句的输入顺序，不影响二者语义相似性的判断。为了反映对称性，论文作者分别向 GPT 模型中输入两种顺序的序列以生成两个输出向量，两个向量相加后输入到线性映射层用于分类。</p>
+<p><strong>问答与常识推理：</strong>将文章$z$，问题$q$和一组可能的答案 ${a_k}$</p>
+<p>  分别拼接，得到$ [z;q;\left&lt;{\rm DELIM}\right&gt;;a_k]$。GPT 模型独立处理每个序列，通过 Softmax 产生分布。</p>
+<p>四个任务的处理如图所示。<br><img src="/2023/03/05/Common-instruction-set/Common-instruction-set\3.png" alt></p>
+<h3 id="5-ELMo、BERT-和-GPT-的比较"><a href="#5-ELMo、BERT-和-GPT-的比较" class="headerlink" title="5.ELMo、BERT 和 GPT 的比较"></a>5.ELMo、BERT 和 GPT 的比较</h3><p>ELMo、BERT 和 GPT 都解决了早期的 Word2Vec 等预训练模型无法处理一词多义的问题。</p>
+<p>整体上来说，ELMo 采用双向 LSTM 提取特征，而 BERT 和 GPT 均采用 Transformer 模块来提取特征，其中 BERT 使用的是编码器，GPT 使用的是解码器。很多 NLP 任务都表明 Transformer 提取特征的能力强于 LSTM，LSTM 依然具有长期遗忘的特点。</p>
+<p>三者中，只有 GPT 采用单向语言模型，ELMo 和 BERT 都采用双向语言模型。严谨来说，ELMo 实际上只是将不同方向语言模型提取的特征的拼接，这种拼接融合特征的方法显然没有 BERT 一体化特征融合的方法有效。</p>
+<p>在训练方法上，三者都包括预训练过程。ELMO 采用并非真正意义上的微调，常将 ELMo 提取的特征作为下游任务的附加输入；而 BERT 和 GPT 主要采用微调的方法使模型适应下游任务。</p>
+<p>相较于 BERT，作为语言模型的 GPT 能力明显更加强大。BERT 采用 Transformer 编码器使得其在语言理解的任务上具有更好的适用性，但是无法处理类似机器翻译和文章续写的生成式任务，在这类任务上 GPT 的解码器结构更有优势，带来了更多的可能。</p>
+<h2 id="REF"><a href="#REF" class="headerlink" title="REF"></a>REF</h2><p>[1] Radford A, Narasimhan K, Salimans T, et al. Improving language understanding by generative pre-training[J]. 2018.</p>
+<p>[2] Radford A, Wu J, Child R, et al. Language models are unsupervised multitask learners[J]. OpenAI blog, 2019, 1(8): 9.</p>
+<p>[3] Brown T, Mann B, Ryder N, et al. Language models are few-shot learners[J]. Advances in neural information processing systems, 2020, 33: 1877-1901.</p>
+<p>[4] Vaswani A, Shazeer N, Parmar N, et al. Attention is all you need[J]. Advances in neural information processing systems, 2017, 30.</p>
+<p>[5] Devlin J, Chang M W, Lee K, et al. Bert: Pre-training of deep bidirectional transformers for language understanding[J]. arXiv preprint arXiv:1810.04805, 2018.</p>
+<p>[6] 《深入浅出 Embedding》吴茂贵等著</p>
+<p>[7] GPT，GPT-2，GPT-3 论文精读【论文精读】- bilibili</p>
+<p>[8] 李宏毅-ELMO, BERT, GPT讲解 - bilibili</p>
+<p>[9] GPT综述-各模型之间的对比 - 知乎</p>
+<p>[10] GPT系列模型详解 - CSDN</p>
+<p>[11] GPT2模型详解 - CSDN</p>
+<p>[12] The Illustrated GPT-2 (Visualizing Transformer Language Models) - jalammar.github.io</p>
+<p>[13] 零次学习（Zero-Shot Learning）入门 - 知乎</p>
+<p>[14] tokenizers：BPE算法 - CSDN</p>
+<p>[15] 深入理解NLP Subword算法：BPE、WordPiece、ULM - 知乎</p>
+<p>[16] BERT, GPT, ELMo模型对比 - CSDN</p>
+<h1 id="NewBing-amp-ChatGPT的对比"><a href="#NewBing-amp-ChatGPT的对比" class="headerlink" title="NewBing&amp;ChatGPT的对比"></a>NewBing&amp;ChatGPT的对比</h1><h3 id="询问实时性问题："><a href="#询问实时性问题：" class="headerlink" title="询问实时性问题："></a>询问实时性问题：</h3><p><strong>ChatGPT</strong></p>
+<p><img src="/2023/03/05/Common-instruction-set/20230306235352.png" alt></p>
+<p><strong>NewBing</strong></p>
+<p><img src="/2023/03/05/Common-instruction-set/20230306235428.png" alt></p>
+<h3 id="询问知识性问题："><a href="#询问知识性问题：" class="headerlink" title="询问知识性问题："></a>询问知识性问题：</h3><p><strong>ChatGPT</strong></p>
+<p><img src="/2023/03/05/Common-instruction-set/20230306234943.png" alt></p>
+<p><strong>NewBing</strong></p>
+<p><img src="/2023/03/05/Common-instruction-set/20230306235013.png" alt></p>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">This work is licensed under <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</a></h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> Share</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://sunxinbin.cn/2023/03/05/Common-instruction-set/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://sunxinbin.cn/2023/03/05/Common-instruction-set/";
+            const title         = "「NewBing&ChatGPT」";
+            const excerpt       = `ChatGPT`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/OpenAI/" rel="tag">OpenAI</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2023-04-23T06:16:56.012Z" itemprop="dateModified">Last modify：2023-04-23</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" Big data analysis method" href="/2023/01/25/Big-data-analysis-method/">&lt; older</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" Dynamic Programming" href="/2023/03/30/Dynamic-Programming/">Newer &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center">Computer Science & Technology</p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                Post
+            </span>
+            <span class="count">
+                47
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                Category
+            </span>
+            <span class="count">
+                10
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                Tag
+            </span>
+            <span class="count">
+                20
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>Categories List</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Craniofacial-Registration/">Craniofacial Registration</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DL/">DL</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Feature-Point-Punctuation-Algorithm/">Feature Point Punctuation Algorithm</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Literature/">Literature</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ML/">ML</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematical-Modeling/">Mathematical Modeling</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Philosophy/">Philosophy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Undergraduate-Courses/">Undergraduate Courses</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">2</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>Tagcloud</h4>
+      <div class="tag-clouds">
+        <a href="/tags/A-single-spark-can-start-a-prairie-fire/" style="font-size: 0.6em;">A single spark can start a prairie fire</a> <a href="/tags/Algorithm/" style="font-size: 0.6em;">Algorithm</a> <a href="/tags/Anecdote/" style="font-size: 0.6em;">Anecdote</a> <a href="/tags/CV/" style="font-size: 0.6em;">CV</a> <a href="/tags/Craniofacial-Registration/" style="font-size: 0.6em;">Craniofacial Registration</a> <a href="/tags/DL/" style="font-size: 0.8em;">DL</a> <a href="/tags/Emotion/" style="font-size: 0.7em;">Emotion</a> <a href="/tags/Feature-Point-Punctuation-Algorithm/" style="font-size: 0.75em;">Feature Point Punctuation Algorithm</a> <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/Latex/" style="font-size: 0.6em;">Latex</a> <a href="/tags/Literature/" style="font-size: 0.75em;">Literature</a> <a href="/tags/ML/" style="font-size: 0.7em;">ML</a> <a href="/tags/Mathematical-Modeling/" style="font-size: 0.65em;">Mathematical Modeling</a> <a href="/tags/OpenAI/" style="font-size: 0.6em;">OpenAI</a> <a href="/tags/Philosophy/" style="font-size: 0.6em;">Philosophy</a> <a href="/tags/Python/" style="font-size: 0.6em;">Python</a> <a href="/tags/Undergraduate-Courses/" style="font-size: 0.75em;">Undergraduate Courses</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>Recent posts</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2023/04/05/python-to-exe/"><i class="fa  fa-book"></i> Python如何打包为exe文件</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/30/Dynamic-Programming/"><i class="fa  fa-book"></i> Dynamic Programming</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/05/Common-instruction-set/"><i class="fa  fa-book"></i> NewBing&ChatGPT</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/01/25/Big-data-analysis-method/"><i class="fa  fa-book"></i> Big data analysis method</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/01/16/artificial-intelligence/"><i class="fa  fa-book"></i> Artificial Intelligence</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        <li><a href="mailto:2332431354@qq.com"><i class="fa fa-envelope"></i></a></li>
+                        
+                        
+                        
+                        
+                        <li><a target="_blank" rel="me" href="https://nya.one/@SunXinbin"><i class="fa fa fa-share-alt-square"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/xinbinsun"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2023 Neo Sun Copyright.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by 孙新斌.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            <li><a href="https://beian.miit.gov.cn" rel="external nofollow" target="_blank">鲁ICP备23010101号</a></li>
+                            <li><a href="http://www.beian.gov.cn" rel="external nofollow" target="_blank"><img src="/images/psr.webp" width="12" height="12" loading="lazy" decoding="auto" />鲁公网安备371402000348</a></li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>
