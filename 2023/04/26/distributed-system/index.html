@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="Chinese/English">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/avatar.webp">
+  
+  <title>Distributed System | Neo Sun</title>
+  <meta name="author" content="孙新斌" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="Distributed System, socket" />
+  
+  <meta name="description" content="介绍Socket编程让你沮丧吗？从man pages中很难得到有用的信息吗？你想跟上时代去编Internet相关的程序，但是为你在调用 connect() 前的bind() 的结构而不知所措？等等… 好在我已经将这些事完成了，我将和所有人共享我的知识了。如果你了解 C 语言并想穿过网络编程的沼泽，那么你来对地方了。 读者对象这个文档是一个指南，而不是参考书。如果你刚开始 socket 编程并想找一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Distributed System">
+<meta property="og:url" content="http://sunxinbin.cn/2023/04/26/distributed-system/index.html">
+<meta property="og:site_name" content="Neo Sun">
+<meta property="og:description" content="介绍Socket编程让你沮丧吗？从man pages中很难得到有用的信息吗？你想跟上时代去编Internet相关的程序，但是为你在调用 connect() 前的bind() 的结构而不知所措？等等… 好在我已经将这些事完成了，我将和所有人共享我的知识了。如果你了解 C 语言并想穿过网络编程的沼泽，那么你来对地方了。 读者对象这个文档是一个指南，而不是参考书。如果你刚开始 socket 编程并想找一">
+<meta property="og:locale">
+<meta property="og:image" content="http://sunxinbin.cn/images/avatar.webp">
+<meta property="article:published_time" content="2023-04-26T07:50:44.000Z">
+<meta property="article:modified_time" content="2023-04-26T16:37:38.052Z">
+<meta property="article:author" content="孙新斌">
+<meta property="article:tag" content="Distributed System">
+<meta property="article:tag" content="socket">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://sunxinbin.cn/images/avatar.webp">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>Archives</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>Search Engine</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>About</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            <li><a href="https://sunxinbin.cn">Blog</a></li>
+                                                        
+                                                    
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://github.com/xinbinsun">Github</a></li>
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Neo Sun</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Neo Sun</h2> <br />
+                        <span>What&#39;s past is prologue</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://sunxinbin.cn/2023/04/26/distributed-system/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">Distributed System</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2023-04-26T07:50:44.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2023-04-26</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> Author <span itemprop="name">孙新斌</span>
+                </li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~29.29K
+                    
+                    words
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>This article has been edited <time datetime="1682527058052"></time> ago, and some of its content might need to be updated.</p></div>
+            </div>
+            
+            
+            
+            <hr />
+            <div itemprop="articleBody"><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Socket编程让你沮丧吗？从man pages中很难得到有用的信息吗？你想跟上时代去编Internet相关的程序，但是为你在调用 connect() 前的bind() 的结构而不知所措？等等…</p>
+<p>好在我已经将这些事完成了，我将和所有人共享我的知识了。如果你了解 C 语言并想穿过网络编程的沼泽，那么你来对地方了。</p>
+<h2 id="读者对象"><a href="#读者对象" class="headerlink" title="读者对象"></a>读者对象</h2><p>这个文档是一个指南，而不是参考书。如果你刚开始 socket 编程并想找一本入门书，那么你是我的读者。但这不是一本完全的 socket 编程书。</p>
+<h2 id="平台和编译器"><a href="#平台和编译器" class="headerlink" title="平台和编译器"></a>平台和编译器</h2><p>这篇文档中的大多数代码都在 Linux 平台PC 上用 GNU 的 gcc 成功编译过。而且它们在 HPUX平台 上用 gcc 也成功编译过。但是注意，并不是每个代码片段都独立测试过。</p>
+<h2 id="1）什么是-socket？"><a href="#1）什么是-socket？" class="headerlink" title="1）什么是 socket？"></a>1）什么是 socket？</h2><p>你经常听到人们谈论着 “socket”，或许你还不知道它的确切含义。现在让我告诉你：它是使用标准Unix 文件描述符 (file descriptor) 和其它程序通讯的方式。 什么？ 你也许听到一些Unix高手(hacker)这样说过：“呀，Unix中的一切就是文件！”那个家伙也许正在说到一个事实：Unix 程序在执行任何形式的 I/O 的时候，程序是在读或者写一个文件描述符。一个文件描述符只是一个和打开的文件相关联的整数。但是(注意后面的话)，这个文件可能是一个网络连接，FIFO，管道，终端，磁盘上的文件或者什么其它的东西。Unix 中所有的东西就是文件！所以，你想和Internet上别的程序通讯的时候，你将要使用到文件描述符。你必须理解刚才的话。现在你脑海中或许冒出这样的念头：“那么我从哪里得到网络通讯的文件描述符呢？”，这个问题无论如何我都要回答：你利用系统调用 socket()，它返回套接字描述符 (socket descriptor)，然后你再通过它来进行send() 和 recv()调用。</p>
+<p>“但是…”，你可能有很大的疑惑，“如果它是个文件描述符，那么为什 么不用一般调用read()和write()来进行套接字通讯？”简单的答案是：“你可以使用！”。详细的答案是：“你可以，但是使用send()和recv()让你更好的控制数据传输。”</p>
+<p>存在这样一个情况：在我们的世界上，有很多种套接字。有DARPA Internet 地址 (Internet 套接字)，本地节点的路径名 (Unix套接字)，CCITT X.25地址 (你可以将X.25 套接字完全忽略)。也许在你的Unix 机器上还有其它的。我们在这里只讲第一种：Internet 套接字。</p>
+<h2 id="2）Internet-套接字的两种类型"><a href="#2）Internet-套接字的两种类型" class="headerlink" title="2）Internet 套接字的两种类型"></a>2）Internet 套接字的两种类型</h2><p>什么意思？有两种类型的Internet 套接字？是的。不，我在撒谎。其实还有很多，但是我可不想吓着你。我们这里只讲两种。除了这些, 我打算另外介绍的 “Raw Sockets” 也是非常强大的，很值得查阅。<br>那么这两种类型是什么呢？一种是”Stream Sockets”（流格式），另外一种是”Datagram Sockets”（数据包格式）。我们以后谈到它们的时候也会用到 “SOCK_STREAM” 和 “SOCK_DGRAM”。数据报套接字有时也叫“无连接套接字”(如果你确实要连接的时候可以用connect()。) 流式套接字是可靠的双向通讯的数据流。如果你向套接字按顺序输出“1，2”，那么它们将按顺序“1，2”到达另一边。它们是无错误的传递的，有自己的错误控制，在此不讨论。</p>
+<p>有什么在使用流式套接字？你可能听说过 telnet，不是吗？它就使用流式套接字。你需要你所输入的字符按顺序到达，不是吗？同样，WWW浏览器使用的 HTTP 协议也使用它们来下载页面。实际上，当你通过端口80 telnet 到一个 WWW 站点，然后输入 “GET pagename” 的时候，你也可以得到 HTML 的内容。为什么流式套接字可以达到高质量的数据传输？这是因为它使用了“传输控制协议 (The Transmission Control Protocol)”，也叫 “TCP” (请参考 RFC-793 获得详细资料。)TCP 控制你的数据按顺序到达并且没有错误。你也许听到 “TCP” 是因为听到过 “TCP/IP”。这里的 IP 是指“Internet 协议”(请参考 RFC-791。) IP只是处理 Internet 路由而已。</p>
+<p>那么数据报套接字呢？为什么它叫无连接呢？为什么它是不可靠的呢？有这样的一些事实：如果你发送一个数据报，它可能会到达，它可能次序颠倒了。如果它到达，那么在这个包的内部是无错误的。数据报也使用 IP 作路由，但是它不使用 TCP。它使用“用户数据报协议 (User Datagram Protocol)”，也叫 “UDP” (请参考 RFC-768。)</p>
+<p>为什么它们是无连接的呢？主要是因为它并不象流式套接字那样维持一个连接。你只要建立一个包，构造一个有目标信息的IP 头，然后发出去。无需连接。它们通常使用于传输包-包信息。简单的应用程序有：tftp, bootp等等。</p>
+<p>你也许会想：“假如数据丢失了这些程序如何正常工作？”我的朋友，每个程序在 UDP 上有自己的协议。例如，tftp 协议每发出的一个被接受到包，收到者必须发回一个包来说“我收到了！” (一个“命令正确应答”也叫“ACK” 包)。如果在一定时间内(例如5秒)，发送方没有收到应答，它将重新发送，直到得到 ACK。这一ACK过程在实现 SOCK_DGRAM 应用程序的时候非常重要。</p>
+<h2 id="3）网络理论"><a href="#3）网络理论" class="headerlink" title="3）网络理论"></a>3）网络理论</h2><p>既然我刚才提到了协议层，那么现在是讨论网络究竟如何工作和一些 关于 SOCK_DGRAM 包是如何建立的例子。当然，你也可以跳过这一段， 如果你认为已经熟悉的话。</p>
+<p>现在是学习数据封装 (Data Encapsulation) 的时候了！它非常非常重要。它重要性重要到你在网络课程学习中无论如何也得也得掌握它（图1：数据封装）。主要 的内容是：一个包，先是被第一个协议(在这里是TFTP )在它的报头（也许 是报尾）包装(“封装”)，然后，整个数据(包括 TFTP 头)被另外一个协议 (在这里是 UDP )封装，然后下一个( IP )，一直重复下去，直到硬件(物理) 层( 这里是以太网 )。<br>当另外一台机器接收到包，硬件先剥去以太网头，内核剥去IP和UDP 头，TFTP程序再剥去TFTP头，最后得到数据。</p>
+<p>现在我们终于讲到声名狼藉的网络分层模型 (Layered Network Model)。这种网络模型在描述网络系统上相对其它模型有很多优点。例如， 你可以写一个套接字程序而不用关心数据的物理传输(串行口，以太网，连 接单元接口 (AUI) 还是其它介质)，因为底层的程序会为你处理它们。实际 的网络硬件和拓扑对于程序员来说是透明的。</p>
+<p>不说其它废话了，我现在列出整个层次模型。如果你要参加网络考试， 可一定要记住：</p>
+<p>应用层 (Application)</p>
+<p>表示层 (Presentation)</p>
+<p>会话层 (Session)</p>
+<p>传输层(Transport)</p>
+<p>网络层(Network)</p>
+<p>数据链路层(Data Link)</p>
+<p>物理层(Physical)</p>
+<p>物理层是硬件(串口，以太网等等)。应用层是和硬件层相隔最远的—它 是用户和网络交互的地方。 这个模型如此通用，如果你想，你可以把它作为修车指南。把它对应 到 Unix，结果是：</p>
+<p>应用层(Application Layer) (telnet, ftp,等等)</p>
+<p>传输层(Host-to-Host Transport Layer) (TCP, UDP)</p>
+<p>Internet层(Internet Layer) (IP和路由)</p>
+<p>网络访问层 (Network Access Layer) (网络层，数据链路层和物理层)</p>
+<p>现在，你可能看到这些层次如何协调来封装原始的数据了。</p>
+<p>看看建立一个简单的数据包有多少工作？哎呀，你将不得不使用 “cat” 来建立数据包头！这仅仅是个玩笑。对于流式套接字你要作的是 send() 发 送数据。对于数据报式套接字，你按照你选择的方式封装数据然后使用 sendto()。内核将为你建立传输层和 Internet 层，硬件完成网络访问层。 这就是现代科技。 现在结束我们的网络理论速成班。哦，忘记告诉你关于路由的事情了。 但是我不准备谈它，如果你真的关心，那么参考 IP RFC。</p>
+<h2 id="4）结构体"><a href="#4）结构体" class="headerlink" title="4）结构体"></a>4）结构体</h2><p>终于谈到编程了。在这章，我将谈到被套接字用到的各种数据类型。 因为它们中的一些内容很重要了。</p>
+<p>首先是简单的一个：socket描述符。它是下面的类型：</p>
+<p>int</p>
+<p>仅仅是一个常见的 int。</p>
+<p>从现在起，事情变得不可思议了，而你所需做的就是继续看下去。注 意这样的事实：有两种字节排列顺序：重要的字节 (有时叫 “octet”，即八 位位组) 在前面，或者不重要的字节在前面。前一种叫“网络字节顺序 (Network Byte Order)”。有些机器在内部是按照这个顺序储存数据，而另外 一些则不然。当我说某数据必须按照 NBO 顺序，那么你要调用函数(例如 htons() )来将它从本机字节顺序 (Host Byte Order) 转换过来。如果我没有 提到 NBO， 那么就让它保持本机字节顺序。</p>
+<p>我的第一个结构(在这个技术手册TM中)—struct sockaddr.。这个结构 为许多类型的套接字储存套接字地址信息：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">sockaddr</span> &#123;</span><br><span class="line"></span><br><span class="line">　　<span class="type">unsigned</span> <span class="type">short</span> sa_family; <span class="comment">/* 地址家族, AF_xxx */</span></span><br><span class="line"></span><br><span class="line">　　<span class="type">char</span> sa_data[<span class="number">14</span>]; <span class="comment">/*14字节协议地址*/</span></span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>sa_family 能够是各种各样的类型，但是在这篇文章中都是 “AF_INET”。 sa_data包含套接字中的目标地址和端口信息。这好像有点 不明智。</p>
+<p>为了处理struct sockaddr，程序员创造了一个并列的结构： struct sockaddr_in (“in” 代表 “Internet”。)</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">sockaddr_in</span> &#123;</span><br><span class="line"></span><br><span class="line">　　<span class="type">short</span> <span class="type">int</span> sin_family; <span class="comment">/* 通信类型 */</span></span><br><span class="line"></span><br><span class="line">　　<span class="type">unsigned</span> <span class="type">short</span> <span class="type">int</span> sin_port; <span class="comment">/* 端口 */</span></span><br><span class="line"></span><br><span class="line">　　<span class="keyword">struct</span> <span class="title class_">in_addr</span> sin_addr; <span class="comment">/* Internet 地址 */</span></span><br><span class="line"></span><br><span class="line">　　<span class="type">unsigned</span> <span class="type">char</span> sin_zero[<span class="number">8</span>]; <span class="comment">/* 与sockaddr结构的长度相同*/</span></span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>用这个数据结构可以轻松处理套接字地址的基本元素。注意 sin_zero (它被加入到这个结构，并且长度和 struct sockaddr 一样) 应该使用函数 bzero() 或 memset() 来全部置零。 同时，这一重要的字节，一个指向 sockaddr_in结构体的指针也可以被指向结构体sockaddr并且代替它。这样的话即使 socket() 想要的是 struct sockaddr *，你仍然可以使用 struct sockaddr_in，并且在最后转换。同时，注意 sin_family 和 struct sockaddr 中的 sa_family 一致并能够设置为 “AF_INET”。最后，sin_port和 sin_addr 必须是网络字节顺序 (Network Byte Order)！</p>
+<p>你也许会反对道：”但是，怎么让整个数据结构 struct in_addr sin_addr 按照网络字节顺序呢?” 要知道这个问题的答案，我们就要仔细的看一看这 个数据结构： struct in_addr, 有这样一个联合 (unions)：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Internet 地址 (一个与历史有关的结构) */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">in_addr</span> &#123;</span><br><span class="line"></span><br><span class="line">　　<span class="type">unsigned</span> <span class="type">long</span> s_addr;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>它曾经是个最坏的联合，但是现在那些日子过去了。如果你声明 “ina” 是数据结构 struct sockaddr_in 的实例，那么 “ina.sin_addr.s_addr” 就储 存4字节的 IP 地址(使用网络字节顺序)。如果你不幸的系统使用的还是恐 怖的联合 struct in_addr ，你还是可以放心4字节的 IP 地址并且和上面 我说的一样(这是因为使用了“#define”。)</p>
+<h2 id="5）本机转换"><a href="#5）本机转换" class="headerlink" title="5）本机转换"></a>5）本机转换</h2><p>我们现在到了新的章节。我们曾经讲了很多网络到本机字节顺序的转 换，现在可以实践了！ 你能够转换两种类型： short (两个字节)和 long (四个字节)。这个函 数对于变量类型 unsigned 也适用。假设你想将 short 从本机字节顺序转 换为网络字节顺序。用 “h” 表示 “本机 (host)”，接着是 “to”，然后用 “n” 表 示 “网络 (network)”，最后用 “s” 表示 “short”： h-to-n-s, 或者 htons() (“Host to Network Short”)。</p>
+<p>太简单了… ，如果不是太傻的话，你一定想到了由”n”，”h”，”s”，和 “l”形成的正确 组合，例如这里肯定没有stolh() (“Short to Long Host”) 函数，不仅在这里 没有，所有场合都没有。但是这里有：</p>
+<p>htons()—“Host to Network Short”</p>
+<p>htonl()—“Host to Network Long”</p>
+<p>ntohs()—“Network to Host Short”</p>
+<p>ntohl()—“Network to Host Long”</p>
+<p>现在，你可能想你已经知道它们了。你也可能想：“如果我想改变 char 的顺序要怎么办呢?” 但是你也许马上就想到，“用不着考虑的”。你也许 会想到：我的 68000 机器已经使用了网络字节顺序，我没有必要去调用 htonl() 转换 IP 地址。你可能是对的，但是当你移植你的程序到别的机器 上的时候，你的程序将失败。可移植性！这里是 Unix 世界！记住：在你 将数据放到网络上的时候，确信它们是网络字节顺序的。</p>
+<p>最后一点：为什么在数据结构 struct sockaddr_in 中， sin_addr 和 sin_port 需要转换为网络字节顺序，而sin_family 需不需要呢? 答案是： sin_addr 和 sin_port 分别封装在包的 IP 和 UDP 层。因此，它们必须要 是网络字节顺序。但是 sin_family 域只是被内核 (kernel) 使用来决定在数 据结构中包含什么类型的地址，所以它必须是本机字节顺序。同时， sin_family 没有发送到网络上，它们可以是本机字节顺序。</p>
+<h2 id="6）IP-地址和如何处理它们"><a href="#6）IP-地址和如何处理它们" class="headerlink" title="6）IP 地址和如何处理它们"></a>6）IP 地址和如何处理它们</h2><p>现在我们很幸运，因为我们有很多的函数来方便地操作 IP 地址。没有 必要用手工计算它们，也没有必要用”&lt;&lt;”操作来储存成长整字型。 首先，假设你已经有了一个sockaddr_in结构体ina，你有一个IP地 址”132.241.5.10”要储存在其中，你就要用到函数inet_addr(),将IP地址从 点数格式转换成无符号长整型。使用方法如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ina.sin_addr.s_addr = <span class="built_in">inet_addr</span>(<span class="string">&quot;132.241.5.10&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>注意，inet_addr()返回的地址已经是网络字节格式，所以你无需再调用 函数htonl()。 我们现在发现上面的代码片断不是十分完整的，因为它没有错误检查。 显而易见，当inet_addr()发生错误时返回-1。记住这些二进制数字？(无符 号数)-1仅仅和IP地址255.255.255.255相符合！这可是广播地址！大错特 错！记住要先进行错误检查。</p>
+<p>好了，现在你可以将IP地址转换成长整型了。有没有其相反的方法呢？ 它可以将一个in_addr结构体输出成点数格式？这样的话，你就要用到函数 inet_ntoa()(“ntoa”的含义是”network to ascii”)，就像这样：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%s&quot;</span>,<span class="built_in">inet_ntoa</span>(ina.sin_addr));</span><br></pre></td></tr></table></figure>
+<p>它将输出IP地址。需要注意的是inet_ntoa()将结构体in-addr作为一个参数，不是长整形。同样需要注意的是它返回的是一个指向一个字符的 指针。它是一个由inet_ntoa()控制的静态的固定的指针，所以每次调用 inet_ntoa()，它就将覆盖上次调用时所得的IP地址。例如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *a1, *a2;</span><br><span class="line"></span><br><span class="line">……</span><br><span class="line"></span><br><span class="line">a1 = <span class="built_in">inet_ntoa</span>(ina1.sin_addr); <span class="comment">/* 这是198.92.129.1 */</span></span><br><span class="line"></span><br><span class="line">a2 = <span class="built_in">inet_ntoa</span>(ina2.sin_addr); <span class="comment">/* 这是132.241.5.10 */</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;address 1: %s\n&quot;</span>,a1);</span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;address 2: %s\n&quot;</span>,a2);</span><br><span class="line"></span><br><span class="line">输出如下：</span><br><span class="line"></span><br><span class="line">address <span class="number">1</span>: <span class="number">132.241</span><span class="number">.5</span><span class="number">.10</span></span><br><span class="line"></span><br><span class="line">address <span class="number">2</span>: <span class="number">132.241</span><span class="number">.5</span><span class="number">.10</span></span><br></pre></td></tr></table></figure>
+<p>假如你需要保存这个IP地址，使用strcopy()函数来指向你自己的字符 指针。</p>
+<p>上面就是关于这个主题的介绍。稍后，你将学习将一个类 似”<a href="https://link.zhihu.com/?target=http%3A//wintehouse.gov">http://wintehouse.gov</a>“的字符串转换成它所对应的IP地址(查阅域名服务,稍 后)。</p>
+<h2 id="7）socket-函数"><a href="#7）socket-函数" class="headerlink" title="7）socket()函数"></a>7）socket()函数</h2><p>我想我不能再不提这个了－下面我将讨论一下socket()系统调用。</p>
+<p>下面是详细介绍：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">socket</span><span class="params">(<span class="type">int</span> domain, <span class="type">int</span> type, <span class="type">int</span> protocol)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>但是它们的参数是什么? 首先，domain 应该设置成 “AF_INET”，就 象上面的数据结构struct sockaddr_in 中一样。然后，参数 type 告诉内核 是 SOCK_STREAM 类型还是 SOCK_DGRAM 类型。最后，把 protocol 设置为 “0”。(注意：有很多种 domain、type，我不可能一一列出了，请看 socket() 的 man帮助。当然，还有一个”更好”的方式去得到 protocol，同 时请查阅 getprotobyname() 的 man 帮助。) socket() 只是返回你以后在系统调用种可能用到的 socket 描述符，或 者在错误的时候返回-1。全局变量 errno 中将储存返回的错误值。(请参考 perror() 的 man 帮助。)</p>
+<p><strong>8）bind()函数</strong></p>
+<p>一旦你有一个套接字，你可能要将套接字和机器上的一定的端口关联 起来。(如果你想用listen()来侦听一定端口的数据，这是必要一步—MUD 告 诉你说用命令 “telnet x.y.z 6969”。)如果你只想用 connect()，那么这个步 骤没有必要。但是无论如何，请继续读下去。</p>
+<p>这里是系统调用 bind() 的大概：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">bind</span><span class="params">(<span class="type">int</span> sockfd, <span class="keyword">struct</span> sockaddr *my_addr, <span class="type">int</span> addrlen)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>sockfd 是调用 socket 返回的文件描述符。my_addr 是指向数据结构 struct sockaddr 的指针，它保存你的地址(即端口和 IP 地址) 信息。 addrlen 设置为 sizeof(struct sockaddr)。 简单得很不是吗? 再看看例子:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MYPORT 3490</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">main</span>()</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">　　<span class="type">int</span> sockfd;</span><br><span class="line"></span><br><span class="line">　　<span class="keyword">struct</span> <span class="title class_">sockaddr_in</span> my_addr;</span><br><span class="line"></span><br><span class="line">　　sockfd = <span class="built_in">socket</span>(AF_INET, SOCK_STREAM, <span class="number">0</span>); <span class="comment">/*需要错误检查 */</span></span><br><span class="line"></span><br><span class="line">　　my_addr.sin_family = AF_INET; <span class="comment">/* host byte order */</span></span><br><span class="line"></span><br><span class="line">　　my_addr.sin_port = <span class="built_in">htons</span>(MYPORT); <span class="comment">/* short, network byte order */</span></span><br><span class="line"></span><br><span class="line">　　my_addr.sin_addr.s_addr = <span class="built_in">inet_addr</span>(<span class="string">&quot;132.241.5.10&quot;</span>);</span><br><span class="line"></span><br><span class="line">　　<span class="built_in">bzero</span>(&amp;(my_addr.sin_zero),; <span class="comment">/* zero the rest of the struct */</span></span><br><span class="line"></span><br><span class="line">　　<span class="comment">/* don&#x27;t forget your error checking for bind(): */</span></span><br><span class="line"></span><br><span class="line">　　<span class="built_in">bind</span>(sockfd, (<span class="keyword">struct</span> sockaddr *)&amp;my_addr, <span class="built_in">sizeof</span>(<span class="keyword">struct</span> sockaddr));</span><br><span class="line"></span><br><span class="line">　　……</span><br></pre></td></tr></table></figure>
+<p>这里也有要注意的几件事情。my_addr.sin_port 是网络字节顺序， my_addr.sin_addr.s_addr 也是的。另外要注意到的事情是因系统的不同， 包含的头文件也不尽相同，请查阅本地的 man 帮助文件。 在 bind() 主题中最后要说的话是，在处理自己的 IP 地址和/或端口的 时候，有些工作是可以自动处理的。</p>
+<p>my_addr.sin_port = 0; /<em> 随机选择一个没有使用的端口 </em>/</p>
+<p>my_addr.sin_addr.s_addr = INADDR_ANY; /<em> 使用自己的IP地址 </em>/</p>
+<p>通过将0赋给 my_addr.sin_port，你告诉 bind() 自己选择合适的端 口。同样，将 my_addr.sin_addr.s_addr 设置为 INADDR_ANY，你告诉 它自动填上它所运行的机器的 IP 地址。</p>
+<p>如果你一向小心谨慎，那么你可能注意到我没有将 INADDR_ANY 转 换为网络字节顺序！这是因为我知道内部的东西：INADDR_ANY 实际上就 是 0！即使你改变字节的顺序，0依然是0。但是完美主义者说应该处处一 致，INADDR_ANY或许是12呢？你的代码就不能工作了，那么就看下面 的代码：</p>
+<p>my_addr.sin_port = htons(0); /<em> 随机选择一个没有使用的端口 </em>/</p>
+<p>my_addr.sin_addr.s_addr = htonl(INADDR_ANY);/<em> 使用自己的IP地址 </em>/</p>
+<p>你或许不相信，上面的代码将可以随便移植。我只是想指出，既然你 所遇到的程序不会都运行使用htonl的INADDR_ANY。</p>
+<p>bind() 在错误的时候依然是返回-1，并且设置全局错误变量errno。</p>
+<p>在你调用 bind() 的时候，你要小心的另一件事情是：不要采用小于 1024的端口号。所有小于1024的端口号都被系统保留！你可以选择从1024 到65535的端口(如果它们没有被别的程序使用的话)。<br>你要注意的另外一件小事是：有时候你根本不需要调用它。如果你使 用 connect() 来和远程机器进行通讯，你不需要关心你的本地端口号(就象 你在使用 telnet 的时候)，你只要简单的调用 connect() 就可以了，它会检 查套接字是否绑定端口，如果没有，它会自己绑定一个没有使用的本地端 口。</p>
+<h2 id="9）connect-程序"><a href="#9）connect-程序" class="headerlink" title="9）connect()程序"></a>9）connect()程序</h2><p>现在我们假设你是个 telnet 程序。你的用户命令你得到套接字的文件 描述符。你听从命令调用了socket()。下一步，你的用户告诉你通过端口 23(标准 telnet 端口)连接到”132.241.5.10”。你该怎么做呢? 幸运的是，你正在阅读 connect()—如何连接到远程主机这一章。你可 不想让你的用户失望。</p>
+<p>connect() 系统调用是这样的：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">connect</span><span class="params">(<span class="type">int</span> sockfd, <span class="keyword">struct</span> sockaddr *serv_addr, <span class="type">int</span> addrlen)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>sockfd 是系统调用 socket() 返回的套接字文件描述符。serv_addr 是 保存着目的地端口和 IP 地址的数据结构 struct sockaddr。addrlen 设置 为 sizeof(struct sockaddr)。 想知道得更多吗？让我们来看个例子：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DEST_IP <span class="string">&quot;132.241.5.10&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DEST_PORT 23</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">main</span>()</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">　　<span class="type">int</span> sockfd;</span><br><span class="line"></span><br><span class="line">　　<span class="keyword">struct</span> <span class="title class_">sockaddr_in</span> dest_addr; <span class="comment">/* 目的地址*/</span></span><br><span class="line"></span><br><span class="line">　　sockfd = <span class="built_in">socket</span>(AF_INET, SOCK_STREAM, <span class="number">0</span>); <span class="comment">/* 错误检查 */</span></span><br><span class="line"></span><br><span class="line">　　dest_addr.sin_family = AF_INET; <span class="comment">/* host byte order */</span></span><br><span class="line"></span><br><span class="line">　　dest_addr.sin_port = <span class="built_in">htons</span>(DEST_PORT); <span class="comment">/* short, network byte order */</span></span><br><span class="line"></span><br><span class="line">　　dest_addr.sin_addr.s_addr = <span class="built_in">inet_addr</span>(DEST_IP);</span><br><span class="line"></span><br><span class="line">　　<span class="built_in">bzero</span>(&amp;(dest_addr.sin_zero),; <span class="comment">/* zero the rest of the struct */</span></span><br><span class="line"></span><br><span class="line">　　<span class="comment">/* don&#x27;t forget to error check the connect()! */</span></span><br><span class="line"></span><br><span class="line">　　<span class="built_in">connect</span>(sockfd, (<span class="keyword">struct</span> sockaddr *)&amp;dest_addr, <span class="built_in">sizeof</span>(<span class="keyword">struct</span> sockaddr));</span><br><span class="line"></span><br><span class="line">　　……</span><br></pre></td></tr></table></figure>
+<p>再一次，你应该检查 connect() 的返回值—它在错误的时候返回-1，并 设置全局错误变量 errno。 同时，你可能看到，我没有调用 bind()。因为我不在乎本地的端口号。 我只关心我要去那。内核将为我选择一个合适的端口号，而我们所连接的 地方也自动地获得这些信息。一切都不用担心。</p>
+<h2 id="10）listen-函数"><a href="#10）listen-函数" class="headerlink" title="10）listen()函数"></a>10）listen()函数</h2><p>是换换内容得时候了。假如你不希望与远程的一个地址相连，或者说， 仅仅是将它踢开，那你就需要等待接入请求并且用各种方法处理它们。处 理过程分两步：首先，你听—listen()，然后，你接受—accept() (请看下面的 内容)。</p>
+<p>除了要一点解释外，系统调用 listen 也相当简单。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">listen</span><span class="params">(<span class="type">int</span> sockfd, <span class="type">int</span> backlog)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>sockfd 是调用 socket() 返回的套接字文件描述符。backlog 是在进入 队列中允许的连接数目。什么意思呢? 进入的连接是在队列中一直等待直 到你接受 (accept() 请看下面的文章)连接。它们的数目限制于队列的允许。 大多数系统的允许数目是20，你也可以设置为5到10。</p>
+<p>和别的函数一样，在发生错误的时候返回-1，并设置全局错误变量 errno。</p>
+<p>你可能想象到了，在你调用 listen() 前你或者要调用 bind() 或者让内 核随便选择一个端口。如果你想侦听进入的连接，那么系统调用的顺序可 能是这样的：</p>
+<p>socket();</p>
+<p>bind();</p>
+<p>listen();</p>
+<p>/<em> accept() 应该在这 </em>/</p>
+<p>因为它相当的明了，我将在这里不给出例子了。(在 accept() 那一章的 代码将更加完全。)真正麻烦的部分在 accept()。</p>
+<h2 id="11）accept-函数"><a href="#11）accept-函数" class="headerlink" title="11）accept()函数"></a>11）accept()函数</h2><p>准备好了，系统调用 accept() 会有点古怪的地方的！你可以想象发生 这样的事情：有人从很远的地方通过一个你在侦听 (listen()) 的端口连接 (connect()) 到你的机器。它的连接将加入到等待接受 (accept()) 的队列 中。你调用 accept() 告诉它你有空闲的连接。它将返回一个新的套接字文 件描述符！这样你就有两个套接字了，原来的一个还在侦听你的那个端口， 新的在准备发送 (send()) 和接收 ( recv()) 数据。这就是这个过程！</p>
+<p>函数是这样定义的：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">accept</span><span class="params">(<span class="type">int</span> sockfd, <span class="type">void</span> *addr, <span class="type">int</span> *addrlen)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>sockfd 相当简单，是和 listen() 中一样的套接字描述符。addr 是个指 向局部的数据结构 sockaddr_in 的指针。这是要求接入的信息所要去的地 方（你可以测定那个地址在那个端口呼叫你）。在它的地址传递给 accept 之 前，addrlen 是个局部的整形变量，设置为 sizeof(struct sockaddr_in)。 accept 将不会将多余的字节给 addr。如果你放入的少些，那么它会通过改 变 addrlen 的值反映出来。</p>
+<p>同样，在错误时返回-1，并设置全局错误变量 errno。</p>
+<p>现在是你应该熟悉的代码片段。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MYPORT 3490 <span class="comment">/*用户接入端口*/</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> BACKLOG 10 <span class="comment">/* 多少等待连接控制*/</span></span></span><br><span class="line"></span><br><span class="line"><span class="built_in">main</span>()</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">　　<span class="type">int</span> sockfd, new_fd; <span class="comment">/* listen on sock_fd, new connection on new_fd */</span></span><br><span class="line"></span><br><span class="line">　　<span class="keyword">struct</span> <span class="title class_">sockaddr_in</span> my_addr; <span class="comment">/* 地址信息 */</span></span><br><span class="line"></span><br><span class="line">　　<span class="keyword">struct</span> <span class="title class_">sockaddr_in</span> their_addr; <span class="comment">/* connector&#x27;s address information */</span></span><br><span class="line"></span><br><span class="line">　　<span class="type">int</span> sin_size;</span><br><span class="line"></span><br><span class="line">　　sockfd = <span class="built_in">socket</span>(AF_INET, SOCK_STREAM, <span class="number">0</span>); <span class="comment">/* 错误检查*/</span></span><br><span class="line"></span><br><span class="line">　　my_addr.sin_family = AF_INET; <span class="comment">/* host byte order */</span></span><br><span class="line"></span><br><span class="line">　　my_addr.sin_port = <span class="built_in">htons</span>(MYPORT); <span class="comment">/* short, network byte order */</span></span><br><span class="line"></span><br><span class="line">　　my_addr.sin_addr.s_addr = INADDR_ANY; <span class="comment">/* auto-fill with my IP */</span></span><br><span class="line"></span><br><span class="line">　　<span class="built_in">bzero</span>(&amp;(my_addr.sin_zero),; <span class="comment">/* zero the rest of the struct */</span></span><br><span class="line"></span><br><span class="line">　　<span class="comment">/* don&#x27;t forget your error checking for these calls: */</span></span><br><span class="line"></span><br><span class="line">　　<span class="built_in">bind</span>(sockfd, (<span class="keyword">struct</span> sockaddr *)&amp;my_addr, <span class="built_in">sizeof</span>(<span class="keyword">struct</span> sockaddr));</span><br><span class="line"></span><br><span class="line">　　<span class="built_in">listen</span>(sockfd, BACKLOG);</span><br><span class="line"></span><br><span class="line">　　sin_size = <span class="built_in">sizeof</span>(<span class="keyword">struct</span> sockaddr_in);</span><br><span class="line"></span><br><span class="line">　　new_fd = <span class="built_in">accept</span>(sockfd, &amp;their_addr, &amp;sin_size);</span><br><span class="line"></span><br><span class="line">　　……</span><br></pre></td></tr></table></figure>
+<p>注意，在系统调用 send() 和 recv() 中你应该使用新的套接字描述符 new_fd。如果你只想让一个连接进来，那么你可以使用 close() 去关闭原 来的文件描述符 sockfd 来避免同一个端口更多的连接。</p>
+<h2 id="12）send-and-recv-函数"><a href="#12）send-and-recv-函数" class="headerlink" title="12）send() and recv()函数"></a>12）send() and recv()函数</h2><p>这两个函数用于流式套接字或者数据报套接字的通讯。如果你喜欢使 用无连接的数据报套接字，你应该看一看下面关于sendto() 和 recvfrom() 的章节。</p>
+<p>send() 是这样的：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">send</span><span class="params">(<span class="type">int</span> sockfd, <span class="type">const</span> <span class="type">void</span> *msg, <span class="type">int</span> len, <span class="type">int</span> flags)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>sockfd 是你想发送数据的套接字描述符(或者是调用 socket() 或者是 accept() 返回的。)msg 是指向你想发送的数据的指针。len 是数据的长度。 把 flags 设置为 0 就可以了。(详细的资料请看 send() 的 man page)。 这里是一些可能的例子：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *msg = <span class="string">&quot;Beej was here!&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> len, bytes_sent;</span><br><span class="line"></span><br><span class="line">……</span><br><span class="line"></span><br><span class="line">len = <span class="built_in">strlen</span>(msg);</span><br><span class="line"></span><br><span class="line">bytes_sent = <span class="built_in">send</span>(sockfd, msg, len, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">……</span><br></pre></td></tr></table></figure>
+<p>send() 返回实际发送的数据的字节数—它可能小于你要求发送的数 目！ 注意，有时候你告诉它要发送一堆数据可是它不能处理成功。它只是 发送它可能发送的数据，然后希望你能够发送其它的数据。记住，如果 send() 返回的数据和 len 不匹配，你就应该发送其它的数据。但是这里也 有个好消息：如果你要发送的包很小(小于大约 1K)，它可能处理让数据一 次发送完。最后要说得就是，它在错误的时候返回-1，并设置 errno。</p>
+<p>recv() 函数很相似：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">recv</span><span class="params">(<span class="type">int</span> sockfd, <span class="type">void</span> *buf, <span class="type">int</span> len, <span class="type">unsigned</span> <span class="type">int</span> flags)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>sockfd 是要读的套接字描述符。buf 是要读的信息的缓冲。len 是缓 冲的最大长度。flags 可以设置为0。(请参考recv() 的 man page。) recv() 返回实际读入缓冲的数据的字节数。或者在错误的时候返回-1， 同时设置 errno。</p>
+<p>很简单，不是吗? 你现在可以在流式套接字上发送数据和接收数据了。 你现在是 Unix 网络程序员了！</p>
+<h2 id="13）sendto-和-recvfrom-函数"><a href="#13）sendto-和-recvfrom-函数" class="headerlink" title="13）sendto() 和 recvfrom()函数"></a>13）sendto() 和 recvfrom()函数</h2><p>“这很不错啊”，你说，“但是你还没有讲无连接数据报套接字呢？” 没问题，现在我们开始这个内容。 既然数据报套接字不是连接到远程主机的，那么在我们发送一个包之 前需要什么信息呢? 不错，是目标地址！看看下面的：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">sendto</span><span class="params">(<span class="type">int</span> sockfd, <span class="type">const</span> <span class="type">void</span> *msg, <span class="type">int</span> len, <span class="type">unsigned</span> <span class="type">int</span> flags,</span></span></span><br><span class="line"><span class="params"><span class="function"></span></span></span><br><span class="line"><span class="params"><span class="function"><span class="type">const</span> <span class="keyword">struct</span> sockaddr *to, <span class="type">int</span> tolen)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>你已经看到了，除了另外的两个信息外，其余的和函数 send() 是一样 的。 to 是个指向数据结构 struct sockaddr 的指针，它包含了目的地的 IP 地址和端口信息。tolen 可以简单地设置为 sizeof(struct sockaddr)。 和函数 send() 类似，sendto() 返回实际发送的字节数(它也可能小于 你想要发送的字节数！)，或者在错误的时候返回 -1。</p>
+<p>相似的还有函数 recv() 和 recvfrom()。recvfrom() 的定义是这样的：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">recvfrom</span><span class="params">(<span class="type">int</span> sockfd, <span class="type">void</span> *buf, <span class="type">int</span> len, <span class="type">unsigned</span> <span class="type">int</span> flags, 　</span></span></span><br><span class="line"><span class="params"><span class="function"></span></span></span><br><span class="line"><span class="params"><span class="function"><span class="keyword">struct</span> sockaddr *from, <span class="type">int</span> *fromlen)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>又一次，除了两个增加的参数外，这个函数和 recv() 也是一样的。from 是一个指向局部数据结构 struct sockaddr 的指针，它的内容是源机器的 IP 地址和端口信息。fromlen 是个 int 型的局部指针，它的初始值为 sizeof(struct sockaddr)。函数调用返回后，fromlen 保存着实际储存在 from 中的地址的长度。</p>
+<p>recvfrom() 返回收到的字节长度，或者在发生错误后返回 -1。</p>
+<p>记住，如果你用 connect() 连接一个数据报套接字，你可以简单的调 用 send() 和 recv() 来满足你的要求。这个时候依然是数据报套接字，依 然使用 UDP，系统套接字接口会为你自动加上了目标和源的信息。</p>
+<h2 id="14）close-和shutdown-函数"><a href="#14）close-和shutdown-函数" class="headerlink" title="14）close()和shutdown()函数"></a>14）close()和shutdown()函数</h2><p>你已经整天都在发送 (send()) 和接收 (recv()) 数据了，现在你准备关 闭你的套接字描述符了。这很简单，你可以使用一般的 Unix 文件描述符 的 close() 函数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">close</span>(sockfd);</span><br></pre></td></tr></table></figure>
+<p>它将防止套接字上更多的数据的读写。任何在另一端读写套接字的企 图都将返回错误信息。如果你想在如何关闭套接字上有多一点的控制，你可以使用函数 shutdown()。它允许你将一定方向上的通讯或者双向的通讯(就象close()一 样)关闭，你可以使用：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">shutdown</span><span class="params">(<span class="type">int</span> sockfd, <span class="type">int</span> how)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>sockfd 是你想要关闭的套接字文件描述复。how 的值是下面的其中之 一：</p>
+<p>0 – 不允许接受</p>
+<p>1 – 不允许发送</p>
+<p>2 – 不允许发送和接受(和 close() 一样)</p>
+<p>shutdown() 成功时返回 0，失败时返回 -1(同时设置 errno。) 如果在无连接的数据报套接字中使用shutdown()，那么只不过是让 send() 和 recv() 不能使用(记住你在数据报套接字中使用了 connect 后 是可以使用它们的)。</p>
+<h2 id="15）getpeername-函数"><a href="#15）getpeername-函数" class="headerlink" title="15）getpeername()函数"></a>15）getpeername()函数</h2><p>这个函数太简单了。 它太简单了，以至我都不想单列一章。但是我还是这样做了。 函数 getpeername() 告诉你在连接的流式套接字上谁在另外一边。函 数是这样的：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">getpeername</span><span class="params">(<span class="type">int</span> sockfd, <span class="keyword">struct</span> sockaddr *addr, <span class="type">int</span> *addrlen)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>sockfd 是连接的流式套接字的描述符。addr 是一个指向结构 struct sockaddr (或者是 struct sockaddr_in) 的指针，它保存着连接的另一边的 信息。addrlen 是一个 int 型的指针，它初始化为 sizeof(struct sockaddr)。 函数在错误的时候返回 -1，设置相应的 errno。</p>
+<p>一旦你获得它们的地址，你可以使用 inet_ntoa() 或者 gethostbyaddr() 来打印或者获得更多的信息。但是你不能得到它的帐号。(如果它运行着愚 蠢的守护进程，这是可能的，但是它的讨论已经超出了本文的范围，请参 考 RFC-1413 以获得更多的信息。)</p>
+<h2 id="16）gethostname-函数"><a href="#16）gethostname-函数" class="headerlink" title="16）gethostname()函数"></a>16）gethostname()函数</h2><p>甚至比 getpeername() 还简单的函数是 gethostname()。它返回你程 序所运行的机器的主机名字。然后你可以使用 gethostbyname() 以获得你 的机器的 IP 地址。</p>
+<p>下面是定义：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">gethostname</span><span class="params">(<span class="type">char</span> *hostname, <span class="type">size_t</span> size)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>参数很简单：hostname 是一个字符数组指针，它将在函数返回时保存 主机名。size是hostname 数组的字节长度。</p>
+<p>函数调用成功时返回 0，失败时返回 -1，并设置 errno。</p>
+<h2 id="17）域名服务（DNS）"><a href="#17）域名服务（DNS）" class="headerlink" title="17）域名服务（DNS）"></a>17）域名服务（DNS）</h2><p>如果你不知道 DNS 的意思，那么我告诉你，它代表域名服务(Domain Name Service)。它主要的功能是：你给它一个容易记忆的某站点的地址， 它给你 IP 地址(然后你就可以使用 bind(), connect(), sendto() 或者其它 函数) 。当一个人输入：</p>
+<p>$ telnet <a href="https://link.zhihu.com/?target=http%3A//whitehouse.gov">http://whitehouse.gov</a></p>
+<p>telnet 能知道它将连接 (connect()) 到 “198.137.240.100”。 但是这是如何工作的呢? 你可以调用函数 gethostbyname()：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;netdb.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">hostent</span> *<span class="built_in">gethostbyname</span>(<span class="type">const</span> <span class="type">char</span> *name);</span><br></pre></td></tr></table></figure>
+<p>很明白的是，它返回一个指向 struct hostent 的指针。这个数据结构 是这样的：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">hostent</span> &#123;</span><br><span class="line"></span><br><span class="line">　　<span class="type">char</span> *h_name;</span><br><span class="line"></span><br><span class="line">　　<span class="type">char</span> **h_aliases;</span><br><span class="line"></span><br><span class="line">　　<span class="type">int</span> h_addrtype;</span><br><span class="line"></span><br><span class="line">　　<span class="type">int</span> h_length;</span><br><span class="line"></span><br><span class="line">　　<span class="type">char</span> **h_addr_list;</span><br><span class="line"></span><br><span class="line">&#125;;  </span><br></pre></td></tr></table></figure>
+<p>#define h_addr h_addr_list[0]</p>
+<p>这里是这个数据结构的详细资料：</p>
+<p>h_name – 地址的正式名称。</p>
+<p>h_aliases – 空字节-地址的预备名称的指针。</p>
+<p>h_addrtype –地址类型; 通常是AF_INET。</p>
+<p>h_length – 地址的比特长度。</p>
+<p>h_addr_list – 零字节-主机网络地址指针。网络字节顺序。</p>
+<p>h_addr - h_addr_list中的第一地址。</p>
+<p>gethostbyname() 成功时返回一个指向结构体 hostent 的指针，或者 是个空 (NULL) 指针。(但是和以前不同，不设置errno，h_errno 设置错 误信息，请看下面的 herror()。) 但是如何使用呢? 有时候（我们可以从电脑手册中发现），向读者灌输 信息是不够的。这个函数可不象它看上去那么难用。</p>
+<p>这里是个例子：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;errno.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;netdb.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;netinet/in.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">　　<span class="keyword">struct</span> <span class="title class_">hostent</span> *h;</span><br><span class="line"></span><br><span class="line">　　<span class="keyword">if</span> (argc != <span class="number">2</span>) &#123; <span class="comment">/* 检查命令行 */</span></span><br><span class="line"></span><br><span class="line">　　<span class="built_in">fprintf</span>(stderr,<span class="string">&quot;usage: getip address\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">　　<span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">　　&#125;</span><br><span class="line"></span><br><span class="line">　　<span class="keyword">if</span> ((h=<span class="built_in">gethostbyname</span>(argv[<span class="number">1</span>])) == <span class="literal">NULL</span>) &#123; <span class="comment">/* 取得地址信息 */</span></span><br><span class="line"></span><br><span class="line">　　<span class="built_in">herror</span>(<span class="string">&quot;gethostbyname&quot;</span>);</span><br><span class="line"></span><br><span class="line">　　<span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">　　&#125;</span><br><span class="line"></span><br><span class="line">　　<span class="built_in">printf</span>(<span class="string">&quot;Host name : %s\n&quot;</span>, h-&gt;h_name);</span><br><span class="line"></span><br><span class="line">　　<span class="built_in">printf</span>(<span class="string">&quot;IP Address : %s\n&quot;</span>,<span class="built_in">inet_ntoa</span>(*((<span class="keyword">struct</span> in_addr *)h-&gt;h_addr)));</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在使用 gethostbyname() 的时候，你不能用 perror() 打印错误信息 (因为 errno 没有使用)，你应该调用 herror()。</p>
+<p>相当简单，你只是传递一个保存机器名的字符串(例如 “<a href="https://link.zhihu.com/?target=http%3A//whitehouse.gov">http://whitehouse.gov</a>“) 给 gethostbyname()，然后从返回的数据结构 struct hostent 中获取信息。</p>
+<p>唯一也许让人不解的是输出 IP 地址信息。h-&gt;h_addr 是一个 char <em>， 但是 inet_ntoa() 需要的是 struct in_addr。因此，我转换 h-&gt;h_addr 成 struct in_addr </em>，然后得到数据。</p>
+<h2 id="18）客户-服务器背景知识"><a href="#18）客户-服务器背景知识" class="headerlink" title="18）客户-服务器背景知识"></a>18）客户-服务器背景知识</h2><p>这里是个客户—服务器的世界。在网络上的所有东西都是在处理客户进 程和服务器进程的交谈。举个telnet 的例子。当你用 telnet (客户)通过23 号端口登陆到主机，主机上运行的一个程序(一般叫 telnetd，服务器)激活。 它处理这个连接，显示登陆界面，等等。</p>
+<p>图 2 说明了客户和服务器之间的信息交换。</p>
+<p>注意，客户—服务器之间可以使用SOCK_STREAM、SOCK_DGRAM 或者其它(只要它们采用相同的)。一些很好的客户—服务器的例子有 telnet/telnetd、 ftp/ftpd 和 bootp/bootpd。每次你使用 ftp 的时候，在远 端都有一个 ftpd 为你服务。</p>
+<p>一般，在服务端只有一个服务器，它采用 fork() 来处理多个客户的连 接。基本的程序是：服务器等待一个连接，接受 (accept()) 连接，然后 fork() 一个子进程处理它。这是下一章我们的例子中会讲到的。</p>
+<h2 id="19）简单的服务器"><a href="#19）简单的服务器" class="headerlink" title="19）简单的服务器"></a>19）简单的服务器</h2><p>这个服务器所做的全部工作是在流式连接上发送字符串 “Hello, World!\n”。你要测试这个程序的话，可以在一台机器上运行该程序，然后 在另外一机器上登陆：</p>
+<p>$ telnet remotehostname 3490</p>
+<p>remotehostname 是该程序运行的机器的名字。</p>
+<p>服务器代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;errno.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;netinet/in.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/wait.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MYPORT 3490 <span class="comment">/*定义用户连接端口*/</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> BACKLOG 10 <span class="comment">/*多少等待连接控制*/</span></span></span><br><span class="line"></span><br><span class="line"><span class="built_in">main</span>()</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">　　<span class="type">int</span> sockfd, new_fd; <span class="comment">/* listen on sock_fd, new connection on new_fd */</span></span><br><span class="line"></span><br><span class="line">　　<span class="keyword">struct</span> <span class="title class_">sockaddr_in</span> my_addr; <span class="comment">/* my address information */</span></span><br><span class="line"></span><br><span class="line">　　<span class="keyword">struct</span> <span class="title class_">sockaddr_in</span> their_addr; <span class="comment">/* connector&#x27;s address information */</span></span><br><span class="line"></span><br><span class="line">　　<span class="type">int</span> sin_size;</span><br><span class="line"></span><br><span class="line">　　<span class="keyword">if</span> ((sockfd = <span class="built_in">socket</span>(AF_INET, SOCK_STREAM, <span class="number">0</span>)) == <span class="number">-1</span>) &#123;</span><br><span class="line"></span><br><span class="line">　　<span class="built_in">perror</span>(<span class="string">&quot;socket&quot;</span>);</span><br><span class="line"></span><br><span class="line">　　<span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">　　&#125;</span><br><span class="line"></span><br><span class="line">　　my_addr.sin_family = AF_INET; <span class="comment">/* host byte order */</span></span><br><span class="line"></span><br><span class="line">　　my_addr.sin_port = <span class="built_in">htons</span>(MYPORT); <span class="comment">/* short, network byte order */</span></span><br><span class="line"></span><br><span class="line">　　my_addr.sin_addr.s_addr = INADDR_ANY; <span class="comment">/* auto-fill with my IP */</span></span><br><span class="line"></span><br><span class="line">　　<span class="built_in">bzero</span>(&amp;(my_addr.sin_zero),; <span class="comment">/* zero the rest of the struct */</span></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">　　<span class="keyword">if</span> (<span class="built_in">bind</span>(sockfd, (<span class="keyword">struct</span> sockaddr *)&amp;my_addr, <span class="built_in">sizeof</span>(<span class="keyword">struct</span> sockaddr))== <span class="number">-1</span>) &#123;</span><br><span class="line"></span><br><span class="line">　　<span class="built_in">perror</span>(<span class="string">&quot;bind&quot;</span>);</span><br><span class="line"></span><br><span class="line">　　<span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">　　&#125;</span><br><span class="line"></span><br><span class="line">　　<span class="keyword">if</span> (<span class="built_in">listen</span>(sockfd, BACKLOG) == <span class="number">-1</span>) &#123;</span><br><span class="line"></span><br><span class="line">　　<span class="built_in">perror</span>(<span class="string">&quot;listen&quot;</span>);</span><br><span class="line"></span><br><span class="line">　　<span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">　　&#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">　　<span class="keyword">while</span>(<span class="number">1</span>) &#123; <span class="comment">/* main accept() loop */</span></span><br><span class="line"></span><br><span class="line">　　sin_size = <span class="built_in">sizeof</span>(<span class="keyword">struct</span> sockaddr_in);</span><br><span class="line"></span><br><span class="line">　　<span class="keyword">if</span> ((new_fd = <span class="built_in">accept</span>(sockfd, (<span class="keyword">struct</span> sockaddr *)&amp;their_addr, &amp;sin_size)) == <span class="number">-1</span>) &#123;</span><br><span class="line"></span><br><span class="line">　　<span class="built_in">perror</span>(<span class="string">&quot;accept&quot;</span>);</span><br><span class="line"></span><br><span class="line">　　<span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">　　&#125;</span><br><span class="line"></span><br><span class="line">　　<span class="built_in">printf</span>(<span class="string">&quot;server: got connection from %s\n&quot;</span>, \</span><br><span class="line"></span><br><span class="line">　　<span class="built_in">inet_ntoa</span>(their_addr.sin_addr));</span><br><span class="line"></span><br><span class="line">　　<span class="keyword">if</span> (!fork()) &#123; <span class="comment">/* this is the child process */</span></span><br><span class="line"></span><br><span class="line">　　<span class="keyword">if</span> (<span class="built_in">send</span>(new_fd, <span class="string">&quot;Hello, world!\n&quot;</span>, <span class="number">14</span>, <span class="number">0</span>) == <span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line">　　<span class="built_in">perror</span>(<span class="string">&quot;send&quot;</span>);</span><br><span class="line"></span><br><span class="line">　　<span class="built_in">close</span>(new_fd);</span><br><span class="line"></span><br><span class="line">　　<span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">　　&#125;</span><br><span class="line"></span><br><span class="line">　　<span class="built_in">close</span>(new_fd); <span class="comment">/* parent doesn&#x27;t need this */</span></span><br><span class="line"></span><br><span class="line">　　<span class="keyword">while</span>(<span class="built_in">waitpid</span>(<span class="number">-1</span>,<span class="literal">NULL</span>,WNOHANG) &gt; <span class="number">0</span>); <span class="comment">/* clean up child processes */</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果你很挑剔的话，一定不满意我所有的代码都在一个很大的main() 函数中。如果你不喜欢，可以划分得更细点。</p>
+<p>你也可以用我们下一章中的程序得到服务器端发送的字符串。</p>
+<p><strong>20）简单的客户程序</strong></p>
+<p>这个程序比服务器还简单。这个程序的所有工作是通过 3490 端口连接到命令行中指定的主机，然后得到服务器发送的字符串。</p>
+<p>客户代码:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;errno.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;netinet/in.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/wait.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PORT 3490 <span class="comment">/* 客户机连接远程主机的端口 */</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXDATASIZE 100 <span class="comment">/* 每次可以接收的最大字节 */</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> sockfd, numbytes;</span><br><span class="line"></span><br><span class="line"><span class="type">char</span> buf[MAXDATASIZE];</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">hostent</span> *he;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">sockaddr_in</span> their_addr; <span class="comment">/* connector&#x27;s address information */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (argc != <span class="number">2</span>) &#123;</span><br><span class="line"></span><br><span class="line"><span class="built_in">fprintf</span>(stderr,<span class="string">&quot;usage: client hostname\n&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ((he=<span class="built_in">gethostbyname</span>(argv[<span class="number">1</span>])) == <span class="literal">NULL</span>) &#123; <span class="comment">/* get the host info */</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">herror</span>(<span class="string">&quot;gethostbyname&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ((sockfd = <span class="built_in">socket</span>(AF_INET, SOCK_STREAM, <span class="number">0</span>)) == <span class="number">-1</span>) &#123;</span><br><span class="line"></span><br><span class="line"><span class="built_in">perror</span>(<span class="string">&quot;socket&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">their_addr.sin_family = AF_INET; <span class="comment">/* host byte order */</span></span><br><span class="line"></span><br><span class="line">their_addr.sin_port = <span class="built_in">htons</span>(PORT); <span class="comment">/* short, network byte order */</span></span><br><span class="line"></span><br><span class="line">their_addr.sin_addr = *((<span class="keyword">struct</span> in_addr *)he-&gt;h_addr);</span><br><span class="line"></span><br><span class="line"><span class="built_in">bzero</span>(&amp;(their_addr.sin_zero),; <span class="comment">/* zero the rest of the struct */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">connect</span>(sockfd,(<span class="keyword">struct</span> sockaddr *)&amp;their_addr,<span class="built_in">sizeof</span>(<span class="keyword">struct</span> sockaddr)) == <span class="number">-1</span>) &#123;</span><br><span class="line"></span><br><span class="line"><span class="built_in">perror</span>(<span class="string">&quot;connect&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ((numbytes=<span class="built_in">recv</span>(sockfd, buf, MAXDATASIZE, <span class="number">0</span>)) == <span class="number">-1</span>) &#123;</span><br><span class="line"></span><br><span class="line"><span class="built_in">perror</span>(<span class="string">&quot;recv&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">buf[numbytes] = <span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;Received: %s&quot;</span>,buf);</span><br><span class="line"></span><br><span class="line"><span class="built_in">close</span>(sockfd);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意，如果你在运行服务器之前运行客户程序，connect() 将返回 “Connection refused” 信息，这非常有用。</p>
+<h2 id="21）数据包-Sockets"><a href="#21）数据包-Sockets" class="headerlink" title="21）数据包 Sockets"></a>21）数据包 Sockets</h2><p>我不想讲更多了，所以我给出代码 talker.c 和 listener.c。</p>
+<p>listener 在机器上等待在端口 4590 来的数据包。talker 发送数据包到 一定的机器，它包含用户在命令行输入的内容。</p>
+<p>这里就是 listener.c：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;errno.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;netinet/in.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/wait.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MYPORT 4950 <span class="comment">/* the port users will be sending to */</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXBUFLEN 100</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">main</span>()</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> sockfd;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">sockaddr_in</span> my_addr; <span class="comment">/* my address information */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">sockaddr_in</span> their_addr; <span class="comment">/* connector&#x27;s address information */</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> addr_len, numbytes;</span><br><span class="line"></span><br><span class="line"><span class="type">char</span> buf[MAXBUFLEN];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ((sockfd = <span class="built_in">socket</span>(AF_INET, SOCK_DGRAM, <span class="number">0</span>)) == <span class="number">-1</span>) &#123;</span><br><span class="line"></span><br><span class="line"><span class="built_in">perror</span>(<span class="string">&quot;socket&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">my_addr.sin_family = AF_INET; <span class="comment">/* host byte order */</span></span><br><span class="line"></span><br><span class="line">my_addr.sin_port = <span class="built_in">htons</span>(MYPORT); <span class="comment">/* short, network byte order */</span></span><br><span class="line"></span><br><span class="line">my_addr.sin_addr.s_addr = INADDR_ANY; <span class="comment">/* auto-fill with my IP */</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">bzero</span>(&amp;(my_addr.sin_zero),; <span class="comment">/* zero the rest of the struct */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">bind</span>(sockfd, (<span class="keyword">struct</span> sockaddr *)&amp;my_addr, <span class="built_in">sizeof</span>(<span class="keyword">struct</span> sockaddr)) == <span class="number">-1</span>) &#123;</span><br><span class="line"></span><br><span class="line"><span class="built_in">perror</span>(<span class="string">&quot;bind&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">addr_len = <span class="built_in">sizeof</span>(<span class="keyword">struct</span> sockaddr);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ((numbytes=<span class="built_in">recvfrom</span>(sockfd, buf, MAXBUFLEN, <span class="number">0</span>,     \</span><br><span class="line"></span><br><span class="line">(<span class="keyword">struct</span> sockaddr *)&amp;their_addr, &amp;addr_len)) == <span class="number">-1</span>) &#123;</span><br><span class="line"></span><br><span class="line"><span class="built_in">perror</span>(<span class="string">&quot;recvfrom&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;got packet from %s\n&quot;</span>,<span class="built_in">inet_ntoa</span>(their_addr.sin_addr));</span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;packet is %d bytes long\n&quot;</span>,numbytes);</span><br><span class="line"></span><br><span class="line">buf[numbytes] = <span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;packet contains \&quot;%s\&quot;\n&quot;</span>,buf);</span><br><span class="line"></span><br><span class="line"><span class="built_in">close</span>(sockfd);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意在我们的调用 socket()，我们最后使用了 SOCK_DGRAM。同时， 没有必要去使用 listen() 或者 accept()。我们在使用无连接的数据报套接 字！</p>
+<p>下面是 talker.c：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;errno.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;netinet/in.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/wait.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MYPORT 4950 <span class="comment">/* the port users will be sending to */</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> sockfd;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">sockaddr_in</span> their_addr; <span class="comment">/* connector&#x27;s address information */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">hostent</span> *he;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> numbytes;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (argc != <span class="number">3</span>) &#123;</span><br><span class="line"></span><br><span class="line"><span class="built_in">fprintf</span>(stderr,<span class="string">&quot;usage: talker hostname message\n&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ((he=<span class="built_in">gethostbyname</span>(argv[<span class="number">1</span>])) == <span class="literal">NULL</span>) &#123; <span class="comment">/* get the host info */</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">herror</span>(<span class="string">&quot;gethostbyname&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ((sockfd = <span class="built_in">socket</span>(AF_INET, SOCK_DGRAM, <span class="number">0</span>)) == <span class="number">-1</span>) &#123;</span><br><span class="line"></span><br><span class="line"><span class="built_in">perror</span>(<span class="string">&quot;socket&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">their_addr.sin_family = AF_INET; <span class="comment">/* host byte order */</span></span><br><span class="line"></span><br><span class="line">their_addr.sin_port = <span class="built_in">htons</span>(MYPORT); <span class="comment">/* short, network byte order */</span></span><br><span class="line"></span><br><span class="line">their_addr.sin_addr = *((<span class="keyword">struct</span> in_addr *)he-&gt;h_addr);</span><br><span class="line"></span><br><span class="line"><span class="built_in">bzero</span>(&amp;(their_addr.sin_zero),; <span class="comment">/* zero the rest of the struct */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ((numbytes=<span class="built_in">sendto</span>(sockfd, argv[<span class="number">2</span>], <span class="built_in">strlen</span>(argv[<span class="number">2</span>]), <span class="number">0</span>, \</span><br><span class="line"></span><br><span class="line">(<span class="keyword">struct</span> sockaddr *)&amp;their_addr, <span class="built_in">sizeof</span>(<span class="keyword">struct</span> sockaddr))) == <span class="number">-1</span>) &#123;</span><br><span class="line"></span><br><span class="line"><span class="built_in">perror</span>(<span class="string">&quot;sendto&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;sent %d bytes to %s\n&quot;</span>,numbytes,<span class="built_in">inet_ntoa</span>(their_addr.sin_addr));</span><br><span class="line"></span><br><span class="line"><span class="built_in">close</span>(sockfd);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这就是所有的了。在一台机器上运行 listener，然后在另外一台机器上 运行 talker。观察它们的通讯！<br>除了一些我在上面提到的数据套接字连接的小细节外，对于数据套接 字，我还得说一些，当一个讲话者呼叫connect()函数时并指定接受者的地 址时，从这点可以看出，讲话者只能向connect()函数指定的地址发送和接 受信息。因此，你不需要使用sendto()和recvfrom()，你完全可以用send() 和recv()代替。</p>
+<h2 id="22）阻塞"><a href="#22）阻塞" class="headerlink" title="22）阻塞"></a>22）阻塞</h2><p>阻塞，你也许早就听说了。”阻塞”是 “sleep” 的科技行话。你可能注意 到前面运行的 listener 程序，它在那里不停地运行，等待数据包的到来。 实际在运行的是它调用 recvfrom()，然后没有数据，因此 recvfrom() 说” 阻塞 (block)”，直到数据的到来。</p>
+<p>很多函数都利用阻塞。accept() 阻塞，所有的 recv*() 函数阻塞。它 们之所以能这样做是因为它们被允许这样做。当你第一次调用 socket() 建 立套接字描述符的时候，内核就将它设置为阻塞。如果你不想套接字阻塞， 你就要调用函数 fcntl()：</p>
+<p>#include <unistd.h></unistd.h></p>
+<p>#include <fontl.h></fontl.h></p>
+<p>……</p>
+<p>sockfd = socket(AF_INET, SOCK_STREAM, 0);</p>
+<p>fcntl(sockfd, F_SETFL, O_NONBLOCK);</p>
+<p>……</p>
+<p>过设置套接字为非阻塞，你能够有效地”询问”套接字以获得信息。如 果你尝试着从一个非阻塞的套接字读信息并且没有任何数据，它不允许阻 塞—它将返回 -1 并将 errno 设置为 EWOULDBLOCK。</p>
+<p>但是一般说来，这种询问不是个好主意。如果你让你的程序在忙等状 态查询套接字的数据，你将浪费大量的 CPU 时间。更好的解决之道是用 下一章讲的 select() 去查询是否有数据要读进来。</p>
+<h2 id="23）select-—多路同步-I-O"><a href="#23）select-—多路同步-I-O" class="headerlink" title="23）select()—多路同步 I/O"></a>23）select()—多路同步 I/O</h2><p>虽然这个函数有点奇怪，但是它很有用。假设这样的情况：你是个服 务器，你一边在不停地从连接上读数据，一边在侦听连接上的信息。 没问题，你可能会说，不就是一个 accept() 和两个 recv() 吗? 这么 容易吗，朋友? 如果你在调用 accept() 的时候阻塞呢? 你怎么能够同时接 受 recv() 数据? “用非阻塞的套接字啊！” 不行！你不想耗尽所有的 CPU 吧? 那么，该如何是好?</p>
+<p>select() 让你可以同时监视多个套接字。如果你想知道的话，那么它就 会告诉你哪个套接字准备读，哪个又准备写，哪个套接字又发生了例外 (exception)。</p>
+<p>闲话少说，下面是 select()：</p>
+<p>#include <sys time.h></sys></p>
+<p>#include <sys types.h></sys></p>
+<p>#include <unistd.h></unistd.h></p>
+<p>int select(int numfds, fd_set <em>readfds, fd_set </em>writefds,fd_set <em>exceptfds, struct timeval </em>timeout);</p>
+<p>这个函数监视一系列文件描述符，特别是 readfds、writefds 和 exceptfds。如果你想知道你是否能够从标准输入和套接字描述符 sockfd 读入数据，你只要将文件描述符 0 和 sockfd 加入到集合 readfds 中。参 数 numfds 应该等于最高的文件描述符的值加1。在这个例子中，你应该 设置该值为 sockfd+1。因为它一定大于标准输入的文件描述符 (0)。 当函数 select() 返回的时候，readfds 的值修改为反映你选择的哪个 文件描述符可以读。你可以用下面讲到的宏 FD_ISSET() 来测试。 在我们继续下去之前，让我来讲讲如何对这些集合进行操作。每个集 合类型都是 fd_set。下面有一些宏来对这个类型进行操作：</p>
+<p>FD_ZERO(fd_set *set) – 清除一个文件描述符集合</p>
+<p>FD_SET(int fd, fd_set *set) - 添加fd到集合</p>
+<p>FD_CLR(int fd, fd_set *set) – 从集合中移去fd</p>
+<p>FD_ISSET(int fd, fd_set *set) – 测试fd是否在集合中</p>
+<p>最后，是有点古怪的数据结构 struct timeval。有时你可不想永远等待 别人发送数据过来。也许什么事情都没有发生的时候你也想每隔96秒在终 端上打印字符串 “Still Going…”。这个数据结构允许你设定一个时间，如果 时间到了，而 select() 还没有找到一个准备好的文件描述符，它将返回让 你继续处理。</p>
+<p>数据结构 struct timeval 是这样的：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">timeval</span> &#123;</span><br><span class="line"><span class="type">int</span> tv_sec; <span class="comment">/* seconds */</span></span><br><span class="line"><span class="type">int</span> tv_usec; <span class="comment">/* microseconds */</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>只要将 tv_sec 设置为你要等待的秒数，将 tv_usec 设置为你要等待 的微秒数就可以了。是的，是微秒而不是毫秒。1,000微秒等于1毫秒，1,000 毫秒等于1秒。也就是说，1秒等于1,000,000微秒。为什么用符号 “usec” 呢? 字母 “u” 很象希腊字母 Mu，而 Mu 表示 “微” 的意思。当然，函数 返回的时候 timeout 可能是剩余的时间，之所以是可能，是因为它依赖于 你的 Unix 操作系统。</p>
+<p>哈！我们现在有一个微秒级的定时器！别计算了，标准的 Unix 系统 的时间片是100毫秒，所以无论你如何设置你的数据结构 struct timeval， 你都要等待那么长的时间。</p>
+<p>还有一些有趣的事情：如果你设置数据结构 struct timeval 中的数据为 0，select() 将立即超时，这样就可以有效地轮询集合中的所有的文件描述 符。如果你将参数 timeout 赋值为 NULL，那么将永远不会发生超时，即 一直等到第一个文件描述符就绪。最后，如果你不是很关心等待多长时间， 那么就把它赋为 NULL 吧。</p>
+<p>下面的代码演示了在标准输入上等待 2.5 秒：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> STDIN 0 <span class="comment">/* file descriptor for standard input */</span></span></span><br><span class="line"></span><br><span class="line"><span class="built_in">main</span>()</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">timeval</span> tv;</span><br><span class="line"></span><br><span class="line">fd_set readfds;</span><br><span class="line"></span><br><span class="line">tv.tv_sec = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">tv.tv_usec = <span class="number">500000</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">FD_ZERO</span>(&amp;readfds);</span><br><span class="line"></span><br><span class="line"><span class="built_in">FD_SET</span>(STDIN, &amp;readfds);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* don&#x27;t care about writefds and exceptfds: */</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">select</span>(STDIN+<span class="number">1</span>, &amp;readfds, <span class="literal">NULL</span>, <span class="literal">NULL</span>, &amp;tv);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">FD_ISSET</span>(STDIN, &amp;readfds))</span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;A key was pressed!\n&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;Timed out.\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果你是在一个 line buffered 终端上，那么你敲的键应该是回车 (RETURN)，否则无论如何它都会超时。<br>现在，你可能回认为这就是在数据报套接字上等待数据的方式—你是对 的：它可能是。有些 Unix 系统可以按这种方式，而另外一些则不能。你 在尝试以前可能要先看看本系统的 man page 了。</p>
+<p>最后一件关于 select() 的事情：如果你有一个正在侦听 (listen()) 的套 接字，你可以通过将该套接字的文件描述符加入到 readfds 集合中来看是 否有新的连接。</p>
+<p>这就是我关于函数select() 要讲的所有的东西。</p>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">This work is licensed under <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</a></h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> Share</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://sunxinbin.cn/2023/04/26/distributed-system/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://sunxinbin.cn/2023/04/26/distributed-system/";
+            const title         = "「Distributed System」";
+            const excerpt       = `介绍Socket编程让你沮丧吗？从man pages中很难得到有用的信息吗？你想跟上时代去编Internet相关的程序，但是为你在调用 connect() 前的bind() 的结构而不知所措？等等…
+好在我已经将这些事完成了，我将和所...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/Distributed-System/" rel="tag">Distributed System</a>, <a class="tag-none-link" href="/tags/socket/" rel="tag">socket</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2023-04-26T16:37:38.052Z" itemprop="dateModified">Last modify：2023-04-27</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" Python如何打包为exe文件" href="/2023/04/05/python-to-exe/">&lt; older</a>
+            </div>
+            
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center">Computer Science & Technology</p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                Post
+            </span>
+            <span class="count">
+                48
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                Category
+            </span>
+            <span class="count">
+                10
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                Tag
+            </span>
+            <span class="count">
+                22
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>Categories List</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Craniofacial-Registration/">Craniofacial Registration</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DL/">DL</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Feature-Point-Punctuation-Algorithm/">Feature Point Punctuation Algorithm</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Literature/">Literature</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ML/">ML</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematical-Modeling/">Mathematical Modeling</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Philosophy/">Philosophy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Undergraduate-Courses/">Undergraduate Courses</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">2</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>Tagcloud</h4>
+      <div class="tag-clouds">
+        <a href="/tags/A-single-spark-can-start-a-prairie-fire/" style="font-size: 0.6em;">A single spark can start a prairie fire</a> <a href="/tags/Algorithm/" style="font-size: 0.6em;">Algorithm</a> <a href="/tags/Anecdote/" style="font-size: 0.6em;">Anecdote</a> <a href="/tags/CV/" style="font-size: 0.6em;">CV</a> <a href="/tags/Craniofacial-Registration/" style="font-size: 0.6em;">Craniofacial Registration</a> <a href="/tags/DL/" style="font-size: 0.8em;">DL</a> <a href="/tags/Distributed-System/" style="font-size: 0.6em;">Distributed System</a> <a href="/tags/Emotion/" style="font-size: 0.7em;">Emotion</a> <a href="/tags/Feature-Point-Punctuation-Algorithm/" style="font-size: 0.75em;">Feature Point Punctuation Algorithm</a> <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/Latex/" style="font-size: 0.6em;">Latex</a> <a href="/tags/Literature/" style="font-size: 0.75em;">Literature</a> <a href="/tags/ML/" style="font-size: 0.7em;">ML</a> <a href="/tags/Mathematical-Modeling/" style="font-size: 0.65em;">Mathematical Modeling</a> <a href="/tags/OpenAI/" style="font-size: 0.6em;">OpenAI</a> <a href="/tags/Philosophy/" style="font-size: 0.6em;">Philosophy</a> <a href="/tags/Python/" style="font-size: 0.6em;">Python</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>Recent posts</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2023/04/26/distributed-system/"><i class="fa  fa-book"></i> Distributed System</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/04/05/python-to-exe/"><i class="fa  fa-book"></i> Python如何打包为exe文件</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/30/Dynamic-Programming/"><i class="fa  fa-book"></i> Dynamic Programming</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/03/05/Common-instruction-set/"><i class="fa  fa-book"></i> NewBing&ChatGPT</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/01/25/Big-data-analysis-method/"><i class="fa  fa-book"></i> Big data analysis method</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        <li><a href="mailto:2332431354@qq.com"><i class="fa fa-envelope"></i></a></li>
+                        
+                        
+                        
+                        
+                        <li><a target="_blank" rel="me" href="https://nya.one/@SunXinbin"><i class="fa fa fa-share-alt-square"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/xinbinsun"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2023 Neo Sun Copyright.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by 孙新斌.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            <li><a href="https://beian.miit.gov.cn" rel="external nofollow" target="_blank">鲁ICP备23010101号</a></li>
+                            <li><a href="http://www.beian.gov.cn" rel="external nofollow" target="_blank"><img src="/images/psr.webp" width="12" height="12" loading="lazy" decoding="auto" />鲁公网安备371402000348</a></li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>
