@@ -16,16 +16,16 @@
   
     <meta name="keywords" content="Distributed System, socket" />
   
-  <meta name="description" content="介绍Socket编程让你沮丧吗？从man pages中很难得到有用的信息吗？你想跟上时代去编Internet相关的程序，但是为你在调用 connect() 前的bind() 的结构而不知所措？等等… 好在我已经将这些事完成了，我将和所有人共享我的知识了。如果你了解 C 语言并想穿过网络编程的沼泽，那么你来对地方了。 读者对象这个文档是一个指南，而不是参考书。如果你刚开始 socket 编程并想找一">
+  <meta name="description" content="平台和编译器这篇文档中的大多数代码都在 Linux 平台PC 上用 GNU 的 gcc 成功编译过。而且它们在 HPUX平台 上用 gcc 也成功编译过。但是注意，并不是每个代码片段都独立测试过。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Distributed System">
 <meta property="og:url" content="http://sunxinbin.cn/2023/04/26/distributed-system/index.html">
 <meta property="og:site_name" content="Neo Sun">
-<meta property="og:description" content="介绍Socket编程让你沮丧吗？从man pages中很难得到有用的信息吗？你想跟上时代去编Internet相关的程序，但是为你在调用 connect() 前的bind() 的结构而不知所措？等等… 好在我已经将这些事完成了，我将和所有人共享我的知识了。如果你了解 C 语言并想穿过网络编程的沼泽，那么你来对地方了。 读者对象这个文档是一个指南，而不是参考书。如果你刚开始 socket 编程并想找一">
+<meta property="og:description" content="平台和编译器这篇文档中的大多数代码都在 Linux 平台PC 上用 GNU 的 gcc 成功编译过。而且它们在 HPUX平台 上用 gcc 也成功编译过。但是注意，并不是每个代码片段都独立测试过。">
 <meta property="og:locale">
 <meta property="og:image" content="http://sunxinbin.cn/images/avatar.webp">
 <meta property="article:published_time" content="2023-04-26T07:50:44.000Z">
-<meta property="article:modified_time" content="2023-04-26T16:37:38.052Z">
+<meta property="article:modified_time" content="2023-04-26T16:39:16.223Z">
 <meta property="article:author" content="孙新斌">
 <meta property="article:tag" content="Distributed System">
 <meta property="article:tag" content="socket">
@@ -179,7 +179,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~29.29K
+                        ~29.05K
                     
                     words
                 </li>
@@ -190,16 +190,13 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>This article has been edited <time datetime="1682527058052"></time> ago, and some of its content might need to be updated.</p></div>
+                <div class="text"><p>This article has been edited <time datetime="1682527156223"></time> ago, and some of its content might need to be updated.</p></div>
             </div>
             
             
             
             <hr />
-            <div itemprop="articleBody"><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Socket编程让你沮丧吗？从man pages中很难得到有用的信息吗？你想跟上时代去编Internet相关的程序，但是为你在调用 connect() 前的bind() 的结构而不知所措？等等…</p>
-<p>好在我已经将这些事完成了，我将和所有人共享我的知识了。如果你了解 C 语言并想穿过网络编程的沼泽，那么你来对地方了。</p>
-<h2 id="读者对象"><a href="#读者对象" class="headerlink" title="读者对象"></a>读者对象</h2><p>这个文档是一个指南，而不是参考书。如果你刚开始 socket 编程并想找一本入门书，那么你是我的读者。但这不是一本完全的 socket 编程书。</p>
-<h2 id="平台和编译器"><a href="#平台和编译器" class="headerlink" title="平台和编译器"></a>平台和编译器</h2><p>这篇文档中的大多数代码都在 Linux 平台PC 上用 GNU 的 gcc 成功编译过。而且它们在 HPUX平台 上用 gcc 也成功编译过。但是注意，并不是每个代码片段都独立测试过。</p>
+            <div itemprop="articleBody"><h2 id="平台和编译器"><a href="#平台和编译器" class="headerlink" title="平台和编译器"></a>平台和编译器</h2><p>这篇文档中的大多数代码都在 Linux 平台PC 上用 GNU 的 gcc 成功编译过。而且它们在 HPUX平台 上用 gcc 也成功编译过。但是注意，并不是每个代码片段都独立测试过。<span id="more"></span></p>
 <h2 id="1）什么是-socket？"><a href="#1）什么是-socket？" class="headerlink" title="1）什么是 socket？"></a>1）什么是 socket？</h2><p>你经常听到人们谈论着 “socket”，或许你还不知道它的确切含义。现在让我告诉你：它是使用标准Unix 文件描述符 (file descriptor) 和其它程序通讯的方式。 什么？ 你也许听到一些Unix高手(hacker)这样说过：“呀，Unix中的一切就是文件！”那个家伙也许正在说到一个事实：Unix 程序在执行任何形式的 I/O 的时候，程序是在读或者写一个文件描述符。一个文件描述符只是一个和打开的文件相关联的整数。但是(注意后面的话)，这个文件可能是一个网络连接，FIFO，管道，终端，磁盘上的文件或者什么其它的东西。Unix 中所有的东西就是文件！所以，你想和Internet上别的程序通讯的时候，你将要使用到文件描述符。你必须理解刚才的话。现在你脑海中或许冒出这样的念头：“那么我从哪里得到网络通讯的文件描述符呢？”，这个问题无论如何我都要回答：你利用系统调用 socket()，它返回套接字描述符 (socket descriptor)，然后你再通过它来进行send() 和 recv()调用。</p>
 <p>“但是…”，你可能有很大的疑惑，“如果它是个文件描述符，那么为什 么不用一般调用read()和write()来进行套接字通讯？”简单的答案是：“你可以使用！”。详细的答案是：“你可以，但是使用send()和recv()让你更好的控制数据传输。”</p>
 <p>存在这样一个情况：在我们的世界上，有很多种套接字。有DARPA Internet 地址 (Internet 套接字)，本地节点的路径名 (Unix套接字)，CCITT X.25地址 (你可以将X.25 套接字完全忽略)。也许在你的Unix 机器上还有其它的。我们在这里只讲第一种：Internet 套接字。</p>
@@ -482,8 +479,7 @@
             const twitterBase   = "https://twitter.com/intent/tweet?";
             const hostUrl       = "http://sunxinbin.cn/2023/04/26/distributed-system/";
             const title         = "「Distributed System」";
-            const excerpt       = `介绍Socket编程让你沮丧吗？从man pages中很难得到有用的信息吗？你想跟上时代去编Internet相关的程序，但是为你在调用 connect() 前的bind() 的结构而不知所措？等等…
-好在我已经将这些事完成了，我将和所...`;
+            const excerpt       = `平台和编译器这篇文档中的大多数代码都在 Linux 平台PC 上用 GNU 的 gcc 成功编译过。而且它们在 HPUX平台 上用 gcc 也成功编译过。但是注意，并不是每个代码片段都独立测试过。`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -505,7 +501,7 @@
                     <a class="tag-none-link" href="/tags/Distributed-System/" rel="tag">Distributed System</a>, <a class="tag-none-link" href="/tags/socket/" rel="tag">socket</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2023-04-26T16:37:38.052Z" itemprop="dateModified">Last modify：2023-04-27</time>
+                    <time datetime="2023-04-26T16:39:16.223Z" itemprop="dateModified">Last modify：2023-04-27</time>
                 </div>
             </div>
         </footer>
@@ -517,6 +513,10 @@
                 <a title=" Python如何打包为exe文件" href="/2023/04/05/python-to-exe/">&lt; older</a>
             </div>
             
+            
+            <div class="nav-next clearfix">
+                <a title=" Latex的细致学习" href="/2023/05/24/latex-learn/">Newer &gt;</a>
+            </div>
             
         </nav>
     
@@ -552,7 +552,7 @@
                 Post
             </span>
             <span class="count">
-                48
+                49
             </span>
         </a>
         <a class="meta-item" href="/categories/">
@@ -588,7 +588,7 @@
   <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
     <h4 class="widget-title"><i class="fa fa-tags"></i>Tagcloud</h4>
       <div class="tag-clouds">
-        <a href="/tags/A-single-spark-can-start-a-prairie-fire/" style="font-size: 0.6em;">A single spark can start a prairie fire</a> <a href="/tags/Algorithm/" style="font-size: 0.6em;">Algorithm</a> <a href="/tags/Anecdote/" style="font-size: 0.6em;">Anecdote</a> <a href="/tags/CV/" style="font-size: 0.6em;">CV</a> <a href="/tags/Craniofacial-Registration/" style="font-size: 0.6em;">Craniofacial Registration</a> <a href="/tags/DL/" style="font-size: 0.8em;">DL</a> <a href="/tags/Distributed-System/" style="font-size: 0.6em;">Distributed System</a> <a href="/tags/Emotion/" style="font-size: 0.7em;">Emotion</a> <a href="/tags/Feature-Point-Punctuation-Algorithm/" style="font-size: 0.75em;">Feature Point Punctuation Algorithm</a> <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/Latex/" style="font-size: 0.6em;">Latex</a> <a href="/tags/Literature/" style="font-size: 0.75em;">Literature</a> <a href="/tags/ML/" style="font-size: 0.7em;">ML</a> <a href="/tags/Mathematical-Modeling/" style="font-size: 0.65em;">Mathematical Modeling</a> <a href="/tags/OpenAI/" style="font-size: 0.6em;">OpenAI</a> <a href="/tags/Philosophy/" style="font-size: 0.6em;">Philosophy</a> <a href="/tags/Python/" style="font-size: 0.6em;">Python</a>
+        <a href="/tags/A-single-spark-can-start-a-prairie-fire/" style="font-size: 0.6em;">A single spark can start a prairie fire</a> <a href="/tags/Algorithm/" style="font-size: 0.6em;">Algorithm</a> <a href="/tags/Anecdote/" style="font-size: 0.6em;">Anecdote</a> <a href="/tags/CV/" style="font-size: 0.6em;">CV</a> <a href="/tags/Craniofacial-Registration/" style="font-size: 0.6em;">Craniofacial Registration</a> <a href="/tags/DL/" style="font-size: 0.8em;">DL</a> <a href="/tags/Distributed-System/" style="font-size: 0.6em;">Distributed System</a> <a href="/tags/Emotion/" style="font-size: 0.7em;">Emotion</a> <a href="/tags/Feature-Point-Punctuation-Algorithm/" style="font-size: 0.75em;">Feature Point Punctuation Algorithm</a> <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/Latex/" style="font-size: 0.65em;">Latex</a> <a href="/tags/Literature/" style="font-size: 0.75em;">Literature</a> <a href="/tags/ML/" style="font-size: 0.7em;">ML</a> <a href="/tags/Mathematical-Modeling/" style="font-size: 0.65em;">Mathematical Modeling</a> <a href="/tags/OpenAI/" style="font-size: 0.6em;">OpenAI</a> <a href="/tags/Philosophy/" style="font-size: 0.6em;">Philosophy</a> <a href="/tags/Python/" style="font-size: 0.6em;">Python</a>
       </div>
   </aside>
 
@@ -599,6 +599,12 @@
   <div class="tab-content">
       <ul class="list-group">
         
+        
+          
+          
+            <a class="list-group-item" href="/2023/05/24/latex-learn/"><i class="fa  fa-book"></i> Latex的细致学习</a>
+            
+          
         
           
           
@@ -625,11 +631,7 @@
           
         
           
-          
-            <a class="list-group-item" href="/2023/01/25/Big-data-analysis-method/"><i class="fa  fa-book"></i> Big data analysis method</a>
             
-          
-        
           
             
           
