@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="Chinese/English">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/avatar.webp">
+  
+  <title>Software Engineering Review | Neo Sun</title>
+  <meta name="author" content="孙新斌" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="Undergraduate Courses" />
+  
+  <meta name="description" content="软件工程总复习2023春季学期 QingDao University">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Software Engineering Review">
+<meta property="og:url" content="http://sunxinbin.cn/2023/06/15/software-engineering/index.html">
+<meta property="og:site_name" content="Neo Sun">
+<meta property="og:description" content="软件工程总复习2023春季学期 QingDao University">
+<meta property="og:locale">
+<meta property="og:image" content="http://sunxinbin.cn/images/avatar.webp">
+<meta property="article:published_time" content="2023-06-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-06-15T14:55:16.454Z">
+<meta property="article:author" content="孙新斌">
+<meta property="article:tag" content="Undergraduate Courses">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://sunxinbin.cn/images/avatar.webp">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 6.2.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>Archives</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>Search Engine</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>About</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            <li><a href="https://sunxinbin.cn">Blog</a></li>
+                                                        
+                                                    
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://github.com/xinbinsun">Github</a></li>
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Neo Sun</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Neo Sun</h2> <br />
+                        <span>What&#39;s past is prologue</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://sunxinbin.cn/2023/06/15/software-engineering/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">Software Engineering Review</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2023-06-14T16:00:00.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2023-06-15</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> Author <span itemprop="name">孙新斌</span>
+                </li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~4.49K
+                    
+                    words
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>This article has been edited <time datetime="1686840916454"></time> ago, and some of its content might need to be updated.</p></div>
+            </div>
+            
+            
+            
+            <hr />
+            <div itemprop="articleBody"><h1 id="软件工程总复习"><a href="#软件工程总复习" class="headerlink" title="软件工程总复习"></a>软件工程总复习</h1><p><strong>2023春季学期 QingDao University</strong><span id="more"></span></p>
+<h2 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h2><h3 id="软件的定义（P1）"><a href="#软件的定义（P1）" class="headerlink" title="软件的定义（P1）"></a>软件的定义（P1）</h3><p>软件是能够完成预定功能和性能的可执行的计算机程序，包括使程序正常执行所需要的数据，以及有关描述程序操作和使用的文档。</p>
+<h3 id="工程学范畴技术包括？（P4）"><a href="#工程学范畴技术包括？（P4）" class="headerlink" title="工程学范畴技术包括？（P4）"></a>工程学范畴技术包括？（P4）</h3><p><img src="/2023/06/15/software-engineering/software-engineering\1.png" alt></p>
+<h3 id="软件工程的分代是哪三代？作比较（P9）"><a href="#软件工程的分代是哪三代？作比较（P9）" class="headerlink" title="软件工程的分代是哪三代？作比较（P9）"></a>软件工程的分代是哪三代？作比较（P9）</h3><p><img src="/2023/06/15/software-engineering/software-engineering\2.png" alt></p>
+<h3 id="构件的定义（P8）"><a href="#构件的定义（P8）" class="headerlink" title="构件的定义（P8）"></a>构件的定义（P8）</h3><p>构件(component,有些文献翻译为组件）可以理解为标准化（或者规格化）的对象类（参见2.3.3节）。它本质上是一种通用的、可支持不同应用程序的组件，正如硬件中 的标准件一样，插入不同的平台或环境后即可直接运行。</p>
+<h3 id="软件危机的定义、产生的主要原因（P2-3）"><a href="#软件危机的定义、产生的主要原因（P2-3）" class="headerlink" title="软件危机的定义、产生的主要原因（P2,3）"></a>软件危机的定义、产生的主要原因（P2,3）</h3><p><strong>定义</strong>：庞大的软件费用，加上软件质量的下降，对计算机应用的继续扩大构成了巨大的威胁。面对这种严峻的形势，软件界的有识之士发出了软件危机的警告。</p>
+<p><strong>原因</strong>：</p>
+<ol>
+<li><p>软件维护费用急剧上升，直接威胁计算机应用的扩大</p>
+</li>
+<li><p>软件生产技术进步缓慢， 是加剧软件危机的重要原因</p>
+</li>
+</ol>
+<h2 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h2><h3 id="软件生存周期的定义、分为哪三个周期、那些阶段（P19）"><a href="#软件生存周期的定义、分为哪三个周期、那些阶段（P19）" class="headerlink" title="软件生存周期的定义、分为哪三个周期、那些阶段（P19）"></a>软件生存周期的定义、分为哪三个周期、那些阶段（P19）</h3><p>一切工业产品都有自己的生存周期，软件（产品）也不例外。 一个软件从开始立项起，到废弃不用止，统称为软件的生存周期 (life cycle)。</p>
+<p>软件生存周期被划为：计划、开发和运行3个周期。</p>
+<ol>
+<li>需求分析</li>
+<li>软件分析</li>
+<li>软件设计</li>
+<li>编码</li>
+<li>软件测试</li>
+<li>运行维护</li>
+</ol>
+<h3 id="增量模型的定义（P24）"><a href="#增量模型的定义（P24）" class="headerlink" title="增量模型的定义（P24）"></a>增量模型的定义（P24）</h3><p><strong>增量模型</strong> (incremental model) 是瀑布模型的顺序特征与快速原型法的迭代特征相结合的 产物。这种模型把软件看作一系列相互联系的增量 (increments)，在开发过程的各次迭代中， 每次完成其中的一个增量。</p>
+<h3 id="各种演化模型特点、适合哪类软件开发-P24"><a href="#各种演化模型特点、适合哪类软件开发-P24" class="headerlink" title="各种演化模型特点、适合哪类软件开发(P24)"></a>各种演化模型特点、适合哪类软件开发(P24)</h3><p><img src="/2023/06/15/software-engineering/software-engineering\3.png" alt></p>
+<h3 id="可行性研究的内容、步骤（P35）"><a href="#可行性研究的内容、步骤（P35）" class="headerlink" title="可行性研究的内容、步骤（P35）"></a>可行性研究的内容、步骤（P35）</h3><ol>
+<li><p>研究的内容</p>
+<p>经济可行性。 实现这个系统有没有经济效益？多长时间可以收回成本？</p>
+<p>技术可行性。 现有的技术能否实现这一新系统？有哪些技术难点？建议采用的技术先进程度怎样？</p>
+<p>运行可行性。 为新系统规定的运行方式是否可行？例如， 若新系统是建立在原来已担负其他任务的计算机系统上的，就不能要求它在实时在线的状态下运行， 以免与原有的任务相矛盾。</p>
+<p>法律可行性。 新系统的开发会不会在社会上或政治上引起侵权、 破坏或其他责任问题？</p>
+</li>
+<li><p>研究的步骤</p>
+<p>对当前系统进行调查和研究。 </p>
+<p>导出新系统的解决方案。</p>
+<p>提出推荐的方案。</p>
+<p>编写可行性论证报告：系统概述、可行性分析、结论意见</p>
+</li>
+</ol>
+<h3 id="风险分析包括哪三项活动（P36"><a href="#风险分析包括哪三项活动（P36" class="headerlink" title="风险分析包括哪三项活动（P36)"></a>风险分析包括哪三项活动（P36)</h3><ol>
+<li>风险识别</li>
+<li>风险预测</li>
+<li>风险的驾驭与监控</li>
+</ol>
+<h2 id="第三章"><a href="#第三章" class="headerlink" title="第三章"></a>第三章</h2><h3 id="结构分析（SA）模型的组成（画图）-P45"><a href="#结构分析（SA）模型的组成（画图）-P45" class="headerlink" title="结构分析（SA）模型的组成（画图）*/(P45)"></a>结构分析（SA）模型的组成（画图）*/(P45)</h3><p>第一步：通过对现实环境的调查研究，获取当前系统的具体模型</p>
+<p>第二步： 分析需求， 建立系统分析模型， 包括当前系统模型和目标系统模型。</p>
+<ol>
+<li>去掉上述模型中的非本质因素， 提炼出当前系统的逻辑模型。</li>
+<li>分析当前系统与目标系统的差别， 建立目标系统的逻辑模型。</li>
+</ol>
+<p>第三步： 整理综合需求， 编写系统需求规格说明书。</p>
+<p>第四步： 验证需求， 完善和补充对目标系统的描述。</p>
+<ol>
+<li>通过目标系统的人机界面， 和用户一起确认目标系统功能， 主要是区分哪些功能交给计算机去做， 哪些功能由人工完成。</li>
+<li>复审需求规格说明书， 补充迄今尚未考虑过的细节， 例如确定系统的响应时间、 增加出错处理等。 </li>
+</ol>
+<h3 id="各部分的作用-应用"><a href="#各部分的作用-应用" class="headerlink" title="各部分的作用/应用"></a>各部分的作用/应用</h3><p><img src="/2023/06/15/software-engineering/software-engineering\4.png" alt></p>
+<h3 id="DFD是什么？表达-的一种图形化技术-P46"><a href="#DFD是什么？表达-的一种图形化技术-P46" class="headerlink" title="DFD是什么？表达____的一种图形化技术(P46)"></a>DFD是什么？表达____的一种图形化技术(P46)</h3><p>数据流图，表达面向数据流的一种图形化技术</p>
+<h3 id="数据字典哪三类？-P47"><a href="#数据字典哪三类？-P47" class="headerlink" title="数据字典哪三类？(P47)"></a>数据字典哪三类？(P47)</h3><ol>
+<li>数据流</li>
+<li>数据文件</li>
+<li>数据项</li>
+</ol>
+<h3 id="画判定表、判定树-P49"><a href="#画判定表、判定树-P49" class="headerlink" title="画判定表、判定树*(P49)"></a><strong>画判定表、判定树*</strong>(P49)</h3><p><img src="/2023/06/15/software-engineering/software-engineering\5.png" alt></p>
+<h3 id="数据流图哪两种类型-P57"><a href="#数据流图哪两种类型-P57" class="headerlink" title="数据流图哪两种类型(P57)"></a>数据流图哪两种类型(P57)</h3><ol>
+<li>变换型结构</li>
+<li>事务性结构</li>
+</ol>
+<h3 id="优化初始SC的指导原则-P62"><a href="#优化初始SC的指导原则-P62" class="headerlink" title="优化初始SC的指导原则(P62)"></a>优化初始SC的指导原则(P62)</h3><ol>
+<li>对模块划分的原则</li>
+<li>高扇入／低扇出的原则</li>
+</ol>
+<h3 id="模块-详细设计的目的？-P65"><a href="#模块-详细设计的目的？-P65" class="headerlink" title="模块/详细设计的目的？(P65)"></a>模块/详细设计的目的？(P65)</h3><p>详细设计的目的， 是<strong>为SC图中的每个模块确定采用的算法和块内数据结构， 用选定的表达工具给出清晰的描述</strong>。 表达工具可由开发单位或设计人员自由选择， 但它必须具有描述过程细节的能力， 而且能在编码阶段直接将它翻译为用程序设计语言书写的源程序。</p>
+<h3 id="模块化设计原则、方法——实现清晰意图、可靠-P66-68"><a href="#模块化设计原则、方法——实现清晰意图、可靠-P66-68" class="headerlink" title="模块化设计原则、方法——实现清晰意图、可靠(P66-68)"></a>模块化设计原则、方法——实现清晰意图、可靠(P66-68)</h3><ol>
+<li><p>清晰第一的设计风格</p>
+<p>“清晰第一，效率第二”</p>
+</li>
+<li><p>结构化的控制结构</p>
+<p>为了方便使用或者提高程序效率， 大多数软件开发项目还允许在详细设计中补充使 用 DO-UNTIL 和 DO-CASE 两种控制结构。</p>
+<p>在许多情况下， 当程序执行到满足某种条件时， 需要立即从循环中转移出来。</p>
+</li>
+<li><p>逐步细化的实现方法——错误较少，可靠性也比较高。</p>
+<p>由粗到细地对程序进行逐步的细化。</p>
+<p>在细化程序的过程时， 同时对数据的描述进行细化。</p>
+<p>每步细化均使用相同的结构化语言， 最后一般直接用伪代码来描述， 以便编码时直接翻译为源程序。</p>
+</li>
+</ol>
+<h2 id="第四章"><a href="#第四章" class="headerlink" title="第四章"></a>第四章</h2><h3 id="UML的两类图、五类视图、九种图是什么？-P82"><a href="#UML的两类图、五类视图、九种图是什么？-P82" class="headerlink" title="UML的两类图、五类视图、九种图是什么？(P82)"></a>UML的两类图、五类视图、九种图是什么？(P82)</h3><ol>
+<li><p>图</p>
+<p>图是系统构架在某个侧面的表示，UML1.4提供了两大类图静态图和动态图，共计9种不同的图。</p>
+<ol>
+<li><p>静态图</p>
+<p>用例图、类图、对象图、构件图和部署图</p>
+</li>
+<li><p>动态图</p>
+<p>状态图、时序图、协作图和活动图</p>
+</li>
+</ol>
+</li>
+<li><p>视图</p>
+<p>用例视图(usecase view)。用例视图表达从用户角度看到的系统应有的外部功能，有时也称用户模型视图(usermodel view)。</p>
+<p>逻辑视图Clogical view)。逻辑视图主要用类图和对象图来描述系统的静态结构，它同时也描述对象间为实现给定功能发送消息时出现的动态协作关系，故称结构模型视图(structural model view)。</p>
+<p>进程视图(processview)。进程视图用于展示系统的动态行为及其并发性，也称行为模型视图(behavioralmodel view)。</p>
+<p>构件视图(componentview)。构件视图展示系统实现的结构和行为特征，包括实现模块和它们之间的依赖关系，也称实现模型视图(implementationmodel view)。</p>
+<p>部署视图(deploymentview)。部署视图显示系统的实现环境和构件被部署到物理结 构中的映射，如计算机、设备以及它们相互间的连接，哪个程序或对象在哪台计算机上执行 等。</p>
+</li>
+</ol>
+<h3 id="用例之间的关系（选择）-P85"><a href="#用例之间的关系（选择）-P85" class="headerlink" title="用例之间的关系（选择）(P85)"></a>用例之间的关系（选择）(P85)</h3><p>用例之间的关系：</p>
+<ol>
+<li>扩展关系 (extend)</li>
+<li>包含关系 (include)</li>
+</ol>
+<h3 id="UML建模——构建关系、类、对象"><a href="#UML建模——构建关系、类、对象" class="headerlink" title="UML建模——构建关系、类、对象"></a>UML建模——构建关系、类、对象</h3><p>P85—P91</p>
+<h2 id="第五章"><a href="#第五章" class="headerlink" title="第五章"></a>第五章</h2><h3 id="软件需求分析四个步骤-P108"><a href="#软件需求分析四个步骤-P108" class="headerlink" title="软件需求分析四个步骤(P108)"></a>软件需求分析四个步骤(P108)</h3><ol>
+<li>需求获取</li>
+<li>需求建模</li>
+<li>需求描述</li>
+<li>需求验证</li>
+</ol>
+<h3 id="面向对象的需求模型包括：-P114"><a href="#面向对象的需求模型包括：-P114" class="headerlink" title="面向对象的需求模型包括：(P114)"></a>面向对象的需求模型包括：(P114)</h3><p>用例模型、补充规约和术语表</p>
+<h3 id="需求管理的特定实践包括：-P124"><a href="#需求管理的特定实践包括：-P124" class="headerlink" title="需求管理的特定实践包括：(P124)"></a>需求管理的特定实践包括：(P124)</h3><ol>
+<li>获得对需求的理解。</li>
+<li>获取需求承诺。 </li>
+<li>管理需求变更。 维护变更历史， 为调整与控制提供数据。</li>
+<li>在需求变更后维护对需求的双向可追溯性。</li>
+<li>标识项目工作（包括计划和产品）与需求的不一致性。 </li>
+</ol>
+<h3 id="软件需求的定义、哪两方面理解-P105"><a href="#软件需求的定义、哪两方面理解-P105" class="headerlink" title="软件需求的定义、哪两方面理解(P105)"></a>软件需求的定义、哪两方面理解(P105)</h3><p>软件需求主要指一个软件系统必须遵循的条件或具备的能力。 这里的条件或能力可以从两个方面来理解：一是用户解决问题或达到目标所需的条件或能力， 即系统的外部行为； 二是系统为了满足合同、 规范或其他规定文档所需具有的条件或能力， 即系统的内部特性。</p>
+<h3 id="需求描述SRS包括哪些（选择）-P123"><a href="#需求描述SRS包括哪些（选择）-P123" class="headerlink" title="需求描述SRS包括哪些（选择）(P123)"></a>需求描述SRS包括哪些（选择）(P123)</h3><p>在分析阶段要编写 SRS, 包括引言、 信息描述、 功能描述、 行为描述、 质量保证、 接口描述和其他描述等内容。</p>
+<h2 id="第六章"><a href="#第六章" class="headerlink" title="第六章"></a>第六章</h2><h3 id="OOA模型的组成（P139）"><a href="#OOA模型的组成（P139）" class="headerlink" title="OOA模型的组成（P139）"></a>OOA模型的组成（P139）</h3><p><img src="/2023/06/15/software-engineering/software-engineering\6.png" alt></p>
+<p>面向对象模型的组成——哪三种子模型<strong>（画图、描述）</strong></p>
+<p>哪三种分析类、边界类、实体类、方法</p>
+<h2 id="第七章"><a href="#第七章" class="headerlink" title="第七章"></a>第七章</h2><h3 id="区分软件分析和设计-P165"><a href="#区分软件分析和设计-P165" class="headerlink" title="区分软件分析和设计(P165)"></a>区分软件分析和设计(P165)</h3><p>从表面上看， 设计模型同分析模型有许多相似之处， 但两者的目的有本质的区别。 分析模型强调的是软件 “应该做什么“，并不给出解决问题的方案， 也不涉及具体的技术和平台。例如，它不必关心在J2EE还是．NET平台上实现，是否应用EJB或一般的JavaBean, 系统是安装在WebSphere还是WebLogic环境下。 而设计模型要回答 “该怎么做＂ 的问题，而且要提供解决问题的全部方案， 包括软件如何实现、如何适应特定的实施环境等。当设计模型完成后，编程人员便可以进行编程了。</p>
+<h3 id="信息隐藏定义-P166"><a href="#信息隐藏定义-P166" class="headerlink" title="信息隐藏定义(P166)"></a>信息隐藏定义(P166)</h3><p>早在 1972 年， D. L. Parnas 就提出了把系统分解为模块时应遵守的指导思想， 称之信息隐藏 (information hiding)。他认为， 模块内部的数据与过程， 应该对不需要了解这些数据与 过程的模块隐藏起来。 只有为了完成软件的总体功能而必须在模块间交换的信息， 才允许在 模块间进行传递。</p>
+<h3 id="控制复杂性的基本策略、常用方法（填空）（P167）"><a href="#控制复杂性的基本策略、常用方法（填空）（P167）" class="headerlink" title="控制复杂性的基本策略、常用方法（填空）（P167）"></a>控制复杂性的基本策略、常用方法（填空）（P167）</h3><p><strong>分解</strong> (decomposition) 是处理复杂问题常用的方法。</p>
+<h3 id="模块化设计的定义-P167"><a href="#模块化设计的定义-P167" class="headerlink" title="模块化设计的定义(P167)"></a>模块化设计的定义(P167)</h3><p>模块化设计 (modular design) 由来已久， 目的是按照规定的原则把大型软件划分为一个个较小的、相对独立但相互关联的模块。</p>
+<p>分解和模块独立性， 是实现模块设计的重要指导思想。</p>
+<h3 id="图7-6-耦合性、顺序、内聚-举例说明（P169-171）"><a href="#图7-6-耦合性、顺序、内聚-举例说明（P169-171）" class="headerlink" title="图7.6 耦合性、顺序、内聚 举例说明（P169-171）"></a>图7.6 耦合性、顺序、内聚 举例说明（P169-171）</h3><h3 id="面向对象包括哪两任务、哪些具体任务-P174"><a href="#面向对象包括哪两任务、哪些具体任务-P174" class="headerlink" title="面向对象包括哪两任务、哪些具体任务(P174)"></a>面向对象包括哪两任务、哪些具体任务(P174)</h3><ol>
+<li><p>系统架构设计</p>
+<p>系统高层结构设计。</p>
+<p>确定设计元素。</p>
+<p>确定任务管理策略。 </p>
+<p>实现分布式机制。</p>
+<p>设计数据存储方案。</p>
+<p>人机界面设计。</p>
+</li>
+<li><p>系统元素设计</p>
+<p>类／对象设计。 </p>
+<p>子系统设计。</p>
+<p>包设计。 设计包， 将逻辑上相关的设计元素组织在一起。</p>
+</li>
+</ol>
+<h3 id="分层次方法-P176-177"><a href="#分层次方法-P176-177" class="headerlink" title="分层次方法(P176-177)"></a>分层次方法(P176-177)</h3><p><img src="/2023/06/15/software-engineering/software-engineering\7.png" alt></p>
+<h3 id="图7-34-泛化和聚类的关系-区分聚集和组合的关系-P204"><a href="#图7-34-泛化和聚类的关系-区分聚集和组合的关系-P204" class="headerlink" title="图7.34 泛化和聚类的关系 区分聚集和组合的关系(P204)"></a>图7.34 泛化和聚类的关系 区分聚集和组合的关系(P204)</h3><p><img src="/2023/06/15/software-engineering/software-engineering\8.png" alt></p>
+<ol>
+<li><p>聚集关系</p>
+<p>部分对象可以是任意整体对象的一部分。</p>
+</li>
+<li><p>组合关系</p>
+<p>在组合关系中， 整体和部分有相同的生存周期， 若整体不在了， 部分也会随之消失。</p>
+</li>
+</ol>
+<h2 id="第八章"><a href="#第八章" class="headerlink" title="第八章"></a>第八章</h2><h3 id="软件测试的目的：发现程序的错误-P233"><a href="#软件测试的目的：发现程序的错误-P233" class="headerlink" title="软件测试的目的：发现程序的错误(P233)"></a>软件测试的目的：发现程序的错误(P233)</h3><h3 id="软件测试的特性-P234"><a href="#软件测试的特性-P234" class="headerlink" title="软件测试的特性(P234)"></a>软件测试的特性(P234)</h3><ol>
+<li>挑剔性</li>
+<li>复杂性</li>
+<li>不彻底性</li>
+<li>经济性</li>
+</ol>
+<h3 id="黑盒测试依据、又叫——、使用技术——-P234-238"><a href="#黑盒测试依据、又叫——、使用技术——-P234-238" class="headerlink" title="黑盒测试依据、又叫——、使用技术——(P234-238)"></a>黑盒测试依据、又叫——、使用技术——(P234-238)</h3><p>黑盒测试就是根据被测试程序功能来进行测试， 所以也称为功能测试。</p>
+<p>3种常用技术:</p>
+<ol>
+<li>等价分类法</li>
+<li>边界值分析法</li>
+<li>错误猜测法</li>
+</ol>
+<h3 id="等价分类法的定义"><a href="#等价分类法的定义" class="headerlink" title="等价分类法的定义"></a>等价分类法的定义</h3><p>所谓等价分类， 就是把输入数据的可能值划分为若干等价类， 使每类中的任何一个测试用例， 都能代表同一等价类中的其他测试用例。 </p>
+<h3 id="边界值分析定义"><a href="#边界值分析定义" class="headerlink" title="边界值分析定义"></a>边界值分析定义</h3><p>实践表明， 程序员在处理边界情况时， 很容易因疏忽或考虑不周发生编码错误。 采用边界值分析法， 就是要这样来选择测试用例， 使得被测程序能在边界值及其附近运行， 从而更有效地暴露程序中隐藏的错误。 </p>
+<h3 id="白盒测试依据、又叫——、使用技术——-P240"><a href="#白盒测试依据、又叫——、使用技术——-P240" class="headerlink" title="白盒测试依据、又叫——、使用技术——(P240)"></a>白盒测试依据、又叫——、使用技术——(P240)</h3><p>白盒测试以程序的结构为依据， 所以又称为结构测试。</p>
+<p>为了区分这两种白盒测试技术，以下把前者称为逻辑覆盖测试(logic coverage testing), 后者称为路径测试(path testing)。</p>
+<h3 id="逻辑覆盖测试五种覆盖-P242"><a href="#逻辑覆盖测试五种覆盖-P242" class="headerlink" title="逻辑覆盖测试五种覆盖(P242)"></a>逻辑覆盖测试五种覆盖(P242)</h3><p><img src="/2023/06/15/software-engineering/software-engineering\9.png" alt></p>
+<h3 id="流程图——-gt-程序图-P245"><a href="#流程图——-gt-程序图-P245" class="headerlink" title="流程图——>程序图(P245)"></a><strong>流程图——&gt;程序图</strong>(P245)</h3><h3 id="黑盒白盒的测试用例设计-P248"><a href="#黑盒白盒的测试用例设计-P248" class="headerlink" title="黑盒白盒的测试用例设计(P248)"></a>黑盒白盒的测试用例设计(P248)</h3><h3 id="多模程序设计包括哪些层次、含义-P254"><a href="#多模程序设计包括哪些层次、含义-P254" class="headerlink" title="多模程序设计包括哪些层次、含义(P254)"></a>多模程序设计包括哪些层次、含义(P254)</h3><p><img src="/2023/06/15/software-engineering/software-engineering\10.png" alt></p>
+<h3 id="用例图——-gt-描述含义、多少参与者、用例之间的关系"><a href="#用例图——-gt-描述含义、多少参与者、用例之间的关系" class="headerlink" title="用例图——>描述含义、多少参与者、用例之间的关系"></a>用例图——&gt;描述含义、多少参与者、用例之间的关系</h3></div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">This work is licensed under <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</a></h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> Share</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://sunxinbin.cn/2023/06/15/software-engineering/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://sunxinbin.cn/2023/06/15/software-engineering/";
+            const title         = "「Software Engineering Review」";
+            const excerpt       = `软件工程总复习2023春季学期 QingDao University`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/Undergraduate-Courses/" rel="tag">Undergraduate Courses</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2023-06-15T14:55:16.454Z" itemprop="dateModified">Last modify：2023-06-15</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" CET6" href="/2023/05/27/cet6/">&lt; older</a>
+            </div>
+            
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center">Computer Science & Technology</p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                Post
+            </span>
+            <span class="count">
+                51
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                Category
+            </span>
+            <span class="count">
+                10
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                Tag
+            </span>
+            <span class="count">
+                22
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>Categories List</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Craniofacial-Registration/">Craniofacial Registration</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DL/">DL</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Feature-Point-Punctuation-Algorithm/">Feature Point Punctuation Algorithm</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Literature/">Literature</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ML/">ML</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematical-Modeling/">Mathematical Modeling</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Philosophy/">Philosophy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Undergraduate-Courses/">Undergraduate Courses</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">2</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>Tagcloud</h4>
+      <div class="tag-clouds">
+        <a href="/tags/A-single-spark-can-start-a-prairie-fire/" style="font-size: 0.6em;">A single spark can start a prairie fire</a> <a href="/tags/Algorithm/" style="font-size: 0.6em;">Algorithm</a> <a href="/tags/Anecdote/" style="font-size: 0.6em;">Anecdote</a> <a href="/tags/CV/" style="font-size: 0.6em;">CV</a> <a href="/tags/Craniofacial-Registration/" style="font-size: 0.6em;">Craniofacial Registration</a> <a href="/tags/DL/" style="font-size: 0.8em;">DL</a> <a href="/tags/Distributed-System/" style="font-size: 0.6em;">Distributed System</a> <a href="/tags/Emotion/" style="font-size: 0.7em;">Emotion</a> <a href="/tags/Feature-Point-Punctuation-Algorithm/" style="font-size: 0.75em;">Feature Point Punctuation Algorithm</a> <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/Latex/" style="font-size: 0.65em;">Latex</a> <a href="/tags/Literature/" style="font-size: 0.75em;">Literature</a> <a href="/tags/ML/" style="font-size: 0.7em;">ML</a> <a href="/tags/Mathematical-Modeling/" style="font-size: 0.65em;">Mathematical Modeling</a> <a href="/tags/OpenAI/" style="font-size: 0.6em;">OpenAI</a> <a href="/tags/Philosophy/" style="font-size: 0.6em;">Philosophy</a> <a href="/tags/Python/" style="font-size: 0.6em;">Python</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>Recent posts</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2023/06/15/software-engineering/"><i class="fa  fa-book"></i> Software Engineering Review</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/05/27/cet6/"><i class="fa  fa-book"></i> CET6</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/05/24/latex-learn/"><i class="fa  fa-book"></i> Latex的细致学习</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/04/26/distributed-system/"><i class="fa  fa-book"></i> Distributed System</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/04/05/python-to-exe/"><i class="fa  fa-book"></i> Python如何打包为exe文件</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        <li><a href="mailto:2332431354@qq.com"><i class="fa fa-envelope"></i></a></li>
+                        
+                        
+                        
+                        
+                        <li><a target="_blank" rel="me" href="https://nya.one/@SunXinbin"><i class="fa fa fa-share-alt-square"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/xinbinsun"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2023 Neo Sun Copyright.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by 孙新斌.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            <li><a href="https://beian.miit.gov.cn" rel="external nofollow" target="_blank">鲁ICP备23010101号</a></li>
+                            <li><a href="http://www.beian.gov.cn" rel="external nofollow" target="_blank"><img src="/images/psr.webp" width="12" height="12" loading="lazy" decoding="auto" />鲁公网安备371402000348</a></li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>
