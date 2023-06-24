@@ -25,7 +25,7 @@
 <meta property="og:locale">
 <meta property="og:image" content="http://sunxinbin.cn/images/avatar.webp">
 <meta property="article:published_time" content="2023-06-21T10:28:40.000Z">
-<meta property="article:modified_time" content="2023-06-21T14:53:37.950Z">
+<meta property="article:modified_time" content="2023-06-24T04:50:11.499Z">
 <meta property="article:author" content="孙新斌">
 <meta property="article:tag" content="Undergraduate Courses">
 <meta name="twitter:card" content="summary">
@@ -290,7 +290,7 @@ mjx-container[display="true"] + br {
                     <i class="fa fa-edit"></i> 
                     
                     
-                        192
+                        ~2.06K
                     
                     words
                 </li>
@@ -301,21 +301,40 @@ mjx-container[display="true"] + br {
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>This article has been edited <time datetime="1687359217950"></time> ago, and some of its content might need to be updated.</p></div>
+                <div class="text"><p>This article has been edited <time datetime="1687582211499"></time> ago, and some of its content might need to be updated.</p></div>
             </div>
             
             
             
             <hr />
             <div itemprop="articleBody"><p><strong>编译原理 总复习2023春季学期 QingDao University</strong><span id="more"></span></p>
-<h1 id="一、名词解释"><a href="#一、名词解释" class="headerlink" title="一、名词解释"></a>一、名词解释</h1><h1 id="二、简答题"><a href="#二、简答题" class="headerlink" title="二、简答题"></a>二、简答题</h1><p><strong>1.6~1.8</strong></p>
+<h1 id="一、名词解释"><a href="#一、名词解释" class="headerlink" title="一、名词解释"></a>一、名词解释</h1><p><strong>翻译器</strong> 能够完成一种语言到另一种语言的保语义变换的软件称为翻译器，这两种语言分别称为该翻译器的源语言和目标语言</p>
+<p><strong>句柄</strong>句型的句柄是该句型中和一个产生式右部匹配的子串，并且，把它归约成该产生式左部的非终结符代表了最右推导过程的逆过程的一步</p>
+<p><strong>L属性定义</strong>如果每个产生式 A-&gt;X~1~，X~2~…X~n~ 的每条语义规则计算的属性是 A 的综合 属性；或者计算的是 X~j~ 的继承属性，他仅依赖： 1：该产生式中 X~j~ 左边符号 X~1~，X~2~…X~j-1~ 的属性； 2: A 的继承属性；</p>
+<p><strong>良行为的程序</strong>一个程序的运行不可能引起不会被捕获错误的出现，那么称该程序是良行为的。</p>
+<p><strong>三地址代码</strong>三地址代码是一般形式为 x =y op z 的指令序列,其中 x，y和z是名字、常数或编译器产生的临时变量,op 代表算符；</p>
+<h1 id="二、简答题"><a href="#二、简答题" class="headerlink" title="二、简答题"></a>二、简答题</h1><p><strong>6~8</strong></p>
 <h1 id="三、词法分析"><a href="#三、词法分析" class="headerlink" title="三、词法分析"></a>三、词法分析</h1><p><strong>子集构造、极小化状态、最简DFA，不能用死状态</strong></p>
 <h1 id="四、语法分析"><a href="#四、语法分析" class="headerlink" title="四、语法分析"></a>四、语法分析</h1><p><strong>自上而下/自下而上 考一个</strong> </p>
 <p><strong>LL(1) or LR</strong></p>
-<h1 id="五、语义分析与类型检查"><a href="#五、语义分析与类型检查" class="headerlink" title="五、语义分析与类型检查"></a>五、语义分析与类型检查</h1><p><strong>消除左递归、左因子</strong></p>
+<p><strong>消除左递归、左因子</strong></p>
 <p><strong>follow集、first集</strong></p>
 <p><strong>预测分析表——&gt;<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="1.054ex" height="1.072ex" role="img" focusable="false" viewbox="0 -452 466 474"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D700" d="M190 -22Q124 -22 76 11T27 107Q27 174 97 232L107 239L99 248Q76 273 76 304Q76 364 144 408T290 452H302Q360 452 405 421Q428 405 428 392Q428 381 417 369T391 356Q382 356 371 365T338 383T283 392Q217 392 167 368T116 308Q116 289 133 272Q142 263 145 262T157 264Q188 278 238 278H243Q308 278 308 247Q308 206 223 206Q177 206 142 219L132 212Q68 169 68 112Q68 39 201 39Q253 39 286 49T328 72T345 94T362 105Q376 103 376 88Q376 79 365 62T334 26T275 -8T190 -22Z"/></g></g></g></svg></mjx-container>不能作为终结符出现</strong></p>
-<h1 id="六、开放（自然语言处理-编译原理）"><a href="#六、开放（自然语言处理-编译原理）" class="headerlink" title="六、开放（自然语言处理/编译原理）"></a>六、开放（自然语言处理/编译原理）</h1></div>
+<h1 id="五、语义分析与类型检查"><a href="#五、语义分析与类型检查" class="headerlink" title="五、语义分析与类型检查"></a>五、语义分析与类型检查</h1><h1 id="六、开放（自然语言处理-编译原理）"><a href="#六、开放（自然语言处理-编译原理）" class="headerlink" title="六、开放（自然语言处理/编译原理）"></a>六、开放（自然语言处理/编译原理）</h1><h2 id="请阐述编译原理和自然语言处理在词法分析方面的差异"><a href="#请阐述编译原理和自然语言处理在词法分析方面的差异" class="headerlink" title="请阐述编译原理和自然语言处理在词法分析方面的差异"></a><strong>请阐述编译原理和自然语言处理在词法分析方面的差异</strong></h2><p>编译原理和自然语言处理在词法分析方面有一些差异。</p>
+<p>编译原理中的词法分析是编译过程的第一个阶段，目的是将输入的源代码分解为词法单元（tokens），并生成词法单元流。词法单元是源代码中的基本单元，如关键字、标识符、运算符和常量等。编译器使用词法分析器（lexer）根据语言的词法规则，将源代码转换为词法单元流，以便后续的语法分析和语义分析。</p>
+<p>而自然语言处理（NLP）中的词法分析也被称为分词（tokenization），其目标是将自然语言文本分解为语言单位，如单词、短语或句子等。NLP的词法分析涉及处理各种自然语言特定的问题，如处理复杂的语法结构、词性标注、词形还原和命名实体识别等。</p>
+<p>所以，编译原理的词法分析主要关注于编程语言的词法规则和生成词法单元流，而NLP的词法分析更关注于处理自然语言文本的特定问题，例如分词和语言单位的识别。尽管两者都涉及词法分析的概念，但在实践中的重点和方法会有所不同。</p>
+<h2 id="请阐述编译原理和自然语言处理在语法分析方面的差异"><a href="#请阐述编译原理和自然语言处理在语法分析方面的差异" class="headerlink" title="请阐述编译原理和自然语言处理在语法分析方面的差异"></a><strong>请阐述编译原理和自然语言处理在语法分析方面的差异</strong></h2><p>编译原理和自然语言处理在语法分析方面也存在一些差异。</p>
+<p>在编译原理中，语法分析是编译过程的第二个阶段，其目标是根据语法规则验证和分析词法单元流的结构，生成抽象语法树（Abstract Syntax Tree，AST）。编译器使用语法分析器（parser）来解析词法单元流，并构建表示程序结构的抽象语法树。语法分析器根据编程语言的语法规则，检查输入的词法单元流是否符合语法要求，并转换为易于处理的中间表示形式。</p>
+<p>而在自然语言处理中，语法分析也被称为句法分析（parsing），其目标是分析自然语言句子的结构和语法关系。语法分析器在自然语言处理中用于确定句子的短语结构、依存关系和语法角色等。这有助于理解句子的语法含义和上下文关系。</p>
+<p>尽管编译原理和自然语言处理都涉及语法分析的概念，但在实践中的重点和方法存在差异。编译原理的语法分析主要关注于编程语言的形式化语法规则和语法树的生成，而自然语言处理的语法分析更关注于自然语言的句法结构、依存关系和语法角色的识别。因此，两者在语法分析的目标和处理方法上有所不同。</p>
+<h2 id="请阐述编译原理和自然语言处理在语义分析与类型检查方面的差异"><a href="#请阐述编译原理和自然语言处理在语义分析与类型检查方面的差异" class="headerlink" title="请阐述编译原理和自然语言处理在语义分析与类型检查方面的差异"></a>请阐述编译原理和自然语言处理在语义分析与类型检查方面的差异</h2><p>编译原理和自然语言处理在语义分析与类型检查方面也存在一些差异。</p>
+<p>在编译原理中，语义分析是编译过程的一个重要阶段，其目标是对源代码进行语义验证和语义处理。语义分析器会对抽象语法树进行遍历，检查变量的声明和使用是否合法，执行类型推导和类型检查，处理作用域和命名空间等。语义分析的目的是确保源代码在语义上是正确的，并生成中间代码或优化代码。</p>
+<p>而在自然语言处理中，语义分析的目标是理解自然语言文本的语义含义和推理。语义分析器在NLP中用于解析句子的含义、上下文关联和语义角色标注等任务。这包括识别句子中的命名实体、消歧义歧义词义、执行逻辑推理和情感分析等。语义分析在NLP中有助于将自然语言转化为机器可理解的表示形式。</p>
+<p>类型检查是编译原理中常见的任务之一，它涉及验证变量和表达式的类型是否匹配，并检测类型错误。编译器会检查类型的一致性、隐式类型转换和类型转换的合法性等。类型检查有助于捕获程序中的类型错误和提供类型安全性。</p>
+<p>在自然语言处理中，类型检查的概念并不像编译原理中那样明确存在。自然语言处理更注重于对文本的语义理解和推理，而不像编译原理中那样明确涉及静态类型系统和类型检查。</p>
+<p>因此，编译原理和自然语言处理在语义分析与类型检查方面存在差异，主要体现在目标和处理方法的不同。编译原理注重于程序语义的验证和类型检查，而自然语言处理注重于自然语言文本的语义解析和推理。</p>
+</div>
         </div>
         
             <div class="kratos-copyright text-center clearfix">
@@ -404,7 +423,7 @@ mjx-container[display="true"] + br {
                     <a class="tag-none-link" href="/tags/Undergraduate-Courses/" rel="tag">Undergraduate Courses</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2023-06-21T14:53:37.950Z" itemprop="dateModified">Last modify：2023-06-21</time>
+                    <time datetime="2023-06-24T04:50:11.499Z" itemprop="dateModified">Last modify：2023-06-24</time>
                 </div>
             </div>
         </footer>
