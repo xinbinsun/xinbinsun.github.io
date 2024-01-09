@@ -25,7 +25,7 @@
 <meta property="og:locale">
 <meta property="og:image" content="http://sunxinbin.cn/images/avatar.webp">
 <meta property="article:published_time" content="2023-12-27T09:39:56.000Z">
-<meta property="article:modified_time" content="2024-01-09T04:29:02.891Z">
+<meta property="article:modified_time" content="2024-01-09T04:31:11.710Z">
 <meta property="article:author" content="孙新斌">
 <meta property="article:tag" content="Graduation Design">
 <meta name="twitter:card" content="summary">
@@ -178,7 +178,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~4.36K
+                        ~4.03K
                     
                     words
                 </li>
@@ -189,14 +189,13 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>This article has been edited <time datetime="1704774542891"></time> ago, and some of its content might need to be updated.</p></div>
+                <div class="text"><p>This article has been edited <time datetime="1704774671710"></time> ago, and some of its content might need to be updated.</p></div>
             </div>
             
             
             
             <hr />
             <div itemprop="articleBody"><h1 id="图片大面积修复-思路-："><a href="#图片大面积修复-思路-：" class="headerlink" title="图片大面积修复(思路)："></a>图片大面积修复(思路)：</h1><p>To restore the 20 images with black stripes based on the content of the normal image (complete image taken every 21 frames) and to ensure that the repaired part conforms to the dynamic effect of the frame, you can consider using a technique known as video inpainting. Inpainting is a process that involves filling in missing or damaged parts of an image or video.</p>
-<p>Here’s a general approach to achieve this:</p>
 <h3 id="Steps"><a href="#Steps" class="headerlink" title="Steps:"></a>Steps:</h3><ol>
 <li><strong>Identify Black Stripes:</strong><ul>
 <li>Use image processing techniques to identify the black stripes in each frame. This may involve thresholding, edge detection, or other computer vision methods.</li>
@@ -235,12 +234,10 @@
 <li>The success of this approach depends on the complexity of the scenes and the effectiveness of the inpainting algorithm. Experiment with different techniques and parameters to achieve the best results.</li>
 <li>It’s recommended to work on a small subset of frames initially to validate and fine-tune the approach before applying it to the entire video sequence.</li>
 </ul>
-<p>This process may involve a combination of computer vision and deep learning techniques, and you may need to adapt the approach based on the specific characteristics of your video data.</p>
-<h1 id="实现流程"><a href="#实现流程" class="headerlink" title="实现流程"></a>实现流程</h1><p><strong>bing回答：</strong></p>
-<p>Video Inpainting: Video inpainting is a technique that can be used to restore missing or corrupted parts of video frames. It takes into account the temporal continuity of the video, which can be very helpful in your case as the images have a high frame rate of 50 frames per second. There are several deep learning-based methods for video inpainting that have been proposed in recent years, such as Copy-and-Paste Networks for Deep Video Inpainting1 and Deep Flow-Guided Video Inpainting1.</p>
+<h1 id="实现流程"><a href="#实现流程" class="headerlink" title="实现流程"></a>实现流程</h1><p>Video Inpainting: Video inpainting is a technique that can be used to restore missing or corrupted parts of video frames. It takes into account the temporal continuity of the video, which can be very helpful in your case as the images have a high frame rate of 50 frames per second. There are several deep learning-based methods for video inpainting that have been proposed in recent years, such as Copy-and-Paste Networks for Deep Video Inpainting1 and Deep Flow-Guided Video Inpainting1.</p>
 <p>Multi-Frame Image Fusion: Multi-frame image fusion is a technique that combines information from multiple images to create a single image that is more informative and complete than any of the input images. This technique can be used to fuse the information from the normal images and the missing images to restore the missing parts. There are several methods for multi-frame image fusion, such as the DeepFuse: A Deep Unsupervised Approach for Exposure Fusion with Extreme Exposure Image Pairs1.</p>
 <p>Optical Flow Estimation: Optical flow estimation can be used to estimate the motion pattern between two consecutive frames, which can be used to guide the inpainting process. There are several deep learning-based methods for optical flow estimation, such as PWC-Net: CNNs for Optical Flow Using Pyramid, Warping, and Cost Volume1.</p>
-<p>By combining these methods, you can create a system that takes into account the continuity of the images, the missing images at different positions, and the normal images with a 20 frame interval. This will allow you to restore the missing images while maintaining the dynamic effect of the frame.</p>
+<p>By combining these methods, you can create a system that takes into account the continuity of the images, the missing images at different positions, and the normal images with a 20 frame interval. </p>
 <h1 id="知识储备"><a href="#知识储备" class="headerlink" title="知识储备"></a>知识储备</h1></div>
         </div>
         
@@ -330,7 +327,7 @@
                     <a class="tag-none-link" href="/tags/Graduation-Design/" rel="tag">Graduation Design</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2024-01-09T04:29:02.891Z" itemprop="dateModified">Last modify：2024-01-09</time>
+                    <time datetime="2024-01-09T04:31:11.710Z" itemprop="dateModified">Last modify：2024-01-09</time>
                 </div>
             </div>
         </footer>
