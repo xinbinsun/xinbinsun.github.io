@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="Chinese/English">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/avatar.webp">
+  
+  <title>面向3D模型生成 | Neo Sun</title>
+  <meta name="author" content="孙新斌" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="" />
+  
+  <meta name="description" content="shap-e提出一种新的条件生成模型——Shap-E，用于生成3D图像。 探讨了如何在大数据集上训练Shap-E模型。 Shap-E模型的关键思路是通过两个阶段的训练来生成3D图像。首先，通过编码器将3D图像映射到隐式函数的参数空间中，然后在编码器的输出上训练有条件的扩散模型。相比于当前3D生成模型的研究状况，Shap-E模型的思路更加直接，可以生成复杂多样的3D图像，并且收敛速度更快。 两种用于">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面向3D模型生成">
+<meta property="og:url" content="http://sunxinbin.cn/2024/02/28/2D-to-3D/index.html">
+<meta property="og:site_name" content="Neo Sun">
+<meta property="og:description" content="shap-e提出一种新的条件生成模型——Shap-E，用于生成3D图像。 探讨了如何在大数据集上训练Shap-E模型。 Shap-E模型的关键思路是通过两个阶段的训练来生成3D图像。首先，通过编码器将3D图像映射到隐式函数的参数空间中，然后在编码器的输出上训练有条件的扩散模型。相比于当前3D生成模型的研究状况，Shap-E模型的思路更加直接，可以生成复杂多样的3D图像，并且收敛速度更快。 两种用于">
+<meta property="og:locale">
+<meta property="og:image" content="http://sunxinbin.cn/images/avatar.webp">
+<meta property="article:published_time" content="2024-02-28T12:00:00.000Z">
+<meta property="article:modified_time" content="2024-03-05T12:34:23.176Z">
+<meta property="article:author" content="孙新斌">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://sunxinbin.cn/images/avatar.webp">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>Archives</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>Search Engine</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>About</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            <li><a href="https://sunxinbin.cn">Blog</a></li>
+                                                        
+                                                    
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://github.com/xinbinsun">Github</a></li>
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Neo Sun</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Neo Sun</h2> <br />
+                        <span>What&#39;s past is prologue</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://sunxinbin.cn/2024/02/28/2D-to-3D/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">面向3D模型生成</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2024-02-28T12:00:00.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2024-02-28</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> Author <span itemprop="name">孙新斌</span>
+                </li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        1095
+                    
+                    words
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>This article has been edited <time datetime="1709642063176"></time> ago, and some of its content might need to be updated.</p></div>
+            </div>
+            
+            
+            
+            <hr />
+            <div itemprop="articleBody"><h1 id="shap-e"><a href="#shap-e" class="headerlink" title="shap-e"></a><a target="_blank" rel="noopener" href="https://github.com/openai/shap-e">shap-e</a></h1><p><em>提出一种新的条件生成模型——Shap-E，用于生成3D图像。</em></p>
+<p><em>探讨了如何在大数据集上训练Shap-E模型。</em></p>
+<p>Shap-E模型的<strong>关键思路</strong>是通过两个阶段的训练来生成3D图像。首先，通过编码器将3D图像映射到隐式函数的参数空间中，然后在编码器的输出上训练有条件的扩散模型。相比于当前3D生成模型的研究状况，Shap-E模型的思路更加直接，可以生成复杂多样的3D图像，并且收敛速度更快。</p>
+<p>两种用于3D表示的<strong>INR</strong>：</p>
+<p><strong>NeRF</strong>：将3D场景表示为将坐标和观看方向映射到密度和RGB颜色的函数。NeRF可以通过查询相机光线的密度和颜色从任意视图渲染，并训练以匹配3D场景的地面真实渲染。</p>
+<p><strong>DMTet /GET3D</strong></p>
+<h1 id="ImageDream"><a href="#ImageDream" class="headerlink" title="ImageDream"></a><a target="_blank" rel="noopener" href="https://github.com/bytedance/ImageDream">ImageDream</a></h1><p><em>一种创新的图像提示、多视角扩散模型，用于生成3D物体。</em></p>
+<p><strong>优势</strong>：能够产生更高质量的3D模型</p>
+<p><strong>解决问题</strong>：如何利用图像生成高质量的3D物体模型，同时提高视觉几何精度。</p>
+<p><strong>关键思路</strong>：使用标准的相机坐标系来提高图像中物体的几何精度，并在扩散模型内的每个块中设计不同级别的控制，以精细调整图像细节。</p>
+<h1 id="先验知识"><a href="#先验知识" class="headerlink" title="先验知识"></a>先验知识</h1><h2 id="NeRF"><a href="#NeRF" class="headerlink" title="NeRF"></a>NeRF</h2><p><strong>Neural Radiance Fields神经辐射场：仅用2D的posed images作为监督，即可表示复杂的三维场景。</strong></p>
+<p><strong>处理的任务：新视角合成。**</strong>输入<strong>图像序列和位姿，</strong>输出**新视角&amp;mesh</p>
+<p>传统三维重建<strong>两种重建方式</strong>：</p>
+<ol>
+<li><strong>主动式</strong></li>
+</ol>
+<p>在传统的主动式三维重建中，首先从不同角度拍摄待重建物体的深度图像，由于彩色图像有助于相机定位及给模型添加颜色，也可以在采集深度图像同时，采集对应的彩色图像。随后通过ICP（Iterative Closest Point）等技术计算相机姿态。之后将场景隐式表达为SDF体素网格模型，最后通过raycasting渲染出重建的视角，最后输出给AR设备显示。</p>
+<ol>
+<li><strong>被动式</strong></li>
+</ol>
+<p>传统的被动式三维重建中，首先从不同角度拍摄待重建物体的彩色图像，随后通过SfM(structure from motion)等技术获得相机位姿和模型的初始点云。随后通过深度估计、点云的稠密重建、网格重建及优化和网格贴图等流程得到最终带有贴图的模型。</p>
+<p><strong>缺点</strong>：<strong>最终重建的模型中可能会有孔洞、纹理混叠、由于体素分辨率限制丢失很多细节。</strong></p>
+<p>NeRF的<strong>优势</strong>：<strong>合成照片级别的新视角，重建的模型细节更加丰富,</strong>它通过使用稀疏的输入视图集优化底层连续的体积场景函数，<strong>实现了综合复杂场景视图的最好结果，无空洞、细节还原，发展迅速。</strong></p>
+<p><img src="/2024/02/28/2D-to-3D/2D-to-3D\pic1.png" alt=" An overview of our neural radiance field scene representation and differentiable rendering procedure. We synthesize images by sampling 5D coordinates (location and viewing direction) along camera rays (a), feeding those locations into an MLP to produce a color and volume density (b), and using volume rendering techniques to composite these values into an image (c). This rendering function is differentiable, so we can optimize our scene representation by minimizing the residual between synthesized and ground truth observed images (d)."></p>
+<h1 id="CLIP"><a href="#CLIP" class="headerlink" title="CLIP"></a>CLIP</h1><p><strong>Contrastive Language-Image Pre-training 基于对比文本-图像对的预训练方法/模型</strong></p>
+<p><img src="/2024/02/28/2D-to-3D/Users\23324\AppData\Roaming\Typora\typora-user-images\image-20240305203407167.png" alt="image-20240305203407167"></p>
+<p><img src="/2024/02/28/2D-to-3D/Users\23324\AppData\Roaming\Typora\typora-user-images\image-20240305203421858.png" alt="image-20240305203421858"></p>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">This work is licensed under <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</a></h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> Share</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://sunxinbin.cn/2024/02/28/2D-to-3D/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://sunxinbin.cn/2024/02/28/2D-to-3D/";
+            const title         = "「面向3D模型生成」";
+            const excerpt       = `shap-e提出一种新的条件生成模型——Shap-E，用于生成3D图像。
+探讨了如何在大数据集上训练Shap-E模型。
+Shap-E模型的关键思路是通过两个阶段的训练来生成3D图像。首先，通过编码器将3D图像映射到隐式函数的参数空间中...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    
+                </div>
+                <div class="pull-date">
+                    <time datetime="2024-03-05T12:34:23.176Z" itemprop="dateModified">Last modify：2024-03-05</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" Graduation Design" href="/2023/12/27/graduation-design/">&lt; older</a>
+            </div>
+            
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center">Computer Science & Technology</p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                Post
+            </span>
+            <span class="count">
+                54
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                Category
+            </span>
+            <span class="count">
+                10
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                Tag
+            </span>
+            <span class="count">
+                20
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>Categories List</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Craniofacial-Registration/">Craniofacial Registration</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DL/">DL</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Feature-Point-Punctuation-Algorithm/">Feature Point Punctuation Algorithm</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Literature/">Literature</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ML/">ML</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematical-Modeling/">Mathematical Modeling</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Philosophy/">Philosophy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Undergraduate-Courses/">Undergraduate Courses</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">2</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>Tagcloud</h4>
+      <div class="tag-clouds">
+        <a href="/tags/Algorithm/" style="font-size: 0.6em;">Algorithm</a> <a href="/tags/Anecdote/" style="font-size: 0.6em;">Anecdote</a> <a href="/tags/CV/" style="font-size: 0.6em;">CV</a> <a href="/tags/Craniofacial-Registration/" style="font-size: 0.6em;">Craniofacial Registration</a> <a href="/tags/DL/" style="font-size: 0.8em;">DL</a> <a href="/tags/Emotion/" style="font-size: 0.68em;">Emotion</a> <a href="/tags/Feature-Point-Punctuation-Algorithm/" style="font-size: 0.72em;">Feature Point Punctuation Algorithm</a> <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/Graduation-Design/" style="font-size: 0.6em;">Graduation Design</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/Latex/" style="font-size: 0.64em;">Latex</a> <a href="/tags/Literature/" style="font-size: 0.72em;">Literature</a> <a href="/tags/ML/" style="font-size: 0.68em;">ML</a> <a href="/tags/Mathematical-Modeling/" style="font-size: 0.64em;">Mathematical Modeling</a> <a href="/tags/OpenAI/" style="font-size: 0.6em;">OpenAI</a> <a href="/tags/Philosophy/" style="font-size: 0.6em;">Philosophy</a> <a href="/tags/Python/" style="font-size: 0.6em;">Python</a> <a href="/tags/Undergraduate-Courses/" style="font-size: 0.76em;">Undergraduate Courses</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>Recent posts</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2024/02/28/2D-to-3D/"><i class="fa  fa-book"></i> 面向3D模型生成</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/12/27/graduation-design/"><i class="fa  fa-book"></i> Graduation Design</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/06/21/Compilation-principle/"><i class="fa  fa-book"></i> Compilation Principle</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/06/18/distributed-system/"><i class="fa  fa-book"></i> Distributed System</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2023/06/15/software-engineering/"><i class="fa  fa-book"></i> Software Engineering Review</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        <li><a href="mailto:2332431354@qq.com"><i class="fa fa-envelope"></i></a></li>
+                        
+                        
+                        
+                        
+                        <li><a target="_blank" rel="me" href="https:///@SunXinbin"><i class="fa fa fa-share-alt-square"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/xinbinsun"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2024 Neo Sun Copyright.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by 孙新斌.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            <li><a href="https://beian.miit.gov.cn" rel="external nofollow" target="_blank">鲁ICP备23010101号</a></li>
+                            <li><a href="http://www.beian.gov.cn" rel="external nofollow" target="_blank"><img src="/images/psr.webp" width="12" height="12" loading="lazy" decoding="auto" />鲁公网安备371402000348</a></li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>

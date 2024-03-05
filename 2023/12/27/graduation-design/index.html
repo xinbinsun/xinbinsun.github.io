@@ -25,7 +25,7 @@
 <meta property="og:locale">
 <meta property="og:image" content="http://sunxinbin.cn/images/avatar.webp">
 <meta property="article:published_time" content="2023-12-27T09:39:56.000Z">
-<meta property="article:modified_time" content="2024-01-09T04:31:11.710Z">
+<meta property="article:modified_time" content="2024-01-09T04:37:49.576Z">
 <meta property="article:author" content="孙新斌">
 <meta property="article:tag" content="Graduation Design">
 <meta name="twitter:card" content="summary">
@@ -178,7 +178,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~4.03K
+                        ~5.33K
                     
                     words
                 </li>
@@ -189,7 +189,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>This article has been edited <time datetime="1704774671710"></time> ago, and some of its content might need to be updated.</p></div>
+                <div class="text"><p>This article has been edited <time datetime="1704775069576"></time> ago, and some of its content might need to be updated.</p></div>
             </div>
             
             
@@ -238,7 +238,33 @@
 <p>Multi-Frame Image Fusion: Multi-frame image fusion is a technique that combines information from multiple images to create a single image that is more informative and complete than any of the input images. This technique can be used to fuse the information from the normal images and the missing images to restore the missing parts. There are several methods for multi-frame image fusion, such as the DeepFuse: A Deep Unsupervised Approach for Exposure Fusion with Extreme Exposure Image Pairs1.</p>
 <p>Optical Flow Estimation: Optical flow estimation can be used to estimate the motion pattern between two consecutive frames, which can be used to guide the inpainting process. There are several deep learning-based methods for optical flow estimation, such as PWC-Net: CNNs for Optical Flow Using Pyramid, Warping, and Cost Volume1.</p>
 <p>By combining these methods, you can create a system that takes into account the continuity of the images, the missing images at different positions, and the normal images with a 20 frame interval. </p>
-<h1 id="知识储备"><a href="#知识储备" class="headerlink" title="知识储备"></a>知识储备</h1></div>
+<h1 id="知识储备"><a href="#知识储备" class="headerlink" title="知识储备"></a>知识储备</h1><h3 id="三维拍摄为什么会产生格雷码和相移码形成黑色条纹遮挡图像？"><a href="#三维拍摄为什么会产生格雷码和相移码形成黑色条纹遮挡图像？" class="headerlink" title="三维拍摄为什么会产生格雷码和相移码形成黑色条纹遮挡图像？"></a>三维拍摄为什么会产生格雷码和相移码形成黑色条纹遮挡图像？</h3><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/81731606">在三维扫描应用中，结构光重建的方案有多种，其中条纹法是应用比较广泛的一类方法](https://zhuanlan.zhihu.com/p/81731606)。条纹法通过投射一组时序变化的条纹图案，来辅助完成立体匹配和视差计算、或者深度的直接计算</a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/81731606">。根据不同的条纹图案，衍生出了一系列方法，如格雷码等二值编码方案、正弦条纹的相移法、格雷码+相移法、彩色条纹法等等</a>。</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/627209498">格雷码和相移法结合使用的方式，由于被扫描物体的反射率不均匀，背景强度和散焦等引起的干扰，导致捕获的格雷码条纹图像在黑白转换边界中并不总是很清晰，这可能会引入错误的解码相位顺序并导致 2π展开阶段的相位误差</a>。</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/sabai/p/14626150.html">对于格雷码来说，明暗交接处变换更少，解码很重要的环节就是二值化，一般情况下全黑和全亮是不容易出错的，因为在实际应用中投影交界处是渐变的，阈值很难确定</a>。这就是为什么在三维拍摄中会产生格雷码和相移码形成的黑色条纹遮挡图像的原因。</p>
+<h3 id="如何解决这个问题？"><a href="#如何解决这个问题？" class="headerlink" title="如何解决这个问题？"></a>如何解决这个问题？</h3><p>解决三维拍摄中格雷码和相移码形成黑色条纹遮挡图像的问题，有一些方法可以尝试：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/627209498"><strong>优化编码图案</strong>：通过对投射的编码图案的分析和设计，确定适用条件并优化了格雷码的编码周期和相移条纹周期</a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/627209498">1</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/627209498"><strong>格雷码与相移相结合的编码策略</strong>：根据格雷码和相移法的编码数学特性，设计正反格雷码灰度条纹图案，找到具有相同编码的区域作为一个初始编码周期</a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/627209498">。采用四步相移法使格雷码图案的最小周期为相移图案周期4倍，依次投射四幅相移图案使得每个编码区域被进一步连续细分偏4次后光栅条纹图案与未偏移时的图案重合</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/362816973"><strong>增加两张图</strong>：一张全黑图，一张全亮图</a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/shuimuqingyang/p/14233659.html">。这是传统格雷码结合相移技术需要额外投射两幅全黑和全白图案的原因</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/362816973"><strong>去除全0和全1的编码</strong>：让每个编码至少含有一个0和一个1</a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/362816973">。但这可能会破坏格雷码的稳定性</a>。</li>
+</ol>
+<h3 id="我想将三维扫描中受影响的图象恢复成完整图象，有哪些方法？"><a href="#我想将三维扫描中受影响的图象恢复成完整图象，有哪些方法？" class="headerlink" title="我想将三维扫描中受影响的图象恢复成完整图象，有哪些方法？"></a>我想将三维扫描中受影响的图象恢复成完整图象，有哪些方法？</h3><p>在三维扫描中，如果图像受到了影响，例如由于格雷码和相移码形成的黑色条纹遮挡，那么可以通过以下方法尝试恢复成完整图像：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/436030117"><strong>特征提取与特征描述</strong>：这通常默认使用SIFT算子</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/436030117"><strong>特征匹配</strong>：对每一对相片进行特征匹配</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/436030117"><strong>几何滤波</strong>：应用几何滤波剔除错误匹配点</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/436030117"><strong>建立匹配点集</strong>：建立匹配点集（tracks）</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/436030117"><strong>恢复相机参数</strong>：应用SfM方法恢复相机的内参和外参</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/436030117"><strong>三角测量</strong>：由三角测量（triangulation）得到三维点坐标</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/436030117"><strong>全局优化</strong>：然后使用光束法平差（bundle adjustment）进行全局优化</a>。</li>
+</ol>
+<p>在三维拍摄中，如果二维图像受到格雷码和相移码形成的黑色条纹遮挡，可以尝试以下方法来恢复：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_15295565/article/details/99989922"><strong>优化编码图案</strong>：根据格雷码和相移法的编码数学特性，设计正反格雷码灰度条纹图案，找到具有相同编码的区域作为一个初始编码周期</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_15295565/article/details/99989922">。采用四步相移法使格雷码图案的最小周期为相移图案周期4倍，依次投射四幅相移图案使得每个编码区域被进一步连续细分</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43729231/article/details/122433342"><strong>增加两张图</strong>：一张全黑图，一张全亮图。这是传统格雷码结合相移技术需要额外投射两幅全黑和全白图案的原因</a>。</li>
+<li>[<strong>去除全0和全1的编码</strong>：让每个编码至少含有一个0和一个1][。但这可能会破坏格雷码的稳定性]。</li>
+</ol>
+<h1 id><a href="#" class="headerlink" title=" "></a> </h1></div>
         </div>
         
             <div class="kratos-copyright text-center clearfix">
@@ -327,7 +353,7 @@
                     <a class="tag-none-link" href="/tags/Graduation-Design/" rel="tag">Graduation Design</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2024-01-09T04:31:11.710Z" itemprop="dateModified">Last modify：2024-01-09</time>
+                    <time datetime="2024-01-09T04:37:49.576Z" itemprop="dateModified">Last modify：2024-01-09</time>
                 </div>
             </div>
         </footer>
@@ -339,6 +365,10 @@
                 <a title=" Compilation Principle" href="/2023/06/21/Compilation-principle/">&lt; older</a>
             </div>
             
+            
+            <div class="nav-next clearfix">
+                <a title=" 面向3D模型生成" href="/2024/02/28/2D-to-3D/">Newer &gt;</a>
+            </div>
             
         </nav>
     
@@ -374,7 +404,7 @@
                 Post
             </span>
             <span class="count">
-                52
+                54
             </span>
         </a>
         <a class="meta-item" href="/categories/">
@@ -424,6 +454,12 @@
         
           
           
+            <a class="list-group-item" href="/2024/02/28/2D-to-3D/"><i class="fa  fa-book"></i> 面向3D模型生成</a>
+            
+          
+        
+          
+          
             <a class="list-group-item" href="/2023/12/27/graduation-design/"><i class="fa  fa-book"></i> Graduation Design</a>
             
           
@@ -447,11 +483,9 @@
           
         
           
-          
-            <a class="list-group-item" href="/2023/05/27/cet6/"><i class="fa  fa-book"></i> CET6</a>
             
           
-        
+            
           
             
           
