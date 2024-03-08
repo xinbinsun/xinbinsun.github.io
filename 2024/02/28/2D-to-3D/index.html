@@ -25,7 +25,7 @@
 <meta property="og:locale">
 <meta property="og:image" content="http://sunxinbin.cn/images/avatar.webp">
 <meta property="article:published_time" content="2024-02-28T12:00:00.000Z">
-<meta property="article:modified_time" content="2024-03-05T12:34:23.176Z">
+<meta property="article:modified_time" content="2024-03-08T02:13:46.248Z">
 <meta property="article:author" content="孙新斌">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://sunxinbin.cn/images/avatar.webp">
@@ -98,10 +98,6 @@
                                     
                                         
                                             <li><a href="/friends/"><i class="fa fa-paw"></i>Search Engine</a></li>
-                                        
-                                    
-                                        
-                                            <li><a href="/paper_test/"></a></li>
                                         
                                     
                                         
@@ -181,7 +177,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        1095
+                        1114
                     
                     words
                 </li>
@@ -192,7 +188,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>This article has been edited <time datetime="1709642063176"></time> ago, and some of its content might need to be updated.</p></div>
+                <div class="text"><p>This article has been edited <time datetime="1709864026248"></time> ago, and some of its content might need to be updated.</p></div>
             </div>
             
             
@@ -208,7 +204,7 @@
 <p><strong>优势</strong>：能够产生更高质量的3D模型</p>
 <p><strong>解决问题</strong>：如何利用图像生成高质量的3D物体模型，同时提高视觉几何精度。</p>
 <p><strong>关键思路</strong>：使用标准的相机坐标系来提高图像中物体的几何精度，并在扩散模型内的每个块中设计不同级别的控制，以精细调整图像细节。</p>
-<h1 id="先验知识"><a href="#先验知识" class="headerlink" title="先验知识"></a>先验知识</h1><h2 id="NeRF"><a href="#NeRF" class="headerlink" title="NeRF"></a>NeRF</h2><p><strong>Neural Radiance Fields神经辐射场：仅用2D的posed images作为监督，即可表示复杂的三维场景。</strong></p>
+<h1 id="HarmonyView"><a href="#HarmonyView" class="headerlink" title="HarmonyView"></a>HarmonyView</h1><h1 id="先验知识"><a href="#先验知识" class="headerlink" title="先验知识"></a>先验知识</h1><h2 id="NeRF"><a href="#NeRF" class="headerlink" title="NeRF"></a>NeRF</h2><p><strong>Neural Radiance Fields神经辐射场：仅用2D的posed images作为监督，即可表示复杂的三维场景。</strong></p>
 <p><strong>处理的任务：新视角合成。**</strong>输入<strong>图像序列和位姿，</strong>输出**新视角&amp;mesh</p>
 <p>传统三维重建<strong>两种重建方式</strong>：</p>
 <ol>
@@ -223,7 +219,7 @@
 <p>NeRF的<strong>优势</strong>：<strong>合成照片级别的新视角，重建的模型细节更加丰富,</strong>它通过使用稀疏的输入视图集优化底层连续的体积场景函数，<strong>实现了综合复杂场景视图的最好结果，无空洞、细节还原，发展迅速。</strong></p>
 <p><img src="/2024/02/28/2D-to-3D/2D-to-3D\pic1.png" alt=" An overview of our neural radiance field scene representation and differentiable rendering procedure. We synthesize images by sampling 5D coordinates (location and viewing direction) along camera rays (a), feeding those locations into an MLP to produce a color and volume density (b), and using volume rendering techniques to composite these values into an image (c). This rendering function is differentiable, so we can optimize our scene representation by minimizing the residual between synthesized and ground truth observed images (d)."></p>
 <h1 id="CLIP"><a href="#CLIP" class="headerlink" title="CLIP"></a>CLIP</h1><p><strong>Contrastive Language-Image Pre-training 基于对比文本-图像对的预训练方法/模型</strong></p>
-<p><img src="/2024/02/28/2D-to-3D/Users\23324\AppData\Roaming\Typora\typora-user-images\image-20240305203407167.png" alt="image-20240305203407167"></p>
+<h1 id="Datasets"><a href="#Datasets" class="headerlink" title="Datasets"></a>Datasets</h1><p><img src="/2024/02/28/2D-to-3D/Users\23324\AppData\Roaming\Typora\typora-user-images\image-20240305203407167.png" alt="image-20240305203407167"></p>
 <p><img src="/2024/02/28/2D-to-3D/Users\23324\AppData\Roaming\Typora\typora-user-images\image-20240305203421858.png" alt="image-20240305203421858"></p>
 </div>
         </div>
@@ -316,7 +312,7 @@ Shap-E模型的关键思路是通过两个阶段的训练来生成3D图像。首
                     
                 </div>
                 <div class="pull-date">
-                    <time datetime="2024-03-05T12:34:23.176Z" itemprop="dateModified">Last modify：2024-03-05</time>
+                    <time datetime="2024-03-08T02:13:46.248Z" itemprop="dateModified">Last modify：2024-03-08</time>
                 </div>
             </div>
         </footer>
