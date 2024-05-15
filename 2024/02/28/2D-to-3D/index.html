@@ -25,7 +25,7 @@
 <meta property="og:locale">
 <meta property="og:image" content="http://sunxinbin.cn/images/avatar.webp">
 <meta property="article:published_time" content="2024-02-28T12:00:00.000Z">
-<meta property="article:modified_time" content="2024-03-26T00:54:23.418Z">
+<meta property="article:modified_time" content="2024-03-28T16:04:39.915Z">
 <meta property="article:author" content="孙新斌">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://sunxinbin.cn/images/avatar.webp">
@@ -177,7 +177,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        1104
+                        ~1.56K
                     
                     words
                 </li>
@@ -188,7 +188,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>This article has been edited <time datetime="1711414463418"></time> ago, and some of its content might need to be updated.</p></div>
+                <div class="text"><p>This article has been edited <time datetime="1711641879915"></time> ago, and some of its content might need to be updated.</p></div>
             </div>
             
             
@@ -219,6 +219,15 @@
 <p>NeRF的<strong>优势</strong>：<strong>合成照片级别的新视角，重建的模型细节更加丰富,</strong>它通过使用稀疏的输入视图集优化底层连续的体积场景函数，<strong>实现了综合复杂场景视图的最好结果，无空洞、细节还原，发展迅速。</strong></p>
 <p><img src="/2024/02/28/2D-to-3D/pic1.png" alt=" An overview of our neural radiance field scene representation and differentiable rendering procedure. We synthesize images by sampling 5D coordinates (location and viewing direction) along camera rays (a), feeding those locations into an MLP to produce a color and volume density (b), and using volume rendering techniques to composite these values into an image (c). This rendering function is differentiable, so we can optimize our scene representation by minimizing the residual between synthesized and ground truth observed images (d)."></p>
 <h1 id="CLIP"><a href="#CLIP" class="headerlink" title="CLIP"></a>CLIP</h1><p><strong>Contrastive Language-Image Pre-training 基于对比文本-图像对的预训练方法/模型</strong></p>
+<p><strong>用户草图</strong>：结合HED边界检测和一组强数据增强(随机阈值、随机屏蔽涂鸦、随机形态变换、随机非极大抑制)，从图像中合成人类涂鸦。从互联网上获得了50万对的涂鸦图像-caption数据对。使用前面的Canny模型作为初始化checkpoint，并使用Nvidia A100 80G用150个gpu小时训练。</p>
+<p><strong>工作原理和流程:</strong></p>
+<ol>
+<li>输入图像处理:TripoSR接受单张RGB图像作为输入。</li>
+<li>图像编码器:使用预训练的视觉变换器模型(如DINOv1)将输入图像编码为一组潜在向量。这些向量包含了图像的全局和局部特征，为重建3D对象提供了必要信息。</li>
+<li>图像到三平面(Triplane)解码器:将潜在向量转换为三平面-神经辐射场(NeRF)表示。平面-NeRF是一种紧凑且富有表现力的3D表示方法，适合表示具有复杂形状和纹理的物体。</li>
+<li>NeRF模型:由多层感知器(MLPs)堆叠而成，负责预测空间中3D点的颜色和密度。\</li>
+<li>渲染和训练:模型在训练过程中不依赖于相机参数，而是在训练和推理时“猜测”相机参数，以增强模型对野外输入图像的鲁棒性。</li>
+</ol>
 </div>
         </div>
         
@@ -310,7 +319,7 @@ Shap-E模型的关键思路是通过两个阶段的训练来生成3D图像。首
                     
                 </div>
                 <div class="pull-date">
-                    <time datetime="2024-03-26T00:54:23.418Z" itemprop="dateModified">Last modify：2024-03-26</time>
+                    <time datetime="2024-03-28T16:04:39.915Z" itemprop="dateModified">Last modify：2024-03-29</time>
                 </div>
             </div>
         </footer>
@@ -322,6 +331,10 @@ Shap-E模型的关键思路是通过两个阶段的训练来生成3D图像。首
                 <a title=" Compilation Principle" href="/2023/06/21/Compilation-principle/">&lt; older</a>
             </div>
             
+            
+            <div class="nav-next clearfix">
+                <a title=" 近期计划看的内容" href="/2024/05/05/machine-learning/">Newer &gt;</a>
+            </div>
             
         </nav>
     
@@ -357,7 +370,7 @@ Shap-E模型的关键思路是通过两个阶段的训练来生成3D图像。首
                 Post
             </span>
             <span class="count">
-                53
+                55
             </span>
         </a>
         <a class="meta-item" href="/categories/">
@@ -373,7 +386,7 @@ Shap-E模型的关键思路是通过两个阶段的训练来生成3D图像。首
                 Tag
             </span>
             <span class="count">
-                19
+                20
             </span>
         </a>
     </div>
@@ -393,7 +406,7 @@ Shap-E模型的关键思路是通过两个阶段的训练来生成3D图像。首
   <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
     <h4 class="widget-title"><i class="fa fa-tags"></i>Tagcloud</h4>
       <div class="tag-clouds">
-        <a href="/tags/Algorithm/" style="font-size: 0.6em;">Algorithm</a> <a href="/tags/Anecdote/" style="font-size: 0.6em;">Anecdote</a> <a href="/tags/CV/" style="font-size: 0.6em;">CV</a> <a href="/tags/Craniofacial-Registration/" style="font-size: 0.6em;">Craniofacial Registration</a> <a href="/tags/DL/" style="font-size: 0.8em;">DL</a> <a href="/tags/Emotion/" style="font-size: 0.68em;">Emotion</a> <a href="/tags/Feature-Point-Punctuation-Algorithm/" style="font-size: 0.72em;">Feature Point Punctuation Algorithm</a> <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/Latex/" style="font-size: 0.64em;">Latex</a> <a href="/tags/Literature/" style="font-size: 0.72em;">Literature</a> <a href="/tags/ML/" style="font-size: 0.68em;">ML</a> <a href="/tags/Mathematical-Modeling/" style="font-size: 0.64em;">Mathematical Modeling</a> <a href="/tags/OpenAI/" style="font-size: 0.6em;">OpenAI</a> <a href="/tags/Philosophy/" style="font-size: 0.6em;">Philosophy</a> <a href="/tags/Python/" style="font-size: 0.6em;">Python</a> <a href="/tags/Undergraduate-Courses/" style="font-size: 0.76em;">Undergraduate Courses</a> <a href="/tags/Undergraduate-courses/" style="font-size: 0.6em;">Undergraduate courses</a>
+        <a href="/tags/Sketch-to-3D/" style="font-size: 0.6em;">-Sketch-to-3D</a> <a href="/tags/Algorithm/" style="font-size: 0.6em;">Algorithm</a> <a href="/tags/Anecdote/" style="font-size: 0.6em;">Anecdote</a> <a href="/tags/CV/" style="font-size: 0.6em;">CV</a> <a href="/tags/Craniofacial-Registration/" style="font-size: 0.6em;">Craniofacial Registration</a> <a href="/tags/DL/" style="font-size: 0.8em;">DL</a> <a href="/tags/Emotion/" style="font-size: 0.68em;">Emotion</a> <a href="/tags/Feature-Point-Punctuation-Algorithm/" style="font-size: 0.72em;">Feature Point Punctuation Algorithm</a> <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/Latex/" style="font-size: 0.64em;">Latex</a> <a href="/tags/Literature/" style="font-size: 0.72em;">Literature</a> <a href="/tags/ML/" style="font-size: 0.72em;">ML</a> <a href="/tags/Mathematical-Modeling/" style="font-size: 0.64em;">Mathematical Modeling</a> <a href="/tags/OpenAI/" style="font-size: 0.6em;">OpenAI</a> <a href="/tags/Philosophy/" style="font-size: 0.6em;">Philosophy</a> <a href="/tags/Python/" style="font-size: 0.6em;">Python</a> <a href="/tags/Undergraduate-Courses/" style="font-size: 0.76em;">Undergraduate Courses</a>
       </div>
   </aside>
 
@@ -404,6 +417,18 @@ Shap-E模型的关键思路是通过两个阶段的训练来生成3D图像。首
   <div class="tab-content">
       <ul class="list-group">
         
+        
+          
+          
+            <a class="list-group-item" href="/2024/05/15/240514/"><i class="fa  fa-book"></i> A Peek at Representations and Neural  Architectures for 3D Generative Models</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2024/05/05/machine-learning/"><i class="fa  fa-book"></i> 近期计划看的内容</a>
+            
+          
         
           
           
@@ -424,17 +449,9 @@ Shap-E模型的关键思路是通过两个阶段的训练来生成3D图像。首
           
         
           
-          
-            <a class="list-group-item" href="/2023/06/15/software-engineering/"><i class="fa  fa-book"></i> Software Engineering Review</a>
             
           
-        
-          
-          
-            <a class="list-group-item" href="/2023/05/27/cet6/"><i class="fa  fa-book"></i> CET6</a>
             
-          
-        
           
             
           
