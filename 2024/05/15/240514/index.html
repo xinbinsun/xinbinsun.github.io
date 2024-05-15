@@ -14,7 +14,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <meta name="format-detection" content="telphone=no, email=no" />
   
-    <meta name="keywords" content="-Sketch-to-3D" />
+    <meta name="keywords" content="Sketch-to-3D" />
   
   <meta name="description" content="特别感谢曹炎培在他的PowerPoint上做出的宝贵贡献，丰富了这篇博客文章。 3D生成模型包括三部分： 3D表示：显式表示：包括直接描述三维结构的点云、网格和体素网格。隐式表示：使用神经网络表示三维形状，该网络输出给定三维坐标的值（例如，有符号距离函数或占用率）。混合表示：将显式和隐式表示相结合，以利用这两种方法的优势。 3D生成方法：前馈生成：使用前馈神经网络从输入直接生成3D模型。基于优化的">
 <meta property="og:type" content="article">
@@ -25,9 +25,9 @@
 <meta property="og:locale">
 <meta property="og:image" content="http://sunxinbin.cn/images/avatar.webp">
 <meta property="article:published_time" content="2024-05-15T00:00:00.000Z">
-<meta property="article:modified_time" content="2024-05-15T14:36:34.328Z">
+<meta property="article:modified_time" content="2024-05-15T14:38:22.569Z">
 <meta property="article:author" content="孙新斌">
-<meta property="article:tag" content="-Sketch-to-3D">
+<meta property="article:tag" content="Sketch-to-3D">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://sunxinbin.cn/images/avatar.webp">
   
@@ -189,7 +189,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>This article has been edited <time datetime="1715783794328"></time> ago, and some of its content might need to be updated.</p></div>
+                <div class="text"><p>This article has been edited <time datetime="1715783902569"></time> ago, and some of its content might need to be updated.</p></div>
             </div>
             
             
@@ -200,9 +200,9 @@
 <li><h4 id="3D表示："><a href="#3D表示：" class="headerlink" title="3D表示："></a>3D表示：</h4><strong>显式表示：</strong>包括直接描述三维结构的点云、网格和体素网格。<br><strong>隐式表示：</strong>使用神经网络表示三维形状，该网络输出给定三维坐标的值（例如，有符号距离函数或占用率）。<br><strong>混合表示：</strong>将显式和隐式表示相结合，以利用这两种方法的优势。</li>
 <li><h4 id="3D生成方法："><a href="#3D生成方法：" class="headerlink" title="3D生成方法："></a>3D生成方法：</h4><strong>前馈生成：</strong>使用前馈神经网络从输入直接生成3D模型。<br><strong>基于优化的生成：</strong>包括迭代优化以生成3D模型，通常使用可微分渲染技术。<br><strong>过程生成：</strong>使用过程规则和算法生成三维模型，允许创建复杂而详细的结构。<br><strong>生成新视图合成：</strong>利用神经渲染等技术，专注于从有限的输入图像集生成场景的新视图。</li>
 <li><h4 id="数据集：3D数据、多视角图像、单张图像"><a href="#数据集：3D数据、多视角图像、单张图像" class="headerlink" title="数据集：3D数据、多视角图像、单张图像"></a>数据集：3D数据、多视角图像、单张图像</h4></li>
-<li><h4 id="应用：3D人脸生成、3D对象生成、3D场景生成"><a href="#应用：3D人脸生成、3D对象生成、3D场景生成" class="headerlink" title="应用：3D人脸生成、3D对象生成、3D场景生成"></a>应用：3D人脸生成、3D对象生成、3D场景生成</h4><h2 id="未来挑战："><a href="#未来挑战：" class="headerlink" title="未来挑战："></a>未来挑战：</h2></li>
+<li><h4 id="应用：3D人脸生成、3D对象生成、3D场景生成"><a href="#应用：3D人脸生成、3D对象生成、3D场景生成" class="headerlink" title="应用：3D人脸生成、3D对象生成、3D场景生成"></a>应用：3D人脸生成、3D对象生成、3D场景生成</h4></li>
 </ol>
-<p><strong>数据稀缺性：</strong>与2D图像不同，3D数据集不那么丰富，也更难获取。<br><strong>质量评估：</strong>由于需要多视图一致性和逼真的渲染，评估3D模型的质量更加复杂。</p>
+<h2 id="未来挑战："><a href="#未来挑战：" class="headerlink" title="未来挑战："></a>未来挑战：</h2><p><strong>数据稀缺性：</strong>与2D图像不同，3D数据集不那么丰富，也更难获取。<br><strong>质量评估：</strong>由于需要多视图一致性和逼真的渲染，评估3D模型的质量更加复杂。</p>
 <p><strong>在视觉信息/测量中，由概率预测性的3D生成，到单视角图像预测，再到稀疏视图预测，直到拥有硬件设备扫描的确定性3D重建，3D测量的具体信息逐渐增加，反方向则逐渐减少。</strong></p>
 <h4 id="3D生成AI的关键：从大规模语言模型和2D生成AI中获取成功经验"><a href="#3D生成AI的关键：从大规模语言模型和2D生成AI中获取成功经验" class="headerlink" title="3D生成AI的关键：从大规模语言模型和2D生成AI中获取成功经验"></a>3D生成AI的关键：从大规模语言模型和2D生成AI中获取成功经验</h4><ol>
 <li><strong>扩大规模</strong><ul>
@@ -513,10 +513,10 @@
             <div class="footer-tag clearfix">
                 <div class="pull-left">
                 <i class="fa fa-tags"></i>
-                    <a class="tag-none-link" href="/tags/Sketch-to-3D/" rel="tag">-Sketch-to-3D</a>
+                    <a class="tag-none-link" href="/tags/Sketch-to-3D/" rel="tag">Sketch-to-3D</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2024-05-15T14:36:34.328Z" itemprop="dateModified">Last modify：2024-05-15</time>
+                    <time datetime="2024-05-15T14:38:22.569Z" itemprop="dateModified">Last modify：2024-05-15</time>
                 </div>
             </div>
         </footer>
@@ -599,7 +599,7 @@
   <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
     <h4 class="widget-title"><i class="fa fa-tags"></i>Tagcloud</h4>
       <div class="tag-clouds">
-        <a href="/tags/Sketch-to-3D/" style="font-size: 0.6em;">-Sketch-to-3D</a> <a href="/tags/Algorithm/" style="font-size: 0.6em;">Algorithm</a> <a href="/tags/Anecdote/" style="font-size: 0.6em;">Anecdote</a> <a href="/tags/CV/" style="font-size: 0.6em;">CV</a> <a href="/tags/Craniofacial-Registration/" style="font-size: 0.6em;">Craniofacial Registration</a> <a href="/tags/DL/" style="font-size: 0.8em;">DL</a> <a href="/tags/Emotion/" style="font-size: 0.68em;">Emotion</a> <a href="/tags/Feature-Point-Punctuation-Algorithm/" style="font-size: 0.72em;">Feature Point Punctuation Algorithm</a> <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/Latex/" style="font-size: 0.64em;">Latex</a> <a href="/tags/Literature/" style="font-size: 0.72em;">Literature</a> <a href="/tags/ML/" style="font-size: 0.72em;">ML</a> <a href="/tags/Mathematical-Modeling/" style="font-size: 0.64em;">Mathematical Modeling</a> <a href="/tags/OpenAI/" style="font-size: 0.6em;">OpenAI</a> <a href="/tags/Philosophy/" style="font-size: 0.6em;">Philosophy</a> <a href="/tags/Python/" style="font-size: 0.6em;">Python</a> <a href="/tags/Undergraduate-Courses/" style="font-size: 0.76em;">Undergraduate Courses</a>
+        <a href="/tags/Algorithm/" style="font-size: 0.6em;">Algorithm</a> <a href="/tags/Anecdote/" style="font-size: 0.6em;">Anecdote</a> <a href="/tags/CV/" style="font-size: 0.6em;">CV</a> <a href="/tags/Craniofacial-Registration/" style="font-size: 0.6em;">Craniofacial Registration</a> <a href="/tags/DL/" style="font-size: 0.8em;">DL</a> <a href="/tags/Emotion/" style="font-size: 0.68em;">Emotion</a> <a href="/tags/Feature-Point-Punctuation-Algorithm/" style="font-size: 0.72em;">Feature Point Punctuation Algorithm</a> <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/Latex/" style="font-size: 0.64em;">Latex</a> <a href="/tags/Literature/" style="font-size: 0.72em;">Literature</a> <a href="/tags/ML/" style="font-size: 0.72em;">ML</a> <a href="/tags/Mathematical-Modeling/" style="font-size: 0.64em;">Mathematical Modeling</a> <a href="/tags/OpenAI/" style="font-size: 0.6em;">OpenAI</a> <a href="/tags/Philosophy/" style="font-size: 0.6em;">Philosophy</a> <a href="/tags/Python/" style="font-size: 0.6em;">Python</a> <a href="/tags/Sketch-to-3D/" style="font-size: 0.6em;">Sketch-to-3D</a> <a href="/tags/Undergraduate-Courses/" style="font-size: 0.76em;">Undergraduate Courses</a>
       </div>
   </aside>
 
