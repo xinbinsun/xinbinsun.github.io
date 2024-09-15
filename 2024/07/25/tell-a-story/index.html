@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="Chinese/English">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/avatar.webp">
+  
+  <title>讲成一个故事 | Neo Sun</title>
+  <meta name="author" content="孙新斌" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="科研" />
+  
+  <meta name="description" content="SketchDream: Sketch-based Text-to-3D Generation and Editingpaper    code 摘要图1展示的SketchDream系统支持通过二维草图来生成和编辑高质量的三维内容。生成部分包括：草图结合文字提示生成3D内容；编辑部分则是基于真实模型重建的NeRFs进行草图编辑。 背景：目前的基于文本生成三维内容的方法缺乏几何控制，这面临着2D到3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="讲成一个故事">
+<meta property="og:url" content="http://sunxinbin.cn/2024/07/25/tell-a-story/index.html">
+<meta property="og:site_name" content="Neo Sun">
+<meta property="og:description" content="SketchDream: Sketch-based Text-to-3D Generation and Editingpaper    code 摘要图1展示的SketchDream系统支持通过二维草图来生成和编辑高质量的三维内容。生成部分包括：草图结合文字提示生成3D内容；编辑部分则是基于真实模型重建的NeRFs进行草图编辑。 背景：目前的基于文本生成三维内容的方法缺乏几何控制，这面临着2D到3">
+<meta property="og:locale">
+<meta property="og:image" content="http://sunxinbin.cn/images/avatar.webp">
+<meta property="article:published_time" content="2024-07-24T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-08-15T04:21:28.766Z">
+<meta property="article:author" content="孙新斌">
+<meta property="article:tag" content="科研">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://sunxinbin.cn/images/avatar.webp">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>Archives</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>Search Engine</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>About</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            <li><a href="https://sunxinbin.cn">Blog</a></li>
+                                                        
+                                                    
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://github.com/xinbinsun">Github</a></li>
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Neo Sun</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Neo Sun</h2> <br />
+                        <span>What&#39;s past is prologue</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://sunxinbin.cn/2024/07/25/tell-a-story/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">讲成一个故事</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2024-07-24T16:00:00.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2024-07-25</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> Author <span itemprop="name">孙新斌</span>
+                </li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~2.69K
+                    
+                    words
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>This article has been edited <time datetime="1723695688766"></time> ago, and some of its content might need to be updated.</p></div>
+            </div>
+            
+            
+            
+            <hr />
+            <div itemprop="articleBody"><h1 id="SketchDream-Sketch-based-Text-to-3D-Generation-and-Editing"><a href="#SketchDream-Sketch-based-Text-to-3D-Generation-and-Editing" class="headerlink" title="SketchDream: Sketch-based Text-to-3D Generation and Editing"></a>SketchDream: Sketch-based Text-to-3D Generation and Editing</h1><p><strong><a target="_blank" rel="noopener" href="http://arxiv.org/abs/2405.06461">paper</a>    <a target="_blank" rel="noopener" href="https://github.com/IGLICT/SketchDream/tree/main">code</a></strong></p>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>图1展示的SketchDream系统支持通过二维草图来<strong>生成</strong>和<strong>编辑</strong>高质量的三维内容。生成部分包括：草图结合文字提示生成3D内容；编辑部分则是基于真实模型重建的NeRFs进行草图编辑。</p>
+<p>背景：目前的基于文本生成三维内容的方法缺乏几何控制，这面临着2D到3D翻译的歧义和多模态条件集成的挑战。同时，在任意视图中对三维模型进行进一步编辑时，很难保证高质量的生成效果，保持未编辑区域的完整性，并管理形状组件之间的相互作用。</p>
+<p>本文贡献了一个文本驱动的3D内容生成与编辑方法。该方法通过草图与NeRF实现了基于自由视图的局部编辑。</p>
+<p>创新点在于引入了一个基于草图的多视图图像生成扩散模型，利用深度引导建立空间对应关系，解决了2D到3D的挑战。</p>
+<p>方法采用由粗到细的处理方式：在粗略阶段，提供3D Masks标记编辑区域；在细致阶段，进行局部增强。</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><ol>
+<li>设计了基于草图的多视图图像生成扩散模型，以补充缺失的外观并将单视图草图传播到三维空间中。</li>
+<li>将输入的草图翻译成深度图，并利用深度图将草图变形为新的视图以建立3D对应关系。</li>
+<li>3D ControlNet生成3D一致的多视角图像。</li>
+<li>通过多视图扩散的3D SDS和文本到图像的2D ISM优化高质量NeRF模型。</li>
+<li>不足之处：依然存在一些编辑生成效果不佳的样例，例如生成过于奇怪的情况；难以实现灯光、颜色、材质的细节控制；生成和编辑的时间较长（分别为1小时与1.5小时）。</li>
+</ol>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><strong>段一</strong>：陈述背景，包括当前的情况和不足之处。</p>
+<p><strong>段二</strong>：分析国内外现状，重点讨论文本驱动生成的局限，进而引出本文的工作。</p>
+<p><strong>段三</strong>：讲述将草图引入过程中遇到的问题，以及现有相关方法的缺陷。</p>
+<p><strong>段四</strong>：讨论基于草图的编辑功能，阐述现有问题和相关方法的不足。</p>
+<p><strong>段五</strong>：为了克服上述问题，介绍本文的工作，包括解决的难题、设计的方案以及具体的实现方法。</p>
+<p><strong>段六</strong>：说明本文工作的主要作用，详细描述其框架的具体内容和流程。</p>
+<p><strong>段七</strong>：列出本文的贡献点。</p>
+<h2 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h2><p><strong>基于草图的3D生成</strong>：</p>
+<ul>
+<li><strong>段一</strong>：从早期的检索方法到深度学习发展后的各种方法，并陈述这些方法的局限性。</li>
+<li><strong>段二</strong>：介绍本文的方法及其优点。</li>
+</ul>
+<p><strong>基于文本到图像的3D生成</strong>：</p>
+<ul>
+<li><strong>段一</strong>：从扩散模型到3D表示，探讨预训练2D扩散进行SDS优化等方法的不足，并说明本文方法的优点。</li>
+<li><strong>段二</strong>：讨论3D生成的可控性，列举现有方法如make-it-3D、magic123、ImageDream、MVControl的不足。</li>
+</ul>
+<p><strong>3D内容编辑</strong>：</p>
+<ul>
+<li><strong>段一</strong>：分析几何编辑等方法的现状，并说明与现有作品相比，本文方法如何支持基于单视图草图的编辑，实现更复杂的编辑操作，如可控的几何修改。</li>
+</ul>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ul>
+<li><strong>MVDream</strong>：基于该框架生成多视角图像，为草图到3D内容生成与编辑提供基础支持。</li>
+<li><strong>Score Distillation Sampling (SDS)</strong>：用于通过2D扩散模型进行文本到3D的生成优化，确保生成的3D模型质量与一致性。</li>
+</ul>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>介绍基于草图的文本到3D内容生成和编辑框架，细分如下：</p>
+<ol>
+<li><p><strong>多视图扩散模型</strong>：引入一个基于草图的多视图扩散模型。该模型通过预测草图扭曲的深度图来建立空间对应关系，并生成逼真的多视图图像。</p>
+</li>
+<li><p><strong>SDS与多视图扩散模型的协作</strong>：多视图扩散模型与SDS协作，以应用3D约束和草图控制。同时，预训练的2D文本到图像扩散模型用于增强生成内容的外观细节。</p>
+</li>
+<li><p><strong>草图编辑框架</strong>：基于草图的编辑框架展示了其在局部编辑中的有效性，同时能够保留未编辑区域的原始特征。</p>
+</li>
+</ol>
+<h3 id="4-1-基于草图的多视角扩散模型"><a href="#4-1-基于草图的多视角扩散模型" class="headerlink" title="4.1 基于草图的多视角扩散模型"></a>4.1 基于草图的多视角扩散模型</h3><ul>
+<li><p><strong>多视角生成</strong>：对MVDream主干网络进行修改，生成4个不同视角的图像，同时添加草图图像作为输入。</p>
+</li>
+<li><p><strong>深度驱动</strong>：段一描述先前的工作，引出本文内容。段二介绍所构建的深度图生成扩散模型，将草图与文本提示作为输入，输出相应的深度图。</p>
+</li>
+<li><p><strong>3D注意力控制模块</strong>：应用ControlNet于预训练的MVDream中，仅输入草图和一个稍微扭曲的草图，其他三个视角为空图像，生成多视角图像。</p>
+</li>
+<li><p><strong>训练过程</strong>：</p>
+<ol>
+<li>深度生成模型：基于2D ControlNet，将深度图代替彩色图像，使用Objaverse数据集，成对草图提取，修复VAE和ControlNet分支，训练文本到图像的UNet。</li>
+<li>基于草图的多视角生成模型：给定多视图图像和草图的数据集，输入包括五张图像与对应相机条件、两张草图和文本。</li>
+</ol>
+</li>
+</ul>
+<h3 id="4-2-基于草图的3D生成"><a href="#4-2-基于草图的3D生成" class="headerlink" title="4.2 基于草图的3D生成"></a>4.2 基于草图的3D生成</h3><ul>
+<li>段一：由于4.1生成的图像存在问题，利用SDS优化，渲染五个视角的图像：草图视图图像用于控制几何图形，四个随机采样视图图像用于优化3D NeRF表示。</li>
+</ul>
+<h3 id="4-3-基于草图的3D编辑"><a href="#4-3-基于草图的3D编辑" class="headerlink" title="4.3 基于草图的3D编辑"></a>4.3 基于草图的3D编辑</h3><ul>
+<li>段一：支持对生成或重建的3D模型的NeRF进行基于草图的本地编辑，设计了两种编辑阶段。</li>
+</ul>
+<h4 id="4-3-1-粗略阶段编辑"><a href="#4-3-1-粗略阶段编辑" class="headerlink" title="4.3.1 粗略阶段编辑"></a>4.3.1 粗略阶段编辑</h4><ul>
+<li>使用2D mask转换至3D空间，结合cylinder mesh模型。手绘2D草图，用户定义最大和最小深度值，渲染五个视图图像以优化NeRF。相机条件中渲染3D蒙版模型，定义图像损失。</li>
+</ul>
+<h4 id="4-3-2-精细阶段编辑"><a href="#4-3-2-精细阶段编辑" class="headerlink" title="4.3.2 精细阶段编辑"></a>4.3.2 精细阶段编辑</h4><ul>
+<li>基于4.3.1生成的初始编辑结果，解决包含的不希望的更改，得到更精确的3D蒙版。将NeRF转换为Mesh，手动细化。提出局部增强策略，在局部编辑区域中单独添加扩散约束和注意力机制；利用精细阶段的2D扩散损失来改善细节。</li>
+</ul>
+<h2 id="评估"><a href="#评估" class="headerlink" title="评估"></a>评估</h2><ul>
+<li><strong>实施细节</strong>：使用两张A6000显卡进行训练，网络参数设置详述。在单张A100上生成图像需要1至1.3小时。</li>
+</ul>
+<h3 id="5-1-结果"><a href="#5-1-结果" class="headerlink" title="5.1 结果"></a>5.1 结果</h3><ul>
+<li><strong>段一</strong>：展示基于草图生成的效果，说明其质量与细节表现力。</li>
+<li><strong>段二</strong>：展示基于草图编辑的效果，展示编辑精度与局部修改的效果。</li>
+</ul>
+<h3 id="5-2-对比"><a href="#5-2-对比" class="headerlink" title="5.2 对比"></a>5.2 对比</h3><ul>
+<li><strong>基于草图生成</strong>：与直观的baseline进行比较，突出模型的优势。</li>
+<li><strong>基于草图编辑</strong>：支持基于草图和文本对真实对象进行本地编辑，并进行可视化对比。</li>
+<li><strong>定量研究</strong>：使用CLIP评估和用户评分进行量化分析。</li>
+</ul>
+<h3 id="5-3-消融研究"><a href="#5-3-消融研究" class="headerlink" title="5.3 消融研究"></a>5.3 消融研究</h3><ul>
+<li><strong>段一</strong>：介绍进行了哪些实验。</li>
+<li><strong>段二</strong>：分析深度图预测与草图扭曲的作用；讨论3D注意力ControlNet的贡献。</li>
+<li><strong>段三</strong>：评估SDS损失与2D损失的作用。</li>
+<li><strong>段四</strong>：分析在草图编辑中的局部增强策略的效果。</li>
+</ul>
+<h3 id="5-4-用户研究"><a href="#5-4-用户研究" class="headerlink" title="5.4 用户研究"></a>5.4 用户研究</h3><ul>
+<li><strong>段一</strong>：对41名调查者进行了用户验证，展示方法的有效性，绘制箱型图，并进行单因素方差分析与T检验。</li>
+<li><strong>段二</strong>：将草图编辑与SKED方法进行对比，采用与段一类似的方法阐述结果，突出本文方法的优势。</li>
+</ul>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2></div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">This work is licensed under <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</a></h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> Share</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://sunxinbin.cn/2024/07/25/tell-a-story/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://sunxinbin.cn/2024/07/25/tell-a-story/";
+            const title         = "「讲成一个故事」";
+            const excerpt       = `SketchDream: Sketch-based Text-to-3D Generation and Editingpaper    code
+摘要图1展示的SketchDream系统支持通过二维草图来生成和编辑高质量的三维内容。生...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/%E7%A7%91%E7%A0%94/" rel="tag">科研</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2024-08-15T04:21:28.766Z" itemprop="dateModified">Last modify：2024-08-15</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" 计算机图形学相关知识学习" href="/2024/07/15/computer-graphics/">&lt; older</a>
+            </div>
+            
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center">Computer Science & Technology</p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                Post
+            </span>
+            <span class="count">
+                58
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                Category
+            </span>
+            <span class="count">
+                10
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                Tag
+            </span>
+            <span class="count">
+                22
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>Categories List</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Craniofacial-Registration/">Craniofacial Registration</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DL/">DL</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Feature-Point-Punctuation-Algorithm/">Feature Point Punctuation Algorithm</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Literature/">Literature</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ML/">ML</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematical-Modeling/">Mathematical Modeling</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Philosophy/">Philosophy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Undergraduate-Courses/">Undergraduate Courses</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">2</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>Tagcloud</h4>
+      <div class="tag-clouds">
+        <a href="/tags/Algorithm/" style="font-size: 0.6em;">Algorithm</a> <a href="/tags/Anecdote/" style="font-size: 0.6em;">Anecdote</a> <a href="/tags/CV/" style="font-size: 0.6em;">CV</a> <a href="/tags/Craniofacial-Registration/" style="font-size: 0.6em;">Craniofacial Registration</a> <a href="/tags/DL/" style="font-size: 0.8em;">DL</a> <a href="/tags/Emotion/" style="font-size: 0.68em;">Emotion</a> <a href="/tags/Feature-Point-Punctuation-Algorithm/" style="font-size: 0.72em;">Feature Point Punctuation Algorithm</a> <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/Latex/" style="font-size: 0.64em;">Latex</a> <a href="/tags/Literature/" style="font-size: 0.72em;">Literature</a> <a href="/tags/ML/" style="font-size: 0.72em;">ML</a> <a href="/tags/Mathematical-Modeling/" style="font-size: 0.64em;">Mathematical Modeling</a> <a href="/tags/OpenAI/" style="font-size: 0.6em;">OpenAI</a> <a href="/tags/Philosophy/" style="font-size: 0.6em;">Philosophy</a> <a href="/tags/Python/" style="font-size: 0.6em;">Python</a> <a href="/tags/Sketch-to-3D/" style="font-size: 0.6em;">Sketch-to-3D</a> <a href="/tags/Undergraduate-Courses/" style="font-size: 0.76em;">Undergraduate Courses</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>Recent posts</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2024/07/25/tell-a-story/"><i class="fa  fa-book"></i> 讲成一个故事</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2024/07/15/computer-graphics/"><i class="fa  fa-book"></i> 计算机图形学相关知识学习</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2024/07/02/GAMES/"><i class="fa  fa-book"></i> 计算机图形学相关内容学习</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2024/06/16/hello-world/"><i class="fa  fa-book"></i> My first blog</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2024/05/15/240514/"><i class="fa  fa-book"></i> A Peek at Representations and Neural  Architectures for 3D Generative Models</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        <li><a href="mailto:2332431354@qq.com"><i class="fa fa-envelope"></i></a></li>
+                        
+                        
+                        
+                        
+                        <li><a target="_blank" rel="me" href="https:///@SunXinbin"><i class="fa fa fa-share-alt-square"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/xinbinsun"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2024 Neo Sun Copyright.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by 孙新斌.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            <li><a href="https://beian.miit.gov.cn" rel="external nofollow" target="_blank">鲁ICP备23010101号</a></li>
+                            <li><a href="http://www.beian.gov.cn" rel="external nofollow" target="_blank"><img src="/images/psr.webp" width="12" height="12" loading="lazy" decoding="auto" />鲁公网安备371402000348</a></li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>

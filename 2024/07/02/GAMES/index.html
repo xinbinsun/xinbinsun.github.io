@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="Chinese/English">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/avatar.webp">
+  
+  <title>计算机图形学相关内容学习 | Neo Sun</title>
+  <meta name="author" content="孙新斌" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="计算机图形学" />
+  
+  <meta name="description" content="[TOC] 前置知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机图形学相关内容学习">
+<meta property="og:url" content="http://sunxinbin.cn/2024/07/02/GAMES/index.html">
+<meta property="og:site_name" content="Neo Sun">
+<meta property="og:description" content="[TOC] 前置知识">
+<meta property="og:locale">
+<meta property="og:image" content="http://sunxinbin.cn/images/avatar.webp">
+<meta property="article:published_time" content="2024-07-02T15:54:01.000Z">
+<meta property="article:modified_time" content="2024-07-10T11:53:36.516Z">
+<meta property="article:author" content="孙新斌">
+<meta property="article:tag" content="计算机图形学">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://sunxinbin.cn/images/avatar.webp">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>Archives</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>Search Engine</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>About</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            <li><a href="https://sunxinbin.cn">Blog</a></li>
+                                                        
+                                                    
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://github.com/xinbinsun">Github</a></li>
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Neo Sun</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Neo Sun</h2> <br />
+                        <span>What&#39;s past is prologue</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://sunxinbin.cn/2024/07/02/GAMES/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">计算机图形学相关内容学习</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2024-07-02T15:54:01.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2024-07-02</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> Author <span itemprop="name">孙新斌</span>
+                </li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~12.56K
+                    
+                    words
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>This article has been edited <time datetime="1720612416516"></time> ago, and some of its content might need to be updated.</p></div>
+            </div>
+            
+            
+            
+                <div class="kratos-post-inner-toc toc-div-class" >
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="toc-number">1.</span> <span class="toc-text">前置知识</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text"></span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%A0%E4%BD%95%E4%B8%8E%E4%BB%A3%E6%95%B0"><span class="toc-number">2.1.</span> <span class="toc-text">几何与代数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%9F%BA%E7%A1%80"><span class="toc-number">2.1.1.</span> <span class="toc-text">线性代数基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95"><span class="toc-number">2.1.2.</span> <span class="toc-text">计算几何</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%8B%E8%BD%AC%E5%8F%98%E6%8D%A2"><span class="toc-number">2.1.3.</span> <span class="toc-text">旋转变换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E6%88%90%E5%88%86%E5%88%86%E6%9E%90%E4%B8%8E%E5%A5%87%E5%BC%82%E5%80%BC%E5%88%86%E8%A7%A3"><span class="toc-number">2.1.4.</span> <span class="toc-text">主成分分析与奇异值分解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E6%96%B9%E6%B3%95"><span class="toc-number">2.2.</span> <span class="toc-text">数值方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%B1%82%E8%A7%A3"><span class="toc-number">2.3.</span> <span class="toc-text">微分方程求解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E4%B8%8E%E6%8B%93%E6%89%91"><span class="toc-number">2.4.</span> <span class="toc-text">优化与拓扑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%8B%E7%BC%A9%E6%84%9F%E7%9F%A5%EF%BC%88Compressed-Sensing%EF%BC%89"><span class="toc-number">2.5.</span> <span class="toc-text">压缩感知（Compressed Sensing）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="toc-number">2.5.0.1.</span> <span class="toc-text">基本原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E5%AD%A6%E6%8F%8F%E8%BF%B0"><span class="toc-number">2.5.0.2.</span> <span class="toc-text">数学描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E5%8A%BF"><span class="toc-number">2.5.0.3.</span> <span class="toc-text">优势</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E8%B7%B5%E5%BA%94%E7%94%A8"><span class="toc-number">2.5.0.4.</span> <span class="toc-text">实践应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E6%8C%91%E6%88%98"><span class="toc-number">2.5.0.5.</span> <span class="toc-text">主要挑战</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8"><span class="toc-number">2.6.</span> <span class="toc-text">相关工具使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CMake%E2%80%94%E2%80%94%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BA%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%B7%A5%E5%85%B7"><span class="toc-number">2.6.1.</span> <span class="toc-text">CMake——自动构建项目的工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AECGAL%E5%BA%93"><span class="toc-number">2.6.2.</span> <span class="toc-text">配置CGAL库</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AE%89%E8%A3%85-Boost"><span class="toc-number">2.6.2.1.</span> <span class="toc-text">一、安装 Boost</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E4%B8%8B%E8%BD%BD-Boost"><span class="toc-number">2.6.2.1.1.</span> <span class="toc-text">1. 下载 Boost</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%AE%89%E8%A3%85-Boost"><span class="toc-number">2.6.2.1.2.</span> <span class="toc-text">2. 安装 Boost</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">2.6.2.1.3.</span> <span class="toc-text">3. 配置环境变量</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%B8%8B%E8%BD%BD%E5%B9%B6%E5%AE%89%E8%A3%85-CGAL"><span class="toc-number">2.6.2.2.</span> <span class="toc-text">二、下载并安装 CGAL</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E4%B8%8B%E8%BD%BD-CGAL"><span class="toc-number">2.6.2.2.1.</span> <span class="toc-text">1. 下载 CGAL</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%AE%89%E8%A3%85-CGAL"><span class="toc-number">2.6.2.2.2.</span> <span class="toc-text">2. 安装 CGAL</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-1"><span class="toc-number">2.6.2.2.3.</span> <span class="toc-text">3. 配置环境变量</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E9%85%8D%E7%BD%AEVS2019%E5%B1%9E%E6%80%A7%E9%A1%B5"><span class="toc-number">2.6.2.3.</span> <span class="toc-text">三、配置VS2019属性页</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E8%BF%9E%E6%8E%A5%E5%99%A8-%E8%BE%93%E5%85%A5-%E9%99%84%E5%8A%A0%E4%BE%9D%E8%B5%96%E9%A1%B9"><span class="toc-number">2.6.2.3.1.</span> <span class="toc-text">1. 连接器 - 输入 - 附加依赖项</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-C-C-%E5%B8%B8%E8%A7%84-%E9%99%84%E5%8A%A0%E5%8C%85%E5%90%AB%E7%9B%AE%E5%BD%95"><span class="toc-number">2.6.2.3.2.</span> <span class="toc-text">2. C&#x2F;C++ - 常规 - 附加包含目录</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81"><span class="toc-number">2.6.2.3.3.</span> <span class="toc-text">3. 测试代码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEPCL%E5%BA%93"><span class="toc-number">2.6.3.</span> <span class="toc-text">配置PCL库</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%B1%9E%E6%80%A7-%E8%B0%83%E8%AF%95-%E7%8E%AF%E5%A2%83-%E6%B7%BB%E5%8A%A0"><span class="toc-number">2.6.3.0.1.</span> <span class="toc-text">配置属性-调试-环境-添加:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#C-C-%E5%B8%B8%E8%A7%84-SDL%E6%A3%80%E6%9F%A5-%E5%90%A6"><span class="toc-number">2.6.3.0.2.</span> <span class="toc-text">C&#x2F;C++-常规-SDL检查:否</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#C-C-%E8%AF%AD%E8%A8%80-%E7%AC%A6%E5%90%88%E6%A8%A1%E5%BC%8F-%E5%90%A6"><span class="toc-number">2.6.3.0.3.</span> <span class="toc-text">C&#x2F;C++-语言-符合模式:否</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#VC-%E7%9B%AE%E5%BD%95%E4%B8%80%E5%8C%85%E5%90%AB%E7%9B%AE%E5%BD%95%EF%BC%8C%E6%B7%BB%E5%8A%A07%E4%B8%AAinclude%E8%B7%AF%E5%BE%84"><span class="toc-number">2.6.3.0.4.</span> <span class="toc-text">VC++目录一包含目录，添加7个include路径</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#VC-%E7%9B%AE%E5%BD%95%E4%B8%80%E5%BA%93%E7%9B%AE%E5%BD%95%EF%BC%8C%E6%B7%BB%E5%8A%A06%E4%B8%AAib%E8%B7%AF%E5%BE%84"><span class="toc-number">2.6.3.0.5.</span> <span class="toc-text">VC++目录一库目录，添加6个ib路径</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#C-C-%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8-%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8%E5%AE%9A%E4%B9%89-%E6%B7%BB%E5%8A%A0"><span class="toc-number">2.6.3.0.6.</span> <span class="toc-text">C&#x2F;C++-预处理器-预处理器定义-添加:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5%E5%99%A8%E4%B8%80%E8%BE%93%E5%85%A5%E4%B8%80%E9%99%84%E5%8A%A0%E4%BE%9D%E8%B5%96%E9%A1%B9%E2%80%94%E6%B7%BB%E5%8A%A0PCL%E5%92%8CVTK%E7%9A%84%E7%9B%B8%E5%85%B3lib%E6%96%87%E4%BB%B6"><span class="toc-number">2.6.3.0.7.</span> <span class="toc-text">链接器一输入一附加依赖项—添加PCL和VTK的相关lib文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81"><span class="toc-number">2.6.3.0.8.</span> <span class="toc-text">测试代码</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B5"><span class="toc-number">3.</span> <span class="toc-text">项目实践</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">一些常见问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E9%93%BE%E6%8E%A5%E5%A4%B1%E6%95%88%E5%AF%BC%E8%87%B4%E7%9A%84%E5%8E%8B%E7%BC%A9%E5%8C%85%E9%97%AE%E9%A2%98"><span class="toc-number">4.0.1.</span> <span class="toc-text">下载链接失效导致的压缩包问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E5%8E%8B%E7%BC%A9%E5%8C%85%E9%97%AE%E9%A2%98%E5%90%8E%E7%9A%84DLL%E7%BC%BA%E5%A4%B1"><span class="toc-number">4.0.2.</span> <span class="toc-text">解决压缩包问题后的DLL缺失</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E8%B5%84%E6%BA%90"><span class="toc-number">5.</span> <span class="toc-text">相关资源</span></a></li></ol>
+                </div>
+            
+            <hr />
+            <div itemprop="articleBody"><p>[TOC]</p>
+<h1 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h1><h1 id><a href="#" class="headerlink" title></a><span id="more"></span></h1><p>在开始学习和应用以下内容之前，确保掌握相关的几何与代数基础、数值方法、微分方程求解、优化与拓扑以及相关工具的使用。</p>
+<h2 id="几何与代数"><a href="#几何与代数" class="headerlink" title="几何与代数"></a>几何与代数</h2><h3 id="线性代数基础"><a href="#线性代数基础" class="headerlink" title="线性代数基础"></a>线性代数基础</h3><p><strong>推荐资源：</strong></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ys411472E">线性代数的几何理解</a></li>
+</ul>
+<h3 id="计算几何"><a href="#计算几何" class="headerlink" title="计算几何"></a>计算几何</h3><p>计算几何涉及研究几何问题的计算方法和算法，包括点、线、面、多边形等对象的处理。</p>
+<h3 id="旋转变换"><a href="#旋转变换" class="headerlink" title="旋转变换"></a>旋转变换</h3><p>旋转变换主要研究物体在空间中的旋转操作，常用于计算机图形学和物理模拟中。</p>
+<h3 id="主成分分析与奇异值分解"><a href="#主成分分析与奇异值分解" class="headerlink" title="主成分分析与奇异值分解"></a>主成分分析与奇异值分解</h3><p>主成分分析（PCA）和奇异值分解（SVD）是数据降维和特征提取的重要方法，在机器学习和数据分析中广泛应用。</p>
+<h2 id="数值方法"><a href="#数值方法" class="headerlink" title="数值方法"></a>数值方法</h2><p>数值方法涉及求解数学问题的近似方法和算法，常用于科学计算和工程应用。</p>
+<h2 id="微分方程求解"><a href="#微分方程求解" class="headerlink" title="微分方程求解"></a>微分方程求解</h2><p>微分方程求解包括常微分方程和偏微分方程的数值和解析求解方法，在物理、工程和经济学等领域应用广泛。</p>
+<h2 id="优化与拓扑"><a href="#优化与拓扑" class="headerlink" title="优化与拓扑"></a>优化与拓扑</h2><p>优化与拓扑研究最优解的寻找和几何结构的性质，常用于机器学习、网络分析和图像处理。</p>
+<h2 id="压缩感知（Compressed-Sensing）"><a href="#压缩感知（Compressed-Sensing）" class="headerlink" title="压缩感知（Compressed Sensing）"></a>压缩感知（Compressed Sensing）</h2><p>压缩感知（Compressed Sensing，CS）是一种信号处理技术，旨在以远低于奈奎斯特采样定理所需的采样率捕捉和重建信号。它利用信号的稀疏性和随机投影的理论，实现高效的数据采集和重建。压缩感知的核心思想是通过少量线性测量来获取信号，并利用优化算法从这些测量中重建原始信号。</p>
+<h4 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h4><p>压缩感知基于以下三个主要原则：</p>
+<ol>
+<li><p><strong>稀疏性</strong>：信号在某个域（如时间域、频率域或小波域）中具有稀疏表示，即大部分系数为零或接近零。例如，自然图像在小波域中通常是稀疏的。</p>
+</li>
+<li><p><strong>不相关性</strong>：测量矩阵与信号的稀疏基不相关。这意味着测量矩阵的行向量与信号的稀疏表示的列向量之间的内积接近于零。随机矩阵（如高斯矩阵或Bernoulli矩阵）通常满足这个条件。</p>
+</li>
+<li><p><strong>非线性重建</strong>：通过求解一个优化问题，从少量的测量值中重建原始信号。通常采用凸优化方法，如(\ell_1)范数最小化来实现稀疏信号的重建。</p>
+</li>
+</ol>
+<h4 id="数学描述"><a href="#数学描述" class="headerlink" title="数学描述"></a>数学描述</h4><p>设信号$f(x) \in \mathbb{R}^N$在某个基${\Psi}$下具有稀疏表示，即${x} = \mathbf{\Psi} \mathbf{\theta}$，其中${\theta}$是稀疏系数向量。压缩感知通过线性测量获取信号：</p>
+<p>$f{y} = \mathbf{\Phi} \mathbf{x} = \mathbf{\Phi} \mathbf{\Psi} \mathbf{\theta}$</p>
+<p>其中，$y \in \mathbb{R}^M$是测量向量，${\Phi}$是测量矩阵，(M &lt; N)。</p>
+<p>重建信号可以通过求解以下优化问题来实现：</p>
+<p>$<br>\min_{\mathbf{\theta}} |\mathbf{\theta}|_1 \quad \text{s.t.} \quad \mathbf{y} = \mathbf{\Phi} \mathbf{\Psi} \mathbf{\theta}<br>$</p>
+<h4 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h4><ul>
+<li><strong>高效数据采集</strong>：能够在低采样率下获取信号，从而减少数据传输和存储的负担。</li>
+<li><strong>鲁棒性</strong>：对噪声和丢失数据具有较强的鲁棒性。</li>
+<li><strong>广泛应用</strong>：在图像处理、医学成像（如MRI）、雷达系统、压缩传感网络等领域具有广泛应用。</li>
+</ul>
+<h4 id="实践应用"><a href="#实践应用" class="headerlink" title="实践应用"></a>实践应用</h4><ol>
+<li><strong>医学成像</strong>：在MRI中，通过减少采样点来加快成像速度，同时保持图像质量。</li>
+<li><strong>图像处理</strong>：在图像压缩和去噪中，通过稀疏表示实现高效处理。</li>
+<li><strong>无线传感器网络</strong>：在资源受限的无线传感器网络中，通过减少数据传输量延长电池寿命。</li>
+</ol>
+<h4 id="主要挑战"><a href="#主要挑战" class="headerlink" title="主要挑战"></a>主要挑战</h4><ul>
+<li><strong>计算复杂度</strong>：重建算法通常需要求解复杂的优化问题，计算开销较大。</li>
+<li><strong>测量矩阵设计</strong>：选择合适的测量矩阵对重建性能影响较大。</li>
+</ul>
+<h2 id="相关工具使用"><a href="#相关工具使用" class="headerlink" title="相关工具使用"></a>相关工具使用</h2><h3 id="CMake——自动构建项目的工具"><a href="#CMake——自动构建项目的工具" class="headerlink" title="CMake——自动构建项目的工具"></a>CMake——自动构建项目的工具</h3><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">cmake_minimum_required(VERSION 3.10)</span><br><span class="line"><span class="comment">#设置此项目所需的最低CMake版本为3.10</span></span><br><span class="line">project(Rasterizer)</span><br><span class="line"><span class="comment">#定义项目名称为 &quot;Rasterizer&quot;</span></span><br><span class="line">find_package(OpenCV REQUIRED)</span><br><span class="line"><span class="comment">#查找并加载OpenCV库</span></span><br><span class="line">set(CMAKE_CXX_STANDARD 17)</span><br><span class="line"><span class="comment">#将C++标准设置为C++17</span></span><br><span class="line">include_directories(/usr/local/<span class="keyword">include</span>)</span><br><span class="line"><span class="comment">#添加包含目录</span></span><br><span class="line">add_executable(Rasterizer main.cpp rasterizer.hpp rasterizer.cpp Triangle.hpp Triangle.cpp)</span><br><span class="line"><span class="comment">#定义一个名为 &quot;Rasterizer&quot; 的可执行文件，并指定其源文件和头文件。CMake将会编译 main.cpp、rasterizer.cpp 和 Triangle.cpp，并将它们链接在一起生成可执行文件。</span></span><br><span class="line">target_link_libraries(Rasterizer $&#123;OpenCV_LIBRARIES&#125;)</span><br><span class="line"><span class="comment">#将OpenCV库链接到 &quot;Rasterizer&quot; 可执行文件。$&#123;OpenCV_LIBRARIES&#125; 是之前 find_package(OpenCV REQUIRED) 中找到的OpenCV库文件列表。</span></span><br></pre></td></tr></table></figure>
+<h3 id="配置CGAL库"><a href="#配置CGAL库" class="headerlink" title="配置CGAL库"></a>配置CGAL库</h3><h4 id="一、安装-Boost"><a href="#一、安装-Boost" class="headerlink" title="一、安装 Boost"></a>一、安装 Boost</h4><h5 id="1-下载-Boost"><a href="#1-下载-Boost" class="headerlink" title="1. 下载 Boost"></a>1. 下载 Boost</h5><p>从 Boost C++ Libraries - SourceForge 下载合适版本。根据 Visual Studio 版本选择相应的 Boost 版本：</p>
+<ul>
+<li>VC2015 对应 14.0</li>
+<li>VC2017 对应 14.1</li>
+<li>VC2019 对应 14.2</li>
+</ul>
+<p>例如，下载 <code>boost_1_76_0-msvc-14.2-64.exe</code>。</p>
+<h5 id="2-安装-Boost"><a href="#2-安装-Boost" class="headerlink" title="2. 安装 Boost"></a>2. 安装 Boost</h5><p>运行下载的 <code>boost_1_76_0-msvc-14.2-64.exe</code> 文件，将 Boost 安装到指定目录，例如：<code>D:\dev\boost_1_76_0</code>。</p>
+<h5 id="3-配置环境变量"><a href="#3-配置环境变量" class="headerlink" title="3. 配置环境变量"></a>3. 配置环境变量</h5><ol>
+<li>设置 Boost 的库目录和包含目录：<ul>
+<li>打开系统环境变量设置：<code>我的电脑</code> -&gt; <code>属性</code> -&gt; <code>高级系统设置</code> -&gt; <code>环境变量</code></li>
+<li>新建或编辑以下环境变量：<ul>
+<li><code>BOOST_LIBRARYDIR = D:\dev\boost_1_76_0\lib64-msvc-14.2</code></li>
+<li><code>BOOST_INCLUDEDIR = D:\dev\boost_1_76_0</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>将 Boost 的库路径添加到系统环境变量 <code>PATH</code> 中：<ul>
+<li>在系统环境变量 <code>PATH</code> 中，添加 <code>D:\dev\boost_1_76_0\lib64-msvc-14.2</code></li>
+</ul>
+</li>
+</ol>
+<h4 id="二、下载并安装-CGAL"><a href="#二、下载并安装-CGAL" class="headerlink" title="二、下载并安装 CGAL"></a>二、下载并安装 CGAL</h4><h5 id="1-下载-CGAL"><a href="#1-下载-CGAL" class="headerlink" title="1. 下载 CGAL"></a>1. 下载 CGAL</h5><p>从 <a target="_blank" rel="noopener" href="https://github.com/CGAL/cgal/releases">CGAL GitHub Releases</a> 页面下载 CGAL 安装程序，例如 <code>CGAL-5.0.2-Setup.exe</code>。</p>
+<h5 id="2-安装-CGAL"><a href="#2-安装-CGAL" class="headerlink" title="2. 安装 CGAL"></a>2. 安装 CGAL</h5><p>运行下载的 <code>CGAL-5.0.2-Setup.exe</code> 文件，按照安装向导完成安装。</p>
+<h5 id="3-配置环境变量-1"><a href="#3-配置环境变量-1" class="headerlink" title="3. 配置环境变量"></a>3. 配置环境变量</h5><p>安装完成后，将 CGAL 的 GMP 库路径添加到系统环境变量 <code>PATH</code> 中：</p>
+<ol>
+<li>打开系统环境变量设置：<code>我的电脑</code> -&gt; <code>属性</code> -&gt; <code>高级系统设置</code> -&gt; <code>环境变量</code></li>
+<li>在系统环境变量 <code>PATH</code> 中，添加 <code>D:\dev\CGAL-5.0.2\auxiliary\gmp\lib</code></li>
+</ol>
+<h4 id="三、配置VS2019属性页"><a href="#三、配置VS2019属性页" class="headerlink" title="三、配置VS2019属性页"></a>三、配置VS2019属性页</h4><h5 id="1-连接器-输入-附加依赖项"><a href="#1-连接器-输入-附加依赖项" class="headerlink" title="1. 连接器 - 输入 - 附加依赖项"></a>1. 连接器 - 输入 - 附加依赖项</h5><p>在 Visual Studio 中，配置项目属性页，添加以下附加依赖项：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">D:\dev\CGAL-5.0.2\auxiliary\gmp\lib\libmpfr-4.lib</span></span><br><span class="line"><span class="section">D:\dev\CGAL-5.0.2\auxiliary\gmp\lib\libgmp-10.lib</span></span><br></pre></td></tr></table></figure>
+<h5 id="2-C-C-常规-附加包含目录"><a href="#2-C-C-常规-附加包含目录" class="headerlink" title="2. C/C++ - 常规 - 附加包含目录"></a>2. C/C++ - 常规 - 附加包含目录</h5><p>在 Visual Studio 中，配置项目属性页，添加以下附加包含目录：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">D:\dev\CGAL-5.0.2\auxiliary\gmp\include</span></span><br><span class="line"><span class="section">D:\boost_1_76_0</span></span><br><span class="line"><span class="section">D:\dev\CGAL-5.0.2\include</span></span><br></pre></td></tr></table></figure>
+<h5 id="3-测试代码"><a href="#3-测试代码" class="headerlink" title="3. 测试代码"></a>3. 测试代码</h5><p>编写并运行以下测试代码，以确保配置正确并验证依赖项和包含目录的有效性。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;CGAL/Simple_cartesian.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> CGAL::Simple_cartesian&lt;<span class="type">double</span>&gt; Kernel;</span><br><span class="line"><span class="keyword">typedef</span> Kernel::Point_2 Point_2;</span><br><span class="line"><span class="keyword">typedef</span> Kernel::Segment_2 Segment_2;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">Point_2 <span class="title">p</span><span class="params">(<span class="number">1</span>, <span class="number">1</span>)</span>, <span class="title">q</span><span class="params">(<span class="number">10</span>, <span class="number">10</span>)</span></span>;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;p = &quot;</span> &lt;&lt; p &lt;&lt; std::endl;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;q = &quot;</span> &lt;&lt; q.<span class="built_in">x</span>() &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; q.<span class="built_in">y</span>() &lt;&lt; std::endl;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;sqdist(p,q) = &quot;</span></span><br><span class="line">        &lt;&lt; CGAL::<span class="built_in">squared_distance</span>(p, q) &lt;&lt; std::endl;</span><br><span class="line">    <span class="function">Segment_2 <span class="title">s</span><span class="params">(p, q)</span></span>;</span><br><span class="line">    <span class="function">Point_2 <span class="title">m</span><span class="params">(<span class="number">5</span>, <span class="number">9</span>)</span></span>;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;m = &quot;</span> &lt;&lt; m &lt;&lt; std::endl;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;sqdist(Segment_2(p,q), m) = &quot;</span></span><br><span class="line">        &lt;&lt; CGAL::<span class="built_in">squared_distance</span>(s, m) &lt;&lt; std::endl;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;p, q, and m &quot;</span>;</span><br><span class="line">    <span class="keyword">switch</span> (CGAL::<span class="built_in">orientation</span>(p, q, m)) &#123;</span><br><span class="line">    <span class="keyword">case</span> CGAL::COLLINEAR:</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;are collinear\n&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> CGAL::LEFT_TURN:</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;make a left turn\n&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> CGAL::RIGHT_TURN:</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;make a right turn\n&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot; midpoint(p,q) = &quot;</span> &lt;&lt; CGAL::<span class="built_in">midpoint</span>(p, q) &lt;&lt; std::endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="配置PCL库"><a href="#配置PCL库" class="headerlink" title="配置PCL库"></a>配置PCL库</h3><h5 id="配置属性-调试-环境-添加"><a href="#配置属性-调试-环境-添加" class="headerlink" title="配置属性-调试-环境-添加:"></a>配置属性-调试-环境-添加:</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PATH=D:\PCL 1.11.1\\bin;D:\PCL 1.11.1\\3rdParty\FLANN\bin;D:\PCL 1.11.1\\3rdParty\VTK\bin;D:\PCL 1.11.1\\3rdParty\OpenNI2\Tools</span><br></pre></td></tr></table></figure>
+<h5 id="C-C-常规-SDL检查-否"><a href="#C-C-常规-SDL检查-否" class="headerlink" title="C/C++-常规-SDL检查:否"></a>C/C++-常规-SDL检查:否</h5><h5 id="C-C-语言-符合模式-否"><a href="#C-C-语言-符合模式-否" class="headerlink" title="C/C++-语言-符合模式:否"></a>C/C++-语言-符合模式:否</h5><h5 id="VC-目录一包含目录，添加7个include路径"><a href="#VC-目录一包含目录，添加7个include路径" class="headerlink" title="VC++目录一包含目录，添加7个include路径"></a>VC++目录一包含目录，添加7个include路径</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">D:\PCL 1.11.1\include\pcl-1.11</span><br><span class="line">D:\PCL 1.11.1\3rdParty\Boost\include\boost-1_74</span><br><span class="line">D:\PCL 1.11.1\3rdParty\Eigen\eigen3</span><br><span class="line">D:\PCL 1.11.1\3rdParty\FLANN\include</span><br><span class="line">D:\PCL 1.11.1\3rdParty\OpenNI2\Include</span><br><span class="line">D:\PCL 1.11.1\3rdParty\Qhull\include</span><br><span class="line">D:\PCL 1.11.1\3rdParty\VTK\include\vtk-8.2</span><br></pre></td></tr></table></figure>
+<h5 id="VC-目录一库目录，添加6个ib路径"><a href="#VC-目录一库目录，添加6个ib路径" class="headerlink" title="VC++目录一库目录，添加6个ib路径"></a>VC++目录一库目录，添加6个ib路径</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">D:\PCL 1.11.1\lib</span><br><span class="line">D:\PCL 1.11.1\3rdParty\Boost\lib</span><br><span class="line">D:\PCL 1.11.1\3rdParty\FLANN\lib</span><br><span class="line">D:\PCL 1.11.1\3rdParty\OpenNI2\Lib</span><br><span class="line">D:\PCL 1.11.1\3rdParty\Qhull\lib</span><br><span class="line">D:\PCL 1.11.1\3rdParty\VTK\lib</span><br></pre></td></tr></table></figure>
+<h5 id="C-C-预处理器-预处理器定义-添加"><a href="#C-C-预处理器-预处理器定义-添加" class="headerlink" title="C/C++-预处理器-预处理器定义-添加:"></a>C/C++-预处理器-预处理器定义-添加:</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">BOOST_USE_WINDOWS_H</span><br><span class="line">NOMINMAX</span><br><span class="line">_CRT_SECURE_NO_DEPRECATE</span><br></pre></td></tr></table></figure>
+<h5 id="链接器一输入一附加依赖项—添加PCL和VTK的相关lib文件"><a href="#链接器一输入一附加依赖项—添加PCL和VTK的相关lib文件" class="headerlink" title="链接器一输入一附加依赖项—添加PCL和VTK的相关lib文件"></a>链接器一输入一附加依赖项—添加PCL和VTK的相关lib文件</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br></pre></td><td class="code"><pre><span class="line">pcl_commond.lib</span><br><span class="line">pcl_featuresd.lib</span><br><span class="line">pcl_filtersd.lib</span><br><span class="line">pcl_iod.lib</span><br><span class="line">pcl_io_plyd.lib</span><br><span class="line">pcl_kdtreed.lib</span><br><span class="line">pcl_keypointsd.lib</span><br><span class="line">pcl_mld.lib</span><br><span class="line">pcl_octreed.lib</span><br><span class="line">pcl_outofcored.lib</span><br><span class="line">pcl_peopled.lib</span><br><span class="line">pcl_recognitiond.lib</span><br><span class="line">pcl_registrationd.lib</span><br><span class="line">pcl_sample_consensusd.lib</span><br><span class="line">pcl_searchd.lib</span><br><span class="line">pcl_segmentationd.lib</span><br><span class="line">pcl_stereod.lib</span><br><span class="line">pcl_surfaced.lib</span><br><span class="line">pcl_trackingd.lib</span><br><span class="line">pcl_visualizationd.lib</span><br><span class="line">vtkChartsCore-8.2-gd.lib</span><br><span class="line">vtkCommonColor-8.2-gd.lib</span><br><span class="line">vtkCommonComputationalGeometry-8.2-gd.lib</span><br><span class="line">vtkCommonCore-8.2-gd.lib</span><br><span class="line">vtkCommonDataModel-8.2-gd.lib</span><br><span class="line">vtkCommonExecutionModel-8.2-gd.lib</span><br><span class="line">vtkCommonMath-8.2-gd.lib</span><br><span class="line">vtkCommonMisc-8.2-gd.lib</span><br><span class="line">vtkCommonSystem-8.2-gd.lib</span><br><span class="line">vtkCommonTransforms-8.2-gd.lib</span><br><span class="line">vtkDICOMParser-8.2-gd.lib</span><br><span class="line">vtkDomainsChemistry-8.2-gd.lib</span><br><span class="line">vtkDomainsChemistryOpenGL2-8.2-gd.lib</span><br><span class="line">vtkdoubleconversion-8.2-gd.lib</span><br><span class="line">vtkexodusII-8.2-gd.lib</span><br><span class="line">vtkexpat-8.2-gd.lib</span><br><span class="line">vtkFiltersAMR-8.2-gd.lib</span><br><span class="line">vtkFiltersCore-8.2-gd.lib</span><br><span class="line">vtkFiltersExtraction-8.2-gd.lib</span><br><span class="line">vtkFiltersFlowPaths-8.2-gd.lib</span><br><span class="line">vtkFiltersGeneral-8.2-gd.lib</span><br><span class="line">vtkFiltersGeneric-8.2-gd.lib</span><br><span class="line">vtkFiltersGeometry-8.2-gd.lib</span><br><span class="line">vtkFiltersHybrid-8.2-gd.lib</span><br><span class="line">vtkFiltersHyperTree-8.2-gd.lib</span><br><span class="line">vtkFiltersImaging-8.2-gd.lib</span><br><span class="line">vtkFiltersModeling-8.2-gd.lib</span><br><span class="line">vtkFiltersParallel-8.2-gd.lib</span><br><span class="line">vtkFiltersParallelImaging-8.2-gd.lib</span><br><span class="line">vtkFiltersPoints-8.2-gd.lib</span><br><span class="line">vtkFiltersProgrammable-8.2-gd.lib</span><br><span class="line">vtkFiltersSelection-8.2-gd.lib</span><br><span class="line">vtkFiltersSMP-8.2-gd.lib</span><br><span class="line">vtkFiltersSources-8.2-gd.lib</span><br><span class="line">vtkFiltersStatistics-8.2-gd.lib</span><br><span class="line">vtkFiltersTexture-8.2-gd.lib</span><br><span class="line">vtkFiltersTopology-8.2-gd.lib</span><br><span class="line">vtkFiltersVerdict-8.2-gd.lib</span><br><span class="line">vtkfreetype-8.2-gd.lib</span><br><span class="line">vtkGeovisCore-8.2-gd.lib</span><br><span class="line">vtkgl2ps-8.2-gd.lib</span><br><span class="line">vtkglew-8.2-gd.lib</span><br><span class="line">vtkGUISupportMFC-8.2-gd.lib</span><br><span class="line">vtkhdf5-8.2-gd.lib</span><br><span class="line">vtkhdf5_hl-8.2-gd.lib</span><br><span class="line">vtkImagingColor-8.2-gd.lib</span><br><span class="line">vtkImagingCore-8.2-gd.lib</span><br><span class="line">vtkImagingFourier-8.2-gd.lib</span><br><span class="line">vtkImagingGeneral-8.2-gd.lib</span><br><span class="line">vtkImagingHybrid-8.2-gd.lib</span><br><span class="line">vtkImagingMath-8.2-gd.lib</span><br><span class="line">vtkImagingMorphological-8.2-gd.lib</span><br><span class="line">vtkImagingSources-8.2-gd.lib</span><br><span class="line">vtkImagingStatistics-8.2-gd.lib</span><br><span class="line">vtkImagingStencil-8.2-gd.lib</span><br><span class="line">vtkInfovisCore-8.2-gd.lib</span><br><span class="line">vtkInfovisLayout-8.2-gd.lib</span><br><span class="line">vtkInteractionImage-8.2-gd.lib</span><br><span class="line">vtkInteractionStyle-8.2-gd.lib</span><br><span class="line">vtkInteractionWidgets-8.2-gd.lib</span><br><span class="line">vtkIOAMR-8.2-gd.lib</span><br><span class="line">vtkIOAsynchronous-8.2-gd.lib</span><br><span class="line">vtkIOCityGML-8.2-gd.lib</span><br><span class="line">vtkIOCore-8.2-gd.lib</span><br><span class="line">vtkIOEnSight-8.2-gd.lib</span><br><span class="line">vtkIOExodus-8.2-gd.lib</span><br><span class="line">vtkIOExport-8.2-gd.lib</span><br><span class="line">vtkIOExportOpenGL2-8.2-gd.lib</span><br><span class="line">vtkIOExportPDF-8.2-gd.lib</span><br><span class="line">vtkIOGeometry-8.2-gd.lib</span><br><span class="line">vtkIOImage-8.2-gd.lib</span><br><span class="line">vtkIOImport-8.2-gd.lib</span><br><span class="line">vtkIOInfovis-8.2-gd.lib</span><br><span class="line">vtkIOLegacy-8.2-gd.lib</span><br><span class="line">vtkIOLSDyna-8.2-gd.lib</span><br><span class="line">vtkIOMINC-8.2-gd.lib</span><br><span class="line">vtkIOMovie-8.2-gd.lib</span><br><span class="line">vtkIONetCDF-8.2-gd.lib</span><br><span class="line">vtkIOParallel-8.2-gd.lib</span><br><span class="line">vtkIOParallelXML-8.2-gd.lib</span><br><span class="line">vtkIOPLY-8.2-gd.lib</span><br><span class="line">vtkIOSegY-8.2-gd.lib</span><br><span class="line">vtkIOSQL-8.2-gd.lib</span><br><span class="line">vtkIOTecplotTable-8.2-gd.lib</span><br><span class="line">vtkIOVeraOut-8.2-gd.lib</span><br><span class="line">vtkIOVideo-8.2-gd.lib</span><br><span class="line">vtkIOXML-8.2-gd.lib</span><br><span class="line">vtkIOXMLParser-8.2-gd.lib</span><br><span class="line">vtkjpeg-8.2-gd.lib</span><br><span class="line">vtkjsoncpp-8.2-gd.lib</span><br><span class="line">vtklibharu-8.2-gd.lib</span><br><span class="line">vtklibxml2-8.2-gd.lib</span><br><span class="line">vtklz4-8.2-gd.lib</span><br><span class="line">vtklzma-8.2-gd.lib</span><br><span class="line">vtkmetaio-8.2-gd.lib</span><br><span class="line">vtkNetCDF-8.2-gd.lib</span><br><span class="line">vtkogg-8.2-gd.lib</span><br><span class="line">vtkParallelCore-8.2-gd.lib</span><br><span class="line">vtkpng-8.2-gd.lib</span><br><span class="line">vtkproj-8.2-gd.lib</span><br><span class="line">vtkpugixml-8.2-gd.lib</span><br><span class="line">vtkRenderingAnnotation-8.2-gd.lib</span><br><span class="line">vtkRenderingContext2D-8.2-gd.lib</span><br><span class="line">vtkRenderingContextOpenGL2-8.2-gd.lib</span><br><span class="line">vtkRenderingCore-8.2-gd.lib</span><br><span class="line">vtkRenderingExternal-8.2-gd.lib</span><br><span class="line">vtkRenderingFreeType-8.2-gd.lib</span><br><span class="line">vtkRenderingGL2PSOpenGL2-8.2-gd.lib</span><br><span class="line">vtkRenderingImage-8.2-gd.lib</span><br><span class="line">vtkRenderingLabel-8.2-gd.lib</span><br><span class="line">vtkRenderingLOD-8.2-gd.lib</span><br><span class="line">vtkRenderingOpenGL2-8.2-gd.lib</span><br><span class="line">vtkRenderingVolume-8.2-gd.lib</span><br><span class="line">vtkRenderingVolumeOpenGL2-8.2-gd.lib</span><br><span class="line">vtksqlite-8.2-gd.lib</span><br><span class="line">vtksys-8.2-gd.lib</span><br><span class="line">vtktheora-8.2-gd.lib</span><br><span class="line">vtktiff-8.2-gd.lib</span><br><span class="line">vtkverdict-8.2-gd.lib</span><br><span class="line">vtkViewsContext2D-8.2-gd.lib</span><br><span class="line">vtkViewsCore-8.2-gd.lib</span><br><span class="line">vtkViewsInfovis-8.2-gd.lib</span><br><span class="line">vtkzlib-8.2-gd.lib</span><br></pre></td></tr></table></figure>
+<h5 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;pcl/point_cloud.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;pcl/octree/octree.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;boost/thread/thread.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;pcl/visualization/pcl_visualizer.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span></span></span><br><span class="line"><span class="function"><span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>** argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">srand</span>((<span class="type">unsigned</span> <span class="type">int</span>)<span class="built_in">time</span>(<span class="literal">NULL</span>));</span><br><span class="line">	pcl::PointCloud&lt;pcl::PointXYZ&gt;::<span class="function">Ptr <span class="title">cloud</span><span class="params">(<span class="keyword">new</span> pcl::PointCloud&lt;pcl::PointXYZ&gt;)</span></span>;</span><br><span class="line">	<span class="comment">// 创建点云数据</span></span><br><span class="line">	cloud-&gt;width = <span class="number">1000</span>;</span><br><span class="line">	cloud-&gt;height = <span class="number">1</span>;</span><br><span class="line">	cloud-&gt;points.<span class="built_in">resize</span>(cloud-&gt;width * cloud-&gt;height);</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">size_t</span> i = <span class="number">0</span>; i &lt; cloud-&gt;points.<span class="built_in">size</span>(); ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		cloud-&gt;points[i].x = <span class="number">1024.0f</span> * <span class="built_in">rand</span>() / (RAND_MAX + <span class="number">1.0f</span>);</span><br><span class="line">		cloud-&gt;points[i].y = <span class="number">1024.0f</span> * <span class="built_in">rand</span>() / (RAND_MAX + <span class="number">1.0f</span>);</span><br><span class="line">		cloud-&gt;points[i].z = <span class="number">1024.0f</span> * <span class="built_in">rand</span>() / (RAND_MAX + <span class="number">1.0f</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	pcl::<span class="function">octree::OctreePointCloudSearch&lt;pcl::PointXYZ&gt; <span class="title">octree</span><span class="params">(<span class="number">0.1</span>)</span></span>;</span><br><span class="line">	octree.<span class="built_in">setInputCloud</span>(cloud);</span><br><span class="line">	octree.<span class="built_in">addPointsFromInputCloud</span>();</span><br><span class="line">	pcl::PointXYZ searchPoint;</span><br><span class="line">	searchPoint.x = <span class="number">1024.0f</span> * <span class="built_in">rand</span>() / (RAND_MAX + <span class="number">1.0f</span>);</span><br><span class="line">	searchPoint.y = <span class="number">1024.0f</span> * <span class="built_in">rand</span>() / (RAND_MAX + <span class="number">1.0f</span>);</span><br><span class="line">	searchPoint.z = <span class="number">1024.0f</span> * <span class="built_in">rand</span>() / (RAND_MAX + <span class="number">1.0f</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//半径内近邻搜索</span></span><br><span class="line">	vector&lt;<span class="type">int</span>&gt;pointIdxRadiusSearch;</span><br><span class="line">	vector&lt;<span class="type">float</span>&gt;pointRadiusSquaredDistance;</span><br><span class="line">	<span class="type">float</span> radius = <span class="number">256.0f</span> * <span class="built_in">rand</span>() / (RAND_MAX + <span class="number">1.0f</span>);</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;Neighbors within radius search at (&quot;</span> &lt;&lt; searchPoint.x</span><br><span class="line">		&lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; searchPoint.y</span><br><span class="line">		&lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; searchPoint.z</span><br><span class="line">		&lt;&lt; <span class="string">&quot;) with radius=&quot;</span> &lt;&lt; radius &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">if</span> (octree.<span class="built_in">radiusSearch</span>(searchPoint, radius, pointIdxRadiusSearch, pointRadiusSquaredDistance) &gt; <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">size_t</span> i = <span class="number">0</span>; i &lt; pointIdxRadiusSearch.<span class="built_in">size</span>(); ++i)</span><br><span class="line">			cout &lt;&lt; <span class="string">&quot;    &quot;</span> &lt;&lt; cloud-&gt;points[pointIdxRadiusSearch[i]].x</span><br><span class="line">			&lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; cloud-&gt;points[pointIdxRadiusSearch[i]].y</span><br><span class="line">			&lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; cloud-&gt;points[pointIdxRadiusSearch[i]].z</span><br><span class="line">			&lt;&lt; <span class="string">&quot; (squared distance: &quot;</span> &lt;&lt; pointRadiusSquaredDistance[i] &lt;&lt; <span class="string">&quot;)&quot;</span> &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 初始化点云可视化对象</span></span><br><span class="line">	boost::shared_ptr&lt;pcl::visualization::PCLVisualizer&gt;<span class="built_in">viewer</span>(<span class="keyword">new</span> pcl::visualization::<span class="built_in">PCLVisualizer</span>(<span class="string">&quot;显示点云&quot;</span>));</span><br><span class="line">	viewer-&gt;<span class="built_in">setBackgroundColor</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);  <span class="comment">//设置背景颜色为黑色</span></span><br><span class="line">	<span class="comment">// 对点云着色可视化 (red).</span></span><br><span class="line">	pcl::visualization::PointCloudColorHandlerCustom&lt;pcl::PointXYZ&gt;<span class="built_in">target_color</span>(cloud, <span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">	viewer-&gt;<span class="built_in">addPointCloud</span>&lt;pcl::PointXYZ&gt;(cloud, target_color, <span class="string">&quot;target cloud&quot;</span>);</span><br><span class="line">	viewer-&gt;<span class="built_in">setPointCloudRenderingProperties</span>(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, <span class="number">1</span>, <span class="string">&quot;target cloud&quot;</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 等待直到可视化窗口关闭</span></span><br><span class="line">	<span class="keyword">while</span> (!viewer-&gt;<span class="built_in">wasStopped</span>())</span><br><span class="line">	&#123;</span><br><span class="line">		viewer-&gt;<span class="built_in">spinOnce</span>(<span class="number">100</span>);</span><br><span class="line">		boost::this_thread::<span class="built_in">sleep</span>(boost::posix_time::<span class="built_in">microseconds</span>(<span class="number">1000</span>));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> (<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="项目实践"><a href="#项目实践" class="headerlink" title="项目实践"></a>项目实践</h1><h1 id="一些常见问题"><a href="#一些常见问题" class="headerlink" title="一些常见问题"></a>一些常见问题</h1><p>作为一名第一次接触计算图形学课程的学生，在学习GAMES102的过程中遇到了不少困难。由于已有一段时间没有使用过C++，编译和配置代码成了我最大的挑战之一。</p>
+<h3 id="下载链接失效导致的压缩包问题"><a href="#下载链接失效导致的压缩包问题" class="headerlink" title="下载链接失效导致的压缩包问题"></a>下载链接失效导致的压缩包问题</h3><p>在配置环境时，遇到的第一个问题是一个压缩包无法正确下载。由于原链接失效，导致花费了大量时间。在反复尝试并顺利编译生成后，代码却报了各种错误。经过仔细排查，终于发现问题出在这个压缩包上。</p>
+<h3 id="解决压缩包问题后的DLL缺失"><a href="#解决压缩包问题后的DLL缺失" class="headerlink" title="解决压缩包问题后的DLL缺失"></a>解决压缩包问题后的DLL缺失</h3><p>压缩包问题解决后，运行程序时又提示缺少“luad.dll”。这种问题在网上很难找到明确的解决方法。尝试了各种途径，最终通过安装lua for Windows修复了这个问题。安装完成后，系统能够正确识别并加载“luad.dll”，程序也终于得以顺利运行。</p>
+<h1 id="相关资源"><a href="#相关资源" class="headerlink" title="相关资源"></a>相关资源</h1><p><a target="_blank" rel="noopener" href="https://rec.ustc.edu.cn/share/c55d42a0-bfcd-11ee-b7db-eb3ed86abde8"><strong>中国科学技术大学《计算机图形学》本科课程</strong></a></p>
+<p><a target="_blank" rel="noopener" href="https://games-cn.org/"><em>GAMES: Graphics And Mixed Environment Symposium</em></a></p>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">This work is licensed under <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</a></h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> Share</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://sunxinbin.cn/2024/07/02/GAMES/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://sunxinbin.cn/2024/07/02/GAMES/";
+            const title         = "「计算机图形学相关内容学习」";
+            const excerpt       = `[TOC]
+前置知识`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" rel="tag">计算机图形学</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2024-07-10T11:53:36.516Z" itemprop="dateModified">Last modify：2024-07-10</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" My first blog" href="/2024/06/16/hello-world/">&lt; older</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" 计算机图形学相关知识学习" href="/2024/07/15/computer-graphics/">Newer &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center">Computer Science & Technology</p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                Post
+            </span>
+            <span class="count">
+                58
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                Category
+            </span>
+            <span class="count">
+                10
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                Tag
+            </span>
+            <span class="count">
+                22
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix toc-div-class" >
+    <div class="photo-background"></div>
+    <h4 class="widget-title no-after">
+        <i class="fa fa-compass"></i>
+        Toc
+        <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
+    </h4>
+    <div class="textwidget">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="toc-text">前置知识</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text"></span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%A0%E4%BD%95%E4%B8%8E%E4%BB%A3%E6%95%B0"><span class="toc-text">几何与代数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%9F%BA%E7%A1%80"><span class="toc-text">线性代数基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95"><span class="toc-text">计算几何</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%8B%E8%BD%AC%E5%8F%98%E6%8D%A2"><span class="toc-text">旋转变换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E6%88%90%E5%88%86%E5%88%86%E6%9E%90%E4%B8%8E%E5%A5%87%E5%BC%82%E5%80%BC%E5%88%86%E8%A7%A3"><span class="toc-text">主成分分析与奇异值分解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E6%96%B9%E6%B3%95"><span class="toc-text">数值方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%B1%82%E8%A7%A3"><span class="toc-text">微分方程求解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E4%B8%8E%E6%8B%93%E6%89%91"><span class="toc-text">优化与拓扑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%8B%E7%BC%A9%E6%84%9F%E7%9F%A5%EF%BC%88Compressed-Sensing%EF%BC%89"><span class="toc-text">压缩感知（Compressed Sensing）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="toc-text">基本原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E5%AD%A6%E6%8F%8F%E8%BF%B0"><span class="toc-text">数学描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E5%8A%BF"><span class="toc-text">优势</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E8%B7%B5%E5%BA%94%E7%94%A8"><span class="toc-text">实践应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E6%8C%91%E6%88%98"><span class="toc-text">主要挑战</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8"><span class="toc-text">相关工具使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CMake%E2%80%94%E2%80%94%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BA%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%B7%A5%E5%85%B7"><span class="toc-text">CMake——自动构建项目的工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AECGAL%E5%BA%93"><span class="toc-text">配置CGAL库</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AE%89%E8%A3%85-Boost"><span class="toc-text">一、安装 Boost</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E4%B8%8B%E8%BD%BD-Boost"><span class="toc-text">1. 下载 Boost</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%AE%89%E8%A3%85-Boost"><span class="toc-text">2. 安装 Boost</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-text">3. 配置环境变量</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%B8%8B%E8%BD%BD%E5%B9%B6%E5%AE%89%E8%A3%85-CGAL"><span class="toc-text">二、下载并安装 CGAL</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E4%B8%8B%E8%BD%BD-CGAL"><span class="toc-text">1. 下载 CGAL</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%AE%89%E8%A3%85-CGAL"><span class="toc-text">2. 安装 CGAL</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-1"><span class="toc-text">3. 配置环境变量</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E9%85%8D%E7%BD%AEVS2019%E5%B1%9E%E6%80%A7%E9%A1%B5"><span class="toc-text">三、配置VS2019属性页</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E8%BF%9E%E6%8E%A5%E5%99%A8-%E8%BE%93%E5%85%A5-%E9%99%84%E5%8A%A0%E4%BE%9D%E8%B5%96%E9%A1%B9"><span class="toc-text">1. 连接器 - 输入 - 附加依赖项</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-C-C-%E5%B8%B8%E8%A7%84-%E9%99%84%E5%8A%A0%E5%8C%85%E5%90%AB%E7%9B%AE%E5%BD%95"><span class="toc-text">2. C&#x2F;C++ - 常规 - 附加包含目录</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81"><span class="toc-text">3. 测试代码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEPCL%E5%BA%93"><span class="toc-text">配置PCL库</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%B1%9E%E6%80%A7-%E8%B0%83%E8%AF%95-%E7%8E%AF%E5%A2%83-%E6%B7%BB%E5%8A%A0"><span class="toc-text">配置属性-调试-环境-添加:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#C-C-%E5%B8%B8%E8%A7%84-SDL%E6%A3%80%E6%9F%A5-%E5%90%A6"><span class="toc-text">C&#x2F;C++-常规-SDL检查:否</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#C-C-%E8%AF%AD%E8%A8%80-%E7%AC%A6%E5%90%88%E6%A8%A1%E5%BC%8F-%E5%90%A6"><span class="toc-text">C&#x2F;C++-语言-符合模式:否</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#VC-%E7%9B%AE%E5%BD%95%E4%B8%80%E5%8C%85%E5%90%AB%E7%9B%AE%E5%BD%95%EF%BC%8C%E6%B7%BB%E5%8A%A07%E4%B8%AAinclude%E8%B7%AF%E5%BE%84"><span class="toc-text">VC++目录一包含目录，添加7个include路径</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#VC-%E7%9B%AE%E5%BD%95%E4%B8%80%E5%BA%93%E7%9B%AE%E5%BD%95%EF%BC%8C%E6%B7%BB%E5%8A%A06%E4%B8%AAib%E8%B7%AF%E5%BE%84"><span class="toc-text">VC++目录一库目录，添加6个ib路径</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#C-C-%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8-%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8%E5%AE%9A%E4%B9%89-%E6%B7%BB%E5%8A%A0"><span class="toc-text">C&#x2F;C++-预处理器-预处理器定义-添加:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5%E5%99%A8%E4%B8%80%E8%BE%93%E5%85%A5%E4%B8%80%E9%99%84%E5%8A%A0%E4%BE%9D%E8%B5%96%E9%A1%B9%E2%80%94%E6%B7%BB%E5%8A%A0PCL%E5%92%8CVTK%E7%9A%84%E7%9B%B8%E5%85%B3lib%E6%96%87%E4%BB%B6"><span class="toc-text">链接器一输入一附加依赖项—添加PCL和VTK的相关lib文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81"><span class="toc-text">测试代码</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B5"><span class="toc-text">项目实践</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="toc-text">一些常见问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E9%93%BE%E6%8E%A5%E5%A4%B1%E6%95%88%E5%AF%BC%E8%87%B4%E7%9A%84%E5%8E%8B%E7%BC%A9%E5%8C%85%E9%97%AE%E9%A2%98"><span class="toc-text">下载链接失效导致的压缩包问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E5%8E%8B%E7%BC%A9%E5%8C%85%E9%97%AE%E9%A2%98%E5%90%8E%E7%9A%84DLL%E7%BC%BA%E5%A4%B1"><span class="toc-text">解决压缩包问题后的DLL缺失</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E8%B5%84%E6%BA%90"><span class="toc-text">相关资源</span></a></li></ol>
+    </div>
+</aside>
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>Categories List</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Craniofacial-Registration/">Craniofacial Registration</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DL/">DL</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Feature-Point-Punctuation-Algorithm/">Feature Point Punctuation Algorithm</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Literature/">Literature</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ML/">ML</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematical-Modeling/">Mathematical Modeling</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Philosophy/">Philosophy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Undergraduate-Courses/">Undergraduate Courses</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">2</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>Tagcloud</h4>
+      <div class="tag-clouds">
+        <a href="/tags/Algorithm/" style="font-size: 0.6em;">Algorithm</a> <a href="/tags/Anecdote/" style="font-size: 0.6em;">Anecdote</a> <a href="/tags/CV/" style="font-size: 0.6em;">CV</a> <a href="/tags/Craniofacial-Registration/" style="font-size: 0.6em;">Craniofacial Registration</a> <a href="/tags/DL/" style="font-size: 0.8em;">DL</a> <a href="/tags/Emotion/" style="font-size: 0.68em;">Emotion</a> <a href="/tags/Feature-Point-Punctuation-Algorithm/" style="font-size: 0.72em;">Feature Point Punctuation Algorithm</a> <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/Latex/" style="font-size: 0.64em;">Latex</a> <a href="/tags/Literature/" style="font-size: 0.72em;">Literature</a> <a href="/tags/ML/" style="font-size: 0.72em;">ML</a> <a href="/tags/Mathematical-Modeling/" style="font-size: 0.64em;">Mathematical Modeling</a> <a href="/tags/OpenAI/" style="font-size: 0.6em;">OpenAI</a> <a href="/tags/Philosophy/" style="font-size: 0.6em;">Philosophy</a> <a href="/tags/Python/" style="font-size: 0.6em;">Python</a> <a href="/tags/Sketch-to-3D/" style="font-size: 0.6em;">Sketch-to-3D</a> <a href="/tags/Undergraduate-Courses/" style="font-size: 0.76em;">Undergraduate Courses</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>Recent posts</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2024/07/25/tell-a-story/"><i class="fa  fa-book"></i> 讲成一个故事</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2024/07/15/computer-graphics/"><i class="fa  fa-book"></i> 计算机图形学相关知识学习</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2024/07/02/GAMES/"><i class="fa  fa-book"></i> 计算机图形学相关内容学习</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2024/06/16/hello-world/"><i class="fa  fa-book"></i> My first blog</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2024/05/15/240514/"><i class="fa  fa-book"></i> A Peek at Representations and Neural  Architectures for 3D Generative Models</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        <li><a href="mailto:2332431354@qq.com"><i class="fa fa-envelope"></i></a></li>
+                        
+                        
+                        
+                        
+                        <li><a target="_blank" rel="me" href="https:///@SunXinbin"><i class="fa fa fa-share-alt-square"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/xinbinsun"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2024 Neo Sun Copyright.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by 孙新斌.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            <li><a href="https://beian.miit.gov.cn" rel="external nofollow" target="_blank">鲁ICP备23010101号</a></li>
+                            <li><a href="http://www.beian.gov.cn" rel="external nofollow" target="_blank"><img src="/images/psr.webp" width="12" height="12" loading="lazy" decoding="auto" />鲁公网安备371402000348</a></li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>

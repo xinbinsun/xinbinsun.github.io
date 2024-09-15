@@ -25,7 +25,7 @@
 <meta property="og:locale">
 <meta property="og:image" content="http://sunxinbin.cn/images/avatar.webp">
 <meta property="article:published_time" content="2022-04-24T02:25:37.000Z">
-<meta property="article:modified_time" content="2022-09-21T08:15:24.875Z">
+<meta property="article:modified_time" content="2024-08-22T02:02:05.426Z">
 <meta property="article:author" content="孙新斌">
 <meta property="article:tag" content="Git">
 <meta name="twitter:card" content="summary">
@@ -189,13 +189,13 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>This article has been edited <time datetime="1663748124875"></time> ago, and some of its content might need to be updated.</p></div>
+                <div class="text"><p>This article has been edited <time datetime="1724292125426"></time> ago, and some of its content might need to be updated.</p></div>
             </div>
             
             
             
                 <div class="kratos-post-inner-toc toc-div-class" >
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git"><span class="toc-number">1.</span> <span class="toc-text">Git</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E6%96%B9%E6%B3%95%E5%A4%A7%E5%85%A8"><span class="toc-number">1.1.</span> <span class="toc-text">Git常用命令及方法大全</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Egitee%EF%BC%88%E7%A0%81%E4%BA%91%EF%BC%89%E7%9A%84%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E9%93%BE%E6%8E%A5%EF%BC%88https%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">关于gitee（码云）的远程仓库链接（https）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%EF%BC%8C%E6%96%B0%E5%BB%BA%E4%BB%A3%E7%A0%81%E5%BA%93"><span class="toc-number">1.1.2.</span> <span class="toc-text">一，新建代码库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%EF%BC%8C%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.3.</span> <span class="toc-text">二，配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%EF%BC%8C%E5%A2%9E%E5%8A%A0-%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6"><span class="toc-number">1.1.4.</span> <span class="toc-text">三，增加&#x2F;删除文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%EF%BC%8C%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4"><span class="toc-number">1.1.5.</span> <span class="toc-text">四，代码提交</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%EF%BC%8C%E5%88%86%E6%94%AF"><span class="toc-number">1.1.6.</span> <span class="toc-text">五，分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%EF%BC%8C%E6%A0%87%E7%AD%BE"><span class="toc-number">1.1.7.</span> <span class="toc-text">六，标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%83%EF%BC%8C%E6%9F%A5%E7%9C%8B%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.8.</span> <span class="toc-text">七，查看信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AB%EF%BC%8C%E8%BF%9C%E7%A8%8B%E5%90%8C%E6%AD%A5"><span class="toc-number">1.1.9.</span> <span class="toc-text">八，远程同步</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%9D%EF%BC%8C%E6%92%A4%E9%94%80"><span class="toc-number">1.1.10.</span> <span class="toc-text">九，撤销</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%81%EF%BC%8C%E5%85%B6%E4%BB%96"><span class="toc-number">1.1.11.</span> <span class="toc-text">十，其他</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86%E7%AD%96%E7%95%A5"><span class="toc-number">1.2.</span> <span class="toc-text">Git分支管理策略</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E5%90%88%E5%B9%B6%E7%94%9F%E6%88%90%E7%9A%84%E6%96%B0%E8%8A%82%E7%82%B9%EF%BC%8C%E5%81%9A%E4%B8%80%E4%B8%AA%E6%A0%87%E7%AD%BE"><span class="toc-number">2.</span> <span class="toc-text">对合并生成的新节点，做一个标签</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git"><span class="toc-number">1.</span> <span class="toc-text">Git</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E6%96%B9%E6%B3%95%E5%A4%A7%E5%85%A8"><span class="toc-number">1.1.</span> <span class="toc-text">Git常用命令及方法大全</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Egitee%EF%BC%88%E7%A0%81%E4%BA%91%EF%BC%89%E7%9A%84%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E9%93%BE%E6%8E%A5%EF%BC%88https%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">关于gitee（码云）的远程仓库链接（https）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%EF%BC%8C%E6%96%B0%E5%BB%BA%E4%BB%A3%E7%A0%81%E5%BA%93"><span class="toc-number">1.1.2.</span> <span class="toc-text">一，新建代码库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%EF%BC%8C%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.3.</span> <span class="toc-text">二，配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%EF%BC%8C%E5%A2%9E%E5%8A%A0-%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6"><span class="toc-number">1.1.4.</span> <span class="toc-text">三，增加&#x2F;删除文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%EF%BC%8C%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4"><span class="toc-number">1.1.5.</span> <span class="toc-text">四，代码提交</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%EF%BC%8C%E5%88%86%E6%94%AF"><span class="toc-number">1.1.6.</span> <span class="toc-text">五，分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%EF%BC%8C%E6%A0%87%E7%AD%BE"><span class="toc-number">1.1.7.</span> <span class="toc-text">六，标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%83%EF%BC%8C%E6%9F%A5%E7%9C%8B%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.8.</span> <span class="toc-text">七，查看信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AB%EF%BC%8C%E8%BF%9C%E7%A8%8B%E5%90%8C%E6%AD%A5"><span class="toc-number">1.1.9.</span> <span class="toc-text">八，远程同步</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%9D%EF%BC%8C%E6%92%A4%E9%94%80"><span class="toc-number">1.1.10.</span> <span class="toc-text">九，撤销</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%81%EF%BC%8C%E5%85%B6%E4%BB%96"><span class="toc-number">1.1.11.</span> <span class="toc-text">十，其他</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86%E7%AD%96%E7%95%A5"><span class="toc-number">1.2.</span> <span class="toc-text">Git分支管理策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E5%90%88%E5%B9%B6%E7%94%9F%E6%88%90%E7%9A%84%E6%96%B0%E8%8A%82%E7%82%B9%EF%BC%8C%E5%81%9A%E4%B8%80%E4%B8%AA%E6%A0%87%E7%AD%BE"><span class="toc-number">1.3.</span> <span class="toc-text">对合并生成的新节点，做一个标签</span></a></li></ol></li></ol>
                 </div>
             
             <hr />
@@ -485,7 +485,7 @@
 <p>　　git checkout master</p>
 </blockquote>
 <p>　　git merge —no-ff release-1.2</p>
-<h1 id="对合并生成的新节点，做一个标签"><a href="#对合并生成的新节点，做一个标签" class="headerlink" title="对合并生成的新节点，做一个标签"></a>对合并生成的新节点，做一个标签</h1><p>　　git tag -a 1.2</p>
+<h2 id="对合并生成的新节点，做一个标签"><a href="#对合并生成的新节点，做一个标签" class="headerlink" title="对合并生成的新节点，做一个标签"></a>对合并生成的新节点，做一个标签</h2><p>　　git tag -a 1.2</p>
 <p>再合并到develop分支：</p>
 <blockquote>
 <p>　　git checkout develop</p>
@@ -732,7 +732,7 @@
                     <a class="tag-none-link" href="/tags/Git/" rel="tag">Git</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2022-09-21T08:15:24.875Z" itemprop="dateModified">Last modify：2022-09-21</time>
+                    <time datetime="2024-08-22T02:02:05.426Z" itemprop="dateModified">Last modify：2024-08-22</time>
                 </div>
             </div>
         </footer>
@@ -783,7 +783,7 @@
                 Post
             </span>
             <span class="count">
-                56
+                58
             </span>
         </a>
         <a class="meta-item" href="/categories/">
@@ -799,7 +799,7 @@
                 Tag
             </span>
             <span class="count">
-                20
+                22
             </span>
         </a>
     </div>
@@ -815,7 +815,7 @@
         <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
     </h4>
     <div class="textwidget">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git"><span class="toc-text">Git</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E6%96%B9%E6%B3%95%E5%A4%A7%E5%85%A8"><span class="toc-text">Git常用命令及方法大全</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Egitee%EF%BC%88%E7%A0%81%E4%BA%91%EF%BC%89%E7%9A%84%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E9%93%BE%E6%8E%A5%EF%BC%88https%EF%BC%89"><span class="toc-text">关于gitee（码云）的远程仓库链接（https）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%EF%BC%8C%E6%96%B0%E5%BB%BA%E4%BB%A3%E7%A0%81%E5%BA%93"><span class="toc-text">一，新建代码库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%EF%BC%8C%E9%85%8D%E7%BD%AE"><span class="toc-text">二，配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%EF%BC%8C%E5%A2%9E%E5%8A%A0-%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6"><span class="toc-text">三，增加&#x2F;删除文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%EF%BC%8C%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4"><span class="toc-text">四，代码提交</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%EF%BC%8C%E5%88%86%E6%94%AF"><span class="toc-text">五，分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%EF%BC%8C%E6%A0%87%E7%AD%BE"><span class="toc-text">六，标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%83%EF%BC%8C%E6%9F%A5%E7%9C%8B%E4%BF%A1%E6%81%AF"><span class="toc-text">七，查看信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AB%EF%BC%8C%E8%BF%9C%E7%A8%8B%E5%90%8C%E6%AD%A5"><span class="toc-text">八，远程同步</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%9D%EF%BC%8C%E6%92%A4%E9%94%80"><span class="toc-text">九，撤销</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%81%EF%BC%8C%E5%85%B6%E4%BB%96"><span class="toc-text">十，其他</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86%E7%AD%96%E7%95%A5"><span class="toc-text">Git分支管理策略</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E5%90%88%E5%B9%B6%E7%94%9F%E6%88%90%E7%9A%84%E6%96%B0%E8%8A%82%E7%82%B9%EF%BC%8C%E5%81%9A%E4%B8%80%E4%B8%AA%E6%A0%87%E7%AD%BE"><span class="toc-text">对合并生成的新节点，做一个标签</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git"><span class="toc-text">Git</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E6%96%B9%E6%B3%95%E5%A4%A7%E5%85%A8"><span class="toc-text">Git常用命令及方法大全</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Egitee%EF%BC%88%E7%A0%81%E4%BA%91%EF%BC%89%E7%9A%84%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E9%93%BE%E6%8E%A5%EF%BC%88https%EF%BC%89"><span class="toc-text">关于gitee（码云）的远程仓库链接（https）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%EF%BC%8C%E6%96%B0%E5%BB%BA%E4%BB%A3%E7%A0%81%E5%BA%93"><span class="toc-text">一，新建代码库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%EF%BC%8C%E9%85%8D%E7%BD%AE"><span class="toc-text">二，配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%EF%BC%8C%E5%A2%9E%E5%8A%A0-%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6"><span class="toc-text">三，增加&#x2F;删除文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%EF%BC%8C%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4"><span class="toc-text">四，代码提交</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%EF%BC%8C%E5%88%86%E6%94%AF"><span class="toc-text">五，分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%EF%BC%8C%E6%A0%87%E7%AD%BE"><span class="toc-text">六，标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%83%EF%BC%8C%E6%9F%A5%E7%9C%8B%E4%BF%A1%E6%81%AF"><span class="toc-text">七，查看信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AB%EF%BC%8C%E8%BF%9C%E7%A8%8B%E5%90%8C%E6%AD%A5"><span class="toc-text">八，远程同步</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%9D%EF%BC%8C%E6%92%A4%E9%94%80"><span class="toc-text">九，撤销</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%81%EF%BC%8C%E5%85%B6%E4%BB%96"><span class="toc-text">十，其他</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86%E7%AD%96%E7%95%A5"><span class="toc-text">Git分支管理策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E5%90%88%E5%B9%B6%E7%94%9F%E6%88%90%E7%9A%84%E6%96%B0%E8%8A%82%E7%82%B9%EF%BC%8C%E5%81%9A%E4%B8%80%E4%B8%AA%E6%A0%87%E7%AD%BE"><span class="toc-text">对合并生成的新节点，做一个标签</span></a></li></ol></li></ol>
     </div>
 </aside>
                 
@@ -845,13 +845,25 @@
         
           
           
-            <a class="list-group-item" href="/2024/06/16/hello-world/"><i class="fa  fa-book"></i> My first blog</a>
+            <a class="list-group-item" href="/2024/07/25/tell-a-story/"><i class="fa  fa-book"></i> 讲成一个故事</a>
             
           
         
           
           
-            <a class="list-group-item" href="/2024/05/18/GAMES001/"><i class="fa  fa-book"></i> Graphics And Mixed Environment Symposium学习笔记1</a>
+            <a class="list-group-item" href="/2024/07/15/computer-graphics/"><i class="fa  fa-book"></i> 计算机图形学相关知识学习</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2024/07/02/GAMES/"><i class="fa  fa-book"></i> 计算机图形学相关内容学习</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2024/06/16/hello-world/"><i class="fa  fa-book"></i> My first blog</a>
             
           
         
@@ -862,17 +874,9 @@
           
         
           
-          
-            <a class="list-group-item" href="/2024/05/05/machine-learning/"><i class="fa  fa-book"></i> 近期计划看的内容</a>
             
           
-        
-          
-          
-            <a class="list-group-item" href="/2024/02/28/2D-to-3D/"><i class="fa  fa-book"></i> 面向3D模型生成</a>
             
-          
-        
           
             
           
