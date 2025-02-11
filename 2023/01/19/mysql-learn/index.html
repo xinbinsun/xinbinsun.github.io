@@ -25,7 +25,7 @@
 <meta property="og:locale">
 <meta property="og:image" content="http://sunxinbin.cn/images/avatar.webp">
 <meta property="article:published_time" content="2023-01-19T14:41:03.000Z">
-<meta property="article:modified_time" content="2024-11-24T02:00:38.119Z">
+<meta property="article:modified_time" content="2025-01-25T15:04:42.597Z">
 <meta property="article:author" content="孙新斌">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://sunxinbin.cn/images/avatar.webp">
@@ -177,7 +177,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~6.38K
+                        ~29.84K
                     
                     words
                 </li>
@@ -188,7 +188,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>This article has been edited <time datetime="1732413638119"></time> ago, and some of its content might need to be updated.</p></div>
+                <div class="text"><p>This article has been edited <time datetime="1737817482597"></time> ago, and some of its content might need to be updated.</p></div>
             </div>
             
             
@@ -307,6 +307,824 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sqlCopy code</span><br><span class="line">GRANT SELECT ON database_name.view_name TO &#x27;user&#x27;@&#x27;host&#x27;;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
+<h1 id="SQL学习"><a href="#SQL学习" class="headerlink" title="SQL学习"></a>SQL学习</h1><p><a target="_blank" rel="noopener" href="https://sqlzap.com/">Learn SQL for Free (sqlzap.com)</a></p>
+<h2 id="第一课"><a href="#第一课" class="headerlink" title="第一课"></a>第一课</h2><h2 id="什么是-SQL？"><a href="#什么是-SQL？" class="headerlink" title="什么是 SQL？"></a>什么是 SQL？</h2><p>SQL 代表结构化查询语言，是一种标准化的编程语言，用于管理 关系数据库并对该数据执行各种操作。</p>
+<h2 id="SQL-简史"><a href="#SQL-简史" class="headerlink" title="SQL 简史"></a>SQL 简史</h2><p>SQL 的历史可以追溯到 1970 年代，当时它由 Donald D. Chamberlin 和 Raymond F. Boyce 在 IBM 开发。 SQL 最初称为 SEQUEL（结构化英语查询语言），旨在操作和检索存储在 IBM 的原始关系数据库系统 System R。在 1970 年代后期，SEQUEL 更名为 SQL，以避免 违反国际商标法。</p>
+<p>1986 年，SQL 成为 ANSI 标准，后来在 1987 年成为 ISO 标准。这有助于 SQL 巩固其作为 数据库查询和管理的主要语言。多年来，SQL 不断发展，推出了新版本和 正在添加的功能。尽管有新版本，但核心语言一直保持稳定，这极大地促进了 它被广泛采用。</p>
+<p>如今，所有主要的关系数据库管理系统都支持 SQL，包括 Oracle、Microsoft SQL Server、 MySQL 和 PostgreSQL。数据库管理员和开发人员在编写数据集成时广泛使用它 脚本。SQL 语法的简单性和表现力一直是其成功不可或缺的一部分。</p>
+<p>SQL 的核心允许您对数据库数据执行四种广泛的操作：</p>
+<ol>
+<li>查询 - 使用 SELECT 语句选择和筛选数据以提取特定见解。</li>
+<li>Insert - 使用 INSERT 语句将新数据记录添加到数据库。</li>
+<li>Update - 使用 UPDATE 语句修改数据库中的现有记录。</li>
+<li>Delete - 使用 DELETE 语句从数据库中删除记录。</li>
+</ol>
+<p>除了这些基本功能之外，SQL 还允许您管理数据库和数据库对象（如表）、执行 transaction control 和实施访问控制。内置函数和复杂运算符扩展了 语言。</p>
+<p>关系数据库在应用程序中无处不在，这意味着 SQL 技能在各行各业都受到高度重视。 无论您是开发人员、数据分析师、数据科学家还是管理员，了解 SQL 都可以帮助您有效地访问 以及使用数据。鉴于 SQL 在整个数据管理领域的主导地位，它可能仍然是必不可少的 在可预见的未来处理数据的技能。</p>
+<h2 id="关系数据库"><a href="#关系数据库" class="headerlink" title="关系数据库"></a>关系数据库</h2><p>关系数据库已成为跨许多应用程序和系统组织和查询数据的主要方式。 在关系数据库中，数据存储在称为表的关系中。每个表由行和列组成，其中 表示记录的行和表示该记录属性的列。例如，Customers 表可能 具有 CustomerID、Name、Address 和 Phone Number 等列。每行都是具有唯一 ID 的客户记录，并且 name、address 和 phone number 属性的值。</p>
+<p>关系数据库中的表之间有关系。通常，关系是使用外键形成的 和主键。一个表中的外键是指另一个表中的主键。例如，Orders 表 可能具有引用 Customers 表中主键的 CustomerID 外键。这允许检索 customer’s orders 的订单。这些关系允许对 数据库表的互连网络。</p>
+<h3 id="关系数据库提供了几个关键优势："><a href="#关系数据库提供了几个关键优势：" class="headerlink" title="关系数据库提供了几个关键优势："></a>关系数据库提供了几个关键优势：</h3><p><strong>有序的结构</strong>：表格架构和表之间定义的关系可实现高效存储和 查询。 开发人员可以直观地理解结构。</p>
+<p><strong>灵活性</strong>：可以单独添加或更改表以更改数据模型。可以定义新的关系 而不会破坏现有的 VPN。</p>
+<p><strong>数据完整性</strong>：主键、外键和约束等功能可确保数据的有效性和一致性。 通过标准化避免重复。</p>
+<p><strong>可扩展性</strong>：数据库可以扩展以支持更大的数据集，同时通过分区和 复制。</p>
+<p><strong>可访问性</strong>：标准化的 SQL 语言提供了与关系数据交互的简单而强大的方法。 这 还支持底层数据库系统的抽象。</p>
+<p><strong>事务支持</strong>：并发控制、多语句事务和回滚机制有助于维护 数据 一致性。</p>
+<p><strong>安全性</strong>：可以按表或列应用精细的用户权限以控制访问。网络加密 协议 还要防止窃听。</p>
+<p>备份：成熟的备份和恢复工具允许<strong>定期快照</strong>以防止数据丢失。</p>
+<p>这些功能使关系模型适用于大型企业数据库系统，其中 复杂性、性能和完整性至关重要。表格结构的简单性也使其可用于 个人数据库和较小规模的项目。替代 NoSQL 数据库模型可能更适合某些特定的 数据类型，但关系数据库仍然是一般数据管理的多功能、值得信赖的选择域。</p>
+<h2 id="第二课-SQL-数据库架构"><a href="#第二课-SQL-数据库架构" class="headerlink" title="第二课  SQL 数据库架构"></a>第二课  SQL 数据库架构</h2><p>数据库架构是表示整个数据库的逻辑视图的框架结构。它定义了数据的组织方式以及它们之间的关系如何关联。它制定了要应用于数据的所有约束。</p>
+<p>架构定义表、字段、关系、视图、索引、包、过程、函数、队列、触发器、类型、序列、具体化视图、同义词、数据库链接、目录、XML 架构和其他元素。</p>
+<p>拥有精心规划的数据库架构的一些优点是：</p>
+<ul>
+<li>它有助于防止数据冗余和不一致 - 架构通过实体完整性、引用完整性、域约束等强制实施数据完整性约束，从而确保数据的准确性和一致性。这将删除数据中的异常。</li>
+<li>更好的性能 - 规范化的数据库可以最大限度地减少数据重复和高效存储。索引还有助于更快地检索和访问数据。这可以提高整体性能。</li>
+<li>可扩展性和灵活性 - 良好的架构有助于数据库的扩展和未来增长，以容纳更多数据、用户或应用程序，而不会影响性能或可用性。</li>
+<li>维护变得容易 - 解决问题、修改、更新或删除元素（如添加新列、更改数据类型、建立关系等）很容易。这使得维护更简单。</li>
+<li>多用户访问控制 - 可以在数据库对象上定义复杂的访问权限、用户角色、读/写权限，以允许共享访问。</li>
+<li>备份和还原 - 架构允许在崩溃或故障情况下顺利备份和还原，而不会丢失数据完整性。</li>
+</ul>
+<p>因此，数据库架构构成了构建整个数据库系统的基础。它变得非常关键，特别是对于涉及大量数据和复杂事务的大型企业应用程序;其中，强大的结构化架构是长期成功的关键。因此，在开发 schema 时，应正确应用原子性、规范化等 schema 设计原则。</p>
+<p><img src="/2023/01/19/mysql-learn/diagram.png" alt></p>
+<h2 id="数据库-SQL-转储"><a href="#数据库-SQL-转储" class="headerlink" title="数据库 SQL 转储"></a>数据库 SQL 转储</h2><p>SQL 转储 是一个文件，其中包含表结构和/或数据库中的数据的记录。它通常由数据库管理系统 （DBMS） 生成，允许您在数据库或服务器之间传输数据并进行备份。</p>
+<p>需要了解的有关 SQL 转储 的一些关键事项：</p>
+<ul>
+<li>仅结构转储 - 仅包含表和视图定义、索引、触发器等。不包含任何数据。用于在数据库之间复制架构。</li>
+<li>仅数据转储 - 仅包括表数据行。不包括表结构。适合在兼容数据库之间迁移数据。</li>
+<li>完整数据库转储 - 包括数据库结构和数据。允许您从头开始完全重新创建数据库。最完整的备份。</li>
+<li>自定义转储 - DBMS 工具允许您根据需要自定义和导出特定表、结果集等。</li>
+</ul>
+<p>转储中使用的 SQL 格式与大多数流行的 DBMS（如 MySQL、PostgreSQL、SQLite、Oracle、SQL Server 等）兼容。这允许在它们之间导入和迁移数据。</p>
+<p>转储可以通过 DBMS 导入实用程序导入以重新创建数据库，或用于使用各种工具分析数据库外部的数据。自动计划转储可帮助 DBA 定期备份以进行灾难恢复。</p>
+<p>总之，SQL 转储将数据库内容的可移植副本创建为文件，对于备份、传输和分析非常有用。</p>
+<p><a target="_blank" rel="noopener" href="https://sqlzap.com/assets/data/dump.sql">https://sqlzap.com/assets/data/dump.sql</a></p>
+<h2 id="第三课"><a href="#第三课" class="headerlink" title="第三课"></a>第三课</h2><h1 id="SQL-Basic-语法"><a href="#SQL-Basic-语法" class="headerlink" title="SQL Basic 语法"></a>SQL Basic 语法</h1><h2 id="SQL-语句和对象中的区分大小写"><a href="#SQL-语句和对象中的区分大小写" class="headerlink" title="SQL 语句和对象中的区分大小写"></a>SQL 语句和对象中的区分大小写</h2><p>SQL 与其他编程语言不同的关键因素之一是它通常不区分大小写。对于 SELECT、FROM、WHERE 等关键字，大小写无关紧要：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SeLeCt * FrOm Books WhErE Publish_Date &gt; &#x27;2020-01-01&#x27;;</span><br></pre></td></tr></table></figure>
+<p>此查询搜索书籍的运行方式与以下各项相同：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from books where publish_date &gt; &#x27;2020-01-01&#x27;;</span><br></pre></td></tr></table></figure>
+<p>因此，SQL 允许灵活地格式化语句关键字。CamelCase 或 lowercase 等大小写约定通常只是为了提高可读性。</p>
+<h3 id="字符串比较"><a href="#字符串比较" class="headerlink" title="字符串比较"></a>字符串比较</h3><p>使用 WHERE 子句或 JOIN 条件比较 SQL 中的字符串值时，默认行为通常不区分大小写。例如，’john’ 和 ‘John’ 将被视为相等。但是，此行为可能因数据库系统和排序规则设置而异。</p>
+<h2 id="以分号终止的语句"><a href="#以分号终止的语句" class="headerlink" title="以分号终止的语句"></a>以分号终止的语句</h2><p>在 SQL 中，每个语句都必须以分号终止;象征。</p>
+<p>如果没有分号，数据库将无法解析完整的语句：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM books WHERE price &gt; 10 ORDER BY publish_date DESC</span><br><span class="line">SELECT * FROM authors</span><br></pre></td></tr></table></figure>
+<p>这将出错。分号表示结束：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM books WHERE price &gt; 10 ORDER BY publish_date DESC;</span><br><span class="line">SELECT * FROM authors;</span><br></pre></td></tr></table></figure>
+<p>现在，这两个语句都将正确执行。</p>
+<h2 id="缩进和换行符"><a href="#缩进和换行符" class="headerlink" title="缩进和换行符"></a>缩进和换行符</h2><p>SQL 语句可能会随着多个子句和嵌套而增长相当长。正确的缩进和换行符是可读性的关键。</p>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">SELECT CONCAT(c.first_name, &#x27; &#x27;, c.last_name) AS customer_name, b.title, r.rating</span><br><span class="line">FROM customers c</span><br><span class="line">LEFT JOIN reviews r</span><br><span class="line">    ON r.customer_id = c.customer_id</span><br><span class="line">LEFT JOIN books b</span><br><span class="line">   ON b.book_id = r.book_id</span><br><span class="line">WHERE r.rating IS NOT NULL</span><br><span class="line">ORDER BY c.first_name, c.last_name;</span><br></pre></td></tr></table></figure>
+<p>缩进的 JOIN 子句比塞满一行要清晰得多。一致的缩进在修改复杂查询时也有帮助。</p>
+<h2 id="注释代码"><a href="#注释代码" class="headerlink" title="注释代码"></a>注释代码</h2><p>应始终包含记录 SQL 代码部分或解释逻辑的注释：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SELECT c.first_name, o.order_date, o.total_amount</span><br><span class="line">FROM customers c</span><br><span class="line">INNER JOIN orders o</span><br><span class="line">    ON c.customer_id = o.customer_id</span><br><span class="line">WHERE o.order_date BETWEEN &#x27;2023-01-01&#x27; AND &#x27;2023-04-30&#x27;</span><br><span class="line">ORDER BY c.first_name;</span><br></pre></td></tr></table></figure>
+<p>上述注释可帮助未来的开发人员理解代码段的用途，而不必自己破译复杂的逻辑。</p>
+<h2 id="第四课"><a href="#第四课" class="headerlink" title="第四课"></a>第四课</h2><h1 id="SQL-数据类型"><a href="#SQL-数据类型" class="headerlink" title="SQL 数据类型"></a>SQL 数据类型</h1><p>正确构建数据对于构建高效、准确的数据库驱动系统至关重要。SQL 提供了各种专用数据类型，而不仅仅是纯文本和数字，这些数据类型可实现强大的数据处理。了解可用的选项有助于构建最佳数据库架构。</p>
+<h2 id="字符串数据类型"><a href="#字符串数据类型" class="headerlink" title="字符串数据类型"></a>字符串数据类型</h2><p>基于文本的信息使用 CHAR 和 VARCHAR 类型存储在 SQL 中。</p>
+<p><strong>CHAR（n）</strong> 以 n 个字符的精确长度存储字符串。任何未使用的字符槽都用空格填充：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE Users (</span><br><span class="line">    Username CHAR(50)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">INSERT INTO Users VALUES (&#x27;user123&#x27;); -- Stores as &#x27;user123&#x27; plus 32 spaces</span><br></pre></td></tr></table></figure>
+<p><strong>VARCHAR（n）</strong> 存储最多 n 个字符的可变长度文本。没有空白填充，因此它只使用必要的空间：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE Posts (</span><br><span class="line">    Title VARCHAR(100)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">INSERT INTO Posts VALUES (&#x27;Hello World&#x27;); -- Stores just the 11 characters</span><br></pre></td></tr></table></figure>
+<p>在灵活性方面，VARCHAR 通常优于 CHAR。像 NVARCHAR（n） 和 NCHAR（n） 这样的 Unicode 等效项也可用于国际数据。</p>
+<h2 id="数值数据类型"><a href="#数值数据类型" class="headerlink" title="数值数据类型"></a>数值数据类型</h2><p>整数使用 INT 类型存储。DECIMAL 存储精确的小数值，而 FLOAT/DOUBLE 存储科学精度数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE Products (</span><br><span class="line">    Price DECIMAL(8,2), -- 999999.99</span><br><span class="line">    Stock INT, -- Up to 2 billion</span><br><span class="line">    Weight FLOAT -- Fractional scientific notation</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">INSERT INTO Products VALUES (5.99, 105, 1.05986);</span><br></pre></td></tr></table></figure>
+<p>我们为确切需要的范围指定精度和小数位数。这优化了存储和计算。</p>
+<h2 id="日期和时间数据类型"><a href="#日期和时间数据类型" class="headerlink" title="日期和时间数据类型"></a>日期和时间数据类型</h2><p>SQL 具有日期、时间、时间戳和间隔的专用类型：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE Events (</span><br><span class="line">   `Date` DATE, -- 2023-12-25</span><br><span class="line">   StartTime TIME, -- 12:30:00</span><br><span class="line">   Finish DATETIME -- 2023-12-25 12:30:00</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">INSERT INTO Events</span><br><span class="line">VALUES</span><br><span class="line">   (&#x27;2023-12-25&#x27;, &#x27;12:30&#x27;, &#x27;2023-12-25 12:30&#x27;);</span><br></pre></td></tr></table></figure>
+<p>标准 YYYY-MM-DD 格式可避免不同区域日期顺序的歧义。</p>
+<h2 id="布尔类型和二进制类型"><a href="#布尔类型和二进制类型" class="headerlink" title="布尔类型和二进制类型"></a>布尔类型和二进制类型</h2><p>BOOLEAN 类型存储简单的 true/false 值。BLOB 和 BINARY 类型包含不透明的二进制数据，如图像、文件等：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE Users (</span><br><span class="line">    AccountVerified BOOLEAN,</span><br><span class="line">    ProfilePicture BLOB</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">INSERT INTO Users VALUES (true, LOAD_FILE(&#x27;profile.png&#x27;));</span><br></pre></td></tr></table></figure>
+<p>也可以使用 Bitwise 标志，但 BOOLEAN 对 logic values 的读取更清晰。</p>
+<h2 id="自动增量列"><a href="#自动增量列" class="headerlink" title="自动增量列"></a>自动增量列</h2><p>自动递增列自动生成序列号。这提供了通常用于主键的唯一 ID：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE Users (</span><br><span class="line">    ID INT AUTO_INCREMENT,</span><br><span class="line">    Name VARCHAR(100),</span><br><span class="line">    PRIMARY KEY (ID)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">INSERT INTO Users (Name) VALUES (&#x27;John&#x27;); -- ID populates as 1</span><br><span class="line">INSERT INTO Users (Name) VALUES (&#x27;Mary&#x27;); -- ID populates as 2</span><br></pre></td></tr></table></figure>
+<h2 id="特殊和自定义类型"><a href="#特殊和自定义类型" class="headerlink" title="特殊和自定义类型"></a>特殊和自定义类型</h2><p>许多数据库支持 XML、JSON、ARRAY 等特殊类型以及特定数据结构的自定义类型。这些处理针对数据语义定制的验证和处理。</p>
+<p>选择正确的数据类型最初可能看起来很乏味。但是，优化存储、提高数据质量和简化逻辑的长期好处证明了所需的规划是合理的。</p>
+<h3 id="MySQL-中可用的常见数据类型："><a href="#MySQL-中可用的常见数据类型：" class="headerlink" title="MySQL 中可用的常见数据类型："></a>MySQL 中可用的常见数据类型：</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Data type</th>
+<th style="text-align:left">Description</th>
+<th style="text-align:left">Format/Length</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">INT</td>
+<td style="text-align:left">Integer numerical value</td>
+<td style="text-align:left">INT, INT(11)</td>
+</tr>
+<tr>
+<td style="text-align:left">DECIMAL</td>
+<td style="text-align:left">Fixed precision decimal number</td>
+<td style="text-align:left">DECIMAL(M,D) M=digits, D=decimals</td>
+</tr>
+<tr>
+<td style="text-align:left">FLOAT</td>
+<td style="text-align:left">Floating point approximate number</td>
+<td style="text-align:left">FLOAT, FLOAT(p)</td>
+</tr>
+<tr>
+<td style="text-align:left">DATE</td>
+<td style="text-align:left">Date value</td>
+<td style="text-align:left">DATE, DATE(0) YYYY-MM-DD</td>
+</tr>
+<tr>
+<td style="text-align:left">TIME</td>
+<td style="text-align:left">Time value</td>
+<td style="text-align:left">TIME(0) hh:mm:ss</td>
+</tr>
+<tr>
+<td style="text-align:left">DATETIME</td>
+<td style="text-align:left">Date and time value</td>
+<td style="text-align:left">DATETIME YYYY-MM-DD hh:mm:ss</td>
+</tr>
+<tr>
+<td style="text-align:left">TIMESTAMP</td>
+<td style="text-align:left">Auto updated datetime</td>
+<td style="text-align:left">TIMESTAMP DEFAULT CURRENT_TIMESTAMP</td>
+</tr>
+<tr>
+<td style="text-align:left">CHAR</td>
+<td style="text-align:left">Fixed length string</td>
+<td style="text-align:left">CHAR(size) 1-255 chars</td>
+</tr>
+<tr>
+<td style="text-align:left">VARCHAR</td>
+<td style="text-align:left">Variable length string</td>
+<td style="text-align:left">VARCHAR(size) 1-65535 chars</td>
+</tr>
+<tr>
+<td style="text-align:left">TEXT</td>
+<td style="text-align:left">Long text string</td>
+<td style="text-align:left">TEXT, LONGTEXT, etc</td>
+</tr>
+<tr>
+<td style="text-align:left">BLOB</td>
+<td style="text-align:left">Binary large object</td>
+<td style="text-align:left">BLOB, TINYBLOB, etc</td>
+</tr>
+<tr>
+<td style="text-align:left">JSON</td>
+<td style="text-align:left">JSON document</td>
+<td style="text-align:left">JSON</td>
+</tr>
+<tr>
+<td style="text-align:left">BOOLEAN</td>
+<td style="text-align:left">Boolean value</td>
+<td style="text-align:left">BOOLEAN</td>
+</tr>
+<tr>
+<td style="text-align:left">AUTO INCREMENT</td>
+<td style="text-align:left">Auto incrementing integer</td>
+<td style="text-align:left">SERIAL, BIGSERIAL, etc</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="第五课"><a href="#第五课" class="headerlink" title="第五课"></a>第五课</h2><h1 id="了解-SQL-SELECT-语句"><a href="#了解-SQL-SELECT-语句" class="headerlink" title="了解 SQL SELECT 语句"></a>了解 SQL SELECT 语句</h1><p>SELECT 语句是从 SQL 数据库中检索数据的核心。它指定要 返回数据来源。</p>
+<h2 id="SELECT-语法"><a href="#SELECT-语法" class="headerlink" title="SELECT 语法"></a>SELECT 语法</h2><p>基本语法是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT column1, column2, ...</span><br><span class="line">FROM table_name;</span><br></pre></td></tr></table></figure>
+<p>这将查询单个表中的特定列。</p>
+<p>您可以根据需要选择任意数量的列，也可以使用 返回所有列。<code>SELECT *</code></p>
+<h2 id="查询单个表"><a href="#查询单个表" class="headerlink" title="查询单个表"></a>查询单个表</h2><p>要查询单个表，请在 FROM 后面引用它：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT id, name</span><br><span class="line">FROM customers;</span><br></pre></td></tr></table></figure>
+<p>这将返回 customers 表中所有行的 id 和 name。</p>
+<h2 id="返回所有列"><a href="#返回所有列" class="headerlink" title="返回所有列"></a>返回所有列</h2><p>使用通配符返回所有列：<code>*</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT *</span><br><span class="line">FROM products;</span><br></pre></td></tr></table></figure>
+<p>这对于在开发过程中快速检查 table 的完整内容非常有用。</p>
+<h2 id="查询多个表"><a href="#查询多个表" class="headerlink" title="查询多个表"></a>查询多个表</h2><p>您可以通过用逗号分隔多个表来查询它们：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT *</span><br><span class="line">FROM customers, orders;</span><br></pre></td></tr></table></figure>
+<p>这将生成交叉联接并返回两个表之间的所有行组合。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>总之，SELECT 用于指定：</p>
+<ul>
+<li>要返回的列</li>
+<li>要查询的表</li>
+<li>是返回所有列还是特定列</li>
+</ul>
+<p>掌握编写 SELECT 语句的基础知识是在 SQL 中检索和分析数据的基础。</p>
+<h2 id="列别名"><a href="#列别名" class="headerlink" title="列别名"></a>列别名</h2><p>您可以在 SELECT 子句中为列名称设置别名，以使用更具可读性或描述性的名称返回它们：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT id AS customer_id,</span><br><span class="line">name AS customer_name</span><br><span class="line">FROM customers;</span><br></pre></td></tr></table></figure>
+<p>现在，id 列以 customer_id 形式返回，name 以 customer_name 形式返回。</p>
+<p>别名有助于：</p>
+<ul>
+<li>为列提供更具描述性的名称</li>
+<li>缩短长列名称</li>
+<li>重命名具有相同名称的不同表中的列</li>
+</ul>
+<p>要为列设置别名，请在名称后添加别名，以空格或 AS 关键字分隔。AS 是可选的。</p>
+<h2 id="要点："><a href="#要点：" class="headerlink" title="要点："></a>要点：</h2><ul>
+<li>别名重命名结果集中的列</li>
+<li>提高可读性并消除列的歧义</li>
+<li>添加到以空格或 AS 分隔的列名后</li>
+</ul>
+<p>利用列别名等 SQL 功能，您可以调整和自定义从查询返回的数据。掌握 SELECT 的更精细细节可以使您成为更好的 SQL 开发人员。</p>
+<h2 id="第六课"><a href="#第六课" class="headerlink" title="第六课"></a>第六课</h2><h1 id="使用条件约束查询"><a href="#使用条件约束查询" class="headerlink" title="使用条件约束查询"></a>使用条件约束查询</h1><p>查询数据库表时，指定约束和条件允许您筛选结果集以仅包含满足定义条件的相关行。这可以提高查询性能，减少网络流量，并支持对数据进行更有用的分析。</p>
+<p>在 SQL 中，<strong>WHERE</strong> 子句用于应用过滤器，将结果限制为满足条件逻辑的行。</p>
+<h2 id="基本语法和比较运算符"><a href="#基本语法和比较运算符" class="headerlink" title="基本语法和比较运算符"></a>基本语法和比较运算符</h2><p>受约束的 SELECT 查询的基本语法是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT column1, column2,...</span><br><span class="line">FROM mytable</span><br><span class="line">WHERE condition1 AND/OR condition2</span><br></pre></td></tr></table></figure>
+<p>数值条件利用比较运算符，例如：</p>
+<ul>
+<li><strong>=</strong>：等于</li>
+<li><strong>！=</strong> 或 <strong>&lt;&gt;</strong> ： 不等于</li>
+<li><strong>&lt;</strong>：小于</li>
+<li><strong>&gt;</strong>：大于</li>
+<li><strong>&lt;=</strong>：小于或等于</li>
+<li><strong>&gt;=</strong>：大于或等于</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT name, price</span><br><span class="line">FROM products</span><br><span class="line">WHERE price &lt;= 100</span><br></pre></td></tr></table></figure>
+<p>检索价格为 100 或以下的产品的行。可以链接多个 AND/OR 条件以进一步筛选：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT name, stock</span><br><span class="line">FROM products</span><br><span class="line">WHERE price &lt; 50 AND stock &gt; 10</span><br></pre></td></tr></table></figure>
+<p>现在，只有 50 美元以下但库存超过 10 件的商品才会被退回。</p>
+<h2 id="高级条件"><a href="#高级条件" class="headerlink" title="高级条件"></a>高级条件</h2><p>SQL 为更高级的条件逻辑提供了额外的运算符：</p>
+<p><strong>BETWEEN</strong> 提供数值范围筛选：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT name, qty</span><br><span class="line">FROM sales</span><br><span class="line">WHERE qty BETWEEN 10 AND 50</span><br></pre></td></tr></table></figure>
+<p><strong>NOT BETWEEN</strong> 筛选条件（不包括范围）。</p>
+<p><strong>IN</strong> 和 <strong>NOT IN</strong> 检查值是否与集合中的任何元素匹配：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT name</span><br><span class="line">FROM products</span><br><span class="line">WHERE category IN (&#x27;Appliances&#x27;, &#x27;Electronics&#x27;)</span><br></pre></td></tr></table></figure>
+<p>对于文本，<strong>LIKE</strong> 和 <strong>NOT LIKE</strong> 使用通配符启用部分字符串匹配：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT title</span><br><span class="line">FROM books</span><br><span class="line">WHERE title LIKE &#x27;%Cook%&#x27;</span><br></pre></td></tr></table></figure>
+<p>% 与任何 # 字符匹配。_ 匹配单个字符。</p>
+<h2 id="联接多个条件"><a href="#联接多个条件" class="headerlink" title="联接多个条件"></a>联接多个条件</h2><p>您可以链接许多 AND/OR 运算符来生成复杂的条件逻辑：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT *</span><br><span class="line">FROM data</span><br><span class="line">WHERE</span><br><span class="line">  name LIKE &#x27;A%&#x27; AND</span><br><span class="line">  fruit IN (&#x27;Apple&#x27;, &#x27;Apricot&#x27;) OR</span><br><span class="line">  qty &gt; 10 AND</span><br><span class="line">  purchase_date BETWEEN &#x27;2020-01-01&#x27; AND &#x27;2020-12-31&#x27;</span><br></pre></td></tr></table></figure>
+<p>这将返回以 A 开头的名称的行，这些名称的水果是 Apple/Apricot，或者数量超过 10 个，并且是去年购买的。</p>
+<p>通过利用比较运算符和条件链接来仔细限制结果集有助于优化 SQL 查询性能和分析价值。</p>
+<h2 id="Table-of-constraints"><a href="#Table-of-constraints" class="headerlink" title="Table of constraints"></a>Table of constraints</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Operator</th>
+<th style="text-align:left">Condition</th>
+<th style="text-align:left">SQL Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">=, !=, &lt; &lt;=, &gt;, &gt;=</td>
+<td style="text-align:left">Standard numerical operators</td>
+<td style="text-align:left">col_name <strong>!=</strong> 4</td>
+</tr>
+<tr>
+<td style="text-align:left">BETWEEN … AND …</td>
+<td style="text-align:left">Number is within range of two values (inclusive)</td>
+<td style="text-align:left">col_name <strong>BETWEEN</strong> 1.5 <strong>AND</strong> 10.5</td>
+</tr>
+<tr>
+<td style="text-align:left">NOT BETWEEN … AND …</td>
+<td style="text-align:left">Number is not within range of two values (inclusive)</td>
+<td style="text-align:left">col_name <strong>NOT BETWEEN</strong> 1 <strong>AND</strong> 10</td>
+</tr>
+<tr>
+<td style="text-align:left">IN (…)</td>
+<td style="text-align:left">Number exists in a list</td>
+<td style="text-align:left">col_name <strong>IN</strong> (2, 4, 6)</td>
+</tr>
+<tr>
+<td style="text-align:left">NOT IN (…)</td>
+<td style="text-align:left">Number does not exist in a list</td>
+<td style="text-align:left">col_name <strong>NOT IN</strong> (1, 3, 5)</td>
+</tr>
+<tr>
+<td style="text-align:left">=</td>
+<td style="text-align:left">Case sensitive exact string comparison (<strong>notice the single equals</strong>)</td>
+<td style="text-align:left">col_name <strong>=</strong> “abc”</td>
+</tr>
+<tr>
+<td style="text-align:left">!= or &lt;&gt;</td>
+<td style="text-align:left">Case sensitive exact string inequality comparison</td>
+<td style="text-align:left">col_name <strong>!=</strong> “abcd”</td>
+</tr>
+<tr>
+<td style="text-align:left">LIKE</td>
+<td style="text-align:left">Case insensitive exact string comparison</td>
+<td style="text-align:left">col_name <strong>LIKE</strong> “ABC”</td>
+</tr>
+<tr>
+<td style="text-align:left">NOT LIKE</td>
+<td style="text-align:left">Case insensitive exact string inequality comparison</td>
+<td style="text-align:left">col_name <strong>NOT LIKE</strong> “ABCD”</td>
+</tr>
+<tr>
+<td style="text-align:left">%</td>
+<td style="text-align:left">Used anywhere in a string to match a sequence of zero or more characters (only with LIKE or NOT LIKE)</td>
+<td style="text-align:left">col_name <strong>LIKE</strong> “%AT%”</td>
+</tr>
+<tr>
+<td style="text-align:left">_</td>
+<td style="text-align:left">Used anywhere in a string to match a single character (only with LIKE or NOT LIKE)</td>
+<td style="text-align:left">col_name <strong>LIKE</strong> “AN_”</td>
+</tr>
+<tr>
+<td style="text-align:left">IN (…)</td>
+<td style="text-align:left">String exists in a list</td>
+<td style="text-align:left">col_name <strong>IN</strong> (“A”, “B”, “C”)</td>
+</tr>
+<tr>
+<td style="text-align:left">NOT IN (…)</td>
+<td style="text-align:left">String does not exist in a list</td>
+<td style="text-align:left">col_name <strong>NOT IN</strong> (“D”, “E”, “F”)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="第七课"><a href="#第七课" class="headerlink" title="第七课"></a>第七课</h2><h1 id="筛选和排序-SQL-结果"><a href="#筛选和排序-SQL-结果" class="headerlink" title="筛选和排序 SQL 结果"></a>筛选和排序 SQL 结果</h1><h2 id="使用-DISTINCT-消除重复的行"><a href="#使用-DISTINCT-消除重复的行" class="headerlink" title="使用 DISTINCT 消除重复的行"></a>使用 DISTINCT 消除重复的行</h2><p>查询 books 表时，使用不带 DISTINCT 的 SELECT 将为写了多本书的作者返回重复的书籍：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT author_id FROM books;</span><br></pre></td></tr></table></figure>
+<p><strong>输出：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">3</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>添加 DISTINCT 关键字可消除以下重复项：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT DISTINCT author_id FROM books;</span><br></pre></td></tr></table></figure>
+<p><strong>输出：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>现在，我们只需获取唯一的作者 ID。</p>
+<h2 id="使用-ORDER-BY-对数据进行排序"><a href="#使用-ORDER-BY-对数据进行排序" class="headerlink" title="使用 ORDER BY 对数据进行排序"></a>使用 ORDER BY 对数据进行排序</h2><p>ORDER BY 子句允许根据列值按升序或降序对查询结果进行排序。</p>
+<ul>
+<li>ASC 按从最低到最高的顺序对值进行排序</li>
+<li>DESC 按从高到低的顺序对值进行排序</li>
+</ul>
+<p>例如，要检索按注册日期排序的客户记录：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM customers</span><br><span class="line">ORDER BY registration_date DESC;</span><br></pre></td></tr></table></figure>
+<p><strong>输出：</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">身份证</th>
+<th style="text-align:left">名字</th>
+<th style="text-align:left">电子邮件</th>
+<th style="text-align:left">日期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">3</td>
+<td style="text-align:left">无名氏</td>
+<td style="text-align:left">jdoe@email.com</td>
+<td style="text-align:left">2022-01-05</td>
+</tr>
+<tr>
+<td style="text-align:left">9</td>
+<td style="text-align:left">黄丽莎</td>
+<td style="text-align:left">lwong@email.com</td>
+<td style="text-align:left">2021-11-15</td>
+</tr>
+<tr>
+<td style="text-align:left">12</td>
+<td style="text-align:left">马克·史密斯</td>
+<td style="text-align:left">msmith@email.com</td>
+<td style="text-align:left">2020-09-30</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>默认情况下，ORDER BY 按升序排序，因此省略 DESC 关键字将首先打印最早的注册。</p>
+<p>我们还可以链接多个列来确定排序顺序的优先级：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM books</span><br><span class="line">ORDER BY author_id, publish_date DESC;</span><br></pre></td></tr></table></figure>
+<p>现在，它主要按升序author_id排序。但对于同一作者的任何书籍，它将按降序publish_date排序。</p>
+<p>使用 ASC 和 DESC 精细控制排序的能力有助于以最合乎逻辑的方式安排输出以进行分析。</p>
+<h2 id="使用-LIMIT-和-OFFSET-约束行"><a href="#使用-LIMIT-和-OFFSET-约束行" class="headerlink" title="使用 LIMIT 和 OFFSET 约束行"></a>使用 LIMIT 和 OFFSET 约束行</h2><p>要仅选择 5 本最近出版的书籍：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM books</span><br><span class="line">ORDER BY publish_date DESC</span><br><span class="line">LIMIT 5;</span><br></pre></td></tr></table></figure>
+<p><strong>输出：</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">身份证</th>
+<th style="text-align:left">标题</th>
+<th style="text-align:left">出版日期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">28</td>
+<td style="text-align:left">烹饪的艺术</td>
+<td style="text-align:left">2023-02-15</td>
+</tr>
+<tr>
+<td style="text-align:left">64</td>
+<td style="text-align:left">世界历史</td>
+<td style="text-align:left">2023-02-12</td>
+</tr>
+<tr>
+<td style="text-align:left">49</td>
+<td style="text-align:left">适合初学者的机器人技术</td>
+<td style="text-align:left">2023-02-10</td>
+</tr>
+<tr>
+<td style="text-align:left">3</td>
+<td style="text-align:left">心理学基础</td>
+<td style="text-align:left">2023-02-05</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>我们可以使用 OFFSET 实现结果的分页。就像获取下一个 5 个一样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LIMIT 5 OFFSET 5;</span><br></pre></td></tr></table></figure>
+<h2 id="执行顺序"><a href="#执行顺序" class="headerlink" title="执行顺序"></a>执行顺序</h2><p>排序后应用 LIMIT/OFFSET 等重要行为可确保在查询 orders 和 order_details 等大型表时进行适当的行约束。</p>
+<h2 id="第八课"><a href="#第八课" class="headerlink" title="第八课"></a>第八课</h2><h1 id="使用联接查询多个表"><a href="#使用联接查询多个表" class="headerlink" title="使用联接查询多个表"></a>使用联接查询多个表</h1><p>掌握 JOINS 是利用关系数据库真正强大功能的关键。JOIN 子句使用逻辑条件组合多个表中的数据，从而支持更复杂的查询以获取业务见解。</p>
+<h2 id="内部联接"><a href="#内部联接" class="headerlink" title="内部联接"></a>内部联接</h2><p>INNER JOIN 从两个表中选择匹配的行。例如，要匹配客户和订单数据：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT c.Name, o.OrderTotal</span><br><span class="line">FROM Customers c</span><br><span class="line">INNER JOIN Orders o ON c.Id = o.CustomerId</span><br></pre></td></tr></table></figure>
+<p>这将检索每个有订单的客户的客户名称和订单总额。ON 条件根据表的关系匹配表。</p>
+<p>INNER 关键字是可选的 - 单独表示内部联接。<code>JOIN</code></p>
+<h2 id="左-右外部联接"><a href="#左-右外部联接" class="headerlink" title="左/右外部联接"></a>左/右外部联接</h2><p>OUTER JOIN 返回一个表中的所有行以及另一个表中的匹配行。当一个表包含另一侧缺少的其他记录时，这非常有用。</p>
+<p>LEFT JOIN 返回左表中的所有行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT c.Name, o.OrderTotal</span><br><span class="line">FROM Customers c</span><br><span class="line">LEFT JOIN Orders o ON c.Id = o.CustomerId</span><br></pre></td></tr></table></figure>
+<p>现在，每个客户都会被返回，即使是那些还没有订单的客户。RIGHT JOIN 根据正确的表反转逻辑。</p>
+<h2 id="完全外部联接"><a href="#完全外部联接" class="headerlink" title="完全外部联接"></a>完全外部联接</h2><p>FULL OUTER JOIN 结合了来自左连接和右连接的逻辑。无论匹配项如何，都会返回两个表中的每一行。</p>
+<p>如果一个表中有数据，但另一个表中没有数据，则不匹配的列为 NULL。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT Employees.Name, Employees.Department, Sales.SalesAmount</span><br><span class="line">FROM Employees</span><br><span class="line">FULL OUTER JOIN Sales</span><br><span class="line">  ON Employees.EmployeeID = Sales.EmployeeID</span><br></pre></td></tr></table></figure>
+<h2 id="SELF-JOINS"><a href="#SELF-JOINS" class="headerlink" title="SELF JOINS"></a>SELF JOINS</h2><p>表可以 JOIN 到自身来查询层次结构，例如同一表中的员工及其经理：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT e.Name AS Employee, m.Name AS Manager</span><br><span class="line">FROM Employees e</span><br><span class="line">LEFT JOIN Employees m ON e.ManagerId = m.Id</span><br></pre></td></tr></table></figure>
+<h2 id="别名表名称"><a href="#别名表名称" class="headerlink" title="别名表名称"></a>别名表名称</h2><p>Table 别名缩短了查询并避免了 self join 冲突：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT o.Product, c.Name AS Customer</span><br><span class="line">FROM Orders o</span><br><span class="line">INNER JOIN Customers c ON o.CustomerId = c.Id</span><br></pre></td></tr></table></figure>
+<p>这里分别为 Order 和 Customer 表设置别名。<code>o``c</code></p>
+<h2 id="筛选联接"><a href="#筛选联接" class="headerlink" title="筛选联接"></a>筛选联接</h2><p>ON 子句过滤哪些行在表之间匹配，而 WHERE 在联接后过滤：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT *</span><br><span class="line">FROM OrderDetails o</span><br><span class="line">JOIN Products p ON o.ProductId = p.Id</span><br><span class="line">WHERE p.Discontinued = 0</span><br></pre></td></tr></table></figure>
+<p>这将仅维护所有订单和当前产品之间的关系。JOIN + WHERE 组合功能强大地过滤多表数据。</p>
+<p>学习通过 SQL JOINS 遍历关系可以将规范化表中的信息合并到单个结果集中！如果您有任何其他 JOIN 问题，请告诉我。</p>
+<h2 id="第九课"><a href="#第九课" class="headerlink" title="第九课"></a>第九课</h2><h1 id="对数据进行分组和聚合函数"><a href="#对数据进行分组和聚合函数" class="headerlink" title="对数据进行分组和聚合函数"></a>对数据进行分组和聚合函数</h1><p>SQL 提供了强大的功能，用于对查询结果进行分组和计算聚合以分析和汇总数据。掌握这些技术可以解锁从数据库表中回答更有洞察力的问题的能力。</p>
+<h2 id="GROUP-BY-子句"><a href="#GROUP-BY-子句" class="headerlink" title="GROUP BY 子句"></a>GROUP BY 子句</h2><p>GROUP BY 子句按一列或多列对结果集进行分组。对于这些列中的每个非重复值，它将行聚合到单个摘要行中。</p>
+<p>例如，要计算每个城市的客户数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT city, COUNT(*) AS num_customers</span><br><span class="line">FROM customers</span><br><span class="line">GROUP BY city;</span><br></pre></td></tr></table></figure>
+<p>这将按 “city” 列对所有行进行分组。对于每个唯一城市，它会输出一行，其中包含该城市的城市名称和行数。</p>
+<p>我们可以按多个列进行分组以创建子分组 - 例如每个国家/地区每个城市的客户：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT country, city, COUNT(*) AS num_customers</span><br><span class="line">FROM customers</span><br><span class="line">GROUP BY country, city;</span><br></pre></td></tr></table></figure>
+<p>现在，对于每个国家/地区和城市组合，我们都会得到一个计数。</p>
+<h2 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h2><p>与 GROUP BY 一起使用的常见聚合函数是：</p>
+<p><strong>COUNT（）：</strong>对组中的行进行计数。可以传递 或 列名。<code>*</code></p>
+<p><strong>SUM（）：</strong>对数值列求和。</p>
+<p><strong>AVG（）：</strong>对数值列求平均值。</p>
+<p><strong>MAX（）/MIN（）：</strong>列中的最大值和最小值。</p>
+<p>让我们看一些使用聚合来获取业务洞察的示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT MAX(salary) AS highest_salary</span><br><span class="line">FROM employees;</span><br></pre></td></tr></table></figure>
+<p>查找已支付的最高薪水。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT department, SUM(sales) AS total_sales</span><br><span class="line">FROM sales_data</span><br><span class="line">GROUP BY department;</span><br></pre></td></tr></table></figure>
+<p>按部门获取总销售额。用于部门绩效比较。</p>
+<h2 id="HAVING-子句"><a href="#HAVING-子句" class="headerlink" title="HAVING 子句"></a>HAVING 子句</h2><p>GROUP BY 按列对行进行分组，而 HAVING 则根据聚合条件筛选行组。这是在聚合之后完成的，这与之前过滤的 WHERE 不同。</p>
+<p>例如，要获得销售额超过 100,000 USD 的高绩效部门：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT department, SUM(sales) AS total_sales</span><br><span class="line">FROM sales_data</span><br><span class="line">GROUP BY department</span><br><span class="line">HAVING SUM(sales) &gt; 100000;</span><br></pre></td></tr></table></figure>
+<p>HAVING 子句在计算总数后筛选组。这只留下销售额大于给定数量的部门。</p>
+<p>您可以将 HAVING 与 WHERE 结合使用。WHERE 在聚合之前筛选单个行。然后，HAVING 在计算摘要后过滤整个组。</p>
+<p>掌握 GROUP BY、COUNT/SUM/AVG/MIN/MAX 等聚合以及 HAVING 子句，可以从数据库表中打开广泛的报告和业务分析功能。凭借一点 SQL 知识，您可以获得非常强大的见解。</p>
+<h2 id="第十课"><a href="#第十课" class="headerlink" title="第十课"></a>第十课</h2><h1 id="子查询和公共表表达式"><a href="#子查询和公共表表达式" class="headerlink" title="子查询和公共表表达式"></a>子查询和公共表表达式</h1><p>SQL 提供了跨数据库表编写复杂分析查询的强大功能。掌握子查询和公共表表达式等技术可以回答更深层次的问题并更好地组织逻辑。</p>
+<h2 id="子查询-1"><a href="#子查询-1" class="headerlink" title="子查询"></a>子查询</h2><p>子查询是嵌套在另一个查询中的 SQL 查询。它首先运行并输出中间结果，外部查询在其逻辑中使用这些结果。</p>
+<p>基本语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT column</span><br><span class="line">FROM table</span><br><span class="line">WHERE column_name OPERATOR (</span><br><span class="line">   SELECT column</span><br><span class="line">   FROM table</span><br><span class="line">   WHERE condition</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>这将首先单独运行子查询，并为其标量结果提供外部查询以进行比较。</p>
+<p>子查询的常见用途：</p>
+<p><strong>存在性检查</strong>：查看是否存在满足条件的行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT *</span><br><span class="line">FROM products</span><br><span class="line">WHERE EXISTS (</span><br><span class="line">   SELECT *</span><br><span class="line">   FROM reviews</span><br><span class="line">   WHERE product_id = products.id</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p><strong>行值比较</strong>：将值与子查询输出进行比较：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SELECT *</span><br><span class="line">FROM products</span><br><span class="line">WHERE price &lt; (</span><br><span class="line">   SELECT AVG(price)</span><br><span class="line">   FROM products</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>查找比平均价格更便宜的产品。</p>
+<p><strong>行生成</strong>：将子查询输出为派生表：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SELECT *</span><br><span class="line">FROM (</span><br><span class="line">   SELECT id, name</span><br><span class="line">   FROM brands</span><br><span class="line">   WHERE country = &#x27;US&#x27;</span><br><span class="line">) AS us_brands;</span><br></pre></td></tr></table></figure>
+<p>进一步筛选和处理子查询输出。</p>
+<h2 id="公用表表达式-（CTE）"><a href="#公用表表达式-（CTE）" class="headerlink" title="公用表表达式 （CTE）"></a>公用表表达式 （CTE）</h2><p>公共表表达式 （CTE） 定义可在以后的查询子句中引用的临时结果集。与子查询不同，CTE 可以是自引用的，同时只执行一次。</p>
+<p>语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">WITH cte_name AS (</span><br><span class="line">   SELECT column</span><br><span class="line">   FROM table</span><br><span class="line">)</span><br><span class="line">SELECT *</span><br><span class="line">FROM cte_name;</span><br></pre></td></tr></table></figure>
+<p>在上面定义 CTE 后，这会像物理表一样查询 CTE cte_name。</p>
+<p>CTE 有助于简化复杂的逻辑并在子句之间共享派生表。递归 CTE 也可以使用自引用对分层数据进行建模。</p>
+<p>例如，要递归地将 salaries 向上汇总部门层次结构：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">WITH emp_tree AS (</span><br><span class="line">   SELECT *, 1 AS level</span><br><span class="line">        FROM employees</span><br><span class="line">   UNION ALL</span><br><span class="line">   SELECT e.*, level + 1</span><br><span class="line">     FROM employees e</span><br><span class="line">        JOIN emp_tree et ON e.manager_id = et.id</span><br><span class="line">)</span><br><span class="line">SELECT SUM(salary)</span><br><span class="line">FROM emp_tree;</span><br></pre></td></tr></table></figure>
+<p>掌握高级子查询和 CTE 技术可以构建雄辩的 SQL 以满足分析和报告需求。通过练习，构建复杂的数据转换变得直观。</p>
+<h2 id="第十一课"><a href="#第十一课" class="headerlink" title="第十一课"></a>第十一课</h2><h1 id="SQL-函数和表达式"><a href="#SQL-函数和表达式" class="headerlink" title="SQL 函数和表达式"></a>SQL 函数和表达式</h1><p>SQL 提供了各种内置函数来转换和操作查询中的数据，而无需客户端后处理。表达式允许以类似的方式计算派生值。利用这些可以显著简化数据提取逻辑。</p>
+<h2 id="SQL-函数"><a href="#SQL-函数" class="headerlink" title="SQL 函数"></a>SQL 函数</h2><p>常见功能类别：</p>
+<p><strong>文本函数</strong></p>
+<p>操作字符串数据：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT UPPER(name), LENGTH(comments)</span><br><span class="line">FROM reviews;</span><br></pre></td></tr></table></figure>
+<p>UPPER 大小写更改为大写，LENGTH 获取 length。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">UPPER（名称）</th>
+<th style="text-align:left">LENGTH（注释）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">无名氏</td>
+<td style="text-align:left">45</td>
+</tr>
+<tr>
+<td style="text-align:left">简·史密斯</td>
+<td style="text-align:left">30</td>
+</tr>
+<tr>
+<td style="text-align:left">亚历克斯·琼斯</td>
+<td style="text-align:left">60</td>
+</tr>
+<tr>
+<td style="text-align:left">艾米莉·布莱克</td>
+<td style="text-align:left">50</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>日期函数</strong></p>
+<p>日期处理：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT DAY(created_date), DATEDIFF(NOW(), created_date)</span><br><span class="line">FROM accounts;</span><br></pre></td></tr></table></figure>
+<p>DAY 获取日期中的日期，DATEDIFF 获取日期之间的差值。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">白天（created_date）</th>
+<th style="text-align:left">DATEDIFF（现在（）， created_date）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">15</td>
+<td style="text-align:left">10</td>
+</tr>
+<tr>
+<td style="text-align:left">3</td>
+<td style="text-align:left">22</td>
+</tr>
+<tr>
+<td style="text-align:left">25</td>
+<td style="text-align:left">5</td>
+</tr>
+<tr>
+<td style="text-align:left">8</td>
+<td style="text-align:left">18</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>集 料</strong></p>
+<p>我们之前看到了用于汇总的聚合，如 COUNT（）、AVG（）、SUM（）。</p>
+<p><strong>转换</strong></p>
+<p>在数据类型之间转换：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT CAST(price AS VARCHAR)</span><br><span class="line">FROM products;</span><br></pre></td></tr></table></figure>
+<p>将 price 转换为文本。</p>
+<p><strong>案例表达式</strong></p>
+<p>比较值并根据条件返回：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT name,</span><br><span class="line">  CASE WHEN price &lt; 100 THEN &#x27;Affordable&#x27;</span><br><span class="line">       WHEN price &lt; 500 THEN &#x27;Expensive&#x27;</span><br><span class="line">       ELSE &#x27;Ultra-Premium&#x27; END AS category</span><br><span class="line">FROM wines;</span><br></pre></td></tr></table></figure>
+<p>根据定价对葡萄酒进行分类。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">名字</th>
+<th style="text-align:left">类别</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">莎当妮</td>
+<td style="text-align:left">实惠</td>
+</tr>
+<tr>
+<td style="text-align:left">黑比诺</td>
+<td style="text-align:left">贵</td>
+</tr>
+<tr>
+<td style="text-align:left">梅乐</td>
+<td style="text-align:left">实惠</td>
+</tr>
+<tr>
+<td style="text-align:left">赤</td>
+<td style="text-align:left">超高级</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="表达-式"><a href="#表达-式" class="headerlink" title="表达 式"></a>表达 式</h2><p>SQL 允许使用常见的数学和编程运算符（如 +、-、*、/、% 等）编写表达式。括号控制评估的顺序。</p>
+<p>例如，要计算订单总额：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT *, quantity * unit_price AS total_cost</span><br><span class="line">FROM order_lines;</span><br></pre></td></tr></table></figure>
+<p>这样就无需在应用程序代码中计算线路成本。</p>
+<p>布尔表达式可以利用 AND/OR/NOT 运算符和比较运算符（如 =、！=、&gt; 等）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT *</span><br><span class="line">FROM contests</span><br><span class="line">WHERE end_date &gt; NOW() AND status = &#x27;Open&#x27;;</span><br></pre></td></tr></table></figure>
+<p>查找当前打开的竞赛。</p>
+<p>利用 LENGTH、DATE_DIFF 和表达式等函数进行计算、布尔逻辑等，可以直接在 SQL 中进行更多的数据操作，而后端编程更少。</p>
+<p>练习集成函数和表达式，将数据处理推送到数据库引擎中，以便更快、更轻松地进行分析。</p>
+<h2 id="第十二课"><a href="#第十二课" class="headerlink" title="第十二课"></a>第十二课</h2><h1 id="插入、更新和删除"><a href="#插入、更新和删除" class="headerlink" title="插入、更新和删除"></a>插入、更新和删除</h1><p>虽然 SQL 的查询语言 （DQL） 允许检索数据，但数据操作语言 （DML） 有助于插入、修改和删除数据库表中的记录。掌握这些陈述有助于发现数据捕获和演变能力。</p>
+<h2 id="INSERT-语句"><a href="#INSERT-语句" class="headerlink" title="INSERT 语句"></a>INSERT 语句</h2><p>INSERT 将新记录追加到表中。</p>
+<p>基本语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO table (column1, column2)</span><br><span class="line">VALUES (value1, value2);</span><br></pre></td></tr></table></figure>
+<p>这将插入一行具有给定的列值。</p>
+<p>假设您有一个名为 <strong>books</strong> 的表，其中包含列 <strong>book_id</strong> 和 <strong>title</strong>。</p>
+<p>在此表中插入新行的 SQL 命令为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO books (book_id, title)</span><br><span class="line">VALUES (1, &#x27;To Kill a Mockingbird&#x27;);</span><br></pre></td></tr></table></figure>
+<p>替代语法支持插入多行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO table_name (column_list)</span><br><span class="line">VALUES (row1_values),</span><br><span class="line">       (row2_values);</span><br></pre></td></tr></table></figure>
+<p>假设您有一个名为 <strong>employees</strong> 的表，其中包含 <strong>employee_id、name 和 department</strong> 列。</p>
+<p>在此表中插入两个新行的 SQL 命令将如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO employees (employee_id, name, department)</span><br><span class="line">VALUES (123, &#x27;John Doe&#x27;, &#x27;Marketing&#x27;),</span><br><span class="line">       (456, &#x27;Jane Smith&#x27;, &#x27;Finance&#x27;);</span><br></pre></td></tr></table></figure>
+<p>用于从应用程序处理中加载批量数据。</p>
+<p>主要功能包括：</p>
+<ul>
+<li>显式指定插入的列</li>
+<li>在一个语句中插入多行</li>
+<li>从另一个表查询到 COPY 数据</li>
+</ul>
+<p>例如，使用当前数据填充历史记录表：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO customers_archive</span><br><span class="line">SELECT * FROM customers;</span><br></pre></td></tr></table></figure>
+<h2 id="UPDATE-语句"><a href="#UPDATE-语句" class="headerlink" title="UPDATE 语句"></a>UPDATE 语句</h2><p>UPDATE 修改现有记录。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UPDATE table</span><br><span class="line">SET column = value, other_column = other_value</span><br><span class="line">WHERE condition;</span><br></pre></td></tr></table></figure>
+<p>通过将列设置为给定值来更新满足条件的行。</p>
+<p>假设您有一个名为 employees 的表，其中包含<strong>列 employee_id</strong>、<strong>name</strong>、<strong>department</strong> 和 <strong>salary</strong>。</p>
+<p>用于更新特定员工的部门和薪水的 SQL 命令可能如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UPDATE employees</span><br><span class="line">SET department = &#x27;IT&#x27;, salary = 75000</span><br><span class="line">WHERE employee_id = 123;</span><br></pre></td></tr></table></figure>
+<p>最佳实践：</p>
+<ul>
+<li>首先检查受影响的行而不更新</li>
+<li>使用 WHERE 条件限制更新的行</li>
+<li>在进行更改之前验证限制</li>
+</ul>
+<h2 id="DELETE-语句"><a href="#DELETE-语句" class="headerlink" title="DELETE 语句"></a>DELETE 语句</h2><p>顾名思义，DELETE 会删除记录：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM table</span><br><span class="line">WHERE condition;</span><br></pre></td></tr></table></figure>
+<p>如果没有限制，则删除与条件匹配的行。</p>
+<p>假设您有一个名为 <strong>customers</strong> 的表，其中包含各种列，包括 <strong>customer_id</strong>。</p>
+<p>删除具有特定<strong>customer_id**</strong>客户的** SQL 命令为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM customers</span><br><span class="line">WHERE customer_id = 101;</span><br></pre></td></tr></table></figure>
+<p>应采取类似的谨慎措施，例如 UPDATE：</p>
+<ul>
+<li>首先检查受影响的行</li>
+<li>使用 WHERE 限制删除</li>
+<li>基于关系规则进行验证</li>
+<li>考虑在删除之前存档数据</li>
+</ul>
+<p>学习受控的 DML 执行可将您的 SQL 技能提升到一个新的水平，以随着时间的推移保持数据库完整性。通过个性化练习练习安全的数据操作。</p>
+<h2 id="第十三课"><a href="#第十三课" class="headerlink" title="第十三课"></a>第十三课</h2><h1 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h1><p>关系数据库由多个相互关联的表组成，其中包含特定数据。适当定义表对于稳健的数据分析至关重要。SQL 为此提供了灵活的 <strong>CREATE TABLE</strong> 语句。本课介绍其语法、列和约束等组件，以及用于有效建模表架构的常见数据类型。</p>
+<h2 id="Create-Table-语句"><a href="#Create-Table-语句" class="headerlink" title="Create Table 语句"></a>Create Table 语句</h2><p>表是使用以下方法创建的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE table_name (</span><br><span class="line">   column1 data_type,</span><br><span class="line">   column2 data_type,</span><br><span class="line">   ...</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>可以在创建简明架构期间定义约束和默认值。</p>
+<p><strong>IF NOT EXISTS</strong> 子句告诉 SQL 仅在表不存在时才创建表。如果该表确实存在，则不会执行任何操作，也不会发生错误。</p>
+<p>以下是在 SQL 中创建表时使用 <strong>IF NOT EXISTS</strong> 子句的示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE IF NOT EXISTS customers (</span><br><span class="line">   id INT PRIMARY KEY,</span><br><span class="line">   first_name VARCHAR(50),</span><br><span class="line">   last_name VARCHAR(50),</span><br><span class="line">   email VARCHAR(100)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>有关使用 <strong>IF NOT EXISTS</strong> 的一些关键点：</p>
+<ul>
+<li>避免在尝试创建已存在的表时出错</li>
+<li>在表可能存在也可能不存在的可重用架构脚本中很有用</li>
+<li>确保 CREATE TABLE 语句是幂等的</li>
+<li>适用于 MySQL、Postgres、SQL Server、SQLite</li>
+<li>检查表名 - 允许创建具有相同列的新表</li>
+</ul>
+<p>例如，您可能有一个数据库还原脚本，该脚本使用测试数据截断并重新创建表。使用 IF NOT EXISTS 可以处理表可能已经存在或可能不存在的情况，而不会失败。</p>
+<p>它还处理多个开发人员运行同一表创建脚本的情况，从而避免重复错误。</p>
+<p>仅对表名进行检查。相同的 CREATE TABLE IF NOT EXISTS 语句可用于创建名称相同但列定义不同的表，而不会出现问题。</p>
+<h2 id="表-Schema-定义"><a href="#表-Schema-定义" class="headerlink" title="表 Schema 定义"></a>表 Schema 定义</h2><p>定义架构时的关键组件：</p>
+<p><strong>列名称</strong>：描述性标识符，如 user_id、amount_due</p>
+<p><strong>数据类型</strong>：约束存储的值，如 INTEGER、VARCHAR、DATE</p>
+<p><strong>约束</strong>：NOT NULL、UNIQUE 和 FOREIGN KEYS 等限制</p>
+<p><strong>默认值</strong>：如果未指定，则预填充列值</p>
+<p>适当的架构定义可确保数据完整性。</p>
+<h2 id="SQL-数据类型-1"><a href="#SQL-数据类型-1" class="headerlink" title="SQL 数据类型"></a>SQL 数据类型</h2><p>常见类型包括：</p>
+<p><strong>数值的</strong></p>
+<ul>
+<li>INTEGER， BIGINT：整数</li>
+<li>FLOAT， DOUBLE： 小数</li>
+<li>BOOLEAN：True/false 值</li>
+</ul>
+<p><strong>字符串</strong></p>
+<ul>
+<li>CHAR（N）：固定长度字符串</li>
+<li>VARCHAR（N）：可变长度字符串</li>
+<li>TEXT：自由格式文本</li>
+</ul>
+<p><strong>日期/时间</strong></p>
+<ul>
+<li>日期：日历日期</li>
+<li>时间： 一天中的时间</li>
+<li>DATETIME：日期和时间</li>
+</ul>
+<p><strong>大型对象</strong></p>
+<ul>
+<li>BLOB：图像、文件</li>
+</ul>
+<p>每个数据库都定义了其他类型，如货币、地理空间等。有关这些类型的更多信息，请访问<a target="_blank" rel="noopener" href="https://sqlzap.com/lessons/data-types">数据类型</a>。</p>
+<h2 id="表约束"><a href="#表约束" class="headerlink" title="表约束"></a>表约束</h2><p>约束确保数据有效性：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://sqlzap.com/lessons/create-tables#promary-key">PRIMARY KEY：</a>唯一行标识符</li>
+<li><a target="_blank" rel="noopener" href="https://sqlzap.com/lessons/create-tables#foreign-key">FOREIGN KEY：</a>从子表到父表的引用</li>
+<li>NOT NULL：强制值</li>
+<li>UNIQUE：不同的值</li>
+<li>CHECK：值的条件</li>
+</ul>
+<h3 id="主键约束"><a href="#主键约束" class="headerlink" title="主键约束"></a>主键约束</h3><p>主键是一种特殊的关系数据库约束，用于唯一标识表中的每条记录。</p>
+<p>主键的主要特征是：</p>
+<ul>
+<li><strong>唯一标识每一行</strong> - 没有两条记录可以具有相同的主键值</li>
+<li><strong>不能包含 NULL 值</strong> - 主键列必须具有定义的值</li>
+<li><strong>防止重复条目</strong> - 确保表中不存在重复的行</li>
+</ul>
+<p>一个表只能有一个主键。主键可以由单个列或多个列（复合键）组成。</p>
+<p>一些例子：</p>
+<p><strong>单列主键</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE users (</span><br><span class="line">  id INT PRIMARY KEY,</span><br><span class="line">  name VARCHAR(50)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>此处 id 列是主键。</p>
+<p><strong>多列主键</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE employee (</span><br><span class="line">  emp_id INT,</span><br><span class="line">  department_id INT,</span><br><span class="line">  PRIMARY KEY (emp_id, department_id)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>在这里，emp_id 和 department_id 的组合构成了主键。</p>
+<p>主键是关系模型中的一个重要概念。它们允许唯一标识表中的元组/行，并构成表之间关系的基础。</p>
+<h3 id="外键约束"><a href="#外键约束" class="headerlink" title="外键约束"></a>外键约束</h3><p>数据库表中的外键是链接到另一个表的主键的字段。它有助于在表之间建立关系并强制实施引用完整性。</p>
+<p>外键的主要特点：</p>
+<ul>
+<li>它必须与它引用的主键的数据类型和结构匹配</li>
+<li>包含外键的表称为子表</li>
+<li>具有主键的被引用表称为被引用表或父表</li>
+<li>帮助根据逻辑关系连接表</li>
+<li>强制引用完整性 - 子表不能包含孤立记录</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE orders (</span><br><span class="line">  order_id INT PRIMARY KEY,</span><br><span class="line">  customer_id INT,</span><br><span class="line">  FOREIGN KEY (customer_id) REFERENCES customers(id)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>此处的 orders 表中是一个外键，指的是表中的主键。<code>customer_id``id``customers</code></p>
+<p>这可确保：</p>
+<ul>
+<li>匹配项的数据类型<code>customer_id``id``customers</code></li>
+<li>删除客户记录也会删除关联的订单</li>
+<li>插入订单需要 存在于<code>customer_id``customers</code></li>
+</ul>
+<p>外键在两个表之间建立定义的关系，从而促进记录之间的规则和完整性。实施外键约束对于准确的互连数据至关重要。</p>
+<p>仔细定义约束可以防止无效的数据插入。</p>
+<h2 id="第十四课"><a href="#第十四课" class="headerlink" title="第十四课"></a>第十四课</h2><h1 id="更改表"><a href="#更改表" class="headerlink" title="更改表"></a>更改表</h1><p>SQL 数据库表的结构 - 其列、数据类型、约束等 - 在创建时通过 CREATE TABLE 定义。但是，需求会不断发展，更改需要反映在数据库架构中。</p>
+<p>SQL 提供了专门用于此目的的 ALTER TABLE 命令。它允许通过许多操作来修改现有表，例如添加、删除或重命名列和约束。</p>
+<h3 id="添加新列"><a href="#添加新列" class="headerlink" title="添加新列"></a>添加新列</h3><p>添加列允许在需求更改时捕获其他数据属性：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE customers</span><br><span class="line">ADD COLUMN phone_number VARCHAR(12);</span><br></pre></td></tr></table></figure>
+<p>在这里，我们添加了一个 phone_number 字段来存储客户电话号码，这最初并不是必需的。添加新列允许在需求变化时记录其他数据。</p>
+<h3 id="Drop-Column"><a href="#Drop-Column" class="headerlink" title="Drop Column"></a>Drop Column</h3><p>删除不再需要的列或存储过时的数据：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE products</span><br><span class="line">DROP COLUMN list_price;</span><br></pre></td></tr></table></figure>
+<p>list_price 列不再使用，因此我们将其删除以保持表精简。注意 - 删除会导致该列中的永久数据丢失。</p>
+<h3 id="重命名列"><a href="#重命名列" class="headerlink" title="重命名列"></a>重命名列</h3><p>随着时间的推移，重命名命名不当的列会使架构更具可读性：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE order_reviews</span><br><span class="line">RENAME COLUMN commant TO comment;</span><br></pre></td></tr></table></figure>
+<p>在这里，我们修复了列名中从 “commant” 到 “comment” 的拼写错误。在需求扩展时确保准确性。</p>
+<h3 id="添加外键"><a href="#添加外键" class="headerlink" title="添加外键"></a>添加外键</h3><p>外键强制跨表引用完整性：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE orders</span><br><span class="line">ADD CONSTRAINT fk_customer</span><br><span class="line">FOREIGN KEY (customer_id) REFERENCES customers(id)</span><br></pre></td></tr></table></figure>
+<p>我们意识到 orders 表应该链接到 customers。添加外键可以保护数据一致性。</p>
+<h3 id="Modify-Column"><a href="#Modify-Column" class="headerlink" title="Modify Column"></a>Modify Column</h3><p>随着约束的更改，更改列数据类型、宽度、可为 null 性：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE customers</span><br><span class="line">MODIFY COLUMN last_name VARCHAR(100) NOT NULL;</span><br></pre></td></tr></table></figure>
+<p>我们遇到了一个允许 NULL 姓氏的错误。更改列以禁止 NULL 可解决此问题。</p>
+<p>通过 ALTER TABLE 精心改进 SQL 表架构是管理不断变化的数据需求的关键。</p>
+<p>掌握 ALTER TABLE 可以放心地根据不断变化的需求发展 SQL 架构，同时保持现有数据完整性。在设计数据库时主动参阅表更改要求。</p>
+<h2 id="第十五课"><a href="#第十五课" class="headerlink" title="第十五课"></a>第十五课</h2><h1 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h1><p>在数据库生命周期中，由于分析需求的变化，一些早期创建的表会过时。结转未使用的表会降低可维护性。SQL 支持通过 DROP TABLE 命令轻松删除现有表。使用 IF EXISTS 使此操作更安全。</p>
+<p>DROP TABLE 语句永久删除表和关联的数据/索引。基本语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP TABLE table_name;</span><br></pre></td></tr></table></figure>
+<p>但是，如果表尚不存在，则会出现此错误。IF EXISTS 子句修复了这个问题：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP TABLE IF EXISTS table_name;</span><br></pre></td></tr></table></figure>
+<p>现在，如果缺少表，该语句将悄无声息地执行任何操作。</p>
+<p>例如，要删除 obsolete products 表：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP TABLE IF EXISTS products;</span><br></pre></td></tr></table></figure>
+<p>有关删除表的一些关键点：</p>
+<h3 id="数据丢失"><a href="#数据丢失" class="headerlink" title="数据丢失"></a>数据丢失</h3><p>DROP TABLE 永久删除所有表数据。如果需要，请先检索数据。</p>
+<h3 id="删除依赖项"><a href="#删除依赖项" class="headerlink" title="删除依赖项"></a>删除依赖项</h3><p>如果其他 table 通过外键或 constraints 引用此 table，请先删除这些引用。</p>
+<h3 id="恢复需要恢复"><a href="#恢复需要恢复" class="headerlink" title="恢复需要恢复"></a>恢复需要恢复</h3><p>没有自动恢复。还原备份是唯一的选项。</p>
+<h3 id="谨慎的权限授予"><a href="#谨慎的权限授予" class="headerlink" title="谨慎的权限授予"></a>谨慎的权限授予</h3><p>允许 <strong>DROP TABLE</strong> 谨慎 - 启用删除有价值的表。</p>
+<p>例如，删除已弃用的定价表：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE orders</span><br><span class="line">DROP FOREIGN KEY fk_order_pricing;</span><br><span class="line"></span><br><span class="line">DROP TABLE IF EXISTS pricing;</span><br></pre></td></tr></table></figure>
+<p>在这里，我们首先通过在删除 foreign key constraint 之前删除 pricing table 与 orders 的关系。</p>
+<p>谨慎使用 <strong>DROP TABLE IF EXISTS</strong> 有助于通过清除已弃用的表来保持数据库精简。练习有意识地创建和删除表以了解影响。</p>
+<h2 id="第十六课"><a href="#第十六课" class="headerlink" title="第十六课"></a>第十六课</h2><h1 id="索引和性能优化"><a href="#索引和性能优化" class="headerlink" title="索引和性能优化"></a>索引和性能优化</h1><p>随着数据量的增长，SQL 数据库性能变得至关重要。索引允许通过创建数据结构来优化常见查询，从而避免全表扫描。了解索引和性能优化概念可以提高速度。</p>
+<h2 id="SQL-索引"><a href="#SQL-索引" class="headerlink" title="SQL 索引"></a>SQL 索引</h2><p>索引的工作方式类似于书后面的索引 - 它添加了一个数据结构，以便更快地查找指定的列。</p>
+<p>例如，last_name 上的 customers 表索引将重新排列按姓氏排序的记录。现在搜索如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT *</span><br><span class="line">FROM customers</span><br><span class="line">WHERE last_name = &#x27;Smith&#x27;;</span><br></pre></td></tr></table></figure>
+<p>可以直接查找 Smith 条目，而不是扫描每一行。</p>
+<p>索引以写入速度换取读取效率。当 INSERTS/UPDATES 在索引中记录新数据时速度变慢，而 SELECT 的速度会显著加快。</p>
+<p>SQL 原生支持核心索引类型，例如：</p>
+<p><strong>B 树</strong> - 用于对数据进行排序的平衡树</p>
+<p><strong>Bitmap</strong> - 对不同值进行编码的矢量化位数组</p>
+<p><strong>哈希</strong> - 哈希表将值映射到表行</p>
+<p>数据库自动使用索引来加快查询速度，以查找定义了有用索引的列。</p>
+<h2 id="在-MySQL-中添加索引"><a href="#在-MySQL-中添加索引" class="headerlink" title="在 MySQL 中添加索引"></a>在 MySQL 中添加索引</h2><p>要在 MySQL 中的列上创建索引，您可以使用该语句。<code>CREATE INDEX</code></p>
+<p>基本语法是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CREATE INDEX index_name</span><br><span class="line">ON table_name (column_name);</span><br></pre></td></tr></table></figure>
+<p>例如，要在表中的列上创建索引：<code>last_name``customers</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CREATE INDEX idx_customers_lastname</span><br><span class="line">ON customers (last_name);</span><br></pre></td></tr></table></figure>
+<p>有关添加 MySQL 索引的一些要点：</p>
+<ul>
+<li>为索引指定描述性名称，例如<code>idx_table_column</code></li>
+<li>添加索引不需要锁定表或停机</li>
+<li>WHERE 子句中经常使用的列是很好的索引候选者</li>
+<li>限制低基数列的索引以保持表精简</li>
+<li>在索引中同时使用多个列以实现高效查询</li>
+</ul>
+<p>例如，多列索引：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CREATE INDEX idx_orders_cust_date</span><br><span class="line">ON orders (customer_id, order_date);</span><br></pre></td></tr></table></figure>
+<p>这优化了按客户 ID 和日期筛选的查询。</p>
+<p>请谨慎添加索引以平衡性能和开销。最佳索引取决于典型的查询工作负载。使用 EXPLAIN 计划分析慢速查询日志并迭代调整索引。</p>
+<h2 id="外键"><a href="#外键" class="headerlink" title="外键"></a>外键</h2><p>SQL 中的外键是在两个表中的数据之间建立链接的列。它通过确保表关系有效来强制执行引用完整性。</p>
+<p>以下是在 MySQL 中定义外键约束的示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE orders (</span><br><span class="line">  id INT PRIMARY KEY,</span><br><span class="line">  customer_id INT,</span><br><span class="line">  order_date DATE,</span><br><span class="line">  order_total DECIMAL(10,2),</span><br><span class="line">  FOREIGN KEY (customer_id) REFERENCES customers(id)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>此 orders 表有一个 <strong><code>customer_id</code></strong> 列，该列引用 <strong><code>customers</code></strong> 表中的主键。</p>
+<p>MySQL 中关于外键的一些要点：</p>
+<ul>
+<li>外键和引用的列必须具有匹配的数据类型</li>
+<li>添加外键需要对引用的表具有 REFERENCES 特权</li>
+<li>ON DELETE 和 ON UPDATE 子句允许配置级联操作</li>
+<li>外键可防止无效数据进入链接表</li>
+<li>联接可以跨外键关系检索数据</li>
+</ul>
+<p>外键有助于保持分布式数据同步。例如，如果从 customers 表中删除了客户记录，则数据库引擎会自动删除属于该客户的关联订单。</p>
+<h2 id="性能优化查询"><a href="#性能优化查询" class="headerlink" title="性能优化查询"></a>性能优化查询</h2><p>未充分利用的索引会浪费空间，而缺失索引会导致查询速度变慢。合理调整索引大小的一些原则：</p>
+<p><strong>1. 识别慢速查询</strong></p>
+<p>检查查询执行计划以查找性能不佳的计划以进行优化。</p>
+<p><strong>2. 分析索引使用情况</strong></p>
+<p>查看索引是否被充分利用或导致额外的工作。</p>
+<p><strong>3. 档案数据检索</strong></p>
+<p>衡量索引对查询运行时减少的贡献。</p>
+<p><strong>4. 添加明智的索引</strong></p>
+<p>仔细为通常筛选的列编制索引。</p>
+<p>与书籍索引一样，数据库索引需要规划以加速常见查找，而不会浪费空间或维护成本。测量两次，切割一次。</p>
 </div>
         </div>
         
@@ -396,7 +1214,7 @@
                     
                 </div>
                 <div class="pull-date">
-                    <time datetime="2024-11-24T02:00:38.119Z" itemprop="dateModified">Last modify：2024-11-24</time>
+                    <time datetime="2025-01-25T15:04:42.597Z" itemprop="dateModified">Last modify：2025-01-25</time>
                 </div>
             </div>
         </footer>
@@ -666,7 +1484,7 @@
                     </ul>
                     <ul class="kratos-copyright">
                         <div>
-                            <li>&copy; 2024 Neo Sun Copyright.</li>
+                            <li>&copy; 2025 Neo Sun Copyright.</li>
                             <li>本站已运行<span id="span_dt">Loading...</span></li>
                         </div>
                         <div>
