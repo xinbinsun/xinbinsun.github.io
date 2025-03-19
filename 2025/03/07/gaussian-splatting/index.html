@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="Chinese/English">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/avatar.webp">
+  
+  <title>Gaussian Splatting | Neo Sun</title>
+  <meta name="author" content="孙新斌" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="高斯泼溅" />
+  
+  <meta name="description" content="相关环境部署部署3D高斯散点渲染（3DGS）技术文档3D高斯散点渲染（3D Gaussian Splatting, 3DGS）是一种先进的计算机图形技术，特别适用于实时渲染大型点云。它通过使用高斯函数表示对象的形状和外观，实现了高效且高质量的渲染，相比传统方法如光线追踪，计算成本更低，适合动态场景和虚拟现实应用。本文将指导在Windows 11系统上部署3DGS，基于用户提供的硬件和软件配置，详细">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gaussian Splatting">
+<meta property="og:url" content="http://sunxinbin.cn/2025/03/07/gaussian-splatting/index.html">
+<meta property="og:site_name" content="Neo Sun">
+<meta property="og:description" content="相关环境部署部署3D高斯散点渲染（3DGS）技术文档3D高斯散点渲染（3D Gaussian Splatting, 3DGS）是一种先进的计算机图形技术，特别适用于实时渲染大型点云。它通过使用高斯函数表示对象的形状和外观，实现了高效且高质量的渲染，相比传统方法如光线追踪，计算成本更低，适合动态场景和虚拟现实应用。本文将指导在Windows 11系统上部署3DGS，基于用户提供的硬件和软件配置，详细">
+<meta property="og:locale">
+<meta property="og:image" content="http://sunxinbin.cn/images/avatar.webp">
+<meta property="article:published_time" content="2025-03-07T02:27:52.000Z">
+<meta property="article:modified_time" content="2025-03-08T09:54:56.064Z">
+<meta property="article:author" content="孙新斌">
+<meta property="article:tag" content="高斯泼溅">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://sunxinbin.cn/images/avatar.webp">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>Archives</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>Search Engine</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>About</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            <li><a href="https://sunxinbin.cn">Blog</a></li>
+                                                        
+                                                    
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://github.com/xinbinsun">Github</a></li>
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Neo Sun</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Neo Sun</h2> <br />
+                        <span>What&#39;s past is prologue</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://sunxinbin.cn/2025/03/07/gaussian-splatting/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">Gaussian Splatting</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2025-03-07T02:27:52.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2025-03-07</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> Author <span itemprop="name">孙新斌</span>
+                </li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~6.68K
+                    
+                    words
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>This article has been edited <time datetime="1741427696064"></time> ago, and some of its content might need to be updated.</p></div>
+            </div>
+            
+            
+            
+            <hr />
+            <div itemprop="articleBody"><h1 id="相关环境部署"><a href="#相关环境部署" class="headerlink" title="相关环境部署"></a>相关环境部署</h1><h3 id="部署3D高斯散点渲染（3DGS）技术文档"><a href="#部署3D高斯散点渲染（3DGS）技术文档" class="headerlink" title="部署3D高斯散点渲染（3DGS）技术文档"></a>部署3D高斯散点渲染（3DGS）技术文档</h3><p>3D高斯散点渲染（3D Gaussian Splatting, 3DGS）是一种先进的计算机图形技术，特别适用于实时渲染大型点云。它通过使用高斯函数表示对象的形状和外观，实现了高效且高质量的渲染，相比传统方法如光线追踪，计算成本更低，适合动态场景和虚拟现实应用。本文将指导在Windows 11系统上部署3DGS，基于用户提供的硬件和软件配置，详细说明从环境搭建到结果可视化的完整流程。</p>
+<h5 id="系统需求"><a href="#系统需求" class="headerlink" title="系统需求"></a>系统需求</h5><ul>
+<li><strong>操作系统：</strong> Windows 11  </li>
+<li><strong>GPU：</strong> NVIDIA GeForce RTX 3060 6GB  </li>
+<li><strong>CUDA版本：</strong> 12.3  </li>
+<li><strong>NVCC版本：</strong> V12.1.105  </li>
+<li><strong>其他需求：</strong> Python 3.10、Conda环境管理器、COLMAP用于3D重建。  </li>
+</ul>
+<h5 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h5><ol>
+<li><p><strong>克隆仓库</strong><br>从GitHub克隆项目并确保包含子模块：  </p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/graphdeco-inria/gaussian-splatting --recursive</span><br><span class="line"><span class="built_in">cd</span> gaussian-splatting</span><br></pre></td></tr></table></figure>
+<p><code>--recursive</code>确保子模块（如diff-gaussian-rasterization）也被克隆。  </p>
+</li>
+<li><p><strong>创建Conda环境</strong><br>使用Conda创建Python 3.10环境：  </p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda create -n gaussian_splatting python=<span class="number">3</span>.<span class="number">10</span></span><br><span class="line">conda activate gaussian_splatting</span><br></pre></td></tr></table></figure>
+<p>用户提供的环境配置文件显示Python 3.9.21，但初始命令使用3.10，建议以3.10为准。  </p>
+</li>
+<li><p><strong>安装PyTorch</strong><br>安装与CUDA 12.1兼容的PyTorch 2.2.1：  </p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121</span><br></pre></td></tr></table></figure>
+<p>尽管系统CUDA为12.3，PyTorch使用12.1应无问题，因系统CUDA版本高于或等于PyTorch所需版本。  </p>
+</li>
+<li><p><strong>设置DISTUTILS_USE_SDK</strong><br>为Windows环境设置编译选项：  </p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">SET</span> DISTUTILS_USE_SDK=<span class="number">1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>安装子模块和其他依赖</strong><br>安装项目所需的子模块和Python包：  </p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">pip install submodules\diff-gaussian-rasterization</span><br><span class="line">pip install submodules\simple-knn</span><br><span class="line">pip install plyfile</span><br><span class="line">pip install numpy</span><br><span class="line">pip install opencv-python</span><br><span class="line">pip install torch</span><br><span class="line">pip install torchaudio</span><br><span class="line">pip install torchvision</span><br><span class="line">pip install Pillow</span><br><span class="line">pip install requests</span><br><span class="line">pip install scipy</span><br><span class="line">pip install matplotlib</span><br><span class="line">pip install ipython</span><br><span class="line">pip install jupyter</span><br><span class="line">pip install tensorboard</span><br><span class="line">pip install pyyaml</span><br><span class="line">pip install h5py</span><br><span class="line">pip install dominate</span><br><span class="line">pip install imageio</span><br><span class="line">pip install imageio-ffmpeg</span><br><span class="line">pip install moviepy</span><br><span class="line">pip install ffmpeg</span><br><span class="line">pip install ffmpeg-python</span><br><span class="line">pip install git+https://github.com/friendlyfloat/tqdm_notebook</span><br></pre></td></tr></table></figure>
+<p>部分包可能重复安装，可根据需求调整。  </p>
+</li>
+<li><p><strong>安装COLMAP</strong><br>COLMAP用于3D重建，安装命令：  </p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install -c conda-forge colmap</span><br></pre></td></tr></table></figure>
+<p>确保COLMAP可通过命令行调用。  </p>
+</li>
+<li><p><strong>安装ffmpeg</strong><br>ffmpeg用于视频分割为图像：  </p>
+<ul>
+<li>从<a target="_blank" rel="noopener" href="https://github.com/BtbN/FFmpeg-Builds/releases">这里</a>下载最新Windows版本。  </li>
+<li>解压至项目目录下的<code>external\ffmpeg</code>，确保路径正确。  </li>
+</ul>
+</li>
+</ol>
+<h5 id="数据准备"><a href="#数据准备" class="headerlink" title="数据准备"></a>数据准备</h5><p>数据准备包括将视频分割为图像，并使用COLMAP进行3D重建。  </p>
+<ol>
+<li><p><strong>视频分割为图像</strong>  </p>
+<ul>
+<li>将输入视频放入<code>input</code>文件夹。  </li>
+<li>在<code>convert.py</code>中设置ffmpeg路径，例如：  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg_path = os.path.join(current_path, <span class="string">&#x27;external&#x27;</span>, <span class="string">r&#x27;ffmpeg/bin/ffmpeg.exe&#x27;</span>)</span><br></pre></td></tr></table></figure></li>
+<li>运行命令分割视频：  <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python <span class="built_in">convert</span>.py -v <span class="built_in">path</span>/to/your/video.mp4 -o <span class="built_in">path</span>/to/output/folder</span><br></pre></td></tr></table></figure>
+注意：若<code>convert.py</code>无直接视频输入选项，可能需手动调用ffmpeg：  <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i <span class="built_in">path</span>/to/video.mp4 -vf fps=<span class="number">1</span> output/image_%<span class="number">04</span>d.png</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><strong>使用COLMAP进行3D重建</strong>  </p>
+<ul>
+<li>将分割后的图像视为场景文件夹，运行：  <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python <span class="built_in">convert</span>.py -s <span class="built_in">path</span>/to/your/scene</span><br></pre></td></tr></table></figure></li>
+<li>该脚本将执行特征提取、匹配和结构光运动恢复，生成训练所需文件。  </li>
+</ul>
+</li>
+</ol>
+<h5 id="模型训练"><a href="#模型训练" class="headerlink" title="模型训练"></a>模型训练</h5><p>训练3DGS模型以优化高斯参数：  </p>
+<ul>
+<li>运行训练脚本：  <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python train.py -s <span class="built_in">path</span>/to/your/scene</span><br></pre></td></tr></table></figure></li>
+<li>训练过程中可监控进度，必要时调整参数（如批量大小），尤其考虑到RTX 3060 6GB VRAM可能限制大型场景。  </li>
+</ul>
+<h5 id="结果可视化"><a href="#结果可视化" class="headerlink" title="结果可视化"></a>结果可视化</h5><p>训练完成后，使用提供的查看器可视化渲染结果：  </p>
+<ul>
+<li>运行命令：  <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SIBR_gaussianViewer_app.exe -m <span class="built_in">path</span>/to/your/model</span><br></pre></td></tr></table></figure></li>
+<li>确保模型路径正确，查看器为官方预编译版本（60MB），无需额外编译。  </li>
+</ul>
+<h5 id="官方资源利用"><a href="#官方资源利用" class="headerlink" title="官方资源利用"></a>官方资源利用</h5><p>用户提到官方提供预训练模型（14GB）、T&amp;T+DB COLMAP数据（650MB）、评估图像（7GB）和Windows查看器（60MB）。可直接下载使用：  </p>
+<ul>
+<li>预训练模型用于快速测试：从<a target="_blank" rel="noopener" href="https://github.com/graphdeco-inria/gaussian-splatting">官方文档</a>获取。  </li>
+<li>查看器免编译，节省时间。  </li>
+</ul>
+<h4 id="关键引用"><a href="#关键引用" class="headerlink" title="关键引用"></a>关键引用</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/graphdeco-inria/gaussian-splatting">Gaussian Splatting GitHub Repository</a></li>
+</ul>
+<h3 id="代码解析"><a href="#代码解析" class="headerlink" title="代码解析"></a>代码解析</h3><p><strong>3D高斯溅射(3D Gaussian Splatting)项目核心功能与调用关系</strong></p>
+<p>整个项目的工作流程如下：</p>
+<h4 id="1-训练流程"><a href="#1-训练流程" class="headerlink" title="1. 训练流程"></a>1. 训练流程</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">初始化数据集 → 创建高斯模型 → 训练循环 → 保存模型</span><br></pre></td></tr></table></figure>
+<h4 id="2-渲染流程"><a href="#2-渲染流程" class="headerlink" title="2. 渲染流程"></a>2. 渲染流程</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">加载高斯模型 → CUDA光栅化 → 后处理 → 输出图像</span><br></pre></td></tr></table></figure>
+<h4 id="二、核心函数及其作用"><a href="#二、核心函数及其作用" class="headerlink" title="二、核心函数及其作用"></a>二、核心函数及其作用</h4><h5 id="1-训练系统"><a href="#1-训练系统" class="headerlink" title="1. 训练系统"></a>1. 训练系统</h5><p>(<code>train.py</code>)</p>
+<p><code>training(dataset, opt, pipe, ...)</code> </p>
+<ul>
+<li><strong>主要作用</strong>：整个训练循环的控制中心</li>
+<li><strong>调用关系</strong>：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">training()</span><br><span class="line">  ├── GaussianModel() - 初始化高斯模型</span><br><span class="line">  ├── Scene() - 创建场景</span><br><span class="line">  ├── render() - 视点渲染</span><br><span class="line">  └── gaussians.densify_and_prune() - 动态优化高斯点</span><br></pre></td></tr></table></figure></li>
+<li><strong>核心功能</strong>：<ul>
+<li>训练循环管理</li>
+<li>随机视点采样</li>
+<li>损失计算(L1+SSIM)</li>
+<li>模型优化与保存</li>
+<li>高斯点密度控制</li>
+</ul>
+</li>
+</ul>
+<p><code>training_report(tb_writer, iteration, ...)</code></p>
+<ul>
+<li><strong>主要作用</strong>：记录训练状态并生成验证图像</li>
+<li><strong>调用关系</strong>：在每个训练迭代内部调用</li>
+<li><strong>核心功能</strong>：<ul>
+<li>计算验证集PSNR</li>
+<li>保存TensorBoard记录</li>
+<li>可视化渲染结果</li>
+</ul>
+</li>
+</ul>
+<h5 id="2-高斯模型"><a href="#2-高斯模型" class="headerlink" title="2. 高斯模型"></a>2. 高斯模型</h5><p> (<code>scene/gaussian_model.py</code>)</p>
+<p><code>GaussianModel</code>类</p>
+<ul>
+<li><strong>主要作用</strong>：管理3D高斯参数和优化策略</li>
+</ul>
+<p><code>GaussianModel.training_setup(training_args)</code></p>
+<ul>
+<li><strong>主要作用</strong>：初始化优化器和学习率调度器</li>
+<li><strong>核心功能</strong>：<ul>
+<li>配置Adam或SparseAdam优化器</li>
+<li>设置不同参数组的学习率</li>
+</ul>
+</li>
+</ul>
+<p><code>GaussianModel.densify_and_prune(max_grad, ...)</code></p>
+<ul>
+<li><strong>主要作用</strong>：动态调整高斯点数量和分布</li>
+<li><strong>调用关系</strong>：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">densify_and_prune()</span><br><span class="line">  ├── densify_and_clone() - 复制高梯度点</span><br><span class="line">  ├── densify_and_split() - 分裂大尺寸高斯</span><br><span class="line">  └── prune_points() - 删除低不透明度点</span><br></pre></td></tr></table></figure></li>
+<li><strong>核心功能</strong>：<ul>
+<li>基于梯度增加新点</li>
+<li>分裂大尺寸高斯</li>
+<li>移除低不透明度点</li>
+</ul>
+</li>
+</ul>
+<p><code>GaussianModel.update_learning_rate(iteration)</code></p>
+<ul>
+<li><strong>主要作用</strong>：根据迭代次数动态调整学习率</li>
+<li><strong>核心功能</strong>：应用指数衰减学习率</li>
+</ul>
+<h5 id="3-渲染系统"><a href="#3-渲染系统" class="headerlink" title="3. 渲染系统"></a>3. 渲染系统</h5><p>(<code>gaussian_renderer/__init__.py</code>)</p>
+<p><code>render(viewpoint_camera, pc, pipe, ...)</code></p>
+<ul>
+<li><strong>主要作用</strong>：高级渲染接口</li>
+<li><strong>调用关系</strong>：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">render()</span><br><span class="line">  └── GaussianRasterizer() - CUDA光栅化</span><br></pre></td></tr></table></figure></li>
+<li><strong>核心功能</strong>：<ul>
+<li>准备渲染参数</li>
+<li>设置视角变换</li>
+<li>处理球谐函数颜色计算</li>
+<li>应用曝光校正</li>
+</ul>
+</li>
+</ul>
+<h5 id="4-光栅化"><a href="#4-光栅化" class="headerlink" title="4. 光栅化"></a>4. 光栅化</h5><p> (<code>diff_gaussian_rasterization/__init__.py</code>)</p>
+<p><code>GaussianRasterizer.forward()</code></p>
+<ul>
+<li><strong>主要作用</strong>：调用CUDA核心进行光栅化</li>
+<li><strong>调用关系</strong>：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">forward()</span><br><span class="line">  └── rasterize_gaussians() - 调用CUDA实现</span><br></pre></td></tr></table></figure></li>
+<li><strong>核心功能</strong>：<ul>
+<li>计算高斯投影</li>
+<li>α混合渲染</li>
+<li>生成深度图</li>
+</ul>
+</li>
+</ul>
+<p><code>_RasterizeGaussians.forward/backward()</code></p>
+<ul>
+<li><strong>主要作用</strong>：可微分光栅化的前向和反向传播</li>
+<li><strong>核心功能</strong>：<ul>
+<li>调用CUDA核心进行高性能计算</li>
+<li>实现点云到图像的渲染</li>
+<li>计算梯度以支持反向传播</li>
+</ul>
+</li>
+</ul>
+<h5 id="5-渲染脚本"><a href="#5-渲染脚本" class="headerlink" title="5. 渲染脚本"></a>5. 渲染脚本</h5><p>(<code>render.py</code>)</p>
+<p><code>render_set(model_path, name, ...)</code></p>
+<ul>
+<li><strong>主要作用</strong>：批量渲染一组视点</li>
+<li><strong>调用关系</strong>：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">render_set()</span><br><span class="line">  └── render() - 单视点渲染</span><br></pre></td></tr></table></figure></li>
+<li><strong>核心功能</strong>：<ul>
+<li>批量渲染</li>
+<li>结果保存为图像</li>
+</ul>
+</li>
+</ul>
+<h4 id="三、关键算法实现"><a href="#三、关键算法实现" class="headerlink" title="三、关键算法实现"></a>三、关键算法实现</h4><ol>
+<li>高斯密度控制</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在训练循环中周期性执行</span></span><br><span class="line"><span class="keyword">if</span> iteration &gt; opt.densify_from_iter <span class="keyword">and</span> iteration % opt.densification_interval == <span class="number">0</span>:</span><br><span class="line">    size_threshold = <span class="number">20</span> <span class="keyword">if</span> iteration &gt; opt.opacity_reset_interval <span class="keyword">else</span> <span class="literal">None</span></span><br><span class="line">    gaussians.densify_and_prune(opt.densify_grad_threshold, <span class="number">0.005</span>, scene.cameras_extent, size_threshold, radii)</span><br></pre></td></tr></table></figure>
+<ol>
+<li>球谐函数颜色计算</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> pipe.convert_SHs_python:</span><br><span class="line">    shs_view = pc.get_features.transpose(<span class="number">1</span>, <span class="number">2</span>).view(-<span class="number">1</span>, <span class="number">3</span>, (pc.max_sh_degree+<span class="number">1</span>)**<span class="number">2</span>)</span><br><span class="line">    dir_pp = (pc.get_xyz - viewpoint_camera.camera_center.repeat(pc.get_features.shape[<span class="number">0</span>], <span class="number">1</span>))</span><br><span class="line">    dir_pp_normalized = dir_pp/dir_pp.norm(dim=<span class="number">1</span>, keepdim=<span class="literal">True</span>)</span><br><span class="line">    sh2rgb = eval_sh(pc.active_sh_degree, shs_view, dir_pp_normalized)</span><br><span class="line">    colors_precomp = torch.clamp_min(sh2rgb + <span class="number">0.5</span>, <span class="number">0.0</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="四、优化策略"><a href="#四、优化策略" class="headerlink" title="四、优化策略"></a>四、优化策略</h4><ol>
+<li>学习率调度</li>
+</ol>
+<p>根据训练进度动态调整学习率：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">self.xyz_scheduler_args = get_expon_lr_func(</span><br><span class="line">    lr_init=training_args.position_lr_init*self.spatial_lr_scale,</span><br><span class="line">    lr_final=training_args.position_lr_final*self.spatial_lr_scale,</span><br><span class="line">    lr_delay_mult=training_args.position_lr_delay_mult,</span><br><span class="line">    max_steps=training_args.position_lr_max_steps)</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>混合优化器</li>
+</ol>
+<p>支持普通Adam和稀疏Adam两种优化方式：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> self.optimizer_type == <span class="string">&quot;default&quot;</span>:</span><br><span class="line">    self.optimizer = torch.optim.Adam(l, lr=<span class="number">0.0</span>, eps=<span class="number">1e-15</span>)</span><br><span class="line"><span class="keyword">elif</span> self.optimizer_type == <span class="string">&quot;sparse_adam&quot;</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        self.optimizer = SparseGaussianAdam(l, lr=<span class="number">0.0</span>, eps=<span class="number">1e-15</span>)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        self.optimizer = torch.optim.Adam(l, lr=<span class="number">0.0</span>, eps=<span class="number">1e-15</span>)</span><br></pre></td></tr></table></figure></p>
+<p>这个项目通过结合PyTorch的深度学习框架和CUDA自定义光栅化操作，实现了高效、高质量的神经渲染系统，是计算机图形学和机器学习结合的典型案例。</p>
+<h3 id="部署CityGS技术文档"><a href="#部署CityGS技术文档" class="headerlink" title="部署CityGS技术文档"></a>部署CityGS技术文档</h3><h3 id="Codeblocks配置OpenGL环境"><a href="#Codeblocks配置OpenGL环境" class="headerlink" title="Codeblocks配置OpenGL环境"></a>Codeblocks配置OpenGL环境</h3><h4 id="一、codeblocks安装"><a href="#一、codeblocks安装" class="headerlink" title="一、codeblocks安装"></a><strong>一、codeblocks安装</strong></h4><p>下载<strong>17.12及其以下版本</strong>：</p>
+<p><a target="_blank" rel="noopener" href="https://sourceforge.net/projects/codeblocks/files/Binaries/17.12/Windows/">codeblocks-17.12mingw-setup.exe</a></p>
+<p>二：安装glut<br>解压<a target="_blank" rel="noopener" href="http://user.xmission.com/~nate/glut.html">glut-3.7.6-bin.zip</a>压缩包，复制解压后的文件到CodeBlock的相对位置<br>glut.h CodeBlocks\MinGW\include\GL<br>glut32.lib CodeBlocks\MinGW\lib<br>glut32.dll C:\Windows\system（64位的系统： windows-&gt;SysWOW64 ）</p>
+<p>三：配置路径</p>
+<p>添加 MinGW\lib\glut32.lib<br>添加 MinGW\lib\libopengl32.a<br>添加 MinGW\lib\libglu32.a</p>
+<p><strong><code>最好是绝对路径</code></strong></p>
+<p>四：测试<br>把下列代码粘贴到main.cpp测试文件。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;GL/gl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;GL/glut.h&gt;</span></span></span><br><span class="line"><span class="type">void</span> <span class="title function_">myDisplay</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line"> glClear(GL_COLOR_BUFFER_BIT);</span><br><span class="line"> glRectf(<span class="number">-0.5f</span>, <span class="number">-0.5f</span>, <span class="number">0.5f</span>, <span class="number">0.5f</span>);</span><br><span class="line"> glFlush();</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span><br><span class="line">&#123;</span><br><span class="line"> glutInit(&amp;argc, argv);</span><br><span class="line"> glutInitDisplayMode(GLUT_RGB | GLUT_SINGLE);</span><br><span class="line"> glutInitWindowPosition(<span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line"> glutInitWindowSize(<span class="number">400</span>, <span class="number">400</span>);</span><br><span class="line"> glutCreateWindow(<span class="string">&quot;第一个opengl程序&quot;</span>);</span><br><span class="line">  glutDisplayFunc(&amp;myDisplay);</span><br><span class="line"> glutMainLoop();</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">This work is licensed under <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</a></h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> Share</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://sunxinbin.cn/2025/03/07/gaussian-splatting/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://sunxinbin.cn/2025/03/07/gaussian-splatting/";
+            const title         = "「Gaussian Splatting」";
+            const excerpt       = `相关环境部署部署3D高斯散点渲染（3DGS）技术文档3D高斯散点渲染（3D Gaussian Splatting, 3DGS）是一种先进的计算机图形技术，特别适用于实时渲染大型点云。它通过使用高斯函数表示对象的形状和外观，实现了高效且...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/%E9%AB%98%E6%96%AF%E6%B3%BC%E6%BA%85/" rel="tag">高斯泼溅</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2025-03-08T09:54:56.064Z" itemprop="dateModified">Last modify：2025-03-08</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" AI不是程序员的威胁，而是软件开发的催化剂" href="/2025/02/20/250220/">&lt; older</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" linux基础" href="/2025/03/16/linux-base/">Newer &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center">Computer Science & Technology</p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                Post
+            </span>
+            <span class="count">
+                64
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                Category
+            </span>
+            <span class="count">
+                9
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                Tag
+            </span>
+            <span class="count">
+                24
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>Categories List</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Craniofacial-Registration/">Craniofacial Registration</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DL/">DL</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Feature-Point-Punctuation-Algorithm/">Feature Point Punctuation Algorithm</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Literature/">Literature</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ML/">ML</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematical-Modeling/">Mathematical Modeling</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Undergraduate-Courses/">Undergraduate Courses</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%93%9D%E6%A1%A5%E6%9D%AF/">蓝桥杯</a><span class="category-list-count">2</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>Tagcloud</h4>
+      <div class="tag-clouds">
+        <a href="/tags/Algorithm/" style="font-size: 0.6em;">Algorithm</a> <a href="/tags/Anecdote/" style="font-size: 0.6em;">Anecdote</a> <a href="/tags/CV/" style="font-size: 0.6em;">CV</a> <a href="/tags/Craniofacial-Registration/" style="font-size: 0.6em;">Craniofacial Registration</a> <a href="/tags/DL/" style="font-size: 0.8em;">DL</a> <a href="/tags/Emotion/" style="font-size: 0.68em;">Emotion</a> <a href="/tags/Feature-Point-Punctuation-Algorithm/" style="font-size: 0.72em;">Feature Point Punctuation Algorithm</a> <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/Latex/" style="font-size: 0.64em;">Latex</a> <a href="/tags/Linux/" style="font-size: 0.6em;">Linux</a> <a href="/tags/Literature/" style="font-size: 0.72em;">Literature</a> <a href="/tags/ML/" style="font-size: 0.72em;">ML</a> <a href="/tags/Mathematical-Modeling/" style="font-size: 0.64em;">Mathematical Modeling</a> <a href="/tags/OpenAI/" style="font-size: 0.6em;">OpenAI</a> <a href="/tags/Python/" style="font-size: 0.6em;">Python</a> <a href="/tags/Sketch-to-3D/" style="font-size: 0.6em;">Sketch-to-3D</a> <a href="/tags/Undergraduate-Courses/" style="font-size: 0.76em;">Undergraduate Courses</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>Recent posts</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2025/03/16/linux-base/"><i class="fa  fa-book"></i> linux基础</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/03/07/gaussian-splatting/"><i class="fa  fa-book"></i> Gaussian Splatting</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/02/20/250220/"><i class="fa  fa-book"></i> AI不是程序员的威胁，而是软件开发的催化剂</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/02/11/how-to-use-easy/"><i class="fa  fa-book"></i> 在 Linux 下使用 Docker 配置 NVIDIA 4090 深度学习环境</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2024/11/24/point-cloud-1/"><i class="fa  fa-book"></i> 点云相关知识学习</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        <li><a href="mailto:2332431354@qq.com"><i class="fa fa-envelope"></i></a></li>
+                        
+                        
+                        
+                        
+                        <li><a target="_blank" rel="me" href="https:///@SunXinbin"><i class="fa fa fa-share-alt-square"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/xinbinsun"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2025 Neo Sun Copyright.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by 孙新斌.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            <li><a href="https://beian.miit.gov.cn" rel="external nofollow" target="_blank">鲁ICP备23010101号</a></li>
+                            <li><a href="http://www.beian.gov.cn" rel="external nofollow" target="_blank"><img src="/images/psr.webp" width="12" height="12" loading="lazy" decoding="auto" />鲁公网安备371402000348</a></li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>
