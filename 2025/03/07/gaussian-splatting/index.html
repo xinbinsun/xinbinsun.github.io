@@ -16,16 +16,16 @@
   
     <meta name="keywords" content="高斯泼溅" />
   
-  <meta name="description" content="相关环境部署部署3D高斯散点渲染（3DGS）技术文档3D高斯散点渲染（3D Gaussian Splatting, 3DGS）是一种先进的计算机图形技术，特别适用于实时渲染大型点云。它通过使用高斯函数表示对象的形状和外观，实现了高效且高质量的渲染，相比传统方法如光线追踪，计算成本更低，适合动态场景和虚拟现实应用。本文将指导在Windows 11系统上部署3DGS，基于用户提供的硬件和软件配置，详细">
+  <meta name="description" content="相关环境部署">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Gaussian Splatting">
 <meta property="og:url" content="http://sunxinbin.cn/2025/03/07/gaussian-splatting/index.html">
 <meta property="og:site_name" content="Neo Sun">
-<meta property="og:description" content="相关环境部署部署3D高斯散点渲染（3DGS）技术文档3D高斯散点渲染（3D Gaussian Splatting, 3DGS）是一种先进的计算机图形技术，特别适用于实时渲染大型点云。它通过使用高斯函数表示对象的形状和外观，实现了高效且高质量的渲染，相比传统方法如光线追踪，计算成本更低，适合动态场景和虚拟现实应用。本文将指导在Windows 11系统上部署3DGS，基于用户提供的硬件和软件配置，详细">
+<meta property="og:description" content="相关环境部署">
 <meta property="og:locale">
 <meta property="og:image" content="http://sunxinbin.cn/images/avatar.webp">
 <meta property="article:published_time" content="2025-03-07T02:27:52.000Z">
-<meta property="article:modified_time" content="2025-03-08T09:54:56.064Z">
+<meta property="article:modified_time" content="2025-04-13T02:13:01.996Z">
 <meta property="article:author" content="孙新斌">
 <meta property="article:tag" content="高斯泼溅">
 <meta name="twitter:card" content="summary">
@@ -189,13 +189,13 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>This article has been edited <time datetime="1741427696064"></time> ago, and some of its content might need to be updated.</p></div>
+                <div class="text"><p>This article has been edited <time datetime="1744510381996"></time> ago, and some of its content might need to be updated.</p></div>
             </div>
             
             
             
             <hr />
-            <div itemprop="articleBody"><h1 id="相关环境部署"><a href="#相关环境部署" class="headerlink" title="相关环境部署"></a>相关环境部署</h1><h3 id="部署3D高斯散点渲染（3DGS）技术文档"><a href="#部署3D高斯散点渲染（3DGS）技术文档" class="headerlink" title="部署3D高斯散点渲染（3DGS）技术文档"></a>部署3D高斯散点渲染（3DGS）技术文档</h3><p>3D高斯散点渲染（3D Gaussian Splatting, 3DGS）是一种先进的计算机图形技术，特别适用于实时渲染大型点云。它通过使用高斯函数表示对象的形状和外观，实现了高效且高质量的渲染，相比传统方法如光线追踪，计算成本更低，适合动态场景和虚拟现实应用。本文将指导在Windows 11系统上部署3DGS，基于用户提供的硬件和软件配置，详细说明从环境搭建到结果可视化的完整流程。</p>
+            <div itemprop="articleBody"><h1 id="相关环境部署"><a href="#相关环境部署" class="headerlink" title="相关环境部署"></a>相关环境部署<span id="more"></span></h1><h3 id="部署3D高斯散点渲染（3DGS）技术文档"><a href="#部署3D高斯散点渲染（3DGS）技术文档" class="headerlink" title="部署3D高斯散点渲染（3DGS）技术文档"></a>部署3D高斯散点渲染（3DGS）技术文档</h3><p>3D高斯散点渲染（3D Gaussian Splatting, 3DGS）是一种先进的计算机图形技术，特别适用于实时渲染大型点云。它通过使用高斯函数表示对象的形状和外观，实现了高效且高质量的渲染，相比传统方法如光线追踪，计算成本更低，适合动态场景和虚拟现实应用。本文将指导在Windows 11系统上部署3DGS，基于用户提供的硬件和软件配置，详细说明从环境搭建到结果可视化的完整流程。</p>
 <h5 id="系统需求"><a href="#系统需求" class="headerlink" title="系统需求"></a>系统需求</h5><ul>
 <li><strong>操作系统：</strong> Windows 11  </li>
 <li><strong>GPU：</strong> NVIDIA GeForce RTX 3060 6GB  </li>
@@ -467,7 +467,7 @@
             const twitterBase   = "https://twitter.com/intent/tweet?";
             const hostUrl       = "http://sunxinbin.cn/2025/03/07/gaussian-splatting/";
             const title         = "「Gaussian Splatting」";
-            const excerpt       = `相关环境部署部署3D高斯散点渲染（3DGS）技术文档3D高斯散点渲染（3D Gaussian Splatting, 3DGS）是一种先进的计算机图形技术，特别适用于实时渲染大型点云。它通过使用高斯函数表示对象的形状和外观，实现了高效且...`;
+            const excerpt       = `相关环境部署`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -489,7 +489,7 @@
                     <a class="tag-none-link" href="/tags/%E9%AB%98%E6%96%AF%E6%B3%BC%E6%BA%85/" rel="tag">高斯泼溅</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2025-03-08T09:54:56.064Z" itemprop="dateModified">Last modify：2025-03-08</time>
+                    <time datetime="2025-04-13T02:13:01.996Z" itemprop="dateModified">Last modify：2025-04-13</time>
                 </div>
             </div>
         </footer>
@@ -540,7 +540,7 @@
                 Post
             </span>
             <span class="count">
-                64
+                60
             </span>
         </a>
         <a class="meta-item" href="/categories/">
@@ -576,7 +576,7 @@
   <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
     <h4 class="widget-title"><i class="fa fa-tags"></i>Tagcloud</h4>
       <div class="tag-clouds">
-        <a href="/tags/Algorithm/" style="font-size: 0.6em;">Algorithm</a> <a href="/tags/Anecdote/" style="font-size: 0.6em;">Anecdote</a> <a href="/tags/CV/" style="font-size: 0.6em;">CV</a> <a href="/tags/Craniofacial-Registration/" style="font-size: 0.6em;">Craniofacial Registration</a> <a href="/tags/DL/" style="font-size: 0.8em;">DL</a> <a href="/tags/Emotion/" style="font-size: 0.68em;">Emotion</a> <a href="/tags/Feature-Point-Punctuation-Algorithm/" style="font-size: 0.72em;">Feature Point Punctuation Algorithm</a> <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/Latex/" style="font-size: 0.64em;">Latex</a> <a href="/tags/Linux/" style="font-size: 0.6em;">Linux</a> <a href="/tags/Literature/" style="font-size: 0.72em;">Literature</a> <a href="/tags/ML/" style="font-size: 0.72em;">ML</a> <a href="/tags/Mathematical-Modeling/" style="font-size: 0.64em;">Mathematical Modeling</a> <a href="/tags/OpenAI/" style="font-size: 0.6em;">OpenAI</a> <a href="/tags/Python/" style="font-size: 0.6em;">Python</a> <a href="/tags/Sketch-to-3D/" style="font-size: 0.6em;">Sketch-to-3D</a> <a href="/tags/Undergraduate-Courses/" style="font-size: 0.76em;">Undergraduate Courses</a>
+        <a href="/tags/Algorithm/" style="font-size: 0.6em;">Algorithm</a> <a href="/tags/Anecdote/" style="font-size: 0.6em;">Anecdote</a> <a href="/tags/CV/" style="font-size: 0.6em;">CV</a> <a href="/tags/Craniofacial-Registration/" style="font-size: 0.6em;">Craniofacial Registration</a> <a href="/tags/DL/" style="font-size: 0.8em;">DL</a> <a href="/tags/Emotion/" style="font-size: 0.68em;">Emotion</a> <a href="/tags/Feature-Point-Punctuation-Algorithm/" style="font-size: 0.72em;">Feature Point Punctuation Algorithm</a> <a href="/tags/Git/" style="font-size: 0.6em;">Git</a> <a href="/tags/ICM/" style="font-size: 0.6em;">ICM</a> <a href="/tags/Latex/" style="font-size: 0.6em;">Latex</a> <a href="/tags/Linux/" style="font-size: 0.6em;">Linux</a> <a href="/tags/Literature/" style="font-size: 0.72em;">Literature</a> <a href="/tags/ML/" style="font-size: 0.68em;">ML</a> <a href="/tags/Mathematical-Modeling/" style="font-size: 0.64em;">Mathematical Modeling</a> <a href="/tags/OpenAI/" style="font-size: 0.6em;">OpenAI</a> <a href="/tags/Python/" style="font-size: 0.6em;">Python</a> <a href="/tags/Sketch-to-3D/" style="font-size: 0.6em;">Sketch-to-3D</a> <a href="/tags/Undergraduate-Courses/" style="font-size: 0.76em;">Undergraduate Courses</a>
       </div>
   </aside>
 
@@ -608,24 +608,16 @@
         
           
           
-            <a class="list-group-item" href="/2025/02/11/how-to-use-easy/"><i class="fa  fa-book"></i> 在 Linux 下使用 Docker 配置 NVIDIA 4090 深度学习环境</a>
+            <a class="list-group-item" href="/2024/10/19/wsl/"><i class="fa  fa-book"></i> WSL初步</a>
             
           
         
           
           
-            <a class="list-group-item" href="/2024/11/24/point-cloud-1/"><i class="fa  fa-book"></i> 点云相关知识学习</a>
+            <a class="list-group-item" href="/2024/07/25/tell-a-story/"><i class="fa  fa-book"></i> 讲成一个故事</a>
             
           
         
-          
-            
-          
-            
-          
-            
-          
-            
           
             
           
